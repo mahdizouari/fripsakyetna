@@ -1,15 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/',  [HomeController::class, 'welcome']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -19,11 +18,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-Route::get('/product', [HomeController::class, 'product']);
-Route::get('/about', [HomeController::class, 'about']);
-Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/product-detail', [HomeController::class, 'productDetail']);
-Route::get('/contact', [HomeController::class, 'contact']);
-Route::get('/checkout', [HomeController::class, 'checkout']);

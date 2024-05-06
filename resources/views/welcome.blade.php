@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Frip')
+@section('title', 'Fripsakyetna')
 
 @section('content')
     <!-- Slider -->
