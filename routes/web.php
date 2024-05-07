@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +19,20 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/', [HomeController::class, 'welcome']);
+Route::get('/product', [HomeController::class, 'product']);
+Route::get('/about', [HomeController::class, 'about']);
+Route::get('/cart', [HomeController::class, 'cart']);
+Route::get('/product-detail', [HomeController::class, 'productdetail']);
+Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/checkout', [HomeController::class, 'checkout']);
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+Route::get('/login', [HomeController::class, 'login'])->name('login');
+
+// Route for showing client profile, assuming you have a dynamic client ID
+Route::get('/client/{clientId}/profile', [HomeController::class, 'showClientProfile'])->name('client.profile');
+
+// Route for dashboard
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
