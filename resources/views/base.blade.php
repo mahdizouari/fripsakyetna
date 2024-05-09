@@ -82,7 +82,7 @@
 							</li>
 
 							@auth
-								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@g mail.com', 'akrambahloul2@gmail.com']))
+								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
 									<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
 								@endif
 
