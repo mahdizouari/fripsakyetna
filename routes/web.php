@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
+use App\Models\produits;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -38,5 +39,14 @@ Route::get('/client/{clientId}/profile', [HomeController::class, 'showClientProf
 // Route for dashboard
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
+
 Route::get('/create',[HomeController::class,'create']);
+
+
+Route::get('/create', [HomeController::class, 'create'])->name('create'); // Route for displaying the form
+Route::post('/create', [HomeController::class, 'store'])->name('store'); // Route for handling form submission
+
+ // Route for handling form submission
+
+
 

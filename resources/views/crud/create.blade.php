@@ -306,6 +306,12 @@
      <div class="container">
        <div class="row">
         <div class="col-md-12">
+          @if (session('status'))
+            <div class="alert alert-success">
+              {{session('status')}}
+            </div>
+          
+          @endif
           <div class="card">
             <div class="card-header">
               <h4>Ajouter un produit
@@ -315,44 +321,60 @@
 
             </div>
             <div class="card-body">
-                <form action="{{url('create')}}" method="POST">
+                <form action="{{url('create')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label >Nom</label>
+                        <label>Nom</label>
                         <input type="text" name="name" value="{{old('name')}}">
-
+                        @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                        <label >Description</label>
+                        <label>Description</label>
                         <textarea name="description" class="form-control" rows="3"></textarea>
-
+                        @error('description') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                        <label >Image</label>
-                        <input type="text" name="Image" value="{{old('Image')}}">
-
-                    </div>
                     <div class="mb-3">
-                        <label >Catégorie</label>
-                        <input type="cat" name="Catégorie" value="{{old('Catégorie')}}">
-
+                        <label>Image (PNG or JPEG)</label>
+                        <input type="file" name="Image" accept="image/png, image/jpeg">
+                        @error('Image') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
+        
+                            <div class="mb-3">
+                                <label>Catégorie</label><br>
+                                <div>
+                                    <input type="radio" id="homme" name="Catégorie" value="homme" {{ old('Catégorie') == 'homme' ? 'checked' : '' }}>
+                                    <label for="homme">Homme</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="femme" name="Catégorie" value="femme" {{ old('Catégorie') == 'femme' ? 'checked' : '' }}>
+                                    <label for="femme">Femme</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="enfant" name="Catégorie" value="enfant" {{ old('Catégorie') == 'enfant' ? 'checked' : '' }}>
+                                    <label for="enfant">Enfant</label>
+                                </div>
+                                @error('Catégorie') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+
+                          
+
                     <div class="mb-3">
-                        <label >Référence</label>
+                        <label>Référence</label>
                         <input type="text" name="Référence" value="{{old('Référence')}}">
-
+                        @error('Référence') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                        <label >Is Active</label>
-                        <input type="checkbox" name="is_active" {{old('Référence')==true ? checked:''}}>
-
+                        <label>Is Active</label>
+                        <input type="checkbox" name="is_active" {{old('is_active') ? 'checked' : ''}}>
+                        @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Save</button>
-
                     </div>
                 </form>
             </div>
+
 
           </div>
 
