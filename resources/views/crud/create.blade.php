@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>Admin dashboard</title>
+    <title>ajout de produit</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -308,11 +308,50 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h4>Produits
-                <a href="{{url('create')}}" class="btn btn-primary float-end">Ajouter un produit</a>
+              <h4>Ajouter un produit
+                <a href="{{url('dashboard')}}" class="btn btn-primary float-end">Retour</a>
 
               </h4>
 
+            </div>
+            <div class="card-body">
+                <form action="{{url('create')}}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label >Nom</label>
+                        <input type="text" name="name" value="{{old('name')}}">
+
+                    </div>
+                    <div class="mb-3">
+                        <label >Description</label>
+                        <textarea name="description" class="form-control" rows="3"></textarea>
+
+                    </div>
+                    <div class="mb-3">
+                        <label >Image</label>
+                        <input type="text" name="Image" value="{{old('Image')}}">
+
+                    </div>
+                    <div class="mb-3">
+                        <label >Catégorie</label>
+                        <input type="cat" name="Catégorie" value="{{old('Catégorie')}}">
+
+                    </div>
+                    <div class="mb-3">
+                        <label >Référence</label>
+                        <input type="text" name="Référence" value="{{old('Référence')}}">
+
+                    </div>
+                    <div class="mb-3">
+                        <label >Is Active</label>
+                        <input type="checkbox" name="is_active" {{old('Référence')==true ? checked:''}}>
+
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Save</button>
+
+                    </div>
+                </form>
             </div>
 
           </div>

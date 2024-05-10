@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -36,3 +37,6 @@ Route::get('/client/{clientId}/profile', [HomeController::class, 'showClientProf
 
 // Route for dashboard
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/create',[HomeController::class,'create']);
+

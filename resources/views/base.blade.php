@@ -68,13 +68,13 @@
 								<a href="product">Boutique</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="cart">Features</a>
+							<li>
+								<a href="cart">Panier</a>
 							</li>
 
 
 							<li>
-								<a href="about">About</a>
+								<a href="about">A propos</a>
 							</li>
 
 							<li>

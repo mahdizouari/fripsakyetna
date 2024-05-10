@@ -55,4 +55,10 @@ public function dashboard()
 {
     return view('dashboard'); // You need to create this view
 }
+public function create()
+{
+    return view('crud.create'); 
+}
+
+
 }
