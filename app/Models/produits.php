@@ -15,7 +15,7 @@ class produits extends Model
         'description' ,
         'Image' ,
         'Catégorie' ,
-        'référence' ,
+        'Référence' ,
         'is_active' 
     ];
 }

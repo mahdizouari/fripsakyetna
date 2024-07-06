@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+    .status {
+      display: flex;
+      align-items: center;
+    }
+    .status i {
+      margin-left: 5px;
+    }
+  </style>
   </head>
   <body>
     <!-- ======== Preloader =========== -->
@@ -303,25 +314,57 @@
       </header>
       <!-- ========== header end ========== -->
       
-     <div class="container">
-       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h4>Produits
-                <a href="{{url('create')}}" class="btn btn-primary float-end">Ajouter un produit</a>
-
-              </h4>
-
-            </div>
-
-          </div>
-
+      <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Produits
+            <a href="{{url('create')}}" class="btn btn-primary float-end">Ajouter un produit</a>
+          </h4>
         </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>Référence</th>
+                <th>Is Active</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($product as $item)
+              <tr>
+                <td>{{$item->id}}</td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->description}}</td>
+                <td>{{$item->Catégorie}}</td>
+                <td>{{$item->Référence}}</td>
+                <td>
+                  @if ($item->is_active)
+                  Active    <i class="fas fa-circle text-success" style="font-size: 10px;"></i>
+                  @else
+                  In-Active <i class="fas fa-circle text-danger" style="font-size: 10px;"></i>
+                  @endif
+                </td>
+                <td>
+                  <a href="{{url('create/'.$item->id.'/edit')}}" class="btn btn-success mx-2">Edit</a>
+                  <a href="{{url('create/'.$item->id.'/delete')}}" class="btn btn-danger mx-2">Delete</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-       </div>
-
-     </div>
      
 
       <!-- ========== footer start =========== -->
@@ -364,7 +407,9 @@
     <script src="assets/js/world-merc.js"></script>
     <script src="assets/js/polyfill.js"></script>
     <script src="assets/js/main.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
       // ======== jvectormap activation
       var markers = [

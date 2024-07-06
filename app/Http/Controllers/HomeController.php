@@ -53,11 +53,14 @@ public function showClientProfile($clientId)
     return view('client.profile', ['client' => $client]);
 }
 public function dashboard()
+
 {
-    return view('dashboard'); // You need to create this view
+    $product=produits::get();
+    return view('dashboard',compact('product')); 
 }
 public function create()
-{
+{  
+
     return view('crud.create'); 
 }
 
@@ -89,10 +92,11 @@ public function store(request $request){
 
 }
 
-
-
-
-
-
 }
+public function edit(int $id)
+{
+    $produit = produits::find($id);
+    return view('crud.edit', compact('produit'));
+}
+
 }

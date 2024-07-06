@@ -45,6 +45,7 @@ Route::get('/create',[HomeController::class,'create']);
 
 Route::get('/create', [HomeController::class, 'create'])->name('create'); // Route for displaying the form
 Route::post('/create', [HomeController::class, 'store'])->name('store'); // Route for handling form submission
+Route::get('create/{id}/edit',[HomeController::class, 'edit']);
 
  // Route for handling form submission
 
