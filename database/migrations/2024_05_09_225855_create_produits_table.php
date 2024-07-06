@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('Image');
-            $table->string('Catégorie');
+            $table->string('Catégorie');// If necessary, modify this to be nullable or have a default value
             $table->string('Référence');
-            $table->boolean('is_active')->default(1);
+            $table->boolean('is_active')->default(1); // Ensures default is true
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

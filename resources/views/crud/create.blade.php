@@ -21,6 +21,7 @@
       <div class="spinner"></div>
     </div>
     <!-- ======== Preloader =========== -->
+    
 
     <!-- ======== sidebar-nav start =========== -->
     <aside class="sidebar-nav-wrapper">
@@ -364,11 +365,11 @@
                         <input type="text" name="Référence" value="{{old('Référence')}}">
                         @error('Référence') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="mb-3">
-                        <label>Is Active</label>
-                        <input type="checkbox" name="is_active" {{old('is_active') ? 'checked' : ''}}>
-                        @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
+                     <div class="mb-3">
+                          <label>Is Active</label>
+                          <input type="checkbox" name="is_active" {{ old('is_active') ? 'checked' : '' }}>
+                          @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
+                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
@@ -425,6 +426,7 @@
     <script src="assets/js/world-merc.js"></script>
     <script src="assets/js/polyfill.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="path/to/your/script.js" defer></script>
 
     <script>
       // ======== jvectormap activation
@@ -961,5 +963,7 @@
       });
         // =========== chart four end
     </script>
-  </body>
+    
+    
+</body>
 </html>

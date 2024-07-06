@@ -14,7 +14,7 @@ class produits extends Model
         'name'  ,
         'description' ,
         'Image' ,
-        'catégorie' ,
+        'Catégorie' ,
         'référence' ,
         'is_active' 
     ];

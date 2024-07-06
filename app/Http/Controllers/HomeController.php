@@ -65,16 +65,18 @@ public function store(request $request){
     $request->validate([
         'name' => 'required|max:255|string',
         'description' => 'required|max:255|string',
-        'Image' => 'required|image|max:4096', // Validates that 'Image' is a required image file with a maximum size of 4096 KB (4 MB)
-        'Catégorie' => 'required|max:255|string',
+        'Image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validates that 'Image' is a required image file with a maximum size of 4096 KB (4 MB)
+        'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
     ]); 
+    if ($request->hasFile('Image')) {
+        $imagePath = $request->file('Image')->store('images', 'public');
     
     produits::create([
         'name'=>$request->name,
         'description'=>$request->description,
-        'Image'=>$request->Image,
+        'Image'=>$imagePath,
         'Catégorie'=>$request->Catégorie,
         'Référence'=>$request->Référence,
         'is_active'=>$request->is_active == true ?1:0,
@@ -82,7 +84,7 @@ public function store(request $request){
 
 
     ]);
-   // return redirect('create')->with('status','Product created');
+    return redirect('create')->with('status','Product created');
 
 
 }
@@ -92,4 +94,5 @@ public function store(request $request){
 
 
 
+}
 }
