@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('Référence');
             $table->boolean('is_active')->default(1); // Ensures default is true
             $table->timestamps();
+            $table->decimal('prix', 8, 2)->nullable();
         });
     }
     
@@ -30,5 +31,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('produits');
+        Schema::table('produits', function (Blueprint $table) {
+            $table->dropColumn('prix');
+        });
     }
 };

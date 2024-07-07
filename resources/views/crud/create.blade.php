@@ -220,6 +220,12 @@
                             <textarea id="description" name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
                             @error('description') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
+                        <div class="mb-3">
+                           <label for="prix" class="form-label">Prix (DT)</label>
+                           <input type="text" name="prix" id="prix" class="form-control" value="{{ old('prix', $produit->prix ?? '') }}">
+                           @error('prix') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
+
                         
                         <div class="mb-3">
                             <label class="form-label">Catégorie</label><br>

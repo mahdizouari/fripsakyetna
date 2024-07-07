@@ -73,7 +73,8 @@ public function store(Request $request)
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        
+        'prix' => 'required|numeric', // Add validation for prix
+
     ]);
 
    
@@ -85,6 +86,8 @@ public function store(Request $request)
         'Catégorie' => $request->Catégorie,
         'Référence' => $request->Référence,
         'is_active' => $request->is_active == true ? 1 : 0,
+        'prix' => $request->prix,
+
     ]);
 
     return redirect('create')->with('status', 'Product created successfully!');
@@ -106,7 +109,7 @@ public function update(Request $request, int $id)
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        
+        'prix' => 'required|numeric', // Add validation for prix
     ]);
 
     // Find the product by ID
@@ -121,6 +124,8 @@ public function update(Request $request, int $id)
     $produit->Catégorie = $request->Catégorie;
     $produit->Référence = $request->Référence;
     $produit->is_active = $request->is_active == true ? 1 : 0;
+    $produit->prix = $request->prix;
+    
 
     // Save the updated product details
     $produit->save();

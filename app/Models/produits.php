@@ -16,6 +16,7 @@ class produits extends Model
         'Catégorie' ,
         'Référence' ,
         'is_active' ,
+        'prix',
         
         
     ];
