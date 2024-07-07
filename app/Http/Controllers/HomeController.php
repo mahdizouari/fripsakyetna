@@ -70,24 +70,18 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required|max:255|string',
         'description' => 'required|max:255|string',
-        'Image' => 'required|Image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validates that 'Image' is a required image file with a maximum size of 2 MB
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        'image_blob'=> 'longblob',
+        
     ]);
 
-    // Handle the image upload
-    if ($request->hasFile('Image')) {
-        $Image = $request->file('Image');
-        $imageBlob = file_get_contents($Image->getRealPath());
-    }
-
+   
+   
     // Create the product
     produits::create([
         'name' => $request->name,
         'description' => $request->description,
-        'image_blob' => $imageBlob, // Store the image as a BLOB
         'Catégorie' => $request->Catégorie,
         'Référence' => $request->Référence,
         'is_active' => $request->is_active == true ? 1 : 0,
@@ -109,22 +103,17 @@ public function update(Request $request, int $id)
     $request->validate([
         'name' => 'required|max:255|string',
         'description' => 'required|max:255|string',
-        'Image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Image is optional
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        'image_blob'=> 'longblob',
+        
     ]);
 
     // Find the product by ID
     $produit = produits::findOrFail($id);
 
     // Handle the image upload if a new image is provided
-    if ($request->hasFile('Image')) {
-        $Image = $request->file('Image');
-        $imageBlob = file_get_contents($Image->getRealPath());
-        $produit->Image = $imageBlob;
-    }
+   
 
     // Update other product details
     $produit->name = $request->name;

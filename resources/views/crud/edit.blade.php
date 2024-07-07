@@ -197,79 +197,71 @@
       <!-- ========== header end ========== -->
       
       <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-12">
-        @if (session('status'))
-          <div class="alert alert-success">
-            {{ session('status') }}
-          </div>
-        @endif
-        <div class="card">
-          <div class="card-header">
-            <h4>Modifier un produit
-              <a href="{{ url('dashboard') }}" class="btn btn-primary float-end">Retour</a>
-            </h4>
-          </div>
-          <div class="card-body">
-            <form action="{{ url('edit') }}" method="POST" enctype="multipart/form-data">
-              @csrf
-              @method('PUT')
-              <div class="mb-3">
-                <label for="name" class="form-label">Nom</label>
-                <input type="text" name="name" class="form-control" value="{{ $produit->name }}">
-                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+  <div class="row">
+    <div class="col-md-12">
+      @if (session('status'))
+        <div class="alert alert-success">
+          {{ session('status') }}
+        </div>
+      @endif
+      <div class="card">
+        <div class="card-header">
+          <h4>Modifier un produit
+            <a href="{{ url('dashboard') }}" class="btn btn-primary float-end">Retour</a>
+          </h4>
+        </div>
+        <div class="card-body">
+          <form action="{{ url('edit/' . $produit->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+              <label for="name" class="form-label">Nom</label>
+              <input type="text" id="name" name="name" class="form-control" value="{{ $produit->name }}">
+              @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" name="description" class="form-control" rows="3">{{ $produit->description }}</textarea>
+              @error('description') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Catégorie</label><br>
+              <div class="form-check form-check-inline">
+                <input type="radio" id="homme" name="Catégorie" class="form-check-input" value="homme" {{ $produit->Catégorie == 'homme' ? 'checked' : '' }}>
+                <label for="homme" class="form-check-label">Homme</label>
               </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea name="description" class="form-control" rows="3">{{ $produit->description }}</textarea>
-                @error('description') <span class="text-danger">{{ $message }}</span> @enderror
+              <div class="form-check form-check-inline">
+                <input type="radio" id="femme" name="Catégorie" class="form-check-input" value="femme" {{ $produit->Catégorie == 'femme' ? 'checked' : '' }}>
+                <label for="femme" class="form-check-label">Femme</label>
               </div>
-              <div class="mb-3">
-                <label for="Image" class="form-label">Image (PNG or JPEG)</label>
-                <input type="file" name="Image" class="form-control" accept="image/png, image/jpeg">
-                @error('Image') <span class="text-danger">{{ $message }}</span> @enderror
-                <div class="mb-3">
-                <label for="Image" class="form-label">Image (PNG or JPEG)</label>
-                <input type="file" name="Image" class="form-control" accept="image/png, image/jpeg">
-                @error('Image') <span class="text-danger">{{ $message }}</span> @enderror
+              <div class="form-check form-check-inline">
+                <input type="radio" id="enfant" name="Catégorie" class="form-check-input" value="enfant" {{ $produit->Catégorie == 'enfant' ? 'checked' : '' }}>
+                <label for="enfant" class="form-check-label">Enfant</label>
               </div>
-              <div class="mb-3">
-                <label class="form-label">Catégorie</label><br>
-                <div class="form-check form-check-inline">
-                  <input type="radio" id="homme" name="Catégorie" class="form-check-input" value="homme" {{ $produit->nameCatégorie == 'homme' ? 'checked' : '' }}>
-                  <label for="homme" class="form-check-label">Homme</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input type="radio" id="femme" name="Catégorie" class="form-check-input" value="femme" {{ $produit->Catégorie == 'femme' ? 'checked' : '' }}>
-                  <label for="femme" class="form-check-label">Femme</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input type="radio" id="enfant" name="Catégorie" class="form-check-input" value="enfant" {{ $produit->Catégorie == 'enfant' ? 'checked' : '' }}>
-                  <label for="enfant" class="form-check-label">Enfant</label>
-                </div>
-                @error('Catégorie') <span class="text-danger">{{ $message }}</span> @enderror
+              @error('Catégorie') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="mb-3">
+              <label for="Référence" class="form-label">Référence</label>
+              <input type="text" id="Référence" name="Référence" class="form-control" value="{{ $produit->Référence }}">
+              @error('Référence') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="mb-3">
+              <div class="form-check">
+                <input type="checkbox" id="is_active" name="is_active" class="form-check-input" {{ $produit->is_active ? 'checked' : '' }}>
+                <label for="is_active" class="form-check-label">Is Active</label>
               </div>
-              <div class="mb-3">
-                <label for="Référence" class="form-label">Référence</label>
-                <input type="text" name="Référence" class="form-control" value="{{ $produit->Référence }}">
-                @error('Référence') <span class="text-danger">{{ $message }}</span> @enderror
-              </div>
-              <div class="mb-3">
-                <div class="form-check">
-                  <input type="checkbox" name="is_active" class="form-check-input" id="is_active" {{ $produit->is_active==true ? 'checked': '' }}>
-                  <label for="is_active" class="form-check-label">Is Active</label>
-                </div>
-                @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
-              </div>
-              <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Update</button>
-              </div>
-            </form>
-          </div>
+              @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
+
 
      
 

@@ -13,11 +13,10 @@ class produits extends Model
     protected $fillable = [
         'name'  ,
         'description' ,
-        'Image' ,
         'Catégorie' ,
         'Référence' ,
         'is_active' ,
-        'image_blob'
+        
         
     ];
 }
