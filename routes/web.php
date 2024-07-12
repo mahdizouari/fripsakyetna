@@ -47,7 +47,8 @@ Route::get('/create', [HomeController::class, 'create'])->name('create'); // Rou
 Route::post('/create', [HomeController::class, 'store'])->name('store'); // Route for handling form submission
 Route::get('/edit/{id}',[HomeController::class, 'edit'])->name('edit');
 Route::put('/edit/{id}',[HomeController::class, 'update'])->name('update');
-Route::get('create/{id}/delete',[HomeController::class, 'destroy']);
+Route::delete('/delete/{id}',[HomeController::class, 'destroy'])->name('product.destroy');
+
 
  // Route for handling form submission
 

@@ -13,6 +13,7 @@ class produits extends Model
     protected $fillable = [
         'name'  ,
         'description' ,
+        'image',
         'Catégorie' ,
         'Référence' ,
         'is_active' ,
@@ -20,4 +21,5 @@ class produits extends Model
         
         
     ];
+    
 }

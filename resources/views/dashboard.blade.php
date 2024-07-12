@@ -219,6 +219,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Image</th>
                 <th>Prix</th>
                 <th>Catégorie</th>
                 <th>Référence</th>
@@ -232,6 +233,9 @@
       <td>{{ $item->id }}</td>
       <td>{{ $item->name }}</td>
       <td>{{ $item->description }}</td>
+      <td>
+      <img src="{{ asset('storage/app/privates' . $item->image) }}" style="width: 70px; height: 70px;" alt="Img">
+      </td>
       <td>{{ $item->prix }}DT</td>
       <td>{{ $item->Catégorie }}</td>
       <td>{{ $item->Référence }}</td>
@@ -243,13 +247,14 @@
         @endif
       </td>
       <td>
-        <a href="{{ url('edit/'.$item->id) }}" class="btn btn-success mx-2">Edit</a>
-        <form action="{{ url('delete/'.$item->id) }}" method="POST" style="display: inline-block;">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-danger mx-2">Delete</button>
-        </form>
+         <a href="{{ url('edit/'.$item->id) }}" class="btn btn-success mx-2">Edit</a>
+         <form action="{{ route('product.destroy', $item->id) }}" method="POST" style="display: inline-block;">
+              @csrf
+             @method('DELETE')
+              <button type="submit" class="btn btn-danger mx-2">Delete</button>
+          </form>
       </td>
+
     </tr>
   @endforeach
 </tbody>

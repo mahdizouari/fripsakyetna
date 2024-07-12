@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>ajout de produit</title>
+    <title>Ajout de produit</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    
   </head>
   <body>
     <!-- ======== Preloader =========== -->
@@ -254,6 +255,10 @@
                                 <label for="is_active" class="form-check-label">Is Active</label>
                             </div>
                             @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label >Upload  Image</label>
+                            <input type="file" name="image" id="image" class="form-control"/>
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Add</button>

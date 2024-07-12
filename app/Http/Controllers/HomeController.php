@@ -5,6 +5,7 @@ use App\Models\produits;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 class HomeController extends Controller
 {
     public function welcome ()
@@ -70,19 +71,28 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required|max:255|string',
         'description' => 'required|max:255|string',
+        'image'=>'nullable|mimes:png,jpg,jpeg,webp',
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
         'prix' => 'required|numeric', // Add validation for prix
 
     ]);
-
+    if($request->has('image'))
+    {
+        $file=$request->file('image');
+        $extension=$file->getClientOriginalExtension();
+        $filename=time().'.'.$extension;
+        $path='storage/app/privates';
+        $file->move($path,$filename);
+    }
    
    
     // Create the product
     produits::create([
         'name' => $request->name,
         'description' => $request->description,
+        'image'=>$path.$filename,
         'Catégorie' => $request->Catégorie,
         'Référence' => $request->Référence,
         'is_active' => $request->is_active == true ? 1 : 0,
@@ -106,6 +116,7 @@ public function update(Request $request, int $id)
     $request->validate([
         'name' => 'required|max:255|string',
         'description' => 'required|max:255|string',
+        'image'=>'nullable|mimes:png,jpg,jpeg,webp',
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
@@ -117,6 +128,18 @@ public function update(Request $request, int $id)
 
     // Handle the image upload if a new image is provided
    
+    if($request->has('image'))
+    {
+        $file=$request->file('image');
+        $extension=$file->getClientOriginalExtension();
+        $filename=time().'.'.$extension;
+        $path='storage/app/privates';
+        $file->move($path,$filename);
+        if(File::exists($produit->image)){
+            File::delete($produit->image);
+        }
+
+    }
 
     // Update other product details
     $produit->name = $request->name;
@@ -140,5 +163,6 @@ public function destroy(int $id)
     return redirect()->back()->with('status', 'Product deleted successfully!');
 
 }
+
 
 }

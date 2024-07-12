@@ -8,7 +8,11 @@
     <title>Modification de produit</title>
 
     <!-- ========== All CSS files linkup ========= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
@@ -84,189 +88,178 @@
     <!-- ======== main-wrapper start =========== -->
     <main class="main-wrapper">
       <!-- ========== header start ========== -->
+      <!-- ========== header start ========== -->
       <header class="header">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-5 col-md-5 col-6">
-              <div class="header-left d-flex align-items-center">
-                <div class="menu-toggle-btn mr-15">
-                  <button id="menu-toggle" class="main-btn primary-btn btn-hover">
-                    <i class="lni lni-chevron-left me-2"></i> Menu
-                  </button>
-                </div>
-                <div class="header-search d-none d-md-flex">
-                  <form action="#">
-                    <input type="text" placeholder="Search..." />
-                    <button><i class="lni lni-search-alt"></i></button>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-7 col-md-7 col-6">
-              <div class="header-right">
-                <!-- notification start -->
-                
-                <!-- notification end -->
-                
-                <!-- profile start -->
-                <div class="profile-box ml-15">
-                  <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="profile-info">
-                      <div class="info">
-                            @auth
-                                    @if(auth()->user()->email === 'yessin.zouari100@gmail.com')
-                                        <div class="image">
-                                            <img src="assets/images/profile/yessin.png" alt="image">
-                                        </div>
-                                    @elseif(auth()->user()->email === 'akrambahloul2@gmail.com')
-                                        <div class="image">
-                                            <img src="assets/images/profile/akram.png" alt="image">
-                                        </div>
-                                
-                                    @endif
-                            @endauth
-                        <div>
-                             @auth
-                                <h6 class="fw-500">{{ auth()->user()->name }}</h6>
-                            @endauth
-
-                          <p>Admin</p>
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-5 col-6">
+                    <div class="header-left d-flex align-items-center">
+                        <div class="menu-toggle-btn me-3">
+                            <button id="menu-toggle" class="btn btn-primary">
+                                <i class="lni lni-chevron-left me-2"></i> Menu
+                            </button>
                         </div>
-                      </div>
+                        <div class="header-search d-none d-md-flex">
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Search..." />
+                                <button class="btn btn-outline-secondary" type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
+                        </div>
                     </div>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li>
-                      <div class="author-info flex items-center !p-1">
-                      @auth
-                            @if(auth()->user()->email === 'yessin.zouari100@gmail.com')
-                                <div class="image">
-                                    <img src="assets/images/profile/yessin.png" alt="image">
-                                </div>
-                            @elseif(auth()->user()->email === 'akrambahloul2@gmail.com')
-                                <div class="image">
-                                    <img src="assets/images/profile/akram.png" alt="image">
-                                </div>
-                        
-                            @endif
-                       @endauth
-
-                        <div class="content">
-                        @auth
-                            <h6 class="fw-500">{{ auth()->user()->name }}</h6>
-                        @endauth
-
-                              @auth
-                                <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#">{{ auth()->user()->email }}</a>
-                            @endauth
-                        </div>
-                      </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="/profile">
-                        <i class="lni lni-user"></i> View Profile
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#0">
-                        <i class="lni lni-alarm"></i> Notifications
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-									@csrf
-								</form>                    
-                  </ul>
                 </div>
-                <!-- profile end -->
-              </div>
+                <div class="col-lg-7 col-md-7 col-6">
+                    <div class="header-right d-flex justify-content-end align-items-center">
+                        <!-- Profile Start -->
+                        <div class="profile-box ms-3">
+                            <button class="btn dropdown-toggle bg-transparent border-0 d-flex align-items-center" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="profile-info d-flex align-items-center">
+                                    @auth
+                                        <div class="image">
+                                            @if(auth()->user()->email === 'yessin.zouari100@gmail.com')
+                                                <img src="{{ asset('assets/images/profile/yessin.png') }}" alt="image">
+                                            @elseif(auth()->user()->email === 'akrambahloul2@gmail.com')
+                                                <img src="{{ asset('assets/images/profile/akram.png') }}" alt="image">
+                                            @endif
+                                        </div>
+                                    @endauth
+                                    <div class="ms-2">
+                                        @auth
+                                            <h6 class="fw-500 mb-0">{{ auth()->user()->name }}</h6>
+                                        @endauth
+                                        <p class="text-muted mb-0">Admin</p>
+                                    </div>
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                                <li>
+                                    <div class="d-flex align-items-center p-2">
+                                        @auth
+                                            <div class="image">
+                                                @if(auth()->user()->email === 'yessin.zouari100@gmail.com')
+                                                    <img src="{{ asset('assets/images/profile/yessin.png') }}" alt="image">
+                                                @elseif(auth()->user()->email === 'akrambahloul2@gmail.com')
+                                                    <img src="{{ asset('assets/images/profile/akram.png') }}" alt="image">
+                                                @endif
+                                            </div>
+                                        @endauth
+                                        <div class="ms-2">
+                                            @auth
+                                                <h6 class="fw-500 mb-0">{{ auth()->user()->name }}</h6>
+                                                <a class="text-muted text-xs" href="#">{{ auth()->user()->email }}</a>
+                                            @endauth
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="/profile" class="dropdown-item"><i class="lni lni-user me-2"></i> View Profile</a></li>
+                                <li><a href="#0" class="dropdown-item"><i class="lni lni-alarm me-2"></i> Notifications</a></li>
+                                <li><a href="#0" class="dropdown-item"><i class="lni lni-inbox me-2"></i> Messages</a></li>
+                                <li><a href="#0" class="dropdown-item"><i class="lni lni-cog me-2"></i> Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
+                                        <i class="lni lni-exit me-2"></i> Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Profile End -->
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </header>
+    </header>
       <!-- ========== header end ========== -->
       
-      <div class="container mt-4">
-  <div class="row">
-    <div class="col-md-12">
-      @if (session('status'))
-        <div class="alert alert-success">
-          {{ session('status') }}
-        </div>
-      @endif
-      <div class="card">
-        <div class="card-header">
-          <h4>Modifier un produit
-            <a href="{{ url('dashboard') }}" class="btn btn-primary float-end">Retour</a>
-          </h4>
-        </div>
-        <div class="card-body">
-          <form action="{{ url('edit/' . $produit->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="mb-3">
-              <label for="name" class="form-label">Nom</label>
-              <input type="text" id="name" name="name" class="form-control" value="{{ $produit->name }}">
-              @error('name') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea id="description" name="description" class="form-control" rows="3">{{ $produit->description }}</textarea>
-              @error('description') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="mb-3">
-               <label for="prix" class="form-label">Prix</label>
-               <input type="text" name="prix" id="prix" class="form-control" value="{{ old('prix', $produit->prix ?? '') }}">
-               @error('prix') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
 
-            <div class="mb-3">
-              <label class="form-label">Catégorie</label><br>
-              <div class="form-check form-check-inline">
-                <input type="radio" id="homme" name="Catégorie" class="form-check-input" value="homme" {{ $produit->Catégorie == 'homme' ? 'checked' : '' }}>
-                <label for="homme" class="form-check-label">Homme</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="radio" id="femme" name="Catégorie" class="form-check-input" value="femme" {{ $produit->Catégorie == 'femme' ? 'checked' : '' }}>
-                <label for="femme" class="form-check-label">Femme</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="radio" id="enfant" name="Catégorie" class="form-check-input" value="enfant" {{ $produit->Catégorie == 'enfant' ? 'checked' : '' }}>
-                <label for="enfant" class="form-check-label">Enfant</label>
-              </div>
-              @error('Catégorie') <span class="text-danger">{{ $message }}</span> @enderror
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Modifier un produit
+                            <a href="{{ url('dashboard') }}" class="btn btn-primary float-end">Retour</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('edit/' . $produit->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom</label>
+                                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $produit->name }}">
+                                @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="3">{{ $produit->description }}</textarea>
+                                @error('description') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="prix" class="form-label">Prix</label>
+                                <input type="text" name="prix" id="prix" class="form-control @error('prix') is-invalid @enderror" value="{{ old('prix', $produit->prix ?? '') }}">
+                                @error('prix') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Catégorie</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="homme" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="homme" {{ $produit->Catégorie == 'homme' ? 'checked' : '' }}>
+                                    <label for="homme" class="form-check-label">Homme</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="femme" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="femme" {{ $produit->Catégorie == 'femme' ? 'checked' : '' }}>
+                                    <label for="femme" class="form-check-label">Femme</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="enfant" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="enfant" {{ $produit->Catégorie == 'enfant' ? 'checked' : '' }}>
+                                    <label for="enfant" class="form-check-label">Enfant</label>
+                                </div>
+                                @error('Catégorie') <span class="invalid-feedback d-block">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="Référence" class="form-label">Référence</label>
+                                <input type="text" id="Référence" name="Référence" class="form-control @error('Référence') is-invalid @enderror" value="{{ $produit->Référence }}">
+                                @error('Référence') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" id="is_active" name="is_active" class="form-check-input" {{ $produit->is_active ? 'checked' : '' }}>
+                                    <label for="is_active" class="form-check-label">Is Active</label>
+                                </div>
+                                @error('is_active') <span class="invalid-feedback d-block">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3">
+                             <label >Upload  Image</label>
+                                <input type="file" name="image" id="image" class="form-control"/>
+                                @if ($produit->image)
+                                     <img src="{{ asset('storage/app/privates' . $produit->image) }}" alt="Current Image" width="100">
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-              <label for="Référence" class="form-label">Référence</label>
-              <input type="text" id="Référence" name="Référence" class="form-control" value="{{ $produit->Référence }}">
-              @error('Référence') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="mb-3">
-              <div class="form-check">
-                <input type="checkbox" id="is_active" name="is_active" class="form-check-input" {{ $produit->is_active ? 'checked' : '' }}>
-                <label for="is_active" class="form-check-label">Is Active</label>
-              </div>
-              @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="mb-3">
-              <button type="submit" class="btn btn-primary">Update</button>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+
+    <!-- Correctly referencing JS files -->
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 
 
      
@@ -302,20 +295,21 @@
     <!-- ======== main-wrapper end =========== -->
 
     <!-- ========= All Javascript files linkup ======== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Chart.min.js"></script>
-    <script src="assets/js/dynamic-pie-chart.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/fullcalendar.js"></script>
-    <script src="assets/js/jvectormap.min.js"></script>
-    <script src="assets/js/world-merc.js"></script>
-    <script src="assets/js/polyfill.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="path/to/your/script.js" defer></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dynamic-pie-chart.js') }}"></script>
+    <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
+    <script src="{{ asset('assets/js/jvectormap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/world-merc.js') }}"></script>
+    <script src="{{ asset('assets/js/polyfill.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    
     
     
     
