@@ -217,9 +217,15 @@
                             @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea id="description" name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
-                            @error('description') <span class="text-danger">{{ $message }}</span> @enderror
+                           <label for="taille" class="form-label">Taille</label>
+                           <select id="taille" name="taille" class="form-control">
+                                <option value="S" {{ old('taille') == 'S' ? 'selected' : '' }}>S</option>
+                               <option value="M" {{ old('taille') == 'M' ? 'selected' : '' }}>M</option>
+                               <option value="L" {{ old('taille') == 'L' ? 'selected' : '' }}>L</option>
+                               <option value="XL" {{ old('taille') == 'XL' ? 'selected' : '' }}>XL</option>
+                               <option value="XXL" {{ old('taille') == 'XXL' ? 'selected' : '' }}>XXL</option>
+                           </select>
+                           @error('taille') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                            <label for="prix" class="form-label">Prix (DT)</label>

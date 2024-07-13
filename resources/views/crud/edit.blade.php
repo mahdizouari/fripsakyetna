@@ -199,10 +199,16 @@
                                 @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="3">{{ $produit->description }}</textarea>
-                                @error('description') <span class="invalid-feedback">{{ $message }}</span> @enderror
-                            </div>
+                           <label for="taille" class="form-label">Taille</label>
+                           <select id="taille" name="taille" class="form-control">
+                                <option value="S" {{ old('taille') == 'S' ? 'selected' : '' }}>S</option>
+                               <option value="M" {{ old('taille') == 'M' ? 'selected' : '' }}>M</option>
+                               <option value="L" {{ old('taille') == 'L' ? 'selected' : '' }}>L</option>
+                               <option value="XL" {{ old('taille') == 'XL' ? 'selected' : '' }}>XL</option>
+                               <option value="XXL" {{ old('taille') == 'XXL' ? 'selected' : '' }}>XXL</option>
+                           </select>
+                           @error('taille') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
                             <div class="mb-3">
                                 <label for="prix" class="form-label">Prix</label>
                                 <input type="text" name="prix" id="prix" class="form-control @error('prix') is-invalid @enderror" value="{{ old('prix', $produit->prix ?? '') }}">

@@ -70,7 +70,7 @@ public function store(Request $request)
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
-        'description' => 'required|max:255|string',
+        'taille' => 'required|max:255|string',
         'image'=>'nullable|mimes:png,jpg,jpeg,webp',
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
@@ -91,7 +91,7 @@ public function store(Request $request)
     // Create the product
     produits::create([
         'name' => $request->name,
-        'description' => $request->description,
+        'taille' => $request->taille,
         'image'=>$path.$filename,
         'Catégorie' => $request->Catégorie,
         'Référence' => $request->Référence,
@@ -115,7 +115,7 @@ public function update(Request $request, int $id)
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
-        'description' => 'required|max:255|string',
+        'taille' => 'required|in:S,M,L,XL,XXL',
         'image'=>'nullable|mimes:png,jpg,jpeg,webp',
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
@@ -143,7 +143,7 @@ public function update(Request $request, int $id)
 
     // Update other product details
     $produit->name = $request->name;
-    $produit->description = $request->description;
+    $produit->taille = $request->taille; 
     $produit->Catégorie = $request->Catégorie;
     $produit->Référence = $request->Référence;
     $produit->is_active = $request->is_active == true ? 1 : 0;

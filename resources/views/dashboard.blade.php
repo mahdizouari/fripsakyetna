@@ -218,7 +218,7 @@
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
+                <th>Taille</th>
                 <th>Image</th>
                 <th>Prix</th>
                 <th>Catégorie</th>
@@ -232,7 +232,7 @@
     <tr>
       <td>{{ $item->id }}</td>
       <td>{{ $item->name }}</td>
-      <td>{{ $item->description }}</td>
+      <td>{{ $item->taille }}</td>
       <td>
       <img src="{{ asset('storage/app/privates' . $item->image) }}" style="width: 70px; height: 70px;" alt="Img">
       </td>
