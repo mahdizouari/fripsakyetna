@@ -234,8 +234,11 @@
       <td>{{ $item->name }}</td>
       <td>{{ $item->taille }}</td>
       <td>
-      <img src="{{ asset('storage/app/privates' . $item->image) }}" style="width: 70px; height: 70px;" alt="Img">
+          <img src="{{ route('image.show', ($item->image)) }}" style="width: 70px; height: 70px;" alt="">
       </td>
+
+
+
       <td>{{ $item->prix }}DT</td>
       <td>{{ $item->Catégorie }}</td>
       <td>{{ $item->Référence }}</td>

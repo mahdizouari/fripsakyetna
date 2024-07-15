@@ -47,6 +47,7 @@
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
+            <a href="{{ url('/login') }}" class="ms-3 btn btn-sm btn-outline-secondary text-white">Login</a>
         </div>
     </form>
 </x-guest-layout>

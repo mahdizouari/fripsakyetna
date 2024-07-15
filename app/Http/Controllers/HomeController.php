@@ -5,7 +5,8 @@ use App\Models\produits;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 class HomeController extends Controller
 {
     public function welcome ()
@@ -70,34 +71,39 @@ public function store(Request $request)
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
-        'taille' => 'required|max:255|string',
-        'image'=>'nullable|mimes:png,jpg,jpeg,webp',
+        'taille' => 'required|in:S,M,L,XL,XXL',
+        'image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // 2MB limit for image uploads
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        'prix' => 'required|numeric', // Add validation for prix
-
+        'prix' => 'required|numeric',
     ]);
-    if($request->has('image'))
-    {
-        $file=$request->file('image');
-        $extension=$file->getClientOriginalExtension();
-        $filename=time().'.'.$extension;
-        $path='storage/app/privates';
-        $file->move($path,$filename);
+
+    // Handle image upload
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'images'; // Relative to storage/app directory
+
+        // Store the file in storage/app/images directory
+        $file->storeAs($path, $filename, 'local');
+
+        // Save the image path in the database
+        $imagePath = $path . '/' . $filename;
+    } else {
+        $imagePath = null;
     }
-   
-   
+
     // Create the product
     produits::create([
         'name' => $request->name,
         'taille' => $request->taille,
-        'image'=>$path.$filename,
+        'image' => $imagePath,
         'Catégorie' => $request->Catégorie,
         'Référence' => $request->Référence,
-        'is_active' => $request->is_active == true ? 1 : 0,
+        'is_active' => $request->has('is_active') ? 1 : 0,
         'prix' => $request->prix,
-
     ]);
 
     return redirect('create')->with('status', 'Product created successfully!');
@@ -110,59 +116,82 @@ public function edit(int $id)
     $produit = produits::find($id);
     return view('crud.edit', compact('produit'));
 }
-public function update(Request $request, int $id)
+public function update(Request $request, $id)
 {
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
         'taille' => 'required|in:S,M,L,XL,XXL',
-        'image'=>'nullable|mimes:png,jpg,jpeg,webp',
+        'image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // 2MB limit for image uploads
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        'prix' => 'required|numeric', // Add validation for prix
+        'prix' => 'required|numeric',
     ]);
 
     // Find the product by ID
     $produit = produits::findOrFail($id);
 
-    // Handle the image upload if a new image is provided
-   
-    if($request->has('image'))
-    {
-        $file=$request->file('image');
-        $extension=$file->getClientOriginalExtension();
-        $filename=time().'.'.$extension;
-        $path='storage/app/privates';
-        $file->move($path,$filename);
-        if(File::exists($produit->image)){
-            File::delete($produit->image);
+    // Handle image upload if provided
+    if ($request->hasFile('image')) {
+        // Delete old image if exists
+        if ($produit->image && Storage::exists($produit->image)) {
+            Storage::delete($produit->image);
         }
 
+        // Upload new image
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'images'; // Relative to storage/app directory
+        $file->storeAs($path, $filename, 'local');
+
+        // Update image path in database
+        $produit->image = $path . '/' . $filename;
     }
 
     // Update other product details
     $produit->name = $request->name;
-    $produit->taille = $request->taille; 
+    $produit->taille = $request->taille;
     $produit->Catégorie = $request->Catégorie;
     $produit->Référence = $request->Référence;
-    $produit->is_active = $request->is_active == true ? 1 : 0;
+    $produit->is_active = $request->has('is_active') ? 1 : 0;
     $produit->prix = $request->prix;
-    
 
-    // Save the updated product details
+    // Save the updated product
     $produit->save();
 
     return redirect()->back()->with('status', 'Product updated successfully!');
 }
 
-public function destroy(int $id)
-{   
-    $produits= produits::findOrFail($id);
-    $produits->delete();
-    return redirect()->back()->with('status', 'Product deleted successfully!');
 
+public function destroy($id)
+{
+    $produit = produits::findOrFail($id);
+
+    // Delete the image if it exists
+    if ($produit->image && Storage::exists($produit->image)) {
+        storage::delete($produit->image);
+    }
+
+    // Delete the product
+    $produit->delete();
+
+    return redirect()->back()->with('status', 'Product deleted successfully!');
 }
+public function show($filename)
+    {
+        $path = 'app/images' . $filename;
+
+        if (!Storage::exists($path)) {
+            abort(404);
+        }
+
+        $file = Storage::get($path);
+        $type = Storage::mimeType($path);
+
+        return response($file, 200)->header('Content-Type', $type);
+    }
 
 
 }
