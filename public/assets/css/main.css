@@ -37,6 +37,17 @@ button:focus,
   -moz-box-shadow: none;
   box-shadow: none;
 }
+/* public/css/custom.css */
+
+.form-control {
+  height: 38px; /* Adjust the height as needed */
+  padding: .375rem .75rem; /* Adjust padding to make the input height consistent */
+}
+
+.form-control, select {
+  font-size: 0.875rem; /* Optional: Adjust font size to match height */
+}
+
 
 .login-background {
     background-image: url('images/loginBackground.jpg');
