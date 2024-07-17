@@ -5,11 +5,67 @@
 
   
     <title>Welcome, {{ auth()->user()->name }}</title>
-   
+    <style>
+        .container {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem; /* Increased padding for more space */
+    border-radius: 12px; /* Slightly increased border radius for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
+    width: 150%; /* Changed to 100% for responsiveness */
+    max-width: 1000px;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Added border for a subtle edge */
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem; /* Less padding on smaller screens */
+    }
+
+    .form-control {
+        font-size: 20px; /* Smaller font size for better fit */
+    }
+
+    .btn {
+        width: 100%; /* Full width buttons for better usability */
+        margin-bottom: 0.5rem; /* Space between buttons */
+    }
+
+    .dashboard-button a {
+        display: block;
+        text-align: center; /* Center text in button on small screens */
+        margin-top: 1rem; /* Margin above button */
+    }
+    /* General form control styles */
+.form-control {
+    width: 1000%; /* Full width input fields */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+    margin-bottom: 1rem; /* Space between form fields */
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    width: auto; /* Default width for larger screens */
+    padding: 0.75rem 1.5rem; /* Adjust padding for better touch targets */
+    font-size: 16px; /* Legible font size */
+}
+
+/* Adjust button on small screens */
+
+
+
+
+}
+
+
+    </style>
 
 <body>
+    
     <div class="container mt-4">
       <!-- Search Form -->
+       
     <div class="mb-3">
         <form action="{{ route('products.search') }}" method="GET" class="d-flex">
             <input type="text" name="query" class="form-control me-2" placeholder="Search by reference, name, or size" value="{{ request()->get('query') }}">

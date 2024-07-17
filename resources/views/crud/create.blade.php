@@ -2,6 +2,46 @@
 
 @section('content')
 <title>Ajout de produit</title>
+<style>
+    .container {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem; /* Increased padding for more space */
+    border-radius: 12px; /* Slightly increased border radius for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
+    width: 100%; /* Changed to 100% for responsiveness */
+    max-width: 1000px;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Added border for a subtle edge */
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem; /* Less padding on smaller screens */
+    }
+
+    .form-control {
+        font-size: 14px; /* Smaller font size for better fit */
+    }
+
+    .btn {
+        width: 100%; /* Full width buttons for better usability */
+        margin-bottom: 0.5rem; /* Space between buttons */
+        font-size: 14px; /* Smaller font size for small screens */
+        padding: 0.5rem 1rem; /* Less padding on smaller screens */
+    }
+
+    .dashboard-button a {
+        display: block;
+        text-align: center; /* Center text in button on small screens */
+        margin-top: 1rem; /* Margin above button */
+    }
+
+    .form-check-inline {
+        display: block; /* Stack radio buttons vertically */
+        margin-bottom: 0.5rem; /* Space between options */
+    }
+}
+</style>
 
 <div class="container mt-4">
     <div class="row">
@@ -23,7 +63,7 @@
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Nom</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" style="height: 38px;">
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" style="height: 20px;">
                             @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3" >
