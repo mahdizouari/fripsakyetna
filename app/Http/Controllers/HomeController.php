@@ -84,13 +84,13 @@ public function store(Request $request)
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         $filename = time() . '.' . $extension;
-        $path = 'images'; // Relative to storage/app directory
+        $path = 'storage/app/images' . $filename;
 
         // Store the file in storage/app/images directory
-        $file->storeAs($path, $filename, 'local');
+        $file->storeAs('images', $filename, 'local');
 
         // Save the image path in the database
-        $imagePath = $path . '/' . $filename;
+        $imagePath = $path;
     } else {
         $imagePath = null;
     }
@@ -108,6 +108,7 @@ public function store(Request $request)
 
     return redirect('create')->with('status', 'Product created successfully!');
 }
+
 
 
 
@@ -181,7 +182,7 @@ public function destroy($id)
 }
 public function show($filename)
     {
-        $path = 'app/images' . $filename;
+        $path = 'storage/app/images' . $filename;
 
         if (!Storage::exists($path)) {
             abort(404);
