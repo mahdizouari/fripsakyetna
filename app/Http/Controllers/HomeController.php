@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Storage;
 class HomeController extends Controller
 {
     public function welcome ()
-    {
-        return view ('welcome');
+    {  
+        $products = produits::all();
+        return view ('welcome', compact('products'));
     }
+        
     public function product ()
     {
         return view ('product');
@@ -82,15 +84,11 @@ public function store(Request $request)
     // Handle image upload
     if ($request->hasFile('image')) {
         $file = $request->file('image');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-        $path = 'storage/app/images' . $filename;
-
-        // Store the file in storage/app/images directory
-        $file->storeAs('images', $filename, 'local');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('images', $filename, 'public'); // Store in public/images
 
         // Save the image path in the database
-        $imagePath = $path;
+        $imagePath = 'images/' . $filename;
     } else {
         $imagePath = null;
     }
@@ -108,6 +106,7 @@ public function store(Request $request)
 
     return redirect('create')->with('status', 'Product created successfully!');
 }
+
 
 
 
@@ -136,19 +135,17 @@ public function update(Request $request, $id)
     // Handle image upload if provided
     if ($request->hasFile('image')) {
         // Delete old image if exists
-        if ($produit->image && Storage::exists($produit->image)) {
-            Storage::delete($produit->image);
+        if ($produit->image && Storage::disk('public')->exists($produit->image)) {
+            Storage::disk('public')->delete($produit->image);
         }
 
         // Upload new image
         $file = $request->file('image');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-        $path = 'images'; // Relative to storage/app directory
-        $file->storeAs($path, $filename, 'local');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('images', $filename, 'public'); // Store in public/images
 
         // Update image path in database
-        $produit->image = $path . '/' . $filename;
+        $produit->image = 'images/' . $filename;
     }
 
     // Update other product details
@@ -166,13 +163,14 @@ public function update(Request $request, $id)
 }
 
 
+
 public function destroy($id)
 {
     $produit = produits::findOrFail($id);
 
     // Delete the image if it exists
-    if ($produit->image && Storage::exists($produit->image)) {
-        storage::delete($produit->image);
+    if ($produit->image && Storage::disk('public')->exists($produit->image)) {
+        Storage::disk('public')->delete($produit->image);
     }
 
     // Delete the product
@@ -180,19 +178,21 @@ public function destroy($id)
 
     return redirect()->back()->with('status', 'Product deleted successfully!');
 }
+
 public function show($filename)
-    {
-        $path = 'storage/app/images' . $filename;
+{
+    $path = 'images/' . $filename;
 
-        if (!Storage::exists($path)) {
-            abort(404);
-        }
-
-        $file = Storage::get($path);
-        $type = Storage::mimeType($path);
-
-        return response($file, 200)->header('Content-Type', $type);
+    if (!Storage::disk('public')->exists($path)) {
+        abort(404);
     }
+
+    $file = Storage::disk('public')->get($path);
+    $type = Storage::disk('public')->mimeType($path);
+
+    return response($file, 200)->header('Content-Type', $type);
+}
+
 
     public function search(Request $request)
     {
@@ -211,6 +211,8 @@ public function show($filename)
         return view('crud.search', compact('products'));
     }
     
+
+
 
 
 }
