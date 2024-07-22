@@ -50,6 +50,8 @@ Route::put('/edit/{id}',[HomeController::class, 'update'])->name('update');
 Route::delete('/delete/{id}',[HomeController::class, 'destroy'])->name('product.destroy');
 Route::get('/{filename}', [HomeController::class, 'show'])->name('image.show');
 Route::get('/products/search', [HomeController::class, 'search'])->name('products.search');
+Route::get('/slider', [HomeController::class, 'index'])->name('slider.index');
+
 
 
 

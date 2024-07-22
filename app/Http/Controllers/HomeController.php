@@ -211,7 +211,11 @@ public function show($filename)
         return view('crud.search', compact('products'));
     }
     
-
+    
+    public function index()
+    {
+        return view('slider.index');
+    }
 
 
 

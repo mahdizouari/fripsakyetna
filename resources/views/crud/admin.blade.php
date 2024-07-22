@@ -127,7 +127,7 @@
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> Paramètres </a>
+                <a href="/slider"> Slider </a>
               </li>
               <li>
                 <a href="/product"> Produits </a>
