@@ -111,8 +111,30 @@
                             @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="image" class="form-label">Upload Image</label>
-                            <input type="file" name="image" id="image" class="form-control" style="height: 38px;"/>
+                            <label for="image1" class="form-label">Upload Image1</label>
+                            <input type="file" name="image1" id="image1" class="form-control @error('image1') is-invalid @enderror">
+                            @if (isset($produit->image1))
+                                <img src="{{ asset('storage/images/' . $produit->image1) }}" alt="Current Image1" width="100">
+                            @endif
+                            @error('image1') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image2" class="form-label">Upload Image2</label>
+                            <input type="file" name="image2" id="image2" class="form-control @error('image2') is-invalid @enderror">
+                            @if (isset($produit->image2))
+                                <img src="{{ asset('storage/images/' . $produit->image2) }}" alt="Current Image2" width="100">
+                            @endif
+                            @error('image2') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image3" class="form-label">Upload Image3</label>
+                            <input type="file" name="image3" id="image3" class="form-control @error('image3') is-invalid @enderror">
+                            @if (isset($produit->image3))
+                                <img src="{{ asset('storage/images/' . $produit->image3) }}" alt="Current Image3" width="100">
+                            @endif
+                            @error('image3') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Ajouter</button>

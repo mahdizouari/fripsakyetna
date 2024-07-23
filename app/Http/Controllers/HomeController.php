@@ -17,7 +17,8 @@ class HomeController extends Controller
         
     public function product ()
     {
-        return view ('product');
+        $products = Produits::all();
+        return view ('product', compact('products'));
     }
     public function about ()
     {
@@ -74,30 +75,47 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required|max:255|string',
         'taille' => 'required|in:S,M,L,XL,XXL',
-        'image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // 2MB limit for image uploads
+        'image1' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048', // Required image
+        'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
+        'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
         'prix' => 'required|numeric',
     ]);
 
-    // Handle image upload
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $filename = time() . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs('images', $filename, 'public'); // Store in public/images
+    // Handle image uploads
+    $images = [
+        'image1' => null,
+        'image2' => null,
+        'image3' => null,
+    ];
 
-        // Save the image path in the database
-        $imagePath = 'images/' . $filename;
-    } else {
-        $imagePath = null;
+    if ($request->hasFile('image1')) {
+        $file = $request->file('image1');
+        $filename = time() . '_1.' . $file->getClientOriginalExtension();
+        $images['image1'] = $file->storeAs('images', $filename, 'public');
+    }
+
+    if ($request->hasFile('image2')) {
+        $file = $request->file('image2');
+        $filename = time() . '_2.' . $file->getClientOriginalExtension();
+        $images['image2'] = $file->storeAs('images', $filename, 'public');
+    }
+
+    if ($request->hasFile('image3')) {
+        $file = $request->file('image3');
+        $filename = time() . '_3.' . $file->getClientOriginalExtension();
+        $images['image3'] = $file->storeAs('images', $filename, 'public');
     }
 
     // Create the product
     produits::create([
         'name' => $request->name,
         'taille' => $request->taille,
-        'image' => $imagePath,
+        'image1' => $images['image1'],
+        'image2' => $images['image2'],
+        'image3' => $images['image3'],
         'Catégorie' => $request->Catégorie,
         'Référence' => $request->Référence,
         'is_active' => $request->has('is_active') ? 1 : 0,
@@ -106,6 +124,7 @@ public function store(Request $request)
 
     return redirect('create')->with('status', 'Product created successfully!');
 }
+
 
 
 
@@ -122,7 +141,9 @@ public function update(Request $request, $id)
     $request->validate([
         'name' => 'required|max:255|string',
         'taille' => 'required|in:S,M,L,XL,XXL',
-        'image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // 2MB limit for image uploads
+        'image1' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
+        'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
+        'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
@@ -132,20 +153,20 @@ public function update(Request $request, $id)
     // Find the product by ID
     $produit = produits::findOrFail($id);
 
-    // Handle image upload if provided
-    if ($request->hasFile('image')) {
-        // Delete old image if exists
-        if ($produit->image && Storage::disk('public')->exists($produit->image)) {
-            Storage::disk('public')->delete($produit->image);
+    // Handle image uploads
+    foreach (['image1', 'image2', 'image3'] as $imageField) {
+        if ($request->hasFile($imageField)) {
+            // Delete old image if exists
+            if ($produit->{$imageField} && Storage::disk('public')->exists($produit->{$imageField})) {
+                Storage::disk('public')->delete($produit->{$imageField});
+            }
+
+            // Upload new image
+            $file = $request->file($imageField);
+            $filename = time() . '_' . $imageField . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('images', $filename, 'public');
+            $produit->{$imageField} = $path;
         }
-
-        // Upload new image
-        $file = $request->file('image');
-        $filename = time() . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs('images', $filename, 'public'); // Store in public/images
-
-        // Update image path in database
-        $produit->image = 'images/' . $filename;
     }
 
     // Update other product details
@@ -164,13 +185,18 @@ public function update(Request $request, $id)
 
 
 
+
 public function destroy($id)
 {
     $produit = produits::findOrFail($id);
 
-    // Delete the image if it exists
-    if ($produit->image && Storage::disk('public')->exists($produit->image)) {
-        Storage::disk('public')->delete($produit->image);
+    // Delete images if they exist
+    foreach (['image1', 'image2', 'image3'] as $imageField) {
+        // Check if image exists and if its path is not empty
+        if (!empty($produit->$imageField) && Storage::disk('public')->exists($produit->$imageField)) {
+            // Delete the specific image file
+            Storage::disk('public')->delete($produit->$imageField);
+        }
     }
 
     // Delete the product
@@ -178,6 +204,7 @@ public function destroy($id)
 
     return redirect()->back()->with('status', 'Product deleted successfully!');
 }
+
 
 public function show($filename)
 {

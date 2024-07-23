@@ -36,6 +36,11 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
+<!-- Include Isotope Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
 </head>
 
 <body class="animsition">
@@ -862,6 +867,29 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script>
+    $(document).ready(function() {
+        // Initialize Isotope
+        var $grid = $('.isotope-grid').isotope({
+            itemSelector: '.isotope-item',
+            layoutMode: 'fitRows'
+        });
+
+        // Filter items on button click
+        $('.filter-tope-group').on('click', 'button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({ filter: filterValue });
+        });
+
+        // Change active class on buttons
+        $('.filter-tope-group button').on('click', function() {
+            $('.filter-tope-group button').removeClass('how-active1');
+            $(this).addClass('how-active1');
+        });
+    });
+</script>
+
+
 		
 </body>
 </html>

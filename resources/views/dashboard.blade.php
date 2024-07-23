@@ -101,7 +101,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->taille }}</td>
                                         <td>
-                                        <img src="{{ route('image.show', ['filename' => $item->image]) }}" style="width: 70px; height: 70px; object-fit: cover;" alt="Product Image">
+                                        <img src="{{ route('image.show', ['filename' => $item->image1]) }}" style="width: 70px; height: 70px; object-fit: cover;" alt="Product Image">
                                         </td>
                                         <td>{{ $item->prix }} DT</td>
                                         <td>{{ $item->Catégorie }}</td>
