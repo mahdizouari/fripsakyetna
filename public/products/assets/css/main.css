@@ -5,6 +5,77 @@
 html {
   scroll-behavior: smooth;
 }
+.mtext-105 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.mtext-106 {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.size-203, .size-204 {
+  font-size: 16px;
+  color: #666;
+}
+
+.size-204 {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.flex-w {
+  display: flex;
+  align-items: center;
+}
+
+.flex-m {
+  margin-right: 20px;
+}
+
+.bor9 {
+  border-radius: 50%;
+}
+
+.tooltip100 {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip100[data-tooltip]:hover:before, 
+.tooltip100[data-tooltip]:hover:after {
+  display: block;
+}
+
+.tooltip100[data-tooltip]:hover:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.tooltip100[data-tooltip]:hover:after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 5px;
+  border: 5px solid transparent;
+  border-top-color: #333;
+}
 
 body {
   font-family: "Plus Jakarta Sans", sans-serif !important;

@@ -614,158 +614,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 
 	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
+	<!-- Quick View Modal -->
+<div id="quickViewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="quickViewModalLabel">Quick View</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Product Details Will Be Loaded Here -->
+                <div id="quickViewContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -887,10 +753,364 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             $(this).addClass('how-active1');
         });
     });
-</script>
+</script>  
 
 
 		
 </body>
 </html>
     
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+
+        quickViewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.getAttribute('data-id');
+
+                // Fetch product details using AJAX
+                fetch(`/product/${productId}/quick-view`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Populate modal with product details
+                        document.getElementById('quickViewContent').innerHTML = `
+                        <div class="container">
+						<div class="row">
+							<!-- Product Images -->
+							<div class="col-12 p-b-30">
+								<div class="wrap-slick3 flex-sb flex-w">
+									<div class="wrap-slick3-dots"></div>
+									<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+									<!-- HTML for Slick Slider -->
+					<div class="slick3 gallery-lb">
+						${data.image1 ? `
+						<div class="item-slick3">
+							<div class="wrap-pic-w pos-relative">
+								<img src="${data.image1}" alt="IMG-PRODUCT" class="slick-img">
+								<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image1}">
+									<i class="fa fa-expand"></i>
+								</a>
+							</div>
+						</div>` : ''}
+
+						${data.image2 ? `
+						<div class="item-slick3">
+							<div class="wrap-pic-w pos-relative">
+								<img src="${data.image2}" alt="IMG-PRODUCT" class="slick-img">
+								<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image2}">
+									<i class="fa fa-expand"></i>
+								</a>
+							</div>
+						</div>` : ''}
+
+						${data.image3 ? `
+						<div class="item-slick3">
+							<div class="wrap-pic-w pos-relative">
+								<img src="${data.image3}" alt="IMG-PRODUCT" class="slick-img">
+								<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image3}">
+									<i class="fa fa-expand"></i>
+								</a>
+							</div>
+						</div>` : ''}
+					</div>
+
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-12">
+            <!-- Product Name and Price -->
+            <div class="product-info p-b-30">
+                <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                    ${data.name}
+                </h4>
+
+                <span class="mtext-106 cl2">
+                    ${data.prix.toFixed(2)} DT
+                </span>
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details p-t-20">
+                <div class="detail-item flex-w flex-r-m p-b-10">
+                    <div class="size-203 flex-c-m">
+                        Taille:
+                    </div>
+                    <div class="size-204">
+                        ${data.taille}
+                    </div>
+                </div>
+
+                <div class="detail-item flex-w flex-r-m p-b-10">
+                    <div class="size-203 flex-c-m">
+                        Catégorie:
+                    </div>
+                    <div class="size-204">
+                        ${data.Catégorie}
+                    </div>
+                </div>
+
+                <div class="detail-item flex-w flex-r-m p-b-10">
+                    <div class="size-204 flex-w flex-m">
+                       <div class="button-container">
+							<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+								Add to cart
+							</button>
+						</div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media and Wishlist -->
+            <div class="social-wishlist p-t-30 flex-w flex-m">
+                <div class="social-item bor9 p-r-10 m-r-11">
+                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                        <i class="zmdi zmdi-favorite"></i>
+                    </a>
+                </div>
+
+                <a href="#" class="social-item fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+
+                <a href="#" class="social-item fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+
+                <a href="#" class="social-item fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+						<style>
+						
+								.product-info {
+								text-align: center;
+								margin-bottom: 20px;
+							}
+
+							.product-info h4 {
+								font-size: 24px;
+								margin-bottom: 10px; /* Adjust margin for spacing */
+							}
+
+							.product-info span {
+								font-size: 20px;
+								color: #333;
+							}
+
+							.product-details {
+								padding-top: 20px;
+								text-align: center;
+							}
+
+							.detail-item {
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								margin-bottom: 15px; /* Adjust margin for spacing */
+							}
+
+							.detail-item .size-203 {
+								font-weight: bold;
+								margin-right: 10px; /* Space between label and value */
+							}
+
+							.detail-item .size-204 {
+								color: #666;
+							}
+
+							.product-details button {
+								margin-top: 10px; /* Space above the button */
+								font-size: 16px; /* Adjust font size */
+								padding: 10px 20px; /* Adjust padding for button size */
+								align-items: center;
+							}
+
+							.social-wishlist {
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								flex-wrap: wrap;
+								margin-top: 30px; /* Space above social media icons */
+							}
+
+							.social-item {
+								margin: 0 5px;
+							}
+
+							.social-item a {
+								font-size: 16px;
+								color: #333;
+								transition: color 0.3s;
+							}
+
+							.social-item a:hover {
+								color: #007bff;
+							}
+						</style>
+						<style>
+						/* Container for slick slider */
+						.wrap-slick3 {
+								position: relative;
+							}
+
+							/* Style for slick images */
+							.slick-img {
+								width: 40%; /* Adjust width as needed */
+								height: auto; /* Maintain aspect ratio */
+								border-radius: 8px; /* Rounded corners */
+								box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow effect */
+							}
+
+
+						/* Style for the zoom-in icon */
+						.how-pos1 {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							width: 40px;
+							height: 40px;
+							border-radius: 50%;
+							background-color: rgba(255,255,255,0.7);
+							position: absolute;
+							bottom: 10px;
+							right: 10px;
+							text-align: center;
+							cursor: pointer;
+							transition: background-color 0.3s;
+						}
+
+						.how-pos1:hover {
+							background-color: rgba(255,255,255,1);
+						}
+
+						/* Custom styles for slider dots */
+						.wrap-slick3-dots {
+							position: absolute;
+							bottom: 10px;
+							left: 50%;
+							transform: translateX(-50%);
+						}
+							.button-container {
+							display: flex;
+							justify-content: center; /* Center horizontally */
+							align-items: center; /* Center vertically, if needed */
+							width: 100%; /* Ensure the container takes the full width */
+						}
+
+
+						.slick-dots li button:before {
+							font-size: 10px;
+							color: #fff; /* Dot color */
+						}
+
+						.slick-dots li.slick-active button:before {
+							color: #007bff; /* Active dot color */
+						}
+
+						/* Custom styles for slider arrows */
+						.wrap-slick3-arrows {
+							position: absolute;
+							top: 50%;
+							width: 100%;
+							display: flex;
+							justify-content: space-between;
+							transform: translateY(-50%);
+						}
+
+						.slick-prev, .slick-next {
+							width: 30px;
+							height: 30px;
+							border-radius: 50%;
+							background-color: rgba(0,0,0,0.5);
+							color: #fff;
+							font-size: 18px;
+							line-height: 30px;
+							text-align: center;
+							cursor: pointer;
+						}
+
+						.slick-prev:hover, .slick-next:hover {
+							background-color: rgba(0,0,0,0.8);
+						}
+
+						</style>
+
+						<style>
+							@media (max-width: 768px) {
+								.wrap-slick3 {
+									display: block;
+								}
+								.wrap-slick3-dots, .wrap-slick3-arrows {
+									display: none;
+								}
+								.slick3 {
+									margin-bottom: 20px;
+								}
+								.item-slick3 {
+									margin-bottom: 20px;
+								}
+								.p-t-33 {
+									padding-top: 20px;
+								}
+								.flex-w {
+									flex-direction: column;
+									align-items: flex-start;
+								}
+								.flex-w .size-203, .flex-w .size-204 {
+									margin-bottom: 10px;
+								}
+								.flex-w .size-204 button {
+									width: 100%;
+								}
+								.flex-m {
+									flex-direction: row;
+									flex-wrap: wrap;
+								}
+							}
+								 
+						</style>
+
+                        `;
+                        // Show the modal
+                        $('#quickViewModal').modal('show');
+                    })
+                    .catch(error => {
+                        console.error('Error fetching product details:', error);
+                    });
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltipElements = document.querySelectorAll('.tooltip100[data-tooltip]');
+        tooltipElements.forEach(el => {
+            el.addEventListener('mouseover', function () {
+                // Optional: Additional code to handle tooltip display
+            });
+        });
+    });
+</script>
+<script>
+	$(document).ready(function(){
+    $('.slick3').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        adaptiveHeight: true
+    });
+});
+
+
+</script>
+
