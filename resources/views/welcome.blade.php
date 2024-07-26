@@ -91,19 +91,20 @@
 				<div class="block1 wrap-pic-w">
 					<img src="images/banner-04.jpg" alt="IMG-BANNER">
 
-					<a href="/product?filter=women" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-    <div class="block1-txt-child1 flex-col-l">
-        <span class="block1-name ltext-102 trans-04 p-b-8" data-filter=".femme">
-            Women
-        </span>
-        <span class="block1-info stext-102 trans-04"></span>
-    </div>
-    <div class="block1-txt-child2 p-b-4 trans-05">
-        <div class="block1-link stext-101 cl0 trans-09">
-            Shop Now
-        </div>
-    </div>
-</a>
+					<a href="{{ url('/product?filter=women') }}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt-child1 flex-col-l">
+							<span class="block1-name ltext-102 trans-04 p-b-8" data-filter=".femme">
+								Women
+							</span>
+							<span class="block1-info stext-102 trans-04"></span>
+						</div>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">
+								Shop Now
+							</div>
+						</div>
+					</a>
+
 
 				</div>
 			</div>
@@ -175,20 +176,10 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item p-b-10">
-						<a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Best Seller</a>
+						<a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Nos Produits </a>
 					</li>
 
-					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#featured" role="tab">Featured</a>
-					</li>
-
-					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#sale" role="tab">Sale</a>
-					</li>
-
-					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#top-rate" role="tab">Top Rate</a>
-					</li>
+				
 				</ul>
 
 				<!-- Tab panes -->

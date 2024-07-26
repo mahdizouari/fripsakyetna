@@ -16,10 +16,18 @@ class HomeController extends Controller
         
     }
         
-    public function product ()
+    public function product (Request $request)
     {
-        $products = Produits::all();
+        $products = produits::all();
         return view ('product', compact('products'));
+        $filter = $request->query('filter');
+
+    // Apply filtering logic based on the filter parameter
+    if ($filter == 'women') {
+        $products = produits::where('category', 'women')->get();
+    } else {
+        $products = produits::all();
+    }
         
 
     

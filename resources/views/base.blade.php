@@ -722,40 +722,46 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
+    // Handle 'Add to Wishlist' buttons
+    $('.js-addwish-b2').on('click', function(e) {
+        e.preventDefault();
+    });
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+    $('.js-addwish-b2').each(function() {
+        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+        $(this).on('click', function() {
+            swal(nameProduct, "is added to wishlist!", "success");
+            $(this).addClass('js-addedwish-b2');
+            $(this).off('click');
+        });
+    });
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
+    $('.js-addwish-detail').each(function() {
+        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+        $(this).on('click', function() {
+            swal(nameProduct, "is added to wishlist!", "success");
+            $(this).addClass('js-addedwish-detail');
+            $(this).off('click');
+        });
+    });
 
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+    // Handle 'Add to Cart' buttons
+    $('.js-addcart-detail').each(function() {
+        $(this).on('click', function(e) {
+            e.preventDefault(); // Prevent the default form submission
 
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+            var form = $(this).closest('form'); // Find the closest form
+            var nameProduct = form.find('.js-name-detail').html();
 
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
+            swal(nameProduct, "is added to cart!", "success").then((result) => {
+                if (result.value) {
+                    form.submit(); // Submit the form after the alert
+                }
+            });
+        });
+    });
+</script>
 
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
 <!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -894,15 +900,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
 
                 <div class="detail-item flex-w flex-r-m p-b-10">
-                    <div class="size-204 flex-w flex-m">
-                       <div class="button-container">
-							<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-								Add to cart
+                   <form action="{{ route('cart.add') }}" method="POST" class="size-204 flex-w flex-m">
+						@csrf
+						<input type="hidden" name="id" value="{{ $product->id }}">
+						<input type="hidden" name="name" value="{{ $product->name }}">
+						<input type="hidden" name="prix" value="{{ $product->prix }}"> <!-- Ensure 'prix' is here -->
+						<input type="number" name="quantity" value="1" min="1">
+						<div class="button-container">
+							<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+								<i class="fa fa-shopping-cart"></i> Add to cart
 							</button>
 						</div>
+					</form>
 
-                    </div>
-                </div>
+
+
             </div>
 
             <!-- Social Media and Wishlist -->
