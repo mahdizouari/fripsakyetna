@@ -40,6 +40,48 @@
 <!-- Include Isotope Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+<style>
+    .logo-mobile {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo-mobile a {
+    text-decoration: red;
+    color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 50px;  /* Adjust the width to fit your design */
+    height: auto;  /* Maintain aspect ratio */
+    margin-right: 100px;  /* Space between image and text */
+}
+
+.logo-text {
+    font-size: 4rem;
+    font-weight: bold;
+	text-decoration: red;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .logo-image {
+        width: 40px;  /* Adjust the size for smaller screens */
+    }
+
+    .logo-text {
+        font-size: 1.2rem;  /* Adjust the font size for smaller screens */
+    }
+}
+
+
+
+
+
+</style>
 
 </head>
 
@@ -138,8 +180,12 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="/"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="/">
+					<img src="logo.png" alt="IMG-LOGO" class="logo-image">
+					<span class="logo-text"> </span>
+				</a>
 			</div>
+
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
@@ -169,7 +215,7 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="/">Home</a>
+					<a href="/">Accueil</a>
 					<ul class="sub-menu-m">
 						<li><a href="index.html">Homepage 1</a></li>
 						<li><a href="home-02.html">Homepage 2</a></li>
@@ -181,23 +227,19 @@
 				</li>
 
 				<li>
-					<a href="product.blade.php">Shop</a>
+					<a href="product" class="label1 rs1" data-label1="hot">Produits</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.blade.php" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="cart"  >Panier</a>
 				</li>
 
 				<li>
-					<a href="blog.blade.php">Blog</a>
+					<a href="about">About</a>
 				</li>
 
 				<li>
-					<a href="about.blade.php">About</a>
-				</li>
-
-				<li>
-					<a href="contact.blade.php">Contact</a>
+					<a href="contact">Contact</a>
 				</li>
 
 				<li >

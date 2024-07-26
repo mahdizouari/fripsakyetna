@@ -12,7 +12,7 @@
 						<div class="flex-col-l-m h-full p-t-100 p-b-30">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-202 cl2 respon2">
-									Men Collection 2018
+									Men Collection 2024
 								</span>
 							</div>
 								
@@ -91,23 +91,20 @@
 				<div class="block1 wrap-pic-w">
 					<img src="images/banner-04.jpg" alt="IMG-BANNER">
 
-					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-						<div class="block1-txt-child1 flex-col-l">
-							<span class="block1-name ltext-102 trans-04 p-b-8">
-								Women
-							</span>
+					<a href="/product?filter=women" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+    <div class="block1-txt-child1 flex-col-l">
+        <span class="block1-name ltext-102 trans-04 p-b-8" data-filter=".femme">
+            Women
+        </span>
+        <span class="block1-info stext-102 trans-04"></span>
+    </div>
+    <div class="block1-txt-child2 p-b-4 trans-05">
+        <div class="block1-link stext-101 cl0 trans-09">
+            Shop Now
+        </div>
+    </div>
+</a>
 
-							<span class="block1-info stext-102 trans-04">
-								
-							</span>
-						</div>
-
-						<div class="block1-txt-child2 p-b-4 trans-05">
-							<div class="block1-link stext-101 cl0 trans-09">
-								Shop Now
-							</div>
-						</div>
-					</a>
 				</div>
 			</div>
 
@@ -116,7 +113,7 @@
 				<div class="block1 wrap-pic-w">
 					<img src="images/banner-05.jpg" alt="IMG-BANNER">
 
-					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+					<a href="product" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 						<div class="block1-txt-child1 flex-col-l">
 							<span class="block1-name ltext-102 trans-04 p-b-8">
 								Homme 
@@ -141,8 +138,8 @@
 				<div class="block1 wrap-pic-w">
 					<img src="images/banner-06.jpg" alt="IMG-BANNER">
 
-					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-						<div class="block1-txt-child1 flex-col-l">
+					<a href="product" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" >
+						<div class="block1-txt-child1 flex-col-l" >
 							<span class="block1-name ltext-102 trans-04 p-b-8">
 								Enfants 
 							</span>

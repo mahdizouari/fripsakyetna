@@ -13,12 +13,16 @@ class HomeController extends Controller
     {  
         $products = produits::all();
         return view ('welcome', compact('products'));
+        
     }
         
     public function product ()
     {
         $products = Produits::all();
         return view ('product', compact('products'));
+        
+
+    
     }
     public function about ()
     {
@@ -259,5 +263,8 @@ public function show($filename)
         ]);
     }
     
+// ProductController.php
+
+
 
 }
