@@ -16,20 +16,10 @@ class HomeController extends Controller
         
     }
         
-    public function product (Request $request)
+    public function product ()
     {
         $products = produits::all();
         return view ('product', compact('products'));
-        $filter = $request->query('filter');
-
-    // Apply filtering logic based on the filter parameter
-    if ($filter == 'women') {
-        $products = produits::where('category', 'women')->get();
-    } else {
-        $products = produits::all();
-    }
-        
-
     
     }
     public function about ()
@@ -271,7 +261,6 @@ public function show($filename)
         ]);
     }
     
-// ProductController.php
 
 
 

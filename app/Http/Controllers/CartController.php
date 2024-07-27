@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\produits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+ // Make sure you have this model
 
 class CartController extends Controller
 {
@@ -14,7 +16,9 @@ class CartController extends Controller
             return $carry + ($item['prix'] * $item['quantity']);
         }, 0);
 
-        return view('cart.index', compact('cart', 'total'));
+        $products = produits::all(); // Fetch products from the database
+
+        return view('cart.index', compact('cart', 'total', 'products'));
     }
 
     public function add(Request $request)
@@ -24,7 +28,7 @@ class CartController extends Controller
             'name' => 'required|string',
             'prix' => 'required|numeric',
             'quantity' => 'required|integer|min:1',
-            'image' => 'required|string',
+            'image1' => 'required|string',
         ]);
 
         $product = $validated;
@@ -77,7 +81,7 @@ class CartController extends Controller
 
         return redirect()->route('cart.index')->with('success', 'Product removed from cart.');
     }
-    
 }
+
 
 
