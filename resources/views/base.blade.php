@@ -900,22 +900,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
 
                 <div class="detail-item flex-w flex-r-m p-b-10">
-                   <form action="{{ route('cart.add') }}" method="POST" class="size-204 flex-w flex-m">
+                   <form action="{{ route('cart.add') }}" method="POST">
 						@csrf
 						<input type="hidden" name="id" value="{{ $product->id }}">
 						<input type="hidden" name="name" value="{{ $product->name }}">
-						<input type="hidden" name="prix" value="{{ $product->prix }}"> <!-- Ensure 'prix' is here -->
+						<input type="hidden" name="prix" value="{{ $product->prix }}">
+						<input type="hidden" name="image" value="{{ $product->image }}">
 						<input type="number" name="quantity" value="1" min="1">
-						<div class="button-container">
-							<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-								<i class="fa fa-shopping-cart"></i> Add to cart
-							</button>
-						</div>
+						<button type="submit">Add to Cart</button>
 					</form>
-
-
-
-            </div>
+          		 </div>
 
             <!-- Social Media and Wishlist -->
             <div class="social-wishlist p-t-30 flex-w flex-m">

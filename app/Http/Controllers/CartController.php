@@ -11,7 +11,7 @@ class CartController extends Controller
     {
         $cart = Session::get('cart', []);
         $total = array_reduce($cart, function ($carry, $item) {
-            return $carry + ($item['prix'] * $item['quantity']); // Ensure 'prix' is used
+            return $carry + ($item['prix'] * $item['quantity']);
         }, 0);
 
         return view('cart.index', compact('cart', 'total'));
@@ -22,13 +22,14 @@ class CartController extends Controller
         $validated = $request->validate([
             'id' => 'required|integer',
             'name' => 'required|string',
-            'prix' => 'required|numeric', // Ensure validation for 'prix'
+            'prix' => 'required|numeric',
             'quantity' => 'required|integer|min:1',
+            'image' => 'required|string',
         ]);
 
         $product = $validated;
         $cart = Session::get('cart', []);
-        
+
         // Check if the product is already in the cart
         $found = false;
         foreach ($cart as &$item) {
@@ -38,44 +39,45 @@ class CartController extends Controller
                 break;
             }
         }
-        
+
         if (!$found) {
             $cart[] = $product;
         }
-        
+
         Session::put('cart', $cart);
 
         return redirect()->route('cart.index')->with('success', 'Product added to cart.');
     }
 
     public function update(Request $request)
-{
-    $cart = Session::get('cart', []);
-    $quantities = $request->input('quantities', []);
-    
-    foreach ($quantities as $index => $quantity) {
-        if (isset($cart[$index])) {
-            $cart[$index]['quantity'] = $quantity;
+    {
+        $cart = Session::get('cart', []);
+        $quantities = $request->input('quantities', []);
+
+        foreach ($quantities as $index => $quantity) {
+            if (isset($cart[$index])) {
+                $cart[$index]['quantity'] = $quantity;
+            }
         }
-    }
-    
-    Session::put('cart', $cart);
 
-    return redirect()->route('cart.index')->with('success', 'Cart updated.');
-}
+        Session::put('cart', $cart);
 
-
-public function remove(Request $request)
-{
-    $cart = Session::get('cart', []);
-    $index = $request->input('index');
-    
-    if (isset($cart[$index])) {
-        unset($cart[$index]);
-        Session::put('cart', array_values($cart));
+        return redirect()->route('cart.index')->with('success', 'Cart updated.');
     }
 
-    return redirect()->route('cart.index')->with('success', 'Product removed from cart.');
+    public function remove(Request $request)
+    {
+        $cart = Session::get('cart', []);
+        $index = $request->input('index');
+
+        if (isset($cart[$index])) {
+            unset($cart[$index]);
+            Session::put('cart', array_values($cart));
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Product removed from cart.');
+    }
+    
 }
-}
+
 

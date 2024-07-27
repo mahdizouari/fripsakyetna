@@ -3,7 +3,6 @@
 @section('title', 'Frip')
 
 @section('content')
-
 <!-- breadcrumb -->
 <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -12,6 +11,7 @@
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
+
         <span class="stext-109 cl4">
             Shopping Cart
         </span>
@@ -19,8 +19,7 @@
 </div>
 
 <!-- Shopping Cart -->
-<form action="{{ route('cart.update') }}" method="POST" class="bg0 p-t-75 p-b-85">
-    @csrf
+<form class="bg0 p-t-75 p-b-85">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -33,22 +32,18 @@
                                 <th class="column-3">Price</th>
                                 <th class="column-4">Quantity</th>
                                 <th class="column-5">Total</th>
-                                <th class="column-6">Remove</th> <!-- Added 'Remove' column -->
                             </tr>
 
-                            @if(Session::has('cart'))
-                                @php
-                                    $cart = Session::get('cart');
-                                    $total = 0;
-                                @endphp
-                              @foreach($cart as $index => $product)
-                                    @php
-                                        $total += $product['prix'] * $product['quantity'];
-                                    @endphp
+                            @if(!empty($cart))
+                                @foreach($cart as $index => $product)
                                     <tr class="table_row">
                                         <td class="column-1">
                                             <div class="how-itemcart1">
-                                                <img src="{{ asset('images/' . $product['image']) }}" alt="IMG">
+                                                @if(isset($product['image']) && $product['image'])
+                                                    <img src="{{ asset('images/' . $product['image']) }}" alt="IMG">
+                                                @else
+                                                    <img src="{{ asset('images/default.png') }}" alt="No Image Available"> <!-- Default image if no product image -->
+                                                @endif
                                             </div>
                                         </td>
                                         <td class="column-2">{{ $product['name'] }}</td>
@@ -59,7 +54,7 @@
                                                     <i class="fs-16 zmdi zmdi-minus"></i>
                                                 </div>
 
-                                                <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantities[{{ $index }}]" value="{{ $product['quantity'] }}" min="1">
+                                                <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantities[{{ $index }}]" value="{{ $product['quantity'] }}">
 
                                                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                     <i class="fs-16 zmdi zmdi-plus"></i>
@@ -76,8 +71,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
-
                             @else
                                 <tr class="table_row">
                                     <td colspan="6">Your cart is empty.</td>
@@ -95,9 +88,9 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+                        <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
                             Update Cart
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,7 +133,7 @@
                                 </span>
 
                                 <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <select class="js-select2" name="country">
+                                    <select class="js-select2" name="time">
                                         <option>Select a country...</option>
                                         <option>USA</option>
                                         <option>UK</option>
@@ -149,7 +142,7 @@
                                 </div>
 
                                 <div class="bor8 bg0 m-b-12">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State / Country">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
                                 </div>
 
                                 <div class="bor8 bg0 m-b-22">
@@ -188,5 +181,4 @@
         </div>
     </div>
 </form>
-
 @endsection
