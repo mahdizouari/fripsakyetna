@@ -36,6 +36,14 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
 <!-- Include Isotope Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -347,43 +355,61 @@
         </div>
     </div>
     
-    <div class="header-cart-content flex-w js-pscroll">
-        <ul class="header-cart-wrapitem w-full">
-			@foreach($cart as $index => $product)
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="{{ asset('images/' . $item->image) }}" alt="IMG">
-                    </div>
+	<div class="header-cart-content flex-w js-pscroll">
+    <ul class="header-cart-wrapitem w-full">
+        @foreach($products as $product)
+            <li class="header-cart-item flex-w flex-t m-b-12">
+                <div class="header-cart-item-img">
+                    <img src="{{ asset('images/' . $product['image1']) }}" alt="IMG">
+                </div>
 
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            {{ $item->name }}
-                        </a>
+                <div class="header-cart-item-txt p-t-8">
+                    <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                        {{ $product['name'] }}
+                    </a>
 
-                        <span class="header-cart-item-info">
-                            {{ $item->quantity }} x ${{ $item->prix }}
-                        </span>
-                    </div>
-                </li>
-            @endforeach
-        </ul>
+                    <span class="header-cart-item-info">
+                        {{ $product['quantity'] }} x {{ $product['prix'] }} DT
+                    </span>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+
+    <div class="w-full">
         
-        <div class="w-full">
-            <div class="header-cart-total w-full p-tb-40">
-                Total: ${{ $total }}
-            </div>
+        <div class="header-cart-buttons flex-w w-full">
+            <a href="{{ route('cart.index') }}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                View Cart
+            </a>
 
-            <div class="header-cart-buttons flex-w w-full">
-                <a href="{{ route('cart.index') }}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                    View Cart
-                </a>
-
-                <a href="{{ route('checkout.index') }}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                    Check Out
-                </a>
-            </div>
+            <a href="/checkout" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                Check Out
+            </a>
         </div>
     </div>
+</div>
+<style>
+
+    .btn-block{
+        background:light;
+        transition: 1.5s ease;
+        position:relative;
+        bottom:-10
+    }
+    .card:hover a{
+        background:green;
+        transition: 1.5s ease;
+        transform: translate(-.1%, -.1%);
+        
+    }
+    .hover:hover {
+
+  box-shadow: 0 2px 5px 0 , 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+    </style>
+
+
 </div>
 
 	</div>

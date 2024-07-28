@@ -2,86 +2,99 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\produits;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
- // Make sure you have this model
+use App\Models\produits; 
+// Ensure you use the correct namespace for your Product model
 
 class CartController extends Controller
 {
+    // Display all products
     public function index()
     {
-        $cart = Session::get('cart', []);
+        $products = produits::all();
+        return view('product', compact('products'));
+    }
+
+    // Display the cart
+    public function cart()
+    {
+        $cart = session()->get('cart', []);
+        dd($cart); // Dump the cart to check its contents
+    
         $total = array_reduce($cart, function ($carry, $item) {
             return $carry + ($item['prix'] * $item['quantity']);
         }, 0);
-
-        $products = produits::all(); // Fetch products from the database
-
-        return view('cart.index', compact('cart', 'total', 'products'));
+    
+        return view('cart', compact('cart', 'total'));
     }
+    
 
-    public function add(Request $request)
+    // Add a product to the cart
+    public function add($id)
     {
-        $validated = $request->validate([
-            'id' => 'required|integer',
-            'name' => 'required|string',
-            'prix' => 'required|numeric',
-            'quantity' => 'required|integer|min:1',
-            'image1' => 'required|string',
-        ]);
+        $product = produits::find($id);
 
-        $product = $validated;
-        $cart = Session::get('cart', []);
-
-        // Check if the product is already in the cart
-        $found = false;
-        foreach ($cart as &$item) {
-            if ($item['id'] == $product['id']) {
-                $item['quantity'] += $product['quantity'];
-                $found = true;
-                break;
-            }
+        if (!$product) {
+            abort(404);
         }
 
-        if (!$found) {
-            $cart[] = $product;
+        $cart = session()->get('cart', []);
+
+        // If the cart is empty, add the first product
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "prix" => $product->prix,
+                    "image1" => $product->image1
+                ]
+            ];
+
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
 
-        Session::put('cart', $cart);
+        // If the cart is not empty, check if the product exists, then increment the quantity
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
 
-        return redirect()->route('cart.index')->with('success', 'Product added to cart.');
+        // If the product does not exist in the cart, add it with quantity = 1
+        $cart[$id] = [
+            "name" => $product->name,
+            "quantity" => 1,
+            "prix" => $product->prix,
+            "image1" => $product->image1
+        ];
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
+    // Update the quantity of a product in the cart
     public function update(Request $request)
     {
-        $cart = Session::get('cart', []);
-        $quantities = $request->input('quantities', []);
-
-        foreach ($quantities as $index => $quantity) {
-            if (isset($cart[$index])) {
-                $cart[$index]['quantity'] = $quantity;
-            }
+        if ($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
         }
-
-        Session::put('cart', $cart);
-
-        return redirect()->route('cart.index')->with('success', 'Cart updated.');
     }
 
+    // Remove a product from the cart
     public function remove(Request $request)
     {
-        $cart = Session::get('cart', []);
-        $index = $request->input('index');
-
-        if (isset($cart[$index])) {
-            unset($cart[$index]);
-            Session::put('cart', array_values($cart));
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
         }
-
-        return redirect()->route('cart.index')->with('success', 'Product removed from cart.');
     }
 }
-
-
-
