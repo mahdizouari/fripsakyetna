@@ -28,8 +28,6 @@ require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/product', [HomeController::class, 'product']);
 Route::get('/about', [HomeController::class, 'about']);
-Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/product-detail', [HomeController::class, 'productdetail']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/checkout', [HomeController::class, 'checkout']);
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
@@ -66,3 +64,5 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+
+

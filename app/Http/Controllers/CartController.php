@@ -3,33 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\produits; 
-// Ensure you use the correct namespace for your Product model
+use App\Models\produits;
 
 class CartController extends Controller
 {
-    // Display all products
     public function index()
     {
         $products = produits::all();
         return view('product', compact('products'));
     }
 
-    // Display the cart
     public function cart()
-    {
-        $cart = session()->get('cart', []);
-        dd($cart); // Dump the cart to check its contents
+{
+    $cart = session()->get('cart', []);
+    $total = array_reduce($cart, function ($carry, $item) {
+        return $carry + ($item['prix'] * $item['quantity']);
+    }, 0);
     
-        $total = array_reduce($cart, function ($carry, $item) {
-            return $carry + ($item['prix'] * $item['quantity']);
-        }, 0);
-    
-        return view('cart', compact('cart', 'total'));
-    }
-    
+    return view('cart.index', compact('cart', 'total'));
+}
 
-    // Add a product to the cart
     public function add($id)
     {
         $product = produits::find($id);
@@ -40,41 +33,21 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []);
 
-        // If the cart is empty, add the first product
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    "name" => $product->name,
-                    "quantity" => 1,
-                    "prix" => $product->prix,
-                    "image1" => $product->image1
-                ]
-            ];
-
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
-
-        // If the cart is not empty, check if the product exists, then increment the quantity
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        } else {
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "prix" => $product->prix,
+                "image1" => $product->image1
+            ];
         }
-
-        // If the product does not exist in the cart, add it with quantity = 1
-        $cart[$id] = [
-            "name" => $product->name,
-            "quantity" => 1,
-            "prix" => $product->prix,
-            "image1" => $product->image1
-        ];
 
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-    // Update the quantity of a product in the cart
     public function update(Request $request)
     {
         if ($request->id && $request->quantity) {
@@ -85,16 +58,32 @@ class CartController extends Controller
         }
     }
 
-    // Remove a product from the cart
     public function remove(Request $request)
     {
-        if ($request->id) {
-            $cart = session()->get('cart');
-            if (isset($cart[$request->id])) {
-                unset($cart[$request->id]);
+        if ($request->ajax()) {
+            $productId = $request->input('id'); // Ensure this matches your JavaScript variable name
+            $cart = session()->get('cart', []); // Default to an empty array if no cart exists
+    
+            if (isset($cart[$productId])) {
+                unset($cart[$productId]);
                 session()->put('cart', $cart);
+    
+                // Optionally return the new cart total or other data
+                $newTotal = array_reduce($cart, function ($carry, $item) {
+                    return $carry + ($item['prix'] * $item['quantity']);
+                }, 0);
+    
+                return response()->json(['success' => true, 'newTotal' => $newTotal]);
             }
-            session()->flash('success', 'Product removed successfully');
+    
+            return response()->json(['success' => false], 400);
         }
+    
+        return response()->json(['success' => false], 400);
     }
+    
+
+  
+
 }
+

@@ -4,6 +4,8 @@
 	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title', 'fripsakyetna ')</title>
 
 <!--===============================================================================================-->	
@@ -38,7 +40,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -124,8 +126,30 @@
 							</li>
 
 							<li>
-								<a href="cart">Panier</a>
+								<a href="{{ route('cart.index') }}" id="cart-link">Panier <span id="cart-count">(0)</span></a>
 							</li>
+							
+							<script>
+								document.addEventListener('DOMContentLoaded', function () {
+									// Function to update cart count display
+									function updateCartCount(count) {
+										document.getElementById('cart-count').textContent = `(${count})`;
+									}
+
+									// Initialize cart count from localStorage or set to 0 if not present
+									let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+									updateCartCount(cartCount);
+
+									// Event listener for adding to cart (adjust this selector to match your button class)
+									document.querySelectorAll('.add-to-cart-button').forEach(function(button) {
+										button.addEventListener('click', function() {
+											cartCount += 1; // Increment cart count
+											localStorage.setItem('cartCount', cartCount); // Save count to localStorage
+											updateCartCount(cartCount); // Update count display
+										});
+									});
+								});
+								</script>
 
 
 							<li>
@@ -204,10 +228,11 @@
 				</div>
 
 				<div class="flex-c-m h-full p-lr-10 bor5">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="0">
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</div>
 				</div>
+
 			</div>
 
 			<!-- Button show menu -->
@@ -356,25 +381,62 @@
     </div>
     
 	<div class="header-cart-content flex-w js-pscroll">
-    <ul class="header-cart-wrapitem w-full">
-        @foreach($products as $product)
-            <li class="header-cart-item flex-w flex-t m-b-12">
-                <div class="header-cart-item-img">
-                    <img src="{{ asset('images/' . $product['image1']) }}" alt="IMG">
-                </div>
+	<ul class="header-cart-wrapitem w-full">
+	
+</ul>
 
-                <div class="header-cart-item-txt p-t-8">
-                    <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                        {{ $product['name'] }}
-                    </a>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Setup CSRF token globally
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-                    <span class="header-cart-item-info">
-                        {{ $product['quantity'] }} x {{ $product['prix'] }} DT
-                    </span>
-                </div>
-            </li>
-        @endforeach
-    </ul>
+    // Handle remove from cart button click
+    $('.remove-from-cart').click(function(e) {
+        e.preventDefault();
+
+        var ele = $(this);
+        var productId = ele.data('id'); // Get the product ID from data attribute
+
+        $.ajax({
+            url: '{{ route('cart.remove') }}', // Ensure this matches your route definition
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'), // CSRF token
+                id: productId // The product ID to be removed
+            },
+            success: function(response) {
+                // Handle success response
+                // Optionally update the cart count or other UI elements
+                updateCartCount(); // Define this function to update the cart count
+            },
+            error: function(xhr) {
+                // Handle error response
+                console.error('Error:', xhr.responseText);
+            }
+        });
+    });
+
+    // Function to clear the cart count in localStorage and update UI
+    function clearCart() {
+        localStorage.setItem('cartCount', 0);
+        updateCartCount(0);
+    }
+
+    // Function to update the cart count in the UI
+    function updateCartCount(count) {
+        $('#cart-count').text('(' + count + ')');
+    }
+
+    // Optionally, call clearCart() if needed
+});
+
+</script>
+
 
     <div class="w-full">
         
@@ -819,14 +881,14 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 					
 					<div class="social-item bor9 p-r-10 m-r-11">
 					
-						<form action="{{ route('cart.add') }}" method="POST" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2">
+						<form action="{{ route('cart.add', ['id' => $product->id]) }}" method="POST" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2">
 							@csrf
 							<input type="hidden" name="id" value="{{ $product->id }}">
 							<input type="hidden" name="name" value="{{ $product->name }}">
 							<input type="hidden" name="prix" value="{{ $product->prix }}">
-							<input type="hidden" name="image1" value="{{ $product->image }}">
+							<input type="hidden" name="image1" value="{{ $product->image1 }}">
 							
-							<button type="submit" class="zmdi zmdi-shopping-cart">Add to Cart</button>
+							<button type="submit" class="  add-to-cart-button flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 ">Ajouter au panier</button>
 						</form>
 					</div>
 				</div>

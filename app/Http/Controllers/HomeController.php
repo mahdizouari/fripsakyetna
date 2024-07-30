@@ -26,14 +26,8 @@ class HomeController extends Controller
     {
         return view ('about');
     }
-    public function cart ()
-    {
-        return view ('cart');
-    }
-    public function productdetail ()
-    {
-        return view ('product-detail');
-    }
+    
+    
     public function contact ()
     {
         return view ('contact');
@@ -245,7 +239,7 @@ public function show($filename)
     {
         return view('slider.index');
     }
-
+ 
     public function quickView($id)
     {
         $product = produits::findOrFail($id);
@@ -261,7 +255,7 @@ public function show($filename)
         ]);
     }
     
+   
 
-
-
+    
 }
