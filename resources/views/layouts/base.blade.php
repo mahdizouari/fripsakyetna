@@ -46,10 +46,198 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+	
+
 
 <!-- Include Isotope Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<style>
+	/* panier style  */
+body {
+    background: #ddd;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    margin: auto;
+    max-width: 950px;
+    width: 90%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+    background-color: #fff;
+    padding: 2rem; /* Added padding for inner spacing */
+}
+
+@media(max-width: 767px) {
+    .card {
+        margin: 3vh auto;
+        width: 95%;
+    }
+}
+
+.cart {
+    padding: 2rem; /* Reduced padding for mobile */
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+
+@media(max-width: 767px) {
+    .cart {
+        padding: 1.5rem;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 1rem;
+    }
+}
+
+.summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 2rem;
+    color: rgb(65, 65, 65);
+}
+
+@media(max-width: 767px) {
+    .summary {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1rem;
+    }
+}
+
+.title {
+    margin-bottom: 2vh;
+}
+
+.title h4 {
+    font-size: 1.5rem;
+}
+
+.cart-item {
+    padding: 1rem; /* Added padding for cart items */
+}
+
+.cart .col-2 img {
+    width: 4rem; /* Increased image size */
+}
+
+.quantity-control {
+    padding: 0 1vh;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+}
+
+.quantity-display {
+    padding: 0 1vh;
+    font-size: 1.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    background-color: rgb(247, 247, 247);
+}
+
+.back-to-shop {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-link {
+    text-decoration: none;
+    color: blue;
+    font-size: 1.2rem;
+}
+
+.summary form select,
+.summary form input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+
+.summary form input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.btn {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 1rem;
+    border-radius: 0.25rem; /* Added border radius */
+}
+
+.btn:focus {
+    box-shadow: none;
+    outline: none;
+    color: black;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #ddd;
+	text-decoration-color:color: #ddd; /* Slight hover effect */
+}
+
+.checkout-btn {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    font-size: 0.8rem;
+}
+
+@media(max-width: 767px) {
+    .btn, .summary form select, .summary form input {
+        font-size: 0.8rem;
+    }
+}
+
+</style>
+<style>
+	.container {
+    padding-top: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.img-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.text-right {
+    margin-top: 20px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+</style>
 <style>
     .logo-mobile {
     display: flex;
@@ -126,40 +314,15 @@
 							</li>
 
 							<li>
-								<a href="{{ route('cart.index') }}" id="cart-link">Panier <span id="cart-count">(0)</span></a>
+								<a href="panier">Panier</a>
 							</li>
-							
-							<script>
-								document.addEventListener('DOMContentLoaded', function () {
-									// Function to update cart count display
-									function updateCartCount(count) {
-										document.getElementById('cart-count').textContent = `(${count})`;
-									}
 
-									// Initialize cart count from localStorage or set to 0 if not present
-									let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
-									updateCartCount(cartCount);
-
-									// Event listener for adding to cart (adjust this selector to match your button class)
-									document.querySelectorAll('.add-to-cart-button').forEach(function(button) {
-										button.addEventListener('click', function() {
-											cartCount += 1; // Increment cart count
-											localStorage.setItem('cartCount', cartCount); // Save count to localStorage
-											updateCartCount(cartCount); // Update count display
-										});
-									});
-								});
-								</script>
-
-
+	
 							<li>
 								<a href="about">A propos</a>
 							</li>
 
-							<li>
-								<a href="contact">Contact</a>
-							</li>
-
+							
 							@auth
 								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
 									<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
@@ -251,8 +414,7 @@
 					<a href="/">Accueil</a>
 					<ul class="sub-menu-m">
 						<li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
+						
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -262,19 +424,21 @@
 				<li>
 					<a href="product" class="label1 rs1" data-label1="hot">Produits</a>
 				</li>
+				
+			
+				<li>
 
 				<li>
-					<a href="cart"  >Panier</a>
+					<a href="panier">Panier</a>
 				</li>
 
 				<li>
-					<a href="about">About</a>
+					<a href="about">about</a>
 				</li>
+				
+				
 
-				<li>
-					<a href="contact">Contact</a>
-				</li>
-
+					
 				<li >
 					@if (Route::has('login'))
 						@auth
@@ -366,110 +530,7 @@
 		</div>
 	</aside>
     <!-- Cart -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
-
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-    <div class="header-cart-title flex-w flex-sb-m p-b-8">
-        <span class="mtext-103 cl2">
-            Your Cart
-        </span>
-
-        <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-            <i class="zmdi zmdi-close"></i>
-        </div>
-    </div>
-    
-	<div class="header-cart-content flex-w js-pscroll">
-	<ul class="header-cart-wrapitem w-full">
 	
-</ul>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Setup CSRF token globally
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    // Handle remove from cart button click
-    $('.remove-from-cart').click(function(e) {
-        e.preventDefault();
-
-        var ele = $(this);
-        var productId = ele.data('id'); // Get the product ID from data attribute
-
-        $.ajax({
-            url: '{{ route('cart.remove') }}', // Ensure this matches your route definition
-            method: 'POST',
-            data: {
-                _token: $('meta[name="csrf-token"]').attr('content'), // CSRF token
-                id: productId // The product ID to be removed
-            },
-            success: function(response) {
-                // Handle success response
-                // Optionally update the cart count or other UI elements
-                updateCartCount(); // Define this function to update the cart count
-            },
-            error: function(xhr) {
-                // Handle error response
-                console.error('Error:', xhr.responseText);
-            }
-        });
-    });
-
-    // Function to clear the cart count in localStorage and update UI
-    function clearCart() {
-        localStorage.setItem('cartCount', 0);
-        updateCartCount(0);
-    }
-
-    // Function to update the cart count in the UI
-    function updateCartCount(count) {
-        $('#cart-count').text('(' + count + ')');
-    }
-
-    // Optionally, call clearCart() if needed
-});
-
-</script>
-
-
-    <div class="w-full">
-        
-        <div class="header-cart-buttons flex-w w-full">
-            <a href="{{ route('cart.index') }}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                View Cart
-            </a>
-
-            <a href="/checkout" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                Check Out
-            </a>
-        </div>
-    </div>
-</div>
-<style>
-
-    .btn-block{
-        background:light;
-        transition: 1.5s ease;
-        position:relative;
-        bottom:-10
-    }
-    .card:hover a{
-        background:green;
-        transition: 1.5s ease;
-        transform: translate(-.1%, -.1%);
-        
-    }
-    .hover:hover {
-
-  box-shadow: 0 2px 5px 0 , 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-    </style>
 
 
 </div>
@@ -735,6 +796,7 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
     });
 </script>
 
+
 <!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -775,6 +837,7 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
         });
     });
 </script>  
+
 
 
 		
@@ -878,20 +941,14 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 							<i class="zmdi zmdi-favorite"></i>
 						</a>
 					</div>
-					
-					<div class="social-item bor9 p-r-10 m-r-11">
-					
-						<form action="{{ route('cart.add', ['id' => $product->id]) }}" method="POST" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2">
-							@csrf
-							<input type="hidden" name="id" value="{{ $product->id }}">
-							<input type="hidden" name="name" value="{{ $product->name }}">
-							<input type="hidden" name="prix" value="{{ $product->prix }}">
-							<input type="hidden" name="image1" value="{{ $product->image1 }}">
-							
-							<button type="submit" class="  add-to-cart-button flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 ">Ajouter au panier</button>
-						</form>
+					<div class="alert alert-success" id="success-alert" style="display:none;">
+						Product added successfully!
 					</div>
+					
+					<button class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">CHECKOUT</button>
 				</div>
+				
+				
 
 
             <!-- Social Media and Wishlist -->

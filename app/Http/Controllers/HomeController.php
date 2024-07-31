@@ -28,9 +28,9 @@ class HomeController extends Controller
     }
     
     
-    public function contact ()
+    public function panier ()
     {
-        return view ('contact');
+        return view ('panier');
     }
     public function checkout ()
     {
@@ -255,7 +255,19 @@ public function show($filename)
         ]);
     }
     
+    
    
+
+
+
+
+
+
+
+
+
+
+
 
     
 }

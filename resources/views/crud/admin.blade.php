@@ -133,7 +133,7 @@
                 <a href="/product"> Produits </a>
               </li>
               <li>
-                <a href="/cart"> Panier </a>
+                <a href="panier"> Panier </a>
               </li>
               <li>
                 <a href="/about"> About </a>
