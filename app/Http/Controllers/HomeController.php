@@ -260,49 +260,50 @@ public function show($filename)
 
     public function addItem(Request $request)
     {
-        
         // Validate the request data
         $validated = $request->validate([
-            'product_id' => 'required|integer',
-            'data_prix' => 'required|numeric',
+            'id' => 'required|integer',
         ]);
-
+    
         // Retrieve product information from the database
-        $product = produits::table('produits')->where('id', $validated['product_id'])->first();     
-
+        $product = produits::find($validated['id']);
+    
         if ($product) {
             $productData = [
-                'product_id' => $product->id,
+                'id' => $product->id,
                 'name' => $product->name,
                 'image1' => $product->image1,
                 'prix' => $product->prix,
                 'taille' => $product->taille,
                 'Catégorie' => $product->Catégorie,
+                'quantite' => 1, // Default quantity
             ];
-
+    
             $productItems = Session::get('productItems', []);
             $productItemIds = Session::get('productItemIds', []);
-
+    
             if (!in_array($product->id, $productItemIds)) {
                 $productItemIds[] = $product->id;
                 $productItems[] = $productData;
             } else {
                 foreach ($productItems as $key => $item) {
-                    if ($item['product_id'] == $product->id) {
-                        $productItems[$key] = $productData;
+                    if ($item['id'] == $product->id) {
+                        $productItems[$key]['quantite']++;
                         break;
                     }
                 }
             }
-
+    
             Session::put('productItems', $productItems);
             Session::put('productItemIds', $productItemIds);
-
+    
             return redirect('/')->with('message', 'Item Added! ' . $product->name);
         }
-
+    
         return redirect('/')->with('error', 'No such product found!');
     }
+    
+
 }
 
     
