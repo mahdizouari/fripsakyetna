@@ -846,6 +846,8 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
     
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const csrfToken = '{{ csrf_token() }}';
+
         const quickViewButtons = document.querySelectorAll('.quick-view-btn');
 
         quickViewButtons.forEach(button => {
@@ -859,123 +861,105 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
                         // Populate modal with product details
                         document.getElementById('quickViewContent').innerHTML = `
                         <div class="container">
-						<div class="row">
-							<!-- Product Images -->
-							<div class="col-12 p-b-30">
-								<div class="wrap-slick3 flex-sb flex-w">
-									<div class="wrap-slick3-dots"></div>
-									<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+                            <div class="row">
+                                <!-- Product Images -->
+                                <div class="col-12 p-b-30">
+                                    <div class="wrap-slick3 flex-sb flex-w">
+                                        <div class="wrap-slick3-dots"></div>
+                                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-									<!-- HTML for Slick Slider -->
-					<div class="slick3 gallery-lb">
-						${data.image1 ? `
-						<div class="item-slick3">
-							<div class="wrap-pic-w pos-relative">
-								<img src="${data.image1}" alt="IMG-PRODUCT" class="slick-img">
-								<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image1}">
-									<i class="fa fa-expand"></i>
-								</a>
-							</div>
-						</div>` : ''}
+                                        <div class="slick3 gallery-lb">
+                                            ${data.image1 ? `
+                                            <div class="item-slick3">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    <img src="${data.image1}" alt="IMG-PRODUCT" class="slick-img">
+                                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image1}">
+                                                        <i class="fa fa-expand"></i>
+                                                    </a>
+                                                </div>
+                                            </div>` : ''}
 
-						${data.image2 ? `
-						<div class="item-slick3">
-							<div class="wrap-pic-w pos-relative">
-								<img src="${data.image2}" alt="IMG-PRODUCT" class="slick-img">
-								<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image2}">
-									<i class="fa fa-expand"></i>
-								</a>
-							</div>
-						</div>` : ''}
+                                            ${data.image2 ? `
+                                            <div class="item-slick3">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    <img src="${data.image2}" alt="IMG-PRODUCT" class="slick-img">
+                                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image2}">
+                                                        <i class="fa fa-expand"></i>
+                                                    </a>
+                                                </div>
+                                            </div>` : ''}
 
-						${data.image3 ? `
-						<div class="item-slick3">
-							<div class="wrap-pic-w pos-relative">
-								<img src="${data.image3}" alt="IMG-PRODUCT" class="slick-img">
-								<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image3}">
-									<i class="fa fa-expand"></i>
-								</a>
-							</div>
-						</div>` : ''}
-					</div>
+                                            ${data.image3 ? `
+                                            <div class="item-slick3">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    <img src="${data.image3}" alt="IMG-PRODUCT" class="slick-img">
+                                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image3}">
+                                                        <i class="fa fa-expand"></i>
+                                                    </a>
+                                                </div>
+                                            </div>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
 
-            </div>
-        </div>
+                                <!-- Product Details -->
+                                <div class="col-12">
+                                    <!-- Product Info -->
+                                    <div class="product-info p-b-30">
+                                        <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                                            ${data.name}
+                                        </h4>
 
-        <!-- Product Details -->
-        <div class="col-12">
-            <!-- Product Name and Price -->
-            <div class="product-info p-b-30">
-                <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                    ${data.name}
-                </h4>
+                                        <span class="mtext-106 cl2">
+                                            ${data.prix.toFixed(2)} DT
+                                        </span>
+                                    </div>
 
-                <span class="mtext-106 cl2">
-                    ${data.prix.toFixed(2)} DT
-                </span>
-            </div>
+                                    <!-- Product Details Form -->
+                                    <form action="/add-item" method="POST">
+                                        <input type="hidden" name="_token" value="${csrfToken}">
+                                        <input type="hidden" name="product_id" value="${data.id}">
 
-            <!-- Product Details -->
-            <div class="product-details p-t-20">
-                <div class="detail-item flex-w flex-r-m p-b-10">
-                    <div class="size-203 flex-c-m">
-                        Taille:
-                    </div>
-                    <div class="size-204">
-                        ${data.taille}
-                    </div>
-                </div>
+                                        <div class="product-details p-t-20">
+                                            <div class="detail-item flex-w flex-r-m p-b-10">
+                                                <div class="size-203 flex-c-m">
+                                                    Taille:
+                                                </div>
+                                                <div class="size-204">
+                                                    ${data.taille}
+                                                </div>
+                                            </div>
 
-                <div class="detail-item flex-w flex-r-m p-b-10">
-                    <div class="size-203 flex-c-m">
-                        Catégorie:
-                    </div>
-                    <div class="size-204">
-                        ${data.Catégorie}
-                    </div>
-                </div>
+                                            <div class="detail-item flex-w flex-r-m p-b-10">
+                                                <div class="size-203 flex-c-m">
+                                                    Catégorie:
+                                                </div>
+                                                <div class="size-204">
+                                                    ${data.Catégorie}
+                                                </div>
+                                            </div>
+                                        </div>
 
-               <div class="social-wishlist p-t-30 flex-w flex-m">
-					<div class="social-item bor9 p-r-10 m-r-11">
-						<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-							<i class="zmdi zmdi-favorite"></i>
-						</a>
-					</div>
-					<div class="alert alert-success" id="success-alert" style="display:none;">
-						Product added successfully!
-					</div>
-					
-					<button class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">CHECKOUT</button>
-				</div>
-				
-				
+                                        <button type="submit" name="addItem" class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">
+                                            Ajouter au panier
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        // Show the modal
+                        $('#quickViewModal').modal('show');
+                    })
+                    .catch(error => {
+                        console.error('Error fetching product details:', error);
+                    });
+            });
+        });
+    });
+</script>
 
-
-            <!-- Social Media and Wishlist -->
-            <div class="social-wishlist p-t-30 flex-w flex-m">
-                <div class="social-item bor9 p-r-10 m-r-11">
-                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                        <i class="zmdi zmdi-favorite"></i>
-                    </a>
-            </div>
-
-                <a href="#" class="social-item fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                    <i class="fa fa-facebook"></i>
-                </a>
-
-                <a href="#" class="social-item fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                    <i class="fa fa-twitter"></i>
-                </a>
-
-                <a href="#" class="social-item fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-						<style>
+<style>
 						
 								.product-info {
 								text-align: center;
@@ -1164,18 +1148,6 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 							}
 								 
 						</style>
-
-                        `;
-                        // Show the modal
-                        $('#quickViewModal').modal('show');
-                    })
-                    .catch(error => {
-                        console.error('Error fetching product details:', error);
-                    });
-            });
-        });
-    });
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const tooltipElements = document.querySelectorAll('.tooltip100[data-tooltip]');

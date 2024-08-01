@@ -53,6 +53,13 @@ Route::get('/products/search', [HomeController::class, 'search'])->name('product
 Route::get('/slider', [HomeController::class, 'index'])->name('slider.index');
 Route::get('/product/{id}/quick-view', [HomeController::class, 'quickView']);
 
+Route::get('/panier', function () {
+    return view('panier');
+});
+Route::post('/add-item', [HomeController::class, 'addItem']);
+
+
+
 
 
 

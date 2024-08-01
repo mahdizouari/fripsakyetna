@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+
 
 class HomeController extends Controller
 {
@@ -254,6 +256,56 @@ public function show($filename)
             'image3' => $product->image3 ? asset('/' . $product->image3) : null,
         ]);
     }
+
+
+    public function addItem(Request $request)
+    {
+        
+        // Validate the request data
+        $validated = $request->validate([
+            'product_id' => 'required|integer',
+            'data_prix' => 'required|numeric',
+        ]);
+
+        // Retrieve product information from the database
+        $product = produits::table('produits')->where('id', $validated['product_id'])->first();     
+
+        if ($product) {
+            $productData = [
+                'product_id' => $product->id,
+                'name' => $product->name,
+                'image1' => $product->image1,
+                'prix' => $product->prix,
+                'taille' => $product->taille,
+                'Catégorie' => $product->Catégorie,
+            ];
+
+            $productItems = Session::get('productItems', []);
+            $productItemIds = Session::get('productItemIds', []);
+
+            if (!in_array($product->id, $productItemIds)) {
+                $productItemIds[] = $product->id;
+                $productItems[] = $productData;
+            } else {
+                foreach ($productItems as $key => $item) {
+                    if ($item['product_id'] == $product->id) {
+                        $productItems[$key] = $productData;
+                        break;
+                    }
+                }
+            }
+
+            Session::put('productItems', $productItems);
+            Session::put('productItemIds', $productItemIds);
+
+            return redirect('/')->with('message', 'Item Added! ' . $product->name);
+        }
+
+        return redirect('/')->with('error', 'No such product found!');
+    }
+}
+
+    
     
     
    
@@ -270,4 +322,3 @@ public function show($filename)
 
 
     
-}
