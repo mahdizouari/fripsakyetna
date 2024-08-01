@@ -918,7 +918,7 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
                                     <!-- Product Details Form -->
                                     <form action="/add-item" method="POST">
                                         <input type="hidden" name="_token" value="${csrfToken}">
-                                        <input type="hidden" name="product_id" value="${data.id}">
+                                        <input type="hidden" name="id" value="${data.id}">
 
                                         <div class="product-details p-t-20">
                                             <div class="detail-item flex-w flex-r-m p-b-10">
@@ -957,6 +957,8 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
             });
         });
     });
+
+
 </script>
 
 <style>

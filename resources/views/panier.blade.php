@@ -22,14 +22,10 @@
             @if(Session::has('error'))
                 <div class="alert alert-danger">{{ Session::get('error') }}</div>
             @endif
-
-            @php
-                $productItems = Session::get('productItems', []);
-            @endphp
-
-            @if(!empty($productItems))
+                
+            @if(Session::has('productItems') && !empty(Session::get('productItems')))
                 <div class="table-responsive mb-3">
-                    <table class="table table-bordered  table-striped">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -38,26 +34,21 @@
                                 <th>Prix</th>
                                 <th>Taille</th>
                                 <th>Catégorie</th>
-                                <th>Quantité</th>
-                                <th>Prix totale</th>
                                 <th>Supprimer</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($productItems as $key => $item)
-                             <!-- Cart Item -->
-                            <tr>
-                                <td>{{ $key }}</td>
-                                <td>{{ $item['name'] }}</td>
-                                <td><img src="{{ asset('/' . $item['image1']) }}" alt="{{ $item['name'] }}" class="img-fluid" width="50"></td>
-                                <td>{{ $item['prix'] }}</td>
-                                <td>{{ $item['taille'] }}</td>
-                                <td>{{ $item['Catégorie'] }}</td>
-                                <td>{{ $item['quantite'] }}</td>
-                                <td>{{ $item['prix'] * $item['quantite'] }}</td>
-                                <td><a href="{{ route('deleteItem', $item['product_id']) }}" class="btn btn-danger">Supprimer</a></td>
-                            </tr>
-                        @endforeach
+                            @foreach(Session::get('productItems') as $key => $item)
+                                <tr>
+                                    <td>{{ $item['id'] }}</td>
+                                    <td>{{ $item['name'] }}</td>
+                                    <td><img src="{{ asset('/' . $item['image1']) }}" alt="{{ $item['name'] }}" class="img-fluid" width="50"></td>
+                                    <td>{{ $item['prix'] }} DT</td>
+                                    <td>{{ $item['taille'] }}</td>
+                                    <td>{{ $item['Catégorie'] }}</td>
+                                    <td><a href="{{ route('deleteItem', $item['id']) }}" class="btn btn-danger btn-sm">Supprimer</a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -77,9 +68,9 @@
             <div><h5><b>Summary</b></h5></div>
             <hr>
             <div class="row">
-                <div class="col" style="padding-left:0;">ITEMS {{ count($productItems) }}</div>
+                <div class="col" style="padding-left:0;">ITEMS {{ count(Session::get('productItems', [])) }}</div>
                 <div class="col text-right">
-                    &euro; {{ number_format(collect($productItems)->sum('prix'), 2) }}
+                    &euro; {{ number_format(collect(Session::get('productItems'))->sum('prix'), 2) }}
                 </div>
             </div>
             <form>
@@ -93,7 +84,7 @@
             <div class="row border-top border-bottom" style="padding: 2vh 0;">
                 <div class="col">TOTAL PRICE</div>
                 <div class="col text-right">
-                    &euro; {{ number_format(collect($productItems)->sum('prix') + 5, 2) }}
+                    &euro; {{ number_format(collect(Session::get('productItems'))->sum('prix') + 5, 2) }}
                 </div>
             </div>
             <button class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">CHECKOUT</button>

@@ -276,7 +276,6 @@ public function show($filename)
                 'prix' => $product->prix,
                 'taille' => $product->taille,
                 'Catégorie' => $product->Catégorie,
-                'quantite' => 1, // Default quantity
             ];
     
             $productItems = Session::get('productItems', []);
@@ -288,7 +287,8 @@ public function show($filename)
             } else {
                 foreach ($productItems as $key => $item) {
                     if ($item['id'] == $product->id) {
-                        $productItems[$key]['quantite']++;
+                        // If the product is already in the cart, update its data
+                        $productItems[$key] = $productData;
                         break;
                     }
                 }
@@ -302,6 +302,7 @@ public function show($filename)
     
         return redirect('/')->with('error', 'No such product found!');
     }
+    
     
 
 }
