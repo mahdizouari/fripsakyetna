@@ -28,8 +28,7 @@ class HomeController extends Controller
     {
         return view ('about');
     }
-    
-    
+  
     public function panier ()
     {
         return view ('panier');
@@ -47,7 +46,6 @@ public function login()
     {
         return view('auth.login');
     }
-   
 
 public function showClientProfile($clientId)
 {
@@ -123,11 +121,6 @@ public function store(Request $request)
     return redirect('create')->with('status', 'Product created successfully!');
 }
 
-
-
-
-
-
 public function edit(int $id)
 {
     $produit = produits::find($id);
@@ -180,10 +173,6 @@ public function update(Request $request, $id)
 
     return redirect()->back()->with('status', 'Product updated successfully!');
 }
-
-
-
-
 public function destroy($id)
 {
     $produit = produits::findOrFail($id);
@@ -202,8 +191,6 @@ public function destroy($id)
 
     return redirect()->back()->with('status', 'Product deleted successfully!');
 }
-
-
 public function show($filename)
 {
     $path = 'images/' . $filename;
@@ -218,8 +205,7 @@ public function show($filename)
     return response($file, 200)->header('Content-Type', $type);
 }
 
-
-    public function search(Request $request)
+public function search(Request $request)
     {
         $query = $request->input('query');
     
@@ -234,15 +220,14 @@ public function show($filename)
         })->get();
     
         return view('crud.search', compact('products'));
-    }
+}
     
-    
-    public function index()
+public function index()
     {
         return view('slider.index');
-    }
+}
  
-    public function quickView($id)
+ public function quickView($id)
     {
         $product = produits::findOrFail($id);
         return response()->json([
@@ -302,7 +287,30 @@ public function show($filename)
     
         return redirect('/')->with('error', 'No such product found!');
     }
+    public function deleteItem(Request $request, $id)
+    {
+        $productItems = Session::get('productItems', []);
+        $productItemIds = Session::get('productItemIds', []);
     
+        foreach ($productItems as $key => $item) {
+            if ($item['id'] == $id) {
+                unset($productItems[$key]);
+                break;
+            }
+        }
+    
+        $productItems = array_values($productItems); // Reindex the array
+        Session::put('productItems', $productItems);
+    
+        if (($key = array_search($id, $productItemIds)) !== false) {
+            unset($productItemIds[$key]);
+            $productItemIds = array_values($productItemIds); // Reindex the array
+            Session::put('productItemIds', $productItemIds);
+        }
+    
+        return redirect('/panier')->with('message', 'Item removed from cart!');
+    }
+     
     
 
 }

@@ -24,6 +24,7 @@
             @endif
                 
             @if(Session::has('productItems') && !empty(Session::get('productItems')))
+            @foreach(Session::get('productItems') as $key => $item)
                 <div class="table-responsive mb-3">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -38,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(Session::get('productItems') as $key => $item)
+                            
                                 <tr>
                                     <td>{{ $item['id'] }}</td>
                                     <td>{{ $item['name'] }}</td>

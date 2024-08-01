@@ -1,11 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
-use App\Models\produits;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CartController;
 
 
 Route::get('/', function () {
@@ -58,8 +55,7 @@ Route::get('/panier', function () {
 });
 Route::post('/add-item', [HomeController::class, 'addItem']);
 
-
-
+Route::post('/delete-item/{id}', [HomeController::class, 'deleteItem'])->name('deleteItem');
 
 
 

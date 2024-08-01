@@ -7,6 +7,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', 'fripsakyetna ')</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
@@ -755,46 +756,7 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
-	<script>
-    // Handle 'Add to Wishlist' buttons
-    $('.js-addwish-b2').on('click', function(e) {
-        e.preventDefault();
-    });
-
-    $('.js-addwish-b2').each(function() {
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        $(this).on('click', function() {
-            swal(nameProduct, "is added to wishlist!", "success");
-            $(this).addClass('js-addedwish-b2');
-            $(this).off('click');
-        });
-    });
-
-    $('.js-addwish-detail').each(function() {
-        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-        $(this).on('click', function() {
-            swal(nameProduct, "is added to wishlist!", "success");
-            $(this).addClass('js-addedwish-detail');
-            $(this).off('click');
-        });
-    });
-
-    // Handle 'Add to Cart' buttons
-    $('.js-addcart-detail').each(function() {
-        $(this).on('click', function(e) {
-            e.preventDefault(); // Prevent the default form submission
-
-            var form = $(this).closest('form'); // Find the closest form
-            var nameProduct = form.find('.js-name-detail').html();
-
-            swal(nameProduct, "is added to cart!", "success").then((result) => {
-                if (result.value) {
-                    form.submit(); // Submit the form after the alert
-                }
-            });
-        });
-    });
-</script>
+	
 
 
 <!--===============================================================================================-->
@@ -940,9 +902,13 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
                                             </div>
                                         </div>
 
-                                        <button type="submit" name="addItem" class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">
-                                            Ajouter au panier
-                                        </button>
+                                       <div class="product-detail p-3 border rounded">
+											<button class="js-addwish-detail btn btn-outline-primary mb-3">Add to Wishlist</button>
+											
+											<button class="js-addcart-detail btn btn-primary" name="addItem">Add to Cart</button>
+											
+										</div>
+
                                     </form>
                                 </div>
                             </div>
@@ -1027,8 +993,8 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 							.social-item a:hover {
 								color: #007bff;
 							}
-						</style>
-						<style>
+</style>
+<style>
 						/* Container for slick slider */
 						.wrap-slick3 {
 								position: relative;
@@ -1114,9 +1080,9 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 							background-color: rgba(0,0,0,0.8);
 						}
 
-						</style>
+</style>
 
-						<style>
+<style>
 							@media (max-width: 768px) {
 								.wrap-slick3 {
 									display: block;
@@ -1149,7 +1115,7 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 								}
 							}
 								 
-						</style>
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const tooltipElements = document.querySelectorAll('.tooltip100[data-tooltip]');
@@ -1175,4 +1141,27 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 
 
 </script>
+<style> 
+
+    .product-detail {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin: 20px;
+        transition: transform 0.3s;
+    }
+    .product-detail:hover {
+        transform: translateY(-5px);
+    }
+    .product-detail .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .product-detail .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
 
