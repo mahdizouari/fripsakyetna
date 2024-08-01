@@ -315,7 +315,7 @@ body {
 							</li>
 
 							<li>
-								<a href="panier">Panier</a>
+								<a href="cart">Panier</a>
 							</li>
 
 	
@@ -441,19 +441,7 @@ body {
 
 					
 				<li >
-					@if (Route::has('login'))
-						@auth
-									
-									
-						@else
-							<li>  <a href="{{ route('login') }}" class="nav-link" >Log in</a></li>
-
-								@if (Route::has('register'))
-									<li>  <a href="{{ route('register') }}" class="nav-link" >Register</a></li>
-								@endif
-						@endauth
-									
-					@endif
+					
 					@auth
 								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
 									<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
@@ -690,10 +678,10 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 		</span>
 	</div>
 
-	<!-- Modal1 -->
-	<!-- Quick View Modal -->
-<div id="quickViewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quickViewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+	
+<!-- Quick View Modal -->
+<div class="modal fade" id="quickViewModal" tabindex="-1" role="dialog" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="quickViewModalLabel">Quick View</h5>
@@ -701,14 +689,165 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <!-- Product Details Will Be Loaded Here -->
-                <div id="quickViewContent"></div>
+            <div class="modal-body" id="quickViewContent">
+			<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const csrfToken = '{{ csrf_token() }}';
+
+        const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+
+        quickViewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.getAttribute('data-id');
+
+                // Fetch product details using AJAX
+                fetch(`/product/${productId}/quick-view`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Populate modal with product details
+                        document.getElementById('quickViewContent').innerHTML = `
+                       <div class="container">
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col-12 p-b-30">
+                <div class="wrap-slick3 flex-sb flex-w">
+                    <div class="wrap-slick3-dots"></div>
+                    <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                    <div class="slick3 gallery-lb">
+                        @if($product->image1)
+                        <div class="item-slick3">
+                            <div class="wrap-pic-w pos-relative">
+                                <img src="{{ $product->image1 }}" alt="IMG-PRODUCT" class="slick-img">
+                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image1 }}">
+                                    <i class="fa fa-expand"></i>
+                                </a>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if($product->image2)
+                        <div class="item-slick3">
+                            <div class="wrap-pic-w pos-relative">
+                                <img src="{{ $product->image2 }}" alt="IMG-PRODUCT" class="slick-img">
+                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image2 }}">
+                                    <i class="fa fa-expand"></i>
+                                </a>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if($product->image3)
+                        <div class="item-slick3">
+                            <div class="wrap-pic-w pos-relative">
+                                <img src="{{ $product->image3 }}" alt="IMG-PRODUCT" class="slick-img">
+                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ $product->image3 }}">
+                                    <i class="fa fa-expand"></i>
+                                </a>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="col-12">
+                <!-- Product Info -->
+                <div class="product-info p-b-30">
+                    <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                        {{ $product->name }}
+                    </h4>
+
+                    <span class="mtext-106 cl2">
+                        {{ number_format($product->prix, 2) }} DT
+                    </span>
+                </div>
+
+                <!-- Product Details Form -->
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                    <input type="hidden" name="name" value="{{ $product->name }}">
+                    <input type="hidden" name="image" value="{{ $product->image1 }}">
+                    <input type="hidden" name="prix" value="{{ $product->prix }}">
+                    <input type="hidden" name="taille" value="{{ $product->taille }}">
+                    <input type="hidden" name="Catégorie" value="{{ $product->Catégorie }}">
+
+                    <div class="product-details p-t-20">
+                        <div class="detail-item flex-w flex-r-m p-b-10">
+                            <div class="size-203 flex-c-m">
+                                Taille:
+                            </div>
+                            <div class="size-204">
+                                {{ $product->taille }}
+                            </div>
+                        </div>
+
+                        <div class="detail-item flex-w flex-r-m p-b-10">
+                            <div class="size-203 flex-c-m">
+                                Catégorie:
+                            </div>
+                            <div class="size-204">
+                                {{ $product->Catégorie }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-detail p-3 border rounded">
+                        <button type="button" class="js-addwish-detail btn btn-outline-primary mb-3">Add to Wishlist</button>
+                        <button type="submit" class="js-addcart-detail btn btn-primary" name="addItem">Add to Cart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+                        `;
+                        // Show the modal
+                        $('#quickViewModal').modal('show');
+                    })
+                    .catch(error => {
+                        console.error('Error fetching product details:', error);
+                    });
+            });
+        });
+
+        // Handle 'Add to Wishlist' buttons
+        document.querySelectorAll('.js-addwish-detail').forEach(button => {
+            button.addEventListener('click', function () {
+                const nameProduct = this.closest('.product-info').querySelector('.js-name-detail').textContent;
+                swal(nameProduct, "is added to wishlist!", "success");
+                button.classList.add('js-addedwish-detail');
+                button.removeEventListener('click');
+            });
+        });
+
+        // Handle 'Add to Cart' buttons
+        document.querySelectorAll('.js-addcart-detail').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                const form = button.closest('form'); // Find the closest form
+                const nameProduct = form.querySelector('.js-name-detail').textContent;
+
+                swal(nameProduct, "is added to cart!", "success").then((result) => {
+                    if (result.value) {
+                        form.submit(); // Submit the form after the alert
+                    }
+                });
+            });
+        });
+    });
+</script>
+
             </div>
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -806,126 +945,6 @@ Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> A
 </body>
 </html>
     
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const csrfToken = '{{ csrf_token() }}';
-
-        const quickViewButtons = document.querySelectorAll('.quick-view-btn');
-
-        quickViewButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const productId = this.getAttribute('data-id');
-
-                // Fetch product details using AJAX
-                fetch(`/product/${productId}/quick-view`)
-                    .then(response => response.json())
-                    .then(data => {
-                        // Populate modal with product details
-                        document.getElementById('quickViewContent').innerHTML = `
-                        <div class="container">
-                            <div class="row">
-                                <!-- Product Images -->
-                                <div class="col-12 p-b-30">
-                                    <div class="wrap-slick3 flex-sb flex-w">
-                                        <div class="wrap-slick3-dots"></div>
-                                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-                                        <div class="slick3 gallery-lb">
-                                            ${data.image1 ? `
-                                            <div class="item-slick3">
-                                                <div class="wrap-pic-w pos-relative">
-                                                    <img src="${data.image1}" alt="IMG-PRODUCT" class="slick-img">
-                                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image1}">
-                                                        <i class="fa fa-expand"></i>
-                                                    </a>
-                                                </div>
-                                            </div>` : ''}
-
-                                            ${data.image2 ? `
-                                            <div class="item-slick3">
-                                                <div class="wrap-pic-w pos-relative">
-                                                    <img src="${data.image2}" alt="IMG-PRODUCT" class="slick-img">
-                                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image2}">
-                                                        <i class="fa fa-expand"></i>
-                                                    </a>
-                                                </div>
-                                            </div>` : ''}
-
-                                            ${data.image3 ? `
-                                            <div class="item-slick3">
-                                                <div class="wrap-pic-w pos-relative">
-                                                    <img src="${data.image3}" alt="IMG-PRODUCT" class="slick-img">
-                                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${data.image3}">
-                                                        <i class="fa fa-expand"></i>
-                                                    </a>
-                                                </div>
-                                            </div>` : ''}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Product Details -->
-                                <div class="col-12">
-                                    <!-- Product Info -->
-                                    <div class="product-info p-b-30">
-                                        <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                                            ${data.name}
-                                        </h4>
-
-                                        <span class="mtext-106 cl2">
-                                            ${data.prix.toFixed(2)} DT
-                                        </span>
-                                    </div>
-
-                                    <!-- Product Details Form -->
-                                    <form action="/add-item" method="POST">
-                                        <input type="hidden" name="_token" value="${csrfToken}">
-                                        <input type="hidden" name="id" value="${data.id}">
-
-                                        <div class="product-details p-t-20">
-                                            <div class="detail-item flex-w flex-r-m p-b-10">
-                                                <div class="size-203 flex-c-m">
-                                                    Taille:
-                                                </div>
-                                                <div class="size-204">
-                                                    ${data.taille}
-                                                </div>
-                                            </div>
-
-                                            <div class="detail-item flex-w flex-r-m p-b-10">
-                                                <div class="size-203 flex-c-m">
-                                                    Catégorie:
-                                                </div>
-                                                <div class="size-204">
-                                                    ${data.Catégorie}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                       <div class="product-detail p-3 border rounded">
-											<button class="js-addwish-detail btn btn-outline-primary mb-3">Add to Wishlist</button>
-											
-											<button class="js-addcart-detail btn btn-primary" name="addItem">Add to Cart</button>
-											
-										</div>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                        // Show the modal
-                        $('#quickViewModal').modal('show');
-                    })
-                    .catch(error => {
-                        console.error('Error fetching product details:', error);
-                    });
-            });
-        });
-    });
-
-
-</script>
 
 <style>
 						
