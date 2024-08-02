@@ -5,8 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 
+
+Route::get('/product/{id}', [HomeController::class, 'showProductDetail'])->name('product.detail');
+
+
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/add', [CartController::class, 'addItem'])->name('cart.add');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
 

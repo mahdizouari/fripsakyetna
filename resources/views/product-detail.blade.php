@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layouts.base')
 
 @section('title', 'Product Details')
 
@@ -47,7 +47,7 @@
             <div class="col-md-6 col-lg-5 p-b-30">
                 <div class="p-r-50 p-t-5 p-lr-0-lg">
                     <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                        <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+                        <a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a>
                     </h4>
 
                     <span class="mtext-106 cl2">
@@ -286,15 +286,7 @@
         </div>
     </div>
 
-    <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-        <span class="stext-107 cl6 p-lr-25">
-            SKU: JAK-01
-        </span>
-
-        <span class="stext-107 cl6 p-lr-25">
-            Categories: Jacket, Men
-        </span>
-    </div>
+   
 </section>
 
 @endsection

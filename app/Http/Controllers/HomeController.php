@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
+    public function showProductDetail($id)
+    {
+        $product = produits::findOrFail($id); // Fetch the product by ID
+
+        return view('product-detail', compact('product'));
+    }
     public function welcome ()
     {  
         $products = produits::all();

@@ -13,24 +13,38 @@ class CartController extends Controller
         return view('cart', compact('cartItems'));
     }
 
-    public function addToCart(Request $request)
-    {
-        $validated = $request->validate([
-            'id' => 'required|integer',
-            'name' => 'required|string',
-            'image' => 'required|string',
-            'prix' => 'required|numeric',
-            'taille' => 'required|string',
-            'Catégorie' => 'required|string',
-        ]);
+    // CartController.php
+public function addItem(Request $request)
+{
+    $validated = $request->validate([
+        'id' => 'required|integer',
+        'name' => 'required|string',
+        'image1' => 'required|string',
+        'prix' => 'required|numeric',
+        'taille' => 'required|string',
+        'Catégorie' => 'required|string',
+    ]);
 
-        $cartItems = Session::get('cartItems', []);
-        $cartItems[] = $validated;
+    $productData = [
+        'id' => $validated['id'],
+        'name' => $validated['name'],
+        'image1' => $validated['image1'],
+        'prix' => $validated['prix'],
+        'taille' => $validated['taille'],
+        'Catégorie' => $validated['Catégorie'],
+    ];
 
-        Session::put('cartItems', $cartItems);
+    $cartItems = Session::get('cartItems', []);
 
-        return redirect()->route('cart.show')->with('message', 'Item added to cart!');
+    if (!array_key_exists($productData['id'], $cartItems)) {
+        $cartItems[$productData['id']] = $productData;
     }
+
+    Session::put('cartItems', $cartItems);
+
+    return redirect('/cart')->with('message', 'Item added to cart!');
+}
+
 
     public function removeFromCart(Request $request)
     {
@@ -47,4 +61,7 @@ class CartController extends Controller
 
         return redirect()->route('cart.show')->with('message', 'Item removed from cart!');
     }
+
+
+    
 }
