@@ -1,3 +1,15 @@
+
+@extends('layouts.base')
+
+@section('title', 'Fripsakyetna')
+
+@section('content')
+
+
+<section>
+    <div class="container">
+        aaa
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,9 +27,15 @@
             <button class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">welcome</button>
         </form>
         </div>
+
     </div>
     </center>
 </section>   
 </body>
 </html>
+
+
+</section>
+@endsection         
+
 
