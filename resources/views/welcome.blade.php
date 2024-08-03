@@ -199,7 +199,7 @@
                 <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
 
                 <a href="{{ route('product.detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-					Quick View
+					Voir le produit
 				</a>
 
             </div>

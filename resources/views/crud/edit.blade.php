@@ -117,7 +117,7 @@
                             <label for="image1" class="form-label">Upload Image1</label>
                             <input type="file" name="image1" id="image1" class="form-control @error('image1') is-invalid @enderror" >
                             @if ($produit->image1)
-                                <img src="{{ asset('storage/' . $produit->image1) }}" alt="Current Image" width="100">
+                                <img src="{{ asset('/' . $produit->image1) }}" alt="Current Image" width="100">
                             @endif
                             @error('image1') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
@@ -126,7 +126,7 @@
                             <label for="image2" class="form-label">Upload Image2</label>
                             <input type="file" name="image2" id="image2" class="form-control @error('image2') is-invalid @enderror">
                             @if ($produit->image2)
-                                <img src="{{ asset('storage/' . $produit->image2) }}" alt="Current Image" width="100">
+                                <img src="{{ asset('/' . $produit->image2) }}" alt="Current Image" width="100">
                             @endif
                             @error('image2') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
@@ -135,7 +135,7 @@
                             <label for="image3" class="form-label">Upload Image3</label>
                             <input type="file" name="image3" id="image3" class="form-control @error('image3') is-invalid @enderror">
                             @if ($produit->image3)
-                                <img src="{{ asset('storage/' . $produit->image3) }}" alt="Current Image" width="100">
+                                <img src="{{ asset('/' . $produit->image3) }}" alt="Current Image" width="100">
                             @endif
                             @error('image3') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>

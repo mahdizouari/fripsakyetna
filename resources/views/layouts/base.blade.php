@@ -303,11 +303,7 @@ body {
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="/">Accueil</a>
-								<ul class="sub-menu">
-									<li><a href="/">Homepage 1</a></li>
-									<li><a href="/">Homepage 2</a></li>
-									<li><a href="/">Homepage 3</a></li>
-								</ul>
+								
 							</li>
 
 							<li>
@@ -316,6 +312,9 @@ body {
 
 							<li>
 								<a href="cart">Panier</a>
+							</li>
+							<li>
+								<a href="panier">Panier 2</a>
 							</li>
 
 	
@@ -413,10 +412,7 @@ body {
 			<ul class="main-menu-m">
 				<li>
 					<a href="/">Accueil</a>
-					<ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
-						
-					</ul>
+					
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -432,6 +428,10 @@ body {
 				<li>
 					<a href="cart">Panier</a>
 				</li>
+				<li>
+					<a href="panier">Panier 2</a>
+				</li>
+
 
 				<li>
 					<a href="about">about</a>
@@ -526,149 +526,167 @@ body {
 
 	</div>
     <!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Categories
-					</h4>
+<!-- Footer -->
+<footer class="bg3 p-t-75 p-b-32">
+	<center>
+    <div class="container">
+        <div class="row">
+            
+            <!-- Help Section -->
+            <div class="col-sm-6 col-lg-3 p-b-20">
+                <h4 class="stext-301 cl0 p-b-30">
+                    Help
+                </h4>
 
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
-							</a>
-						</li>
+                <ul>
+                    <li class="p-b-10">
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                            Track Order
+                        </a>
+                    </li>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
-							</a>
-						</li>
+                    <li class="p-b-10">
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                            Returns
+                        </a>
+                    </li>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
-							</a>
-						</li>
+                    <li class="p-b-10">
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                            Shipping
+                        </a>
+                    </li>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
-							</a>
-						</li>
-					</ul>
-				</div>
+                    <li class="p-b-10">
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                            FAQs
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Help
-					</h4>
+            <!-- Get in Touch Section -->
+            <div class="col-sm-6 col-lg-3 p-b-20">
+                <h4 class="stext-301 cl0 p-b-30">
+                    GET IN TOUCH
+                </h4>
 
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a>
-						</li>
+                <p class="stext-107 cl7 size-201">
+                    Any questions? Let us know in store at //////
+                </p>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns 
-							</a>
-						</li>
+                <div class="p-t-27">
+                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fa fa-facebook"></i>
+                    </a>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
-							</a>
-						</li>
+                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
-							</a>
-						</li>
-					</ul>
-				</div>
+        <!-- Payment Methods and Footer Text -->
+        <div class="p-t-40">
+            <p class="stext-107 cl6 txt-center">
+                &copy; <script>document.write(new Date().getFullYear());</script> Frip Sakyetna. All rights reserved.
+            </p>
+        </div>
+    </div>
+	</center>
+</footer>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						GET IN TOUCH
-					</h4>
+<style>
+	/* Footer Styles */
+footer {
+    background-color: #f8f9fa;
+    padding-top: 75px;
+    padding-bottom: 32px;
+}
 
-					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-					</p>
+footer .container {
+    max-width: 1140px;
+    margin: auto;
+}
 
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
+/* Responsive Columns */
+@media (max-width: 767px) {
+    footer .row {
+        display: block;
+    }
 
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
+    footer .col-sm-6 {
+        margin-bottom: 30px;
+    }
 
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
-					</div>
-				</div>
+    footer .p-t-40 {
+        text-align: center;
+    }
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Newsletter
-					</h4>
+    footer .flex-c-m {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
+    footer .fs-18 {
+        font-size: 1.2rem;
+        margin: 0 0.5rem;
+    }
+}
 
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
+footer h4 {
+    font-size: 1.5rem;
+    color: #333;
+}
 
-			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
+footer .stext-107 {
+    font-size: 1rem;
+}
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
+footer .stext-301 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
+footer .size-201 {
+    font-size: 0.875rem;
+}
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
+footer .txt-center {
+    text-align: center;
+}
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-				</div>
+footer .stext-107 a {
+    text-decoration: none;
+    color: #6c757d;
+    transition: color 0.3s;
+}
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Frip Sakyetna &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="//" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+footer .stext-107 a:hover {
+    color: #007bff;
+}
 
-				</p>
-			</div>
-		</div>
-	</footer>
+footer .p-t-27 a {
+    margin-right: 15px;
+}
+
+footer .p-b-10 {
+    margin-bottom: 10px;
+}
+
+footer .m-all-1 img {
+    max-width: 100px;
+    margin: 0 5px;
+}
+
+footer .p-t-40 {
+    padding-top: 40px;
+}
+
+</style>
+
 
 
 	<!-- Back to top -->
