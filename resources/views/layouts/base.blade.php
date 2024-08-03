@@ -307,7 +307,7 @@ body {
 							</li>
 
 							<li>
-								<a href="/product">Boutique</a>
+								<a href="prod">Boutique</a>
 							</li>
 
 							<li>
@@ -419,7 +419,7 @@ body {
 				</li>
 
 				<li>
-					<a href="product" class="label1 rs1" data-label1="hot">Produits</a>
+					<a href="prod" class="label1 rs1" data-label1="hot">Produits</a>
 				</li>
 				
 			

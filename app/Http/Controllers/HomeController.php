@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function product ()
     {
         $products = produits::all();
-        return view ('product', compact('products'));
+        return view ('prod', compact('products'));
     
     }
     public function about ()
