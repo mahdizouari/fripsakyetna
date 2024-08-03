@@ -233,20 +233,7 @@ public function index()
         return view('slider.index');
 }
  
- public function quickView($id)
-    {
-        $product = produits::findOrFail($id);
-        return response()->json([
-            'name' => $product->name,
-            'prix' => $product->prix,
-            'Catégorie' => $product->Catégorie,
 
-            'taille' => $product->taille,
-            'image1' => asset('/' . $product->image1),
-            'image2' => $product->image2 ? asset('/' . $product->image2) : null,
-            'image3' => $product->image3 ? asset('/' . $product->image3) : null,
-        ]);
-    }
 
 
     public function addItem(Request $request)
