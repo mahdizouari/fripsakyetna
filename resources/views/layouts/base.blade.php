@@ -307,7 +307,7 @@ body {
 							</li>
 
 							<li>
-								<a href="product">Boutique</a>
+								<a href="/product">Boutique</a>
 							</li>
 
 							<li>
