@@ -81,40 +81,37 @@
                 <table class="table table-striped table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Name</th>
-                            <th>Reference</th>
-                            <th>Size</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Actions</th>
+                            <th>Nom</th>
+                            <th>Réf</th>
+                            <th>Taille</th>
+                            <th>Catégorie</th>
+                            <th>prix</th>
+                            <th>Act</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($products as $product)
-                            <tr>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->Référence }}</td>
-                                <td>{{ $product->taille }}</td>
-                                <td>{{ $product->Catégorie }}</td>
-                                <td>{{ $product->prix }}</td>
-                                <td>
-                                    <a href="{{ route('edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        <div class="mb-3">
-                                            <label for="image" class="form-label">Upload Image</label>
-                                            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
-                                            @if ($product->image)
-                                                <img src="{{ asset('/app/images' . $product->image) }}" alt="Current Image" width="100">
-                                            @endif
-                                            @error('image') <span class="invalid-feedback">{{ $message }}</span> @enderror
-                                        </div>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                    @foreach($products as $product)
+                        <tr>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->Référence }}</td>
+                            <td>{{ $product->taille }}</td>
+                            <td>{{ $product->Catégorie }}</td>
+                            <td>{{ $product->prix }}</td>
+                            <td>
+                                <!-- Display Image -->
+                                <img src="{{ asset('/' . $product->image) }}" alt="{{ $product->name }}" width="100">
+                            </td>
+                            <td>
+                                <!-- Actions -->
+                                <a href="{{ route('edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

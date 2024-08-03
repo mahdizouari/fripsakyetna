@@ -10,9 +10,10 @@
     border-radius: 12px; /* Slightly increased border radius for a softer look */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
     width: 100%; /* Changed to 100% for responsiveness */
-    max-width: 1000px;
+    max-width: 500px;
     margin: auto;
     border: 1px solid rgba(0, 0, 0, 0.1); /* Added border for a subtle edge */
+    
 }
 @media (max-width: 768px) {
     .container {
@@ -20,14 +21,12 @@
     }
 
     .form-control {
-        font-size: 14px; /* Smaller font size for better fit */
+        font-size: 15px; /* Smaller font size for better fit */
     }
 
     .btn {
         width: 100%; /* Full width buttons for better usability */
         margin-bottom: 0.5rem; /* Space between buttons */
-        font-size: 14px; /* Smaller font size for small screens */
-        padding: 0.5rem 1rem; /* Less padding on smaller screens */
     }
 
     .dashboard-button a {
@@ -35,15 +34,41 @@
         text-align: center; /* Center text in button on small screens */
         margin-top: 1rem; /* Margin above button */
     }
+    /* General form control styles */
+.form-control {
+    width: 100%; /* Full width input fields */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+    margin-bottom: 1rem; /* Space between form fields */
+}
 
+/* Button styles */
+.btn {
+    display: inline-block;
+    width: auto; /* Default width for larger screens */
+    padding: 0.75rem 1.5rem; /* Adjust padding for better touch targets */
+    font-size: 16px; /* Legible font size */
+}
+
+/* Adjust button on small screens */
+@media (max-width: 768px) {
+    .btn {
+        font-size: 14px; /* Smaller font size for small screens */
+        padding: 0.5rem 1rem; /* Less padding on smaller screens */
+    }
+}
+/* Ensure that elements stack vertically on smaller screens */
+@media (max-width: 768px) {
     .form-check-inline {
         display: block; /* Stack radio buttons vertically */
         margin-bottom: 0.5rem; /* Space between options */
     }
 }
+
+
+}
 </style>
 
-<div class="container mt-4">
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-12">
             @if (session('status'))
@@ -66,9 +91,9 @@
                             <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" style="height: 20px;">
                             @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mb-3" >
+                        <div class="mb-2" >
                             <label for="taille" class="form-label">Taille</label>
-                            <select id="taille" name="taille" class="form-control" style="height: 38px;">
+                            <select id="taille" name="taille" class="form-control" style="height: 30px;">
                                 <option value="S" {{ old('taille') == 'S' ? 'selected' : '' }}>S</option>
                                 <option value="M" {{ old('taille') == 'M' ? 'selected' : '' }}>M</option>
                                 <option value="L" {{ old('taille') == 'L' ? 'selected' : '' }}>L</option>

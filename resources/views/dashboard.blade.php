@@ -7,58 +7,54 @@
     <title>Welcome, {{ auth()->user()->name }}</title>
     <style>
         .container {
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 1.5rem; /* Increased padding for more space */
-    border-radius: 12px; /* Slightly increased border radius for a softer look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
-    width: 150%; /* Changed to 100% for responsiveness */
-    max-width: 1000px;
-    margin: auto;
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Added border for a subtle edge */
-}
-@media (max-width: 768px) {
-    .container {
-        padding: 0.5rem; /* Less padding on smaller screens */
-    }
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
 
-    .form-control {
-        font-size: 20px; /* Smaller font size for better fit */
-    }
+        .form-control {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+        }
 
-    .btn {
-        width: 100%; /* Full width buttons for better usability */
-        margin-bottom: 0.5rem; /* Space between buttons */
-    }
+        .btn {
+            display: inline-block;
+            width: auto;
+            padding: 0.75rem 1.5rem;
+            font-size: 16px;
+        }
 
-    .dashboard-button a {
-        display: block;
-        text-align: center; /* Center text in button on small screens */
-        margin-top: 1rem; /* Margin above button */
-    }
-    /* General form control styles */
-.form-control {
-    width: 1000%; /* Full width input fields */
-    box-sizing: border-box; /* Ensure padding and border are included in width */
-    margin-bottom: 1rem; /* Space between form fields */
-}
+        @media (max-width: 1068px) {
+            .container {
+                padding: 0.5rem;
+                width: 100%; /* Ensure container takes full width on smaller screens */
+            }
 
-/* Button styles */
-.btn {
-    display: inline-block;
-    width: auto; /* Default width for larger screens */
-    padding: 0.75rem 1.5rem; /* Adjust padding for better touch targets */
-    font-size: 16px; /* Legible font size */
-}
+            .form-control {
+                font-size: 19px; /* Adjust font size for smaller screens */
+            }
 
-/* Adjust button on small screens */
+            .btn {
+                width: 100%; /* Full width buttons for better usability */
+                margin-bottom: 0.5rem;
+                font-size: 14px; /* Slightly smaller font size for buttons on mobile */
+            }
 
+            .card-header {
+                flex-direction: column; /* Stack header content vertically on small screens */
+                align-items: flex-start; /* Align items to the start for better readability */
+            }
 
-
-
-}
-
-
+            .card-header .btn {
+                margin-top: 1rem; /* Add margin above the button in header */
+                width: 100%; /* Full width button in header */
+            }
+        }
     </style>
 
 <body>
