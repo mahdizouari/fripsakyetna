@@ -6,7 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 
 
-Route::get('/product/{id}', [HomeController::class, 'showProductDetail'])->name('product.detail');
+// routes/web.php
+Route::get('/detail/{id}', [HomeController::class, 'showProductDetail'])->name('detail');
 Route::get('/prod', [HomeController::class, 'product']);
 
 

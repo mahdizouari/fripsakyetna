@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $product = produits::findOrFail($id); // Fetch the product by ID
 
-        return view('product-detail', compact('product'));
+        return view('detail', compact('product'));
     }
     public function welcome ()
     {  
