@@ -10,81 +10,49 @@
     <link href="{{ asset('css/detail.css') }}" rel="stylesheet">
     <meta name="robots" content="noindex,follow" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     
-
 </head>
 
 <body>
     <main class="container">
-    <div class="left-column">
-    <!-- Product Slider -->
-        <div class="slider_wrap ">
-            <img data-image="black" src="{{asset('/').$product->image1}}" alt="">
-            <img data-image="blue" src="images/blue.png" alt="">
-            <img data-image="red" class="active" src="images/red.png" alt="">
-
-    
+        <div class="left-column">
+            <!-- Product Slider -->
+            <div class="slider_wrap">
+                <div class="slider">
+                @if($product->image1)
+                    <div><img src="{{ asset('/' . $product->image1) }}" alt="Image 1"></div>
+                @endif
+                @if($product->image2)
+                    <div><img src="{{ asset('/' . $product->image2) }}" alt="Image 2"></div>
+                @endif
+                @if($product->image3)
+                    <div><img src="{{ asset('/' . $product->image3) }}" alt="Image 3"></div>
+                @endif
+                </div>
+            </div>
+            
         </div>
-
-<script>
-function silder(){
-    slideIndex = 0;
-      $('.add-remove').slick({
-        slidesToShow: 2,
-        slidesToScroll: 2
-      });
-      $('.js-add-slide').on('click', function() {
-        $('.add-remove').slick('slickAdd');
-      });
-
-      $('.js-remove-slide').on('click', function() {
-        $('.add-remove').slick('slickRemove');
-      });
-};
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-    $('.img_prev').last()
-      .attr('src', e.target.result)
-    };
-
-    reader.readAsDataURL(input.files[0]);
-
-    setTimeout(function(){
-      $('#add_pic').trigger('click');
-      silder();
-    }, 100);
-  }
-}
-</script>
-
-</div>
-
-
 
         <!-- Right Column -->
         <div class="right-column">
-
             <!-- Product Description -->
             <div class="product-description">
                 <h1>{{ $product->name }}</h1>
                 <p>{{ $product->description ?? 'No description available.' }}</p>
                 <div class="review-stars">
-                <i class="fas fa-star star filled"></i>
-                <i class="fas fa-star star filled"></i>
-                <i class="fas fa-star star filled"></i>
-                <i class="fas fa-star star filled"></i>
-                <i class="fas fa-star star"></i>
-                <span class="rating-text">4.0</span>
-            </div>
-                
+                    <i class="fas fa-star star filled"></i>
+                    <i class="fas fa-star star filled"></i>
+                    <i class="fas fa-star star filled"></i>
+                    <i class="fas fa-star star filled"></i>
+                    <i class="fas fa-star star"></i>
+                    <span class="rating-text">4.0</span>
+                </div>
                 <p class="available">Disponible</p>
             </div>
 
             <!-- Product Configuration -->
             <div class="product-configuration">
-
                 <!-- Product Color -->
                 <div class="product-color">
                     <span>Taille : </span>
@@ -97,7 +65,6 @@ function readURL(input) {
                     <div class="cable-choose">
                         {{ $product->Catégorie }}
                     </div>
-                   
                 </div>
             </div>
 
@@ -117,37 +84,37 @@ function readURL(input) {
                         <small class="delivery-info">Livraison estimée en 3 jours</small>
                     </div>
                 </div>
-
             </div>
-
         </div>
-         <!-- Related Products Section -->
-        <!-- Related Products Section -->
-
-
-  
     </main>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
-    <script src="{{ asset('js/script.js') }}" charset="utf-8"></script>
-    <script>$(document).ready(function(){
-            $('.product-slider').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                dots: true,
-                autoplay: true,
-                autoplaySpeed: 3000,
-            });
-        });
-
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 
- 
-
-
+   
+    <script>
+        $(document).ready(function(){
+            // Initialize the Slick carousel
+            $('.slider_for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                asNavFor: '.slider_nav',
+                fade: true
+            });
+            $('.slider_nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                asNavFor: '.slider_for',
+                dots: true,
+                centerMode: true,
+                focusOnSelect: true,
+                vertical: true
+            });
+        });
+    </script>
+    
 </body>
 </html>

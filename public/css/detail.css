@@ -27,12 +27,9 @@ html, body {
 
 /* Left Column */
 .left-column img {
-  width: 10%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transition: all 0.3s ease;
+  display: block;
+    max-width: 70%;
+    height: 60%;
 }
 
 .left-column img.active {

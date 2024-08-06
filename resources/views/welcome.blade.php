@@ -23,7 +23,7 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.blade.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="prod" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -71,7 +71,7 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-								<a href="product.blade.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+								<a href="prod" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -88,12 +88,13 @@
 		<div class="flex-w flex-c-m">
 			<div class="size-202 m-lr-auto respon4">
 				<!-- Block1 -->
-				<div class="block1 wrap-pic-w">
+				<div class="block1 wrap-pic-w filter-tope-group" >
+					
 					<img src="images/banner-04.jpg" alt="IMG-BANNER">
 
-					<a href="{{ url('/product?filter=women') }}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+					<a href="prod?filter=women" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".femme">
 						<div class="block1-txt-child1 flex-col-l">
-							<span class="block1-name ltext-102 trans-04 p-b-8" data-filter=".femme">
+							<span class="block1-name ltext-102 trans-04 p-b-8">
 								Women
 							</span>
 							<span class="block1-info stext-102 trans-04"></span>
@@ -106,6 +107,8 @@
 					</a>
 
 
+
+
 				</div>
 			</div>
 
@@ -114,7 +117,7 @@
 				<div class="block1 wrap-pic-w">
 					<img src="images/banner-05.jpg" alt="IMG-BANNER">
 
-					<a href="product" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+					<a href="prod" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 						<div class="block1-txt-child1 flex-col-l">
 							<span class="block1-name ltext-102 trans-04 p-b-8">
 								Homme 
@@ -139,7 +142,7 @@
 				<div class="block1 wrap-pic-w">
 					<img src="images/banner-06.jpg" alt="IMG-BANNER">
 
-					<a href="product" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" >
+					<a href="prod" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" >
 						<div class="block1-txt-child1 flex-col-l" >
 							<span class="block1-name ltext-102 trans-04 p-b-8">
 								Enfants 
@@ -242,8 +245,37 @@
 		</div>
 	</section>
 
+<script>
+	$(document).ready(function() {
+    // Initialize Isotope
+    var $grid = $('.isotope-grid').isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'fitRows'
+    });
 
+    // Filter items on link click
+    $('.block1-txt').on('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+
+        var filterValue = $(this).attr('data-filter');
+        var filterUrl = $(this).attr('href');
+
+        // Update URL with the filter
+        window.location.href = filterUrl;
+
+        // Filter items
+        $grid.isotope({ filter: filterValue });
+
+        // Change active class on links
+        $('.block1-txt').removeClass('active');
+        $(this).addClass('active');
+    });
+});
+
+</script>
 	<!-- Blog -->
+
+</div>
 	
 
 
