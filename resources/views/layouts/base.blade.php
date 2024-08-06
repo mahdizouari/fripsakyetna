@@ -307,19 +307,19 @@ body {
 							</li>
 
 							<li>
-								<a href="prod">Boutique</a>
+								<a href="{{url('/prod')}}">Boutique</a>
 							</li>
 
 							<li>
-								<a href="cart">Panier</a>
+								<a href="{{url('/cart')}}">Panier</a>
 							</li>
 							<li>
-								<a href="panier">Panier 2</a>
+								<a href="{{url('/panier')}}">Panier 2</a>
 							</li>
 
 	
 							<li>
-								<a href="about">A propos</a>
+								<a href="{{url('/about')}}">A propos</a>
 							</li>
 
 							
@@ -419,22 +419,22 @@ body {
 				</li>
 
 				<li>
-					<a href="prod" class="label1 rs1" data-label1="hot">Produits</a>
+					<a href="{{url('/prod')}}" class="label1 rs1" data-label1="hot">Produits</a>
 				</li>
 				
 			
 				<li>
 
 				<li>
-					<a href="cart">Panier</a>
+					<a href="{{url('/cart')}}">Panier</a>
 				</li>
 				<li>
-					<a href="panier">Panier 2</a>
+					<a href="{{url('/panier')}}">Panier 2</a>
 				</li>
 
 
 				<li>
-					<a href="about">about</a>
+					<a href="{{url('/about')}}">about</a>
 				</li>
 				
 				
@@ -696,14 +696,6 @@ footer .p-t-40 {
 		</span>
 	</div>
 
-	
-<!-- Quick View Modal -->
-
-
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -799,14 +791,10 @@ footer .p-t-40 {
         });
     });
 </script>  
-
-
-
 		
 </body>
 </html>
     
-
 <style>
 						
 								.product-info {

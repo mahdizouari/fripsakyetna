@@ -303,6 +303,24 @@ public function index()
     
         return redirect('/panier')->with('message', 'Item removed from cart!');
     }
+
+    public function showw($id)
+    {
+        $product = produits::find($id);
+    
+        // Fetch related products
+        $relatedProducts = produits::where('category_id', $product->category_id)
+                                  ->where('id', '!=', $id)
+                                  ->limit(5)
+                                  ->get();
+    
+        // Pass both the current product and related products to the view
+        return view('showProductDetail', [
+            'product' => $product,
+            'relatedProducts' => $relatedProducts,
+        ]);
+    }
+    
      
     
 
