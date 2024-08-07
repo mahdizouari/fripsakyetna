@@ -7,13 +7,13 @@
     
 
     <!-- ========== All CSS files linkup ========= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }} " >
+    <link rel="stylesheet" href="{{ asset('assets/css/lineicons.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}"rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+
 
     
     <style>
@@ -81,8 +81,102 @@
 
 
 }
+/* Style for table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Ensures table cells handle overflow */
+.table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Style for text wrapping in name column */
+.text-wrap {
+    white-space: normal; /* Allows text to wrap */
+    overflow: hidden; /* Ensures text doesn't overflow */
+    text-overflow: ellipsis; /* Adds ellipsis if text overflows */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .table {
+        font-size: 14px; /* Adjust font size for better fit */
+    }
+
+    .table td, .table th {
+        padding: 0.5rem; /* Reduced padding for smaller screens */
+    }
+}
+
 
     </style> 
+    <style>
+    .container {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* General form control styles */
+    .form-control {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 1rem;
+    }
+
+    /* Button styles */
+    .btn {
+        display: inline-block;
+        width: auto;
+        padding: 0.75rem 1.5rem;
+        font-size: 16px;
+        text-align: center; /* Center text inside button */
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .container {
+            padding: 0.75rem; /* Reduced padding for smaller screens */
+            margin: 0.5rem; /* Margin adjustment for mobile */
+            max-width: 100%; /* Ensure container takes full width */
+        }
+
+        .form-control {
+            font-size: 14px; /* Smaller font size for better fit */
+            padding: 0.5rem; /* Adjust padding for smaller input fields */
+        }
+
+        .btn {
+            width: 100%; /* Full width buttons for better usability */
+            margin-bottom: 0.5rem; /* Space between buttons */
+            font-size: 14px; /* Smaller font size for mobile */
+            padding: 0.5rem 1rem; /* Less padding on smaller screens */
+        }
+
+        .dashboard-button a {
+            display: block;
+            text-align: center; /* Center text in button */
+            margin-top: 1rem; /* Margin above button */
+        }
+
+        .form-check-inline {
+            display: block; /* Stack radio buttons vertically */
+            margin-bottom: 0.5rem; /* Space between options */
+        }
+    }
+</style>
+
+    
   </head>
   <body>
     <!-- ======== Preloader =========== -->
@@ -180,11 +274,11 @@
                             @auth
                                     @if(auth()->user()->email === 'yessin.zouari100@gmail.com')
                                         <div class="image">
-                                            <img src="assets/images/profile/yessin.png" alt="image">
+                                            <img src="{{asset('assets/images/profile/yessin.png')}}" alt="image">
                                         </div>
                                     @elseif(auth()->user()->email === 'akrambahloul2@gmail.com')
                                         <div class="image">
-                                            <img src="assets/images/profile/akram.png" alt="image">
+                                            <img src="{{asset('assets/images/profile/akram.png')}}" alt="image">
                                         </div>
                                 
                                     @endif
@@ -205,11 +299,11 @@
                       @auth
                             @if(auth()->user()->email === 'yessin.zouari100@gmail.com')
                                 <div class="image">
-                                    <img src="assets/images/profile/yessin.png" alt="image">
+                                    <img src="{{asset('assets/images/profile/yessin.png')}}" alt="image">
                                 </div>
                             @elseif(auth()->user()->email === 'akrambahloul2@gmail.com')
                                 <div class="image">
-                                    <img src="assets/images/profile/akram.png" alt="image">
+                                    <img src="a{{asset('assets/images/profile/akram.png')}}" alt="image">
                                 </div>
                         
                             @endif
@@ -293,15 +387,6 @@
     <!-- ======== main-wrapper end =========== -->
 
     <!-- ========= All Javascript files linkup ======== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Chart.min.js"></script>
-    <script src="assets/js/dynamic-pie-chart.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/fullcalendar.js"></script>
-    <script src="assets/js/jvectormap.min.js"></script>
-    <script src="assets/js/world-merc.js"></script>
-    <script src="assets/js/polyfill.js"></script>
-    <script src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -864,5 +949,16 @@
 });
 
       </script>
+      <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+      <script src="{{ asset('assets/js/dynamic-pie-chart.js') }}"></script>
+      <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+      <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
+      <script src="{{ asset('assets/js/jvectormap.min.js') }}"></script>
+      <script src="{{ asset('assets/js/world-merc.js') }}"></script>
+      <script src="{{ asset('assets/js/polyfill.js') }}"></script>
+      <script src="{{ asset('assets/js/main.js') }}"></script>
+      
+
 </body>
 </html>

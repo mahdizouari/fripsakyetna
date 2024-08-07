@@ -1,70 +1,7 @@
 @extends('crud.admin')
 
 @section('content')
-<style>
-    .container {
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 1.5rem; /* Increased padding for more space */
-    border-radius: 12px; /* Slightly increased border radius for a softer look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
-    width: 100%; /* Changed to 100% for responsiveness */
-    max-width: 1000px;
-    margin: auto;
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Added border for a subtle edge */
-}
-@media (max-width: 768px) {
-    .container {
-        padding: 0.5rem; /* Less padding on smaller screens */
-    }
 
-    .form-control {
-        font-size: 14px; /* Smaller font size for better fit */
-    }
-
-    .btn {
-        width: 100%; /* Full width buttons for better usability */
-        margin-bottom: 0.5rem; /* Space between buttons */
-    }
-
-    .dashboard-button a {
-        display: block;
-        text-align: center; /* Center text in button on small screens */
-        margin-top: 1rem; /* Margin above button */
-    }
-    /* General form control styles */
-.form-control {
-    width: 100%; /* Full width input fields */
-    box-sizing: border-box; /* Ensure padding and border are included in width */
-    margin-bottom: 1rem; /* Space between form fields */
-}
-
-/* Button styles */
-.btn {
-    display: inline-block;
-    width: auto; /* Default width for larger screens */
-    padding: 0.75rem 1.5rem; /* Adjust padding for better touch targets */
-    font-size: 16px; /* Legible font size */
-}
-
-/* Adjust button on small screens */
-@media (max-width: 768px) {
-    .btn {
-        font-size: 14px; /* Smaller font size for small screens */
-        padding: 0.5rem 1rem; /* Less padding on smaller screens */
-    }
-}
-/* Ensure that elements stack vertically on smaller screens */
-@media (max-width: 768px) {
-    .form-check-inline {
-        display: block; /* Stack radio buttons vertically */
-        margin-bottom: 0.5rem; /* Space between options */
-    }
-}
-
-
-}
-</style>
 <div class="container mt-4">
     <!-- Search Form -->
     <div class="mb-4">
@@ -99,7 +36,7 @@
                             <td>{{ $product->prix }}</td>
                             <td>
                                 <!-- Display Image -->
-                                <img src="{{ asset('/' . $product->image) }}" alt="{{ $product->name }}" width="100">
+                                <img src="{{ asset('/' . $product->image1) }}" alt="{{ $product->name }}" width="100">
                             </td>
                             <td>
                                 <!-- Actions -->

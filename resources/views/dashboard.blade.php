@@ -112,10 +112,10 @@
                                 @foreach ($product as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
+                                        <td class="text-wrap">{{ $item->name }}</td>
                                         <td>{{ $item->taille }}</td>
                                         <td>
-                                        <img src="{{ route('image.show', ['filename' => $item->image1]) }}" style="width: 70px; height: 70px; object-fit: cover;" alt="Product Image">
+                                            <img src="{{ route('image.show', ['filename' => $item->image1]) }}" style="width: 70px; height: 70px; object-fit: cover;" alt="Product Image">
                                         </td>
                                         <td>{{ $item->prix }} DT</td>
                                         <td>{{ $item->Catégorie }}</td>
@@ -138,14 +138,13 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="fas fa-trash-alt" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
-                                                    
                                                 </button>
                                             </form>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
+
                         </table>
                     </div>
                 </div>

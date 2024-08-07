@@ -3,79 +3,7 @@
 @section('content')
 
 <title>Modification du produit</title>
-<style>
-   .container {
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 1.5rem; /* Increased padding for more space */
-    border-radius: 12px; /* Slightly increased border radius for a softer look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
-    width: 80%; /* Changed to 100% for responsiveness */
-    max-width: 1000px; /* Increased max-width for larger screens */
-    margin: auto;
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Added border for a subtle edge */
-}
 
-/* General form control styles */
-.form-control {
-    width: 60%; /* Full width input fields */
-    box-sizing: border-box; /* Ensure padding and border are included in width */
-    margin-bottom: 1rem; /* Space between form fields */
-    padding: 0.75rem; /* Padding for input fields */
-    border-radius: 8px; /* Rounded corners for input fields */
-    border: 1px solid #ccc; /* Light border for input fields */
-}
-
-/* Button styles */
-.btn {
-    display: inline-block;
-    width: auto; /* Default width for larger screens */
-    padding: 0.75rem 1.5rem; /* Adjust padding for better touch targets */
-    font-size: 16px; /* Legible font size */
-    border-radius: 8px; /* Rounded corners for buttons */
-    border: none; /* Remove default border */
-    background-color: #007bff; /* Primary button color */
-    color: #fff; /* Text color */
-    text-align: center; /* Center text in button */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
-}
-
-.btn:hover {
-    background-color: #0056b3; /* Darker button color on hover */
-}
-
-/* Adjustments for small screens */
-@media (max-width: 768px) {
-    .container {
-        padding: 0.5rem; /* Less padding on smaller screens */
-        border-radius: 8px; /* Smaller border radius on small screens */
-    }
-
-    .form-control {
-        font-size: 14px; /* Smaller font size for better fit on small screens */
-        padding: 0.5rem; /* Adjust padding for smaller input fields */
-    }
-
-    .btn {
-        width: 100%; /* Full width buttons for better usability */
-        margin-bottom: 0.5rem; /* Space between buttons */
-        font-size: 14px; /* Smaller font size for small screens */
-        padding: 0.5rem 1rem; /* Less padding on smaller screens */
-    }
-
-    .dashboard-button a {
-        display: block;
-        text-align: center; /* Center text in button on small screens */
-        margin-top: 1rem; /* Margin above button */
-    }
-
-    .form-check-inline {
-        display: block; /* Stack radio buttons vertically */
-        margin-bottom: 0.5rem; /* Space between options */
-    }
-}
-
-</style>
 
 <div class="container mt-4">
     
