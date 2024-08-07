@@ -78,7 +78,7 @@
 
 <style>
 	/* panier style  */
-body {
+	body {
     background: #ddd;
     min-height: 100vh;
     display: flex;
@@ -91,7 +91,7 @@ body {
 }
 
 .card {
-    margin: auto;
+    margin: 2rem auto 1rem auto; /* Reduced top margin to 2rem */
     max-width: 900px;
     width: 90%;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -101,24 +101,20 @@ body {
     padding: 2rem; /* Added padding for inner spacing */
 }
 
-@media(max-width: 767px) {
+@media (max-width: 768px) {
     .card {
-        margin: 3vh auto;
-        width: 95%;
+        width: 95%; /* Increase width to fit smaller screens */
+        padding: 1.5rem; /* Adjust padding for smaller screens */
+        margin: 1.5rem auto; /* Reduce top margin for smaller screens */
     }
 }
 
-.cart {
-    padding: 2rem; /* Reduced padding for mobile */
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem;
-}
-
-@media(max-width: 767px) {
-    .cart {
-        padding: 1.5rem;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: 1rem;
+/* Media query for devices with a max width of 480px (phones) */
+@media (max-width: 480px) {
+    .card {
+        width: 100%; /* Full width for very small screens */
+        padding: 1rem; /* Adjust padding further for very small screens */
+        margin: 1rem auto; /* Reduce top margin even more */
     }
 }
 
@@ -199,7 +195,7 @@ body {
     color: white;
     width: 100%;
     font-size: 0.8rem;
-    padding: 1rem;
+    padding: -5rem;
     border-radius: 0.25rem; /* Added border radius */
 }
 
@@ -212,7 +208,6 @@ body {
 .btn:hover {
     color: white;
     background-color: #ddd;
-	text-decoration-color:color: #ddd; /* Slight hover effect */
 }
 
 .checkout-btn {
@@ -224,7 +219,8 @@ body {
 
 @media(max-width: 767px) {
     .btn, .summary form select, .summary form input {
-        font-size: 0.8rem;
+        font-size: 1rem;
+		
     }
 }
 
@@ -301,6 +297,25 @@ body {
 
 
 </style>
+<style>
+	.nav-link {
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Adjust color to match other links */
+    font-size: 1rem; /* Match font size */
+    padding: 0.5rem 1rem; /* Match padding */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Adjust hover color to match other links */
+}
+
+.active-menu .nav-link {
+    font-weight: bold; /* Match style for active menu item */
+    color: #0056b3; /* Adjust color for active item */
+}
+
+</style>
 
 </head>
 
@@ -321,43 +336,52 @@ body {
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li class="active-menu">
+							<li class="{{ Request::is('/') ? 'active-menu' : '' }}">
 								<a href="/">Accueil</a>
-								
 							</li>
 
-							<li>
-								<a href="{{url('/prod')}}">Boutique</a>
+							<li class="{{ Request::is('prod') ? 'active-menu' : '' }}">
+								<a href="{{ url('/prod') }}">Boutique</a>
 							</li>
+
+							<li class="{{ Request::is('panier') ? 'active-menu' : '' }}">
+								<a href="{{ url('/panier') }}">Panier</a>
+							</li>
+
+							<li class="{{ Request::is('about') ? 'active-menu' : '' }}">
+								<a href="{{ url('/about') }}">A propos</a>
+							</li>
+						</ul>
+
 
 							
+						@auth
+							@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
+								<li class="{{ Request::is('dashboard') ? 'active-menu' : '' }}">
+									<a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+								</li>
+							@endif
+
 							<li>
-								<a href="{{url('/panier')}}">Panier </a>
-							</li>
-
-	
-							<li>
-								<a href="{{url('/about')}}">A propos</a>
-							</li>
-
-							
-							@auth
-								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-									<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-								@endif
-
-
-								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
+								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+									Logout
+								</a>
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
 									@csrf
 								</form>
-							@else
-								<a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+							</li>
+						@else
+							<li class="{{ Request::is('login') ? 'active-menu' : '' }}">
+								<a href="{{ route('login') }}" class="nav-link">Log in</a>
+							</li>
 
-								@if (Route::has('register'))
-									<a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-								@endif
-							@endauth
+							@if (Route::has('register'))
+								<li class="{{ Request::is('register') ? 'active-menu' : '' }}">
+									<a href="{{ route('register') }}" class="nav-link">Register</a>
+								</li>
+							@endif
+						@endauth				
+
 
 						</ul>
 						
@@ -431,9 +455,6 @@ body {
 				<li>
 					<a href="/">Accueil</a>
 					
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
 				<li>
@@ -458,7 +479,7 @@ body {
 					
 				<li >
 					
-					@auth
+							@auth
 								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
 									<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
 								@endif
@@ -468,7 +489,7 @@ body {
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
 									@csrf
 								</form>
-							@else
+								@else
 								<a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
 								@if (Route::has('register'))

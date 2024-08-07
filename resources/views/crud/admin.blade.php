@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     
     <style>
         .container {
@@ -841,5 +843,26 @@
     </script>
       <!-- Include Bootstrap JS -->
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    if (calendarEl) {
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            // Calendar options here
+        });
+        calendar.render();
+    }
+});
+
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    var mapContainer = document.getElementById('mapContainer');
+    if (mapContainer) {
+        // Initialize jVectorMap here
+    }
+});
+
+      </script>
 </body>
 </html>

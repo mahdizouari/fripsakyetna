@@ -10,7 +10,9 @@
         <div class="col-md-8 panier">
             <div class="title">
                 <div class="row">
-                    <div class="col"><h4><b>Panier</b></h4></div>
+                <div class="col">
+                    <h4><b><i class="fa fa-shopping-cart"></i> Panier</b></h4>
+                </div>
                     <div class="col text-right text-muted align-self-center">{{ count(Session::get('productItems', [])) }} items</div>
                 </div>
             </div> 
@@ -30,9 +32,9 @@
                             <tr>
                                 <th>Nom </th>
                                 <th>Image</th>
-                                <th>Prix</th>
+                                <th>Catg</th>
                                 <th>Taille</th>
-                                <th>Catégorie</th>
+                                <th>Prix</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,9 +48,9 @@
                                         </div>
                                     </td>
                                     <td><img src="{{ asset('/' . $item['image1']) }}" alt="{{ $item['name'] }}" class="img-fluid" width="50"></td>
-                                    <td>{{ $item['prix'] }} DT</td>
                                     <td>{{ $item['taille'] }}</td>
                                     <td>{{ $item['Catégorie'] }}</td>
+                                    <td>{{ $item['prix'] }} DT</td>
                                     
                                 </tr>
                             @endforeach
