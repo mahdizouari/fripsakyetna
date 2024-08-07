@@ -42,6 +42,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -55,6 +57,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+	.btnc {
+    border: none; /* No border */
+    background: none; /* No background */
+    color: #dc3545; /* Red color for the trash icon */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1.5em; /* Adjust the size of the icon */
+    padding: 2; /* No padding */
+    display: inline-flex; /* Align icon properly */
+    align-items: bottom; /* Center icon vertically */
+}
+
+.btn:hover {
+    color: #c82333; /* Darker red for hover effect */
+}
+
+
+</style>
 
 <style>
 	/* panier style  */
@@ -72,7 +92,7 @@ body {
 
 .card {
     margin: auto;
-    max-width: 950px;
+    max-width: 900px;
     width: 90%;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 1rem;
@@ -310,11 +330,9 @@ body {
 								<a href="{{url('/prod')}}">Boutique</a>
 							</li>
 
+							
 							<li>
-								<a href="{{url('/cart')}}">Panier</a>
-							</li>
-							<li>
-								<a href="{{url('/panier')}}">Panier 2</a>
+								<a href="{{url('/panier')}}">Panier </a>
 							</li>
 
 	
@@ -425,11 +443,9 @@ body {
 			
 				<li>
 
+			
 				<li>
-					<a href="{{url('/cart')}}">Panier</a>
-				</li>
-				<li>
-					<a href="{{url('/panier')}}">Panier 2</a>
+					<a href="{{url('/panier')}}">Panier </a>
 				</li>
 
 

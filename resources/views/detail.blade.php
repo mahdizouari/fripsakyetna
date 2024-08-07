@@ -11,6 +11,31 @@
     <meta name="robots" content="noindex,follow" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .cart-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-btn i {
+    margin-right: 5px;
+}
+
+.cart-btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
     
 </head>
 
@@ -72,11 +97,18 @@
             <div class="product-price">
                 <div class="price-container">
                     <span class="price">{{ number_format($product->price, 2) }} DT</span>
-                    <a href="#" class="cart-btn">
-                        <i class="fa fa-shopping-cart"></i> Ajouter au panier
-                    </a>
+                        <form action="{{ route('addToCart', $product->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="cart-btn">
+                                <i class="fa fa-shopping-cart"></i> Ajouter au panier
+                            </button>
+                        </form>
+
                 </div>
+                <div>
                 <a href="/" class="return-btn">Retourner à la page principale</a>
+                <a href="/panier" class="return-btn">Voir le panier</a>
+                </div>
                 <div class="free-shipping">
                     <i class="fas fa-truck icon"></i> <!-- Font Awesome truck icon -->
                     <div>

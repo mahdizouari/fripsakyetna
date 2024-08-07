@@ -1,67 +1,69 @@
 <?php
 
+// CartController.php
+
 namespace App\Http\Controllers;
 
+use App\Models\produits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+
 class CartController extends Controller
 {
-    public function showCart()
+    // Show panier contents
+    public function showPanier()
     {
-        $cartItems = Session::get('cartItems', []);
-        return view('cart', compact('cartItems'));
+        return view('panier'); // Ensure this matches the Blade view name for the panier
     }
 
-    // CartController.php
-public function addItem(Request $request)
-{
-    $validated = $request->validate([
-        'id' => 'required|integer',
-        'name' => 'required|string',
-        'image1' => 'required|string',
-        'prix' => 'required|numeric',
-        'taille' => 'required|string',
-        'Catégorie' => 'required|string',
-    ]);
+    // Add product to the panier
+    public function addToCart(Request $request, $productId)
+    {
+        $product = produits::find($productId);
 
-    $productData = [
-        'id' => $validated['id'],
-        'name' => $validated['name'],
-        'image1' => $validated['image1'],
-        'prix' => $validated['prix'],
-        'taille' => $validated['taille'],
-        'Catégorie' => $validated['Catégorie'],
-    ];
+        if (!$product) {
+            return redirect()->back()->with('error', 'Produit non trouvé.');
+        }
 
-    $cartItems = Session::get('cartItems', []);
+        $panier = Session::get('productItems', []);
 
-    if (!array_key_exists($productData['id'], $cartItems)) {
-        $cartItems[$productData['id']] = $productData;
+        // Check if the product already exists in the panier
+        if (isset($panier[$productId])) {
+            // Increase quantity if already in panier
+            $panier[$productId]['quantity']++;
+        } else {
+            $panier[$productId] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'image1' => $product->image1,
+                'prix' => $product->prix,
+                'taille' => $product->taille,
+                'Catégorie' => $product->Catégorie,
+                'quantity' => 1
+            ];
+        }
+
+        Session::put('productItems', $panier);
+
+        return redirect()->back()->with('message', 'Produit ajouté au panier.');
     }
 
-    Session::put('cartItems', $cartItems);
+    // Remove product from the panier
+    public function removeFromCart($productId)
+    {
+        $panier = Session::get('productItems', []);
 
-    return redirect('/cart')->with('message', 'Item added to cart!');
+        if (isset($panier[$productId])) {
+            unset($panier[$productId]);
+            Session::put('productItems', $panier);
+        }
+
+        return redirect()->route('showPanier')->with('message', 'Produit retiré du panier.');
+    }
 }
 
-
-    public function removeFromCart(Request $request)
-    {
-        $validated = $request->validate([
-            'id' => 'required|integer',
-        ]);
-
-        $cartItems = Session::get('cartItems', []);
-        $cartItems = array_filter($cartItems, function ($item) use ($validated) {
-            return $item['id'] != $validated['id'];
-        });
-
-        Session::put('cartItems', $cartItems);
-
-        return redirect()->route('cart.show')->with('message', 'Item removed from cart!');
-    }
 
 
     
-}
+

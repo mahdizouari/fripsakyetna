@@ -12,9 +12,14 @@ Route::get('/prod', [HomeController::class, 'product']);
 
 
 
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-Route::post('/cart/add', [CartController::class, 'addItem'])->name('cart.add');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+// Show panier contents
+Route::get('/panier', [CartController::class, 'showPanier'])->name('showPanier');
+
+// Add product to panier
+Route::post('/panier/add/{productId}', [CartController::class, 'addToCart'])->name('addToCart');
+
+// Remove product from panier
+Route::get('/panier/remove/{productId}', [CartController::class, 'removeFromCart'])->name('deleteItem');
 
 
 Route::get('/', function () {
@@ -59,14 +64,11 @@ Route::delete('/delete/{id}',[HomeController::class, 'destroy'])->name('product.
 Route::get('/{filename}', [HomeController::class, 'show'])->name('image.show');
 Route::get('/products/search', [HomeController::class, 'search'])->name('products.search');
 Route::get('/slider', [HomeController::class, 'index'])->name('slider.index');
-Route::get('/product/{id}/quick-view', [HomeController::class, 'quickView']);
 
 Route::get('/panier', function () {
     return view('panier');
 });
-Route::post('/add-item', [HomeController::class, 'addItem']);
 
-Route::post('/delete-item/{id}', [HomeController::class, 'deleteItem'])->name('deleteItem');
 
 
 
