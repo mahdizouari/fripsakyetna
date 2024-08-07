@@ -20,16 +20,18 @@
                         <tr>
                             <th>Nom</th>
                             <th>Réf</th>
-                            <th>Taille</th>
-                            <th>Catégorie</th>
+                            <th>T</th>
+                            <th>Catég</th>
                             <th>prix</th>
-                            <th>Act</th>
+                            <th>Img</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($products as $product)
                         <tr>
-                            <td>{{ $product->name }}</td>
+                            <td class="text-wrap">
+                                {{ \Str::limit($product->name, 10) }}
+                            </td>
                             <td>{{ $product->Référence }}</td>
                             <td>{{ $product->taille }}</td>
                             <td>{{ $product->Catégorie }}</td>
@@ -40,13 +42,18 @@
                             </td>
                             <td>
                                 <!-- Actions -->
-                                <a href="{{ route('edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('edit', $product->id) }}" class="edit btn-warning btn-sm" style="background: none; border: none;" title="Edit">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="submit" class="edit btn-danger btn-sm" style="background: none; border: none;" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                        <i class="fa fa-trash-alt"></i>
+                                    </button>
                                 </form>
                             </td>
+
                         </tr>
                     @endforeach
                     </tbody>

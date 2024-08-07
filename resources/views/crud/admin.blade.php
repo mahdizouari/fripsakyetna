@@ -114,66 +114,133 @@
 
 
     </style> 
-    <style>
+   <style>
     .container {
-        backdrop-filter: blur(10px);
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        width: 100%;
-        max-width: 1000px;
-        margin: auto;
-        border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 0.75rem; /* Added padding for better touch targets */
+    font-size: 16px; /* Default font size for larger screens */
+    border: 1px solid #ccc; /* Border for input fields for visual clarity */
+    border-radius: 4px; /* Rounded corners for input fields */
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
+    text-align: center; /* Center text inside button */
+    border-radius: 4px; /* Rounded corners for buttons */
+    border: 1px solid transparent; /* Transparent border for visual consistency */
+    background-color: #007bff; /* Default button color */
+    color: #fff; /* Text color */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for background and border color */
+}
+
+/* Button hover effect */
+.btn:hover {
+    background-color: #0056b3; /* Darker color on hover */
+    border-color: #0056b3; /* Darker border color on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem; /* Further reduced padding for smaller screens */
+        margin: 0.5rem; /* Margin adjustment for mobile */
+        max-width: 100%; /* Ensure container takes full width */
+        border-radius: 8px; /* Slightly smaller border radius on mobile */
     }
 
-    /* General form control styles */
     .form-control {
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 1rem;
+        font-size: 14px; /* Smaller font size for better fit */
+        padding: 0.5rem; /* Adjust padding for smaller input fields */
     }
 
-    /* Button styles */
     .btn {
-        display: inline-block;
-        width: auto;
-        padding: 0.75rem 1.5rem;
-        font-size: 16px;
-        text-align: center; /* Center text inside button */
+        width: 100%; /* Full width buttons for better usability */
+        margin-bottom: 0.5rem; /* Space between buttons */
+        font-size: 14px; /* Smaller font size for mobile */
+        padding: 0.5rem 1rem; /* Less padding on smaller screens */
     }
 
-    /* Responsive adjustments for smaller screens */
-    @media (max-width: 768px) {
-        .container {
-            padding: 0.75rem; /* Reduced padding for smaller screens */
-            margin: 0.5rem; /* Margin adjustment for mobile */
-            max-width: 100%; /* Ensure container takes full width */
-        }
-
-        .form-control {
-            font-size: 14px; /* Smaller font size for better fit */
-            padding: 0.5rem; /* Adjust padding for smaller input fields */
-        }
-
-        .btn {
-            width: 100%; /* Full width buttons for better usability */
-            margin-bottom: 0.5rem; /* Space between buttons */
-            font-size: 14px; /* Smaller font size for mobile */
-            padding: 0.5rem 1rem; /* Less padding on smaller screens */
-        }
-
-        .dashboard-button a {
-            display: block;
-            text-align: center; /* Center text in button */
-            margin-top: 1rem; /* Margin above button */
-        }
-
-        .form-check-inline {
-            display: block; /* Stack radio buttons vertically */
-            margin-bottom: 0.5rem; /* Space between options */
-        }
+    .dashboard-button a {
+        display: block;
+        text-align: center; /* Center text in button */
+        margin-top: 1rem; /* Margin above button */
+        font-size: 14px; /* Font size adjustment for mobile */
     }
+
+    .form-check-inline {
+        display: block; /* Stack radio buttons vertically */
+        margin-bottom: 0.5rem; /* Space between options */
+    }
+    
+    /* Optional: Improve table layout on small screens */
+    table {
+        width: 100%;
+        border-collapse: collapse; /* Collapse table borders for a cleaner look */
+    }
+
+    th, td {
+        padding: 0.75rem; /* Padding for table cells */
+        text-align: left; /* Align text to the left */
+    }
+
+    th {
+        background-color: #f8f9fa; /* Light background for table headers */
+    }
+
+    td img {
+        max-width: 100px; /* Limit image size in table cells */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+
+   </style>
+<style>
+  /* General button styles */
+.edit {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    color: inherit; /* Inherit text color */
+    cursor: pointer; /* Change cursor to pointer */
+    font-size: 1.2em; /* Adjust size of the icon */
+    padding: 0; /* Remove padding */
+}
+
+/* Specific styles for delete button */
+.btn-danger {
+    color: #dc3545; /* Red color for delete icon */
+}
+
+.btn-danger:hover {
+    color: #c82333; /* Darker red for hover effect */
+}
+
+/* Specific styles for edit button */
+.btn-warning {
+    color: #ffc107; /* Yellow color for edit icon */
+}
+
+.btn-warning:hover {
+    color: #e0a800; /* Darker yellow for hover effect */
+}
+
 </style>
 
     

@@ -7,73 +7,83 @@
     <title>Welcome, {{ auth()->user()->name }}</title>
     <style>
     .container {
-        backdrop-filter: blur(10px);
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        margin: auto;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        box-sizing: border-box; /* Ensure padding and border are included in width */
-        width: 100%;
-        max-width: 1000px; /* Adjust max-width for larger screens */
-    }
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem; /* Increased padding for more space */
+    border-radius: 12px; /* Slightly increased border radius for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow for more depth */
+    width: 100%; /* Changed to 100% for responsiveness */
+    max-width: 900px;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Added border for a subtle edge */
+}
 
-    .form-control {
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 1rem;
-        padding: 0.75rem; /* Added padding for better touch targets */
-        font-size: 16px; /* Default font size */
-    }
+/* General form control styles */
+.form-control {
+    width: 100%; /* Full width input fields */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+    margin-bottom: 1rem; /* Space between form fields */
+    padding: 0.75rem; /* Padding for input fields */
+    border-radius: 8px; /* Rounded corners for input fields */
+    border: 1px solid #ccc; /* Light border for input fields */
+}
 
+/* Button styles */
+.btn {
+    display: inline-block;
+    width: auto; /* Default width for larger screens */
+    padding: 0.75rem 1.5rem; /* Adjust padding for better touch targets */
+    font-size: 16px; /* Legible font size */
+    border-radius: 8px; /* Rounded corners for buttons */
+    border: none; /* Remove default border */
+    background-color: #007bff; /* Primary button color */
+    color: #fff; /* Text color */
+    text-align: center; /* Center text in button */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+}
+
+/* Adjust button on small screens */
+@media (max-width: 768px) {
     .btn {
-        display: inline-block;
-        width: auto;
-        padding: 0.75rem 1.5rem;
-        font-size: 16px; /* Default font size */
-        text-align: center; /* Center text in button */
-        border: none; /* Remove border */
-        border-radius: 4px; /* Slightly rounded corners */
-        background-color: #007bff; /* Default button color */
-        color: #fff; /* Default text color */
-        cursor: pointer; /* Pointer cursor on hover */
-        transition: background-color 0.3s; /* Smooth background color transition */
+        font-size: 14px; /* Smaller font size for small screens */
+        padding: 0.5rem 1rem; /* Less padding on smaller screens */
+        width: 100%; /* Full width buttons for better usability */
+        margin-bottom: 0.5rem; /* Space between buttons */
     }
+}
 
-    .btn:hover {
-        background-color: #0056b3; /* Darker background on hover */
+/* Ensure that elements stack vertically on smaller screens */
+@media (max-width: 768px) {
+    .form-check-inline {
+        display: block; /* Stack radio buttons vertically */
+        margin-bottom: 0.5rem; /* Space between options */
     }
+}
 
-    @media (max-width: 1068px) {
-        .container {
-            padding: 0.5rem;
-        }
-
-        .form-control {
-            font-size: 14px; /* Adjust font size for smaller screens */
-            padding: 0.5rem; /* Less padding on smaller screens */
-        }
-
-        .btn {
-            width: 100%; /* Full width buttons for better usability */
-            margin-bottom: 0.5rem;
-            font-size: 14px; /* Smaller font size for mobile */
-            padding: 0.5rem; /* Less padding on smaller screens */
-        }
-
-        .card-header {
-            flex-direction: column; /* Stack header content vertically on small screens */
-            align-items: flex-start; /* Align items to the start for better readability */
-        }
-
-        .card-header .btn {
-            margin-top: 1rem; /* Add margin above the button in header */
-            width: 100%; /* Full width button in header */
-        }
+/* Additional adjustments for form and container */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem; /* Adjust padding for small screens */
+        border-radius: 8px; /* Smaller border radius on small screens */
     }
+    
+    .form-control {
+        font-size: 14px; /* Adjust font size for better readability on small screens */
+    }
+}
+
+/* Enhance form labels */
+.form-label {
+    display: block; /* Ensure labels are on their own line */
+    margin-bottom: 0.5rem; /* Space between label and input */
+    font-weight: bold; /* Emphasize labels */
+}
+
 </style>
-
 
 <body>
     
@@ -112,7 +122,9 @@
                                 @foreach ($product as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td class="text-wrap">{{ $item->name }}</td>
+                                        <td class="text-wrap">
+                                            {{ \Str::limit($item->name, 10) }}
+                                        </td>
                                         <td>{{ $item->taille }}</td>
                                         <td>
                                             <img src="{{ route('image.show', ['filename' => $item->image1]) }}" style="width: 70px; height: 70px; object-fit: cover;" alt="Product Image">
@@ -129,7 +141,7 @@
                                         </td>
                                         <td>
                                             <!-- Edit Icon -->
-                                            <a href="{{ url('edit/'.$item->id) }}" class="btn btn-success btn-sm mx-1" title="Edit">
+                                            <a href="{{ url('edit/'.$item->id) }}" class="edit btn-warning btn-sm" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                             
@@ -137,7 +149,8 @@
                                             <form action="{{ route('product.destroy', $item->id) }}" method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="fas fa-trash-alt" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                <button type="submit" class="edit btn-danger btn-sm" style="background: none; border: none;" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                    <i class="fa fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                         </td>
