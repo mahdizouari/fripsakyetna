@@ -43,6 +43,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap">
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -75,6 +77,87 @@
 
 
 </style>
+<!--checkout desgin-->
+<style>
+   .billing-container {
+    max-width: 800px; /* Increased width */
+    margin: 50px 600px; /* Center the container and reduce the margin */
+    padding: 2.5rem; /* Increased padding for more space inside */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+    .billing-title {
+        font-size: 24px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #333;
+    }
+
+    .billing-inputBox {
+        margin-bottom: 1.5rem;
+    }
+
+    .billing-inputBox label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+
+    .billing-inputBox input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .billing-inputBox input:focus {
+        border-color: #5cb85c;
+        outline: none;
+    }
+
+    .billing-flex {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .billing-submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: #5cb85c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .billing-submit-btn:hover {
+        background: #4cae4c;
+    }
+
+    @media (max-width: 768px) {
+        .billing-container {
+			margin: 50px auto;
+            padding: 1.5rem;
+        }
+
+        .billing-flex {
+            flex-direction: column;
+        }
+
+        .billing-submit-btn {
+            font-size: 14px;
+            padding: 0.65rem;
+        }
+    }
+</style>
+
 
 <style>
 	/* panier style  */

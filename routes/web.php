@@ -9,6 +9,8 @@ use App\Http\Controllers\CartController;
 // routes/web.php
 Route::get('/detail/{id}', [HomeController::class, 'showProductDetail'])->name('detail');
 Route::get('/prod', [HomeController::class, 'product']);
+Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+
 
 
 
@@ -42,7 +44,6 @@ require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/panier', [HomeController::class, 'panier']);
-Route::get('/checkout', [HomeController::class, 'checkout']);
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 

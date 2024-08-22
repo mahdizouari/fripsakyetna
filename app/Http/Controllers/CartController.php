@@ -59,8 +59,7 @@ class CartController extends Controller
             Session::put('productItems', $panier);
         }
 
-        return redirect()->route('showPanier')->with('message', 'Produit retiré du panier.');
-    }
+        return redirect()->back()->with('message', 'Produit retiré du panier.');    }
 }
 
 

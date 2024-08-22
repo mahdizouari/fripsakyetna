@@ -92,8 +92,8 @@
                      {{ number_format(collect(Session::get('productItems'))->sum('prix') + 7, 2) }} DT
                 </div>
             </div>
-            <button class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">VALIDER LA COMMANDE</button>
-        </div>
+            <a href="{{ route('checkout') }}" class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">VALIDER LA COMMANDE</a>
+            </div>
     </div>
 </div>
 
