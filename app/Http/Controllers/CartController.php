@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\produits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use App\Models\commande;
 
 class CartController extends Controller
 {
@@ -59,19 +59,61 @@ class CartController extends Controller
             Session::put('productItems', $panier);
         }
 
-        return redirect()->back()->with('message', 'Produit retiré du panier.');    }
-
-
-
-        public function commande()
-    {
-        // Fetch all commandes with related products and client details
-        $commandes = produits::with(['products', 'client'])->get();
-
-        return view('commande', compact('produits'));
+        return redirect()->back()->with('message', 'Produit retiré du panier.');   
     }
+
+
+    
+public function commande(){
+    return view('commande');
+}
+public function checkout(Request $request)
+{
+    // Retrieve cart items from session
+    $panier = Session::get('productItems', []);
+
+    if (empty($panier)) {
+        return redirect()->back()->with('error', 'Le panier est vide.');
+    }
+
+    // Get the client information from the request
+    $clientName = $request->input('full_name');
+    $clientPhone = $request->input('phone_number');
+    $clientSecondPhone = $request->input('second_phone_number');
+    $clientAddress = $request->input('address') . ', ' . $request->input('city');
+    $clientEmail = $request->input('email');
+
+    // Save each product in the cart as a separate order
+    foreach ($panier as $item) {
+        commande::create([
+            'nom_de_produit' => $item['name'],
+            'nom_de_client' => $clientName,
+            'numero_de_client' => $clientPhone,
+            'adresse' => $clientAddress,
+            'prix' => $item['prix'],
+            'date' => now(),
+        ]);
+    }
+
+    // Clear the cart after processing the checkout
+    Session::forget('productItems');
+
+    // Redirect to the commandes list or a success page
+    return redirect()->route('showCommandes')->with('message', 'Commande validée avec succès.');
+}
+
+
+public function showCommandes()
+{
+    // Fetch all commandes from the database
+    $commandes = commande::all();
+
+    // Pass the data to the view
+    return view('commande', compact('commandes'));
 }
 
 
 
 
+
+}
