@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 Route::get('/detail/{id}', [HomeController::class, 'showProductDetail'])->name('detail');
 Route::get('/prod', [HomeController::class, 'product']);
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+Route::get('/commande', [CartController::class, 'index'])->name('commande.index');
 
 
 

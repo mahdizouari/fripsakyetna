@@ -60,7 +60,18 @@ class CartController extends Controller
         }
 
         return redirect()->back()->with('message', 'Produit retiré du panier.');    }
+
+
+
+        public function commande()
+    {
+        // Fetch all commandes with related products and client details
+        $commandes = produits::with(['products', 'client'])->get();
+
+        return view('commande', compact('produits'));
+    }
 }
+
 
 
 
