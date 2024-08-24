@@ -99,7 +99,7 @@ public function checkout(Request $request)
     Session::forget('productItems');
 
     // Redirect to the commandes list or a success page
-    return redirect()->route('showCommandes')->with('message', 'Commande validée avec succès.');
+    return redirect()->back()->with('message', 'Commande validée avec succès.');
 }
 
 
@@ -111,6 +111,13 @@ public function showCommandes()
     // Pass the data to the view
     return view('commande', compact('commandes'));
 }
+public function destroy($id)
+    {
+        $commandes = commande::findOrFail($id);
+        $commandes->delete();
+
+        return redirect()->back()->with('success', 'Commande supprimée avec succès.');
+    }
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class commande extends Model
 {
+    use HasFactory;
+
     // Disable timestamps
     public $timestamps = false;
 

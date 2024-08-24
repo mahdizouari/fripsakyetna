@@ -12,6 +12,8 @@ Route::get('/prod', [HomeController::class, 'product']);
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/commande', [CartController::class, 'showCommandes'])->name('showCommandes');
 Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::delete('/commande/{id}', [CartController::class, 'destroy'])->name('commande.destroy');
+
 
 
 
