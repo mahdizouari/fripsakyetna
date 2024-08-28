@@ -15,6 +15,9 @@ Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::delete('/commande/{id}', [CartController::class, 'destroy'])->name('commande.destroy');
 
 
+Route::get('/recherche', [HomeController::class, 'recherche'])->name('recherche');
+
+
 
 
 
