@@ -99,24 +99,29 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($commandes as $commande)
-                <tr>
-                    <td>{{ $commande->id }}</td>
-                    <td>{{ $commande->nom_de_produit }}</td>
-                    <td>{{ $commande->nom_de_client }}</td>
-                    <td>{{ $commande->numero_de_client }}</td>
-                    <td>{{ $commande->adresse }}</td>
-                    <td>{{ $commande->prix }} DT</td>
-                    <td>{{ $commande->date }}</td>
-                    <td class="action-buttons">
-                        <form action="{{ route('commande.destroy', $commande->id) }}" method="POST" class="inline-form">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+            @foreach($commandes as $commande)
+<tr>
+    <td>{{ $commande->id }}</td>
+    <td>{{ $commande->nom_de_produit }}</td>
+    <td>{{ $commande->nom_de_client }}</td>
+    <td>{{ $commande->numero_de_client }}</td>
+    <td>{{ $commande->adresse }}</td>
+    <td>{{ $commande->prix }} DT</td>
+    <td>{{ $commande->date }}</td>
+    <td class="action-buttons">
+        <!-- Edit Button -->
+        
+        
+        <!-- Delete Button -->
+        <form action="{{ route('commande.destroy', $commande->id) }}" method="POST" class="inline-form" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')">Supprimer</button>
+        </form>
+    </td>
+</tr>
+@endforeach
+
             </tbody>
         </table>
     @endif

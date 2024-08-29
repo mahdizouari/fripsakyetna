@@ -27,12 +27,12 @@
                         @method('PUT')
                         <div class="mb-3">
                             <label for="name" class="form-label">Nom</label>
-                            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $produit->name) }}">
+                            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $produit->name) }}" style="height: 50px;">
                             @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="taille" class="form-label">Taille</label>
-                            <select id="taille" name="taille" class="form-control @error('taille') is-invalid @enderror">
+                            <select id="taille" name="taille" class="form-control @error('taille') is-invalid @enderror" style="height: 50px;">
                                 <option value="S" {{ old('taille', $produit->taille) == 'S' ? 'selected' : '' }}>S</option>
                                 <option value="M" {{ old('taille', $produit->taille) == 'M' ? 'selected' : '' }}>M</option>
                                 <option value="L" {{ old('taille', $produit->taille) == 'L' ? 'selected' : '' }}>L</option>
@@ -43,7 +43,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="prix" class="form-label">Prix</label>
-                            <input type="text" name="prix" id="prix" class="form-control @error('prix') is-invalid @enderror" value="{{ old('prix', $produit->prix) }}">
+                            <input type="text" name="prix" id="prix" class="form-control @error('prix') is-invalid @enderror" value="{{ old('prix', $produit->prix) }}" style="height: 50px;">
                             @error('prix') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="Référence" class="form-label">Référence</label>
-                            <input type="text" id="Référence" name="Référence" class="form-control @error('Référence') is-invalid @enderror" value="{{ old('Référence', $produit->Référence) }}">
+                            <input type="text" id="Référence" name="Référence" class="form-control @error('Référence') is-invalid @enderror" value="{{ old('Référence', $produit->Référence) }}" style="height: 50px;">
                             @error('Référence') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
@@ -78,7 +78,7 @@
                             <label for="image1" class="form-label">Upload Image1</label>
                             <input type="file" name="image1" id="image1" class="form-control @error('image1') is-invalid @enderror" >
                             @if ($produit->image1)
-                                <img src="{{ asset('/' . $produit->image1) }}" alt="Current Image" width="100">
+                                <img src="{{ asset('/' . $produit->image1) }}" alt="Current Image" width="100" >
                             @endif
                             @error('image1') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>

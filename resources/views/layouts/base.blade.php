@@ -911,6 +911,34 @@ footer .p-t-40 {
         });
     });
 </script>  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('.filter-link').on('click', function(e) {
+        e.preventDefault();
+
+        var sort = $(this).data('sort') || '';
+        var priceMin = $(this).data('price-min') || '';
+        var priceMax = $(this).data('price-max') || '';
+
+        $.ajax({
+            url: '/prod',
+            type: 'GET',
+            data: {
+                sort: sort,
+                price_min: priceMin,
+                price_max: priceMax
+            },
+            success: function(response) {
+                $('#product-list').html(response);
+            }
+        });
+    });
+});
+</script>
+
+
 		
 </body>
 </html>

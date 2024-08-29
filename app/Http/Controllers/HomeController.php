@@ -19,15 +19,17 @@ class HomeController extends Controller
     }
     public function welcome ()
     {  
-        $products = produits::all();
-        return view ('welcome', compact('products'));
+        $products = produits::where('is_active', true)->get();
+
+        return view('welcome', compact('products'));
         
     }
         
     public function product ()
     {
-        $products = produits::all();
-        return view ('prod', compact('products'));
+        $products = produits::where('is_active', true)->get();
+
+        return view('prod', compact('products'));
     
     }
     public function about ()
@@ -228,13 +230,42 @@ public function search(Request $request)
         return view('crud.search', compact('products'));
 }
     
-public function index()
-    {
-        return view('slider.index');
-}
- 
 
-    
+ 
+// ProductController.php
+
+public function index(Request $request)
+{
+    $query = produits::query();
+
+    // Handle price filtering
+    if ($request->has('price_min') && $request->has('price_max')) {
+        $price_min = $request->input('price_min');
+        $price_max = $request->input('price_max');
+        if ($price_min > 0 || $price_max > 0) {
+            $query->whereBetween('prix', [$price_min, $price_max]);
+        }
+    }
+
+    // Handle sorting
+    if ($request->has('sort')) {
+        $sort = $request->input('sort');
+        if ($sort == 'price_asc') {
+            $query->orderBy('prix', 'asc');
+        } elseif ($sort == 'price_desc') {
+            $query->orderBy('prix', 'desc');
+        }
+    }
+
+    $products = $query->paginate(10); // Adjust pagination as needed
+
+    if ($request->ajax()) {
+        return view('partials.product-list', compact('products'));
+    }
+
+    return view('prod', compact('products'));
+}
+
      
     
 

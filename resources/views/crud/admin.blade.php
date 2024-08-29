@@ -372,7 +372,7 @@
                 <a href="/slider"> Slider </a>
               </li>
               <li>
-                <a href="/product"> Produits </a>
+                <a href="/prod"> Produits </a>
               </li>
               <li>
                 <a href="panier"> Panier </a>

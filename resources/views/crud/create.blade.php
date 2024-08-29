@@ -102,12 +102,12 @@
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Nom</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" style="height: 20px;">
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" style="height: 50px;">
                             @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2" >
                             <label for="taille" class="form-label">Taille</label>
-                            <select id="taille" name="taille" class="form-control" style="height: 30px;">
+                            <select id="taille" name="taille" class="form-control" style="height: 50px;">
                                 <option value="S" {{ old('taille') == 'S' ? 'selected' : '' }}>S</option>
                                 <option value="M" {{ old('taille') == 'M' ? 'selected' : '' }}>M</option>
                                 <option value="L" {{ old('taille') == 'L' ? 'selected' : '' }}>L</option>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="prix" class="form-label">Prix (DT)</label>
-                            <input type="text" name="prix" id="prix" class="form-control" value="{{ old('prix') }}" style="height: 38px !important;;">
+                            <input type="text" name="prix" id="prix" class="form-control" value="{{ old('prix') }}" style="height: 50px !important;;">
                             @error('prix') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
@@ -139,7 +139,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="Référence" class="form-label">Référence</label>
-                            <input type="text" id="Référence" name="Référence" class="form-control" value="{{ old('Référence') }}" style="height: 38px;">
+                            <input type="text" id="Référence" name="Référence" class="form-control" value="{{ old('Référence') }}" style="height: 50px;">
                             @error('Référence') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
@@ -153,7 +153,7 @@
                             <label for="image1" class="form-label">Upload Image1</label>
                             <input type="file" name="image1" id="image1" class="form-control @error('image1') is-invalid @enderror">
                             @if (isset($produit->image1))
-                                <img src="{{ asset('storage/images/' . $produit->image1) }}" alt="Current Image1" width="100">
+                                <img src="{{ asset('/' . $produit->image1) }}" alt="Current Image1" width="100">
                             @endif
                             @error('image1') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
@@ -162,7 +162,7 @@
                             <label for="image2" class="form-label">Upload Image2</label>
                             <input type="file" name="image2" id="image2" class="form-control @error('image2') is-invalid @enderror">
                             @if (isset($produit->image2))
-                                <img src="{{ asset('storage/images/' . $produit->image2) }}" alt="Current Image2" width="100">
+                                <img src="{{ asset('/' . $produit->image2) }}" alt="Current Image2" width="100">
                             @endif
                             @error('image2') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
@@ -171,7 +171,7 @@
                             <label for="image3" class="form-label">Upload Image3</label>
                             <input type="file" name="image3" id="image3" class="form-control @error('image3') is-invalid @enderror">
                             @if (isset($produit->image3))
-                                <img src="{{ asset('storage/images/' . $produit->image3) }}" alt="Current Image3" width="100">
+                                <img src="{{ asset('/' . $produit->image3) }}" alt="Current Image3" width="100">
                             @endif
                             @error('image3') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>

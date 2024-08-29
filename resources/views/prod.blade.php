@@ -21,10 +21,11 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".homme">
 						Hommes
 					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".enfants">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".enfant">
 						Enfants
 					</button>
+
+					
 				</div>
 
 
@@ -54,72 +55,67 @@
 				</div>
 
 				<!-- Filter -->
+				 
 				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Sort By
-							</div>
+    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+        <div class="filter-col1 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">
+                Sort By
+            </div>
+            <ul>
+                <li class="p-b-6">
+                    <a href="/prod" class="filter-link stext-106 trans-04" data-sort="price_asc">
+                        Price: Low to High
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04" data-sort="price_desc">
+                        Price: High to Low
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-							<ul>
+        <div class="filter-col2 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">
+                Price
+            </div>
+            <ul>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04" data-price-min="0" data-price-max="0">
+                        All
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04" data-price-min="0" data-price-max="50">
+                        0.00 DT - 50.00 DT
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04" data-price-min="50" data-price-max="100">
+                        50.00 DT - 100.00 DT
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04" data-price-min="100" data-price-max="999999">
+                        100.00 DT +
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: Low to High
-									</a>
-								</li>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: High to Low
-									</a>
-								</li>
-							</ul>
-						</div>
 
-						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Price
-							</div>
+</script>
 
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All
-									</a>
-								</li>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										0.00 DT - 50.00 DT
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										50.00 DT - 100.00 DT
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										100.00 DT +
-									</a>
-								</li>
-
-								
-							</ul>
-						</div>
-
-						
-
-						
-					</div>
-				</div>
 			</div>
 
 			<div class="row isotope-grid">
     @foreach ($products as $product)
+	
         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ strtolower($product->Catégorie) }}">
             <div class="block2">
                 <div class="block2-pic hov-img0">
@@ -152,11 +148,7 @@
 				
 
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
-				</a>
-			</div>
+			
 		</div>
 	</div>
 		
