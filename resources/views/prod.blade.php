@@ -133,6 +133,15 @@
                             {{ number_format($product->prix, 2) }}DT
                         </span>
                     </div>
+                    <div class="block2-txt-child2 flex-r p-t-3">
+					<form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
+						@csrf
+						<button type="submit" class="btn-addwish-b2 dis-block pos-relative">
+							<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+							<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+						</button>
+					</form>
+				</div>
                 </div>
             </div>
         </div>

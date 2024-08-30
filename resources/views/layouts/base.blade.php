@@ -50,6 +50,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	
 
@@ -485,6 +486,12 @@
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</a>
 						</div>
+						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+							<a href="wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
+								<i class="zmdi zmdi-favorite-outline"></i>
+							</a>
+						</div>
+
 
 
 
@@ -517,12 +524,23 @@
 						<i class="zmdi zmdi-search"></i>
 					</div>
 				</div>
+				<!-- Notification Container -->
+				<!-- Notification Container -->
+
+
+				<!-- Wishlist Icon -->
+				<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+					<a href="{{ route('wishlist') }}" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
+						<i class="zmdi zmdi-favorite-outline"></i>
+					</a>
+				</div>
+
 
 				<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
 							<a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</a>
-						</div>
+				</div>
 
 			</div>
 
@@ -1185,4 +1203,104 @@ $(document).ready(function() {
         color: #fff;
     }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Handle wishlist button clicks
+        $('.js-addwish-b2').on('click', function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productName = $button.parent().parent().find('.js-name-b2').text();
+
+            // AJAX request to add item to wishlist
+            $.ajax({
+                url: $button.closest('form').attr('action'),
+                method: 'POST',
+                data: $button.closest('form').serialize(),
+                success: function(response) {
+                    // Show SweetAlert notification
+                    Swal.fire({
+                        title: productName,
+                        text: "is added to wishlist!",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Add class to indicate item is added
+                    $button.addClass('js-addedwish-b2');
+                    $button.off('click');
+                },
+                error: function(xhr) {
+                    // Handle errors if needed
+                    Swal.fire({
+                        title: 'Error!',
+                        text: "There was an issue adding the item to wishlist.",
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+
+        // Handle wishlist detail button clicks
+        $('.js-addwish-detail').on('click', function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productName = $button.parent().parent().parent().find('.js-name-detail').text();
+
+            // AJAX request to add item to wishlist
+            $.ajax({
+                url: $button.closest('form').attr('action'),
+                method: 'POST',
+                data: $button.closest('form').serialize(),
+                success: function(response) {
+                    // Show SweetAlert notification
+                    Swal.fire({
+                        title: productName,
+                        text: "is added to wishlist!",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Add class to indicate item is added
+                    $button.addClass('js-addedwish-detail');
+                    $button.off('click');
+                },
+                error: function(xhr) {
+                    // Handle errors if needed
+                    Swal.fire({
+                        title: 'Error!',
+                        text: "There was an issue adding the item to wishlist.",
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+
+        // Handle add to cart button clicks
+        $('.js-addcart-detail').on('click', function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productName = $button.parent().parent().parent().parent().find('.js-name-detail').text();
+
+            // Show SweetAlert notification
+            Swal.fire({
+                title: productName,
+                text: "is added to cart!",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    });
+</script>
+
+
+
+
 

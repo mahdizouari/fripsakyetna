@@ -6,6 +6,17 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 
 
+
+
+// Show wishlist
+Route::get('/wishlist', [CartController::class, 'wishlist'])->name('wishlist');
+
+// Add product to wishlist
+Route::post('/wishlist/add/{productId}', [CartController::class, 'add'])->name('wishlist.add');
+
+// Remove product from wishlist
+Route::post('/wishlist/remove/{productId}', [CartController::class, 'remove'])->name('wishlist.remove');
+
 // routes/web.php
 Route::get('/detail/{id}', [HomeController::class, 'showProductDetail'])->name('detail');
 Route::get('/prod', [HomeController::class, 'product']);
@@ -81,6 +92,7 @@ Route::get('/panier', function () {
 
 
 Route::get('/searchresult', [HomeController::class, 'searchresult'])->name('searchresult');
+
 
 
 

@@ -109,7 +109,7 @@ public function checkout(Request $request)
     return redirect()->back()->with('message', 'Commande validée avec succès.');
 }
 
-
+//commandes :
 public function showCommandes()
 {
     // Fetch all commandes from the database
@@ -126,7 +126,39 @@ public function destroy($id)
         return redirect()->back()->with('success', 'Commande supprimée avec succès.');
     }
 
-    
+
+    //wishlist : 
+    public function wishlist()
+    {
+        $wishlistItems = Session::get('wishlistItems', []);
+        return view('wishlist', compact('wishlistItems'));
+    }
+
+    public function add(Request $request, $productId)
+    {
+        $product = produits::find($productId);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'Produit non trouvé.');
+        }
+
+        $wishlist = Session::get('wishlistItems', []);
+        $wishlist[$productId] = $product;
+        Session::put('wishlistItems', $wishlist);
+
+        return redirect()->back()->with('message', 'Produit ajouté à la liste de souhaits.');
+    }
+
+    public function remove($productId)
+    {
+        $wishlist = Session::get('wishlistItems', []);
+        if (isset($wishlist[$productId])) {
+            unset($wishlist[$productId]);
+            Session::put('wishlistItems', $wishlist);
+        }
+
+        return redirect()->back()->with('message', 'Produit retiré de la liste de souhaits.');
+    } 
     
     
 
