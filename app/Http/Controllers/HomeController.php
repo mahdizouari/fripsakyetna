@@ -266,6 +266,29 @@ public function index(Request $request)
     return view('prod', compact('products'));
 }
 
+
+
+
+
+public function recherche(Request $request)
+{
+    $query = $request->input('search');
+
+    // Search logic for active products only
+    $products = Produits::where('is_active', 1)
+                        ->where(function($q) use ($query) {
+                            $q->where('name', 'LIKE', "%$query%")
+                              ->orWhere('taille', 'LIKE', "%$query%")
+                              ->orWhere('Référence', 'LIKE', "%$query%")
+                              ->orWhere('Catégorie', 'LIKE', "%$query%");
+
+                        })
+                        ->get();
+
+    return view('recherche', compact('products', 'query'));
+}
+
+
      
     
 

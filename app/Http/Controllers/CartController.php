@@ -14,7 +14,14 @@ class CartController extends Controller
     // Show panier contents
     public function showPanier()
     {
+        $cartCount = $this->getCartCount(); // Calculate the cart count
+
         return view('panier'); // Ensure this matches the Blade view name for the panier
+    }
+    public function getCartCount()
+    {
+        $panier = Session::get('productItems', []);
+        return array_sum(array_column($panier, 'quantity'));
     }
 
     // Add product to the panier
@@ -119,7 +126,9 @@ public function destroy($id)
         return redirect()->back()->with('success', 'Commande supprimée avec succès.');
     }
 
-
+    
+    
+    
 
 
 

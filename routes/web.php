@@ -80,6 +80,15 @@ Route::get('/panier', function () {
 });
 
 
+Route::get('/searchresult', [HomeController::class, 'searchresult'])->name('searchresult');
+
+
+
+
+
+
+
+
 
 
 
