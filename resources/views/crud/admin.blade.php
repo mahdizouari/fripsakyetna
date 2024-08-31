@@ -369,7 +369,7 @@
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
-                <a href="/slider"> Slider </a>
+                <a href="slider"> Slider </a>
               </li>
               <li>
                 <a href="/prod"> Produits </a>

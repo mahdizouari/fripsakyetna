@@ -371,8 +371,26 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .logo img {
-  max-width: 250%;
-  max-height: 250%;
+  max-width: 195%;
+  max-height: 195%;
+}
+.logo-mobile {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; /* Use flex to center content if needed */
+  justify-content: center; /* Center the logo horizontally */
+  align-items: center; /* Center the logo vertically */
+  padding-right: 25px;
+  flex-grow: 1;
+}
+
+.logo-mobile img {
+  max-width: 200%; /* Ensure the logo does not exceed its container width */
+  height: 200%; /* Maintain aspect ratio */
+  max-height: 100px; /* Set a maximum height for the logo */
+  display: block;
 }
 
 
@@ -709,25 +727,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*------------------------------------------------------------------
 [ Logo mobile ]*/
-.logo-mobile {
-  display: block;
-  position: relative;
-  height: 80%;
-  padding-right: 25px;
-  -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
-  flex-grow: 1;
-}
+/* Base styles for mobile screens */
 
-.logo-mobile img {
-  max-width: calc(100% - 20px);
-  max-height: 100%;
-  position:absolute;
-  top: 0; 
-  left: 0; 
-  bottom: 0;
-  margin: auto;
-}
+
+
 
 
 

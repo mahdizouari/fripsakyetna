@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SliderController;
 
 
 
@@ -27,6 +28,8 @@ Route::delete('/commande/{id}', [CartController::class, 'destroy'])->name('comma
 
 
 Route::get('/recherche', [HomeController::class, 'recherche'])->name('recherche');
+
+Route::resource('slider', SliderController::class);
 
 
 
@@ -84,7 +87,6 @@ Route::put('/edit/{id}',[HomeController::class, 'update'])->name('update');
 Route::delete('/delete/{id}',[HomeController::class, 'destroy'])->name('product.destroy');
 Route::get('/{filename}', [HomeController::class, 'show'])->name('image.show');
 Route::get('/products/search', [HomeController::class, 'search'])->name('products.search');
-Route::get('/slider', [HomeController::class, 'index'])->name('slider.index');
 
 Route::get('/panier', function () {
     return view('panier');

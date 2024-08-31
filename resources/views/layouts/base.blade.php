@@ -558,7 +558,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="/" class="logo">
-						<img src="logo.png" alt="IMG-LOGO">
+						<img src="logo.svg" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -655,7 +655,7 @@
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				<a href="/">
-					<img src="logo.png" alt="IMG-LOGO" class="logo-image">
+					<img src="logo.svg" alt="IMG-LOGO" class="logo-image" style="width: 85px; height: 85px;">
 					<span class="logo-text"> </span>
 				</a>
 			</div>
