@@ -12,12 +12,13 @@
         
         <div class="billing-inputBox">
             <label for="phone-number">Numéro de téléphone:</label>
-            <input type="tel" id="phone-number" name="phone_number" placeholder="Votre numéro" required>
+            <input type="tel" id="phone-number" name="phone_number" placeholder="Votre numéro" pattern="\d{8}" required title="Le numéro doit contenir exactement 8 chiffres.">
         </div>
         <div class="billing-inputBox">
             <label for="second-phone-number">Numéro de téléphone 2 : (optional):</label>
-            <input type="tel" id="second-phone-number" name="second_phone_number" placeholder="Votre numéro">
+            <input type="tel" id="second-phone-number" name="second_phone_number" placeholder="Votre numéro" pattern="\d{8}" title="Le numéro doit contenir exactement 8 chiffres.">
         </div>
+
         <div class="billing-inputBox">
             <label for="address">Adresse:</label>
             <input type="text" id="address" name="address" placeholder="Votre adresse" required>

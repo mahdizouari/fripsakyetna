@@ -1,41 +1,61 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="bg0 m-t-23 p-b-140">
+<div class="cart-wrap bg0 m-t-23 p-b-140">
     <div class="container">
         @if (empty($wishlistItems))
             <p class="text-center stext-101 cl2 p-t-20">
                 Aucun produit dans la liste de souhaits.
             </p>
         @else
-            <div class="row">
-                @foreach ($wishlistItems as $product)
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35">
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
-                                <form action="{{ route('wishlist.remove', $product->id) }}" method="POST">
+            <div class="main-heading mb-10">Ma liste de souhaits</div>
+            <div class="table-wishlist">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="45%">Nom du produit</th>
+                            <th width="15%">Prix</th>
+                            <th width="15%"></th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($wishlistItems as $product)
+                        <tr>
+                            <td width="45%">
+                                <div class="display-flex align-center">
+                                    <div class="img-product">
+                                        <img src="{{ asset('/' . $product->image1) }}" alt="{{ $product->name }}" class="mCS_img_loaded">
+                                    </div>
+                                    <div class="name-product">
+                                        <a href="{{ route('detail', $product->id) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2">
+                                            {{ $product->name }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="15%" class="price">{{ number_format($product->prix, 2) }}DT</td>
+                            <td width="15%">
+                                <form action="{{ route('addToCart', $product->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                        Retirer
+                                    <button type="submit" class="round-black-btn small-btn">
+                                        <i class="fas fa-shopping-cart"></i>
                                     </button>
                                 </form>
-                                
-                            </div>
-                            
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l">
-                                    <a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        {{ $product->name }}
-                                    </a>
-                                    <span class="stext-105 cl3">
-                                        {{ number_format($product->prix, 2) }}DT
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                            </td>
+
+                            <td width="10%" class="text-center">
+                                <form action="{{ route('wishlist.remove', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="trash-icon" style="background:none; border:none;">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         @endif
     </div>

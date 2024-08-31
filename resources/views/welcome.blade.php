@@ -195,17 +195,19 @@
 						<div class="wrap-slick2">
 						<div class="slick2">
     @foreach ($products as $product)
-    <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-        <!-- Block2 -->
-        <div class="block2">
-            <div class="block2-pic hov-img0">
-                <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
-
-                <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-					Voir le produit
+				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+					<!-- Block2 -->
+					<div class="block2">
+					<div class="block2-pic hov-img0">
+				<a href="{{ route('detail', $product->id) }}">
+					<img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
 				</a>
 
-            </div>
+				<a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+					Voir le produit
+				</a>
+			</div>
+
 
             <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l">
