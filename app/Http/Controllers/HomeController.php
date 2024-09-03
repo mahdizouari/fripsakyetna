@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use App\Models\Slider;
 
 
 class HomeController extends Controller
@@ -17,21 +18,22 @@ class HomeController extends Controller
 
         return view('detail', compact('product'));
     }
-    public function welcome ()
-    {  
-        $products = produits::where('is_active', true)->get();
-
-        return view('welcome', compact('products'));
-        
-    }
-        
-    public function product ()
+    public function welcome()
     {
+        $slider = Slider::orderBy('id', 'desc')->first(); // Fetch the most recent slider
         $products = produits::where('is_active', true)->get();
 
-        return view('prod', compact('products'));
-    
+        return view('welcome', compact('slider', 'products'));
     }
+
+        
+    public function product()
+{
+    $products = produits::where('is_active', true)->paginate(8); // Limit to 30 products per page
+
+    return view('prod', compact('products'));
+}
+
     public function about ()
     {
         return view ('about');

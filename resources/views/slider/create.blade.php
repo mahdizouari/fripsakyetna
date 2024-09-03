@@ -31,6 +31,13 @@
                 <img src="{{ asset('/' . $slider->image3) }}" width="100" class="mt-2" alt="Image 3">
             @endif
         </div>
+        <div class="form-group">
+            <label for="image4">Image 4</label>
+            <input type="file" name="image4" id="image4" class="form-control">
+            @if(isset($slider) && $slider->image3)
+                <img src="{{ asset('/' . $slider->image4) }}" width="100" class="mt-2" alt="Image 4">
+            @endif
+        </div>
 
         <div class="form-group">
             <label for="title">Title</label>
@@ -42,10 +49,7 @@
             <input type="text" name="subtitle" id="subtitle" class="form-control" value="{{ $slider->subtitle ?? '' }}">
         </div>
 
-        <div class="form-group">
-            <label for="link">Link</label>
-            <input type="url" name="link" id="link" class="form-control" value="{{ $slider->link ?? '' }}">
-        </div>
+       
 
         <button type="submit" class="btn btn-success">{{ isset($slider) ? 'Update' : 'Create' }}</button>
     </form>

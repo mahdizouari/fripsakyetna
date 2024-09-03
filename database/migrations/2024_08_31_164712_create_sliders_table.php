@@ -9,17 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    public $timestamps = false;
     public function up()
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('image1');
-            $table->string('image2');
-            $table->string('image3');
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->string('image4')->nullable();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
-            $table->string('link')->nullable();
             $table->timestamps();
+            
         });
     }
     

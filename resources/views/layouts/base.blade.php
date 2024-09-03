@@ -545,6 +545,38 @@
     color: #212529;
 }
 </style>
+<style>
+/* Ensure the pagination container is centered */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Style pagination for mobile screens */
+@media only screen and (max-width: 767px) {
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination-container .pagination {
+        display: flex;
+        gap: 0.5rem; /* Optional: add spacing between pagination items */
+    }
+
+    .pagination-container .pagination > li {
+        display: flex;
+    }
+
+    .pagination-container .pagination > li > a,
+    .pagination-container .pagination > li > span {
+        padding: 0.5rem 1rem; /* Adjust padding for better touch targets on mobile */
+        margin: 0; /* Remove default margins */
+    }
+}
+
+
+</style>
 </head>
 
 <body class="animsition">
@@ -813,6 +845,7 @@
 
 	</div>
     <!-- Footer -->
+     
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
 	<center>

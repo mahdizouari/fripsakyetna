@@ -9,6 +9,7 @@
                 <th>Image 1</th>
                 <th>Image 2</th>
                 <th>Image 3</th>
+                <th>Image 4</th>
                 <th>Title</th>
                 <th>Subtitle</th>
                 <th>Actions</th>
@@ -34,6 +35,13 @@
                     <td>
                         @if ($slider->image3)
                             <img src="{{ asset('/' . $slider->image3) }}" width="100" alt="Image 3">
+                        @else
+                            No Image
+                        @endif
+                    </td>
+                    <td>
+                        @if ($slider->image4)
+                            <img src="{{ asset('/' . $slider->image4) }}" width="100" alt="Image 3">
                         @else
                             No Image
                         @endif
