@@ -31,6 +31,9 @@ Route::get('/recherche', [HomeController::class, 'recherche'])->name('recherche'
 
 Route::resource('slider', SliderController::class);
 
+Route::get('/order-confirmation/{orderId}', [CartController::class, 'confirmOrder'])->name('order-confirmation');
+
+
 
 
 

@@ -148,7 +148,7 @@ public function update(Request $request, $id)
         'Catégorie' => 'required|string|in:homme,femme,enfant',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        'prix' => 'required|numeric',
+        'prix' => 'required|numeric',                                                      
     ]);
 
     // Find the product by ID

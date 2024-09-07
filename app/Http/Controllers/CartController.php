@@ -90,9 +90,11 @@ public function checkout(Request $request)
     $clientAddress = $request->input('address') . ', ' . $request->input('city');
     $clientEmail = $request->input('email');
 
-    // Save each product in the cart as a separate order
+    // Save each product in the cart as a separate order and capture the last order
+    $lastOrder = null;
+
     foreach ($panier as $item) {
-        commande::create([
+        $lastOrder = commande::create([
             'nom_de_produit' => $item['name'],
             'nom_de_client' => $clientName,
             'numero_de_client' => $clientPhone,
@@ -105,9 +107,10 @@ public function checkout(Request $request)
     // Clear the cart after processing the checkout
     Session::forget('productItems');
 
-    // Redirect to the commandes list or a success page
-    return redirect()->back()->with('message', 'Commande validée avec succès.');
+    // Redirect to the order confirmation page with the last created order ID
+    return redirect()->route('order-confirmation', ['orderId' => $lastOrder->id])->with('message', 'Commande validée avec succès.');
 }
+
 
 //commandes :
 public function showCommandes()
@@ -160,6 +163,21 @@ public function destroy($id)
         return redirect()->back()->with('message', 'Produit retiré de la liste de souhaits.');
     } 
     
+    public function confirmOrder(Request $request, $orderId)
+    {
+        // Fetch the specific order using the commande model
+        $order = commande::find($orderId);
+    
+        // If the order is not found, redirect back with an error message
+        if (!$order) {
+            return redirect()->back()->with('error', 'Commande non trouvée.');
+        }
+    
+        // Redirect to the order confirmation page with the order details
+        return view('order-confirmation', compact('order'));
+    }
+    
+
     
 
 
