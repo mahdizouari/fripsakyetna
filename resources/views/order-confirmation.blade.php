@@ -4,59 +4,58 @@
 
 @section('content')
 
-<div class="container">
-    <div class="confirmation-page">
-        <h2 class="text-center">Détails de la commande</h2>
+<div class="order-details">
+    <h3>Détails de la commande</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Produit</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        @php
+            $subtotal = 0;
+            $shipping_cost = 7; // Fixed shipping cost
+        @endphp
 
-        <!-- Payment Method Section -->
-        <div class="payment-method mb-4">
-            <h4>Méthode de paiement</h4>
-            <p>Payer en argent comptant à la livraison.</p>
-        </div>
+        @foreach($commandes as $commande)
+            <tr>
+                <td>{{ $commande->nom_de_produit }}</td>
+                <td>{{ number_format($commande->prix * $commande->quantite, 3) }} TND</td> <!-- Total per product -->
+            </tr>
+            @php
+                $subtotal += $commande->prix * $commande->quantite;  // Calculate subtotal
+            @endphp
+        @endforeach 
 
-        <!-- Order Details Section -->
-        <div class="order-details">
-            <h3>Détails de la commande</h3>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Produit</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ $order->product_name }} x {{ $order->quantity }}</td>
-                        <td>{{ number_format($order->total_price, 3) }} TND</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Expédition :</td>
-                        <td>{{ number_format($order->shipping_cost, 3) }} TND via {{ $order->shipping_method }}</td>
-                    </tr>
-                    <tr>
-                        <td>Sous-total :</td>
-                        <td>{{ number_format($order->subtotal, 3) }} TND</td>
-                    </tr>
-                    <tr>
-                        <td>Total :</td>
-                        <td>{{ number_format($order->total, 3) }} TND</td>
-                    </tr>
-                    <tr>
-                        <td>Moyen de paiement :</td>
-                        <td>Paiement à la livraison</td>
-                    </tr>
-                </tfoot>
-            </table>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Expédition :</td>
+                <td>{{ number_format($shipping_cost, 3) }} TND via Livraison dans (48h-72h)</td>
+            </tr>
+            <tr>
+                <td>Sous-total :</td>
+                <td>{{ number_format($subtotal, 3) }} TND</td>
+            </tr>
+            <tr>
+                <td>Total :</td>
+                <td>{{ number_format($subtotal + $shipping_cost, 3) }} TND</td>
+            </tr>
+            <tr>
+                <td>Moyen de paiement :</td>
+                <td>Paiement à la livraison</td>
+            </tr>
+        </tfoot>
+    </table>
 
-            <!-- Option to Print Invoice -->
-            <div class="print-invoice text-center mt-4">
-                <a href="#" class="btn btn-primary">Imprimer la facture</a>
-            </div>
-        </div>
+    <!-- Option to Print Invoice -->
+    <div class="print-invoice text-center mt-4">
+        <a href="#" class="btn btn-primary">Imprimer la facture</a>
     </div>
 </div>
+
 
 <!-- Add some basic styling for mobile responsiveness -->
 <style>

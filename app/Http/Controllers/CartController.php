@@ -163,23 +163,21 @@ public function destroy($id)
         return redirect()->back()->with('message', 'Produit retiré de la liste de souhaits.');
     } 
     
-    public function confirmOrder(Request $request, $orderId)
+    
+
+
+    public function showOrderConfirmation()
     {
-        // Fetch the specific order using the commande model
-        $order = commande::find($orderId);
+        // Get the current session ID
+        $session_id = session()->getId();
     
-        // If the order is not found, redirect back with an error message
-        if (!$order) {
-            return redirect()->back()->with('error', 'Commande non trouvée.');
-        }
+        // Get all orders associated with this session ID
+        $commandes = Commande::where('session_id', $session_id)->get();
     
-        // Redirect to the order confirmation page with the order details
-        return view('order-confirmation', compact('order'));
+        // Pass the commandes to the view
+        return view('order-confirmation', compact('commandes'));
     }
     
-
-    
-
-
+ 
 
 }
