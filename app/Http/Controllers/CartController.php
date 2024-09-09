@@ -166,18 +166,21 @@ public function destroy($id)
     
 
 
-    public function showOrderConfirmation()
+    
+
+
+
+
+    public function confirmOrder($id)
     {
-        // Get the current session ID
-        $session_id = session()->getId();
+        // Retrieve the commandes by the given id
+        $commandes = Commande::where('id', $id)->get();
     
-        // Get all orders associated with this session ID
-        $commandes = Commande::where('session_id', $session_id)->get();
-    
-        // Pass the commandes to the view
+        // Calculate total price, subtotal, etc. if needed
         return view('order-confirmation', compact('commandes'));
     }
     
+
  
 
 }
