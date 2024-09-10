@@ -48,6 +48,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
 
@@ -163,6 +165,7 @@
         }
     }
 </style>
+
 
 
 <style>
@@ -852,8 +855,8 @@
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
 	<center>
-    <div class="container">
-        <div class="row">
+    <div class="container text-center">
+        <div class="row justify-content-center">
             
             <!-- Help Section -->
             <div class="col-sm-6 col-lg-3 p-b-20">
@@ -863,26 +866,26 @@
 
                 <ul>
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Track Order
+                        <a href="qui-somme-nous" class="stext-107 cl7 hov-cl1 trans-04">
+                            Qui somme nous 
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Returns
+                        <a href="livraison-echange" class="stext-107 cl7 hov-cl1 trans-04">
+                            Livraison et Echange
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shipping
+                        <a href="politique-echange" class="stext-107 cl7 hov-cl1 trans-04">
+                            Politique d'échange 
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            FAQs
+                        <a href="terms-conditions" class="stext-107 cl7 hov-cl1 trans-04">
+                            Terms et Conditions 
                         </a>
                     </li>
                 </ul>
@@ -893,18 +896,27 @@
                 <h4 class="stext-301 cl0 p-b-30">
                     GET IN TOUCH
                 </h4>
-
+                <center>
                 <p class="stext-107 cl7 size-201">
-                    Any questions? Let us know in store at //////
+                    Avez-vous des questions ? Appelez nous :
+                    <div>
+                    <a href="tel:+27715933" class="cl7 hov-cl1 trans-04">
+                        <i class="fa fa-phone"></i> 27715933
+                    </a>
+                    </div>
                 </p>
+                <h4 class="stext-107 cl7 size-201">
+                    Service 24/7
+                </h4>
+                </center>
 
                 <div class="p-t-27">
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-facebook"></i>
+                    <a href="https://www.facebook.com/sakiyetna" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fab fa-facebook"></i>
                     </a>
 
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-instagram"></i>
+                    <a href="https://www.instagram.com/frip_sakiyetna/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
@@ -920,95 +932,7 @@
 	</center>
 </footer>
 
-<style>
-	/* Footer Styles */
-footer {
-    background-color: #f8f9fa;
-    padding-top: 75px;
-    padding-bottom: 32px;
-}
 
-footer .container {
-    max-width: 1140px;
-    margin: auto;
-}
-
-/* Responsive Columns */
-@media (max-width: 767px) {
-    footer .row {
-        display: block;
-    }
-
-    footer .col-sm-6 {
-        margin-bottom: 30px;
-    }
-
-    footer .p-t-40 {
-        text-align: center;
-    }
-
-    footer .flex-c-m {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    footer .fs-18 {
-        font-size: 1.2rem;
-        margin: 0 0.5rem;
-    }
-}
-
-footer h4 {
-    font-size: 1.5rem;
-    color: #333;
-}
-
-footer .stext-107 {
-    font-size: 1rem;
-}
-
-footer .stext-301 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
-footer .size-201 {
-    font-size: 0.875rem;
-}
-
-footer .txt-center {
-    text-align: center;
-}
-
-footer .stext-107 a {
-    text-decoration: none;
-    color: #6c757d;
-    transition: color 0.3s;
-}
-
-footer .stext-107 a:hover {
-    color: #007bff;
-}
-
-footer .p-t-27 a {
-    margin-right: 15px;
-}
-
-footer .p-b-10 {
-    margin-bottom: 10px;
-}
-
-footer .m-all-1 img {
-    max-width: 100px;
-    margin: 0 5px;
-}
-
-footer .p-t-40 {
-    padding-top: 40px;
-}
-
-</style>
 
 
 

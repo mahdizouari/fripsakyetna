@@ -291,7 +291,24 @@ public function recherche(Request $request)
 }
 
 
-     
+  // app/Http/Controllers/HomeController.php
+
+public function quiSommeNous() {
+    return view('pages.qui-somme-nous');
+}
+
+public function livraisonEchange() {
+    return view('pages.livraison-echange');
+}
+
+public function politiqueEchange() {
+    return view('pages.politique-echange');
+}
+
+public function termsConditions() {
+    return view('pages.terms-conditions');
+}
+  
     
 
 }

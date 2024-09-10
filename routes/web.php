@@ -32,6 +32,12 @@ Route::get('/recherche', [HomeController::class, 'recherche'])->name('recherche'
 Route::resource('slider', SliderController::class);
 
 Route::get('/order-confirmation/{orderId}', [CartController::class, 'confirmOrder'])->name('order-confirmation');
+// routes/web.php
+
+Route::get('/qui-somme-nous', [HomeController::class, 'quiSommeNous'])->name('qui-somme-nous');
+Route::get('/livraison-echange', [HomeController::class, 'livraisonEchange'])->name('livraison-echange');
+Route::get('/politique-echange', [HomeController::class, 'politiqueEchange'])->name('politique-echange');
+Route::get('/terms-conditions', [HomeController::class, 'termsConditions'])->name('terms-conditions');
 
 
 
