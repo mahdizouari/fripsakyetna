@@ -50,6 +50,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
 
 
@@ -67,6 +69,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <style>
 	.btnc {
     border: none; /* No border */
@@ -1402,6 +1407,35 @@ $(document).ready(function() {
             });
         });
     });
+</script>
+
+<script>
+	$(document).ready(function() {
+    // Initialize Isotope
+    var $grid = $('.isotope-grid').isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'fitRows'
+    });
+
+    // Filter items on link click
+    $('.block1-txt').on('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+
+        var filterValue = $(this).attr('data-filter');
+        var filterUrl = $(this).attr('href');
+
+        // Update URL with the filter
+        window.location.href = filterUrl;
+
+        // Filter items
+        $grid.isotope({ filter: filterValue });
+
+        // Change active class on links
+        $('.block1-txt').removeClass('active');
+        $(this).addClass('active');
+    });
+});
+
 </script>
   
 
