@@ -11,7 +11,10 @@
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -52,6 +55,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
 
 
@@ -60,6 +65,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 	
 
@@ -71,6 +81,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
 	.btnc {
@@ -170,7 +183,49 @@
         }
     }
 </style>
+<style>
+        /* Custom CSS */
+        .owl-carousel .item {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+        .item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .owl-nav button {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+        }
+        .owl-nav button.owl-prev {
+            left: 10px;
+        }
+        .owl-nav button.owl-next {
+            right: 10px;
+        }
+        .btn-view-all {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #000; /* Black background */
+            color: white; /* White text */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
 
+        .btn-view-all:hover {
+            background-color: #333; /* Darker black for hover effect */
+            text-decoration: none;
+        }
+
+    </style>
 
 
 <style>
@@ -1437,6 +1492,55 @@ $(document).ready(function() {
 });
 
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                items: 3,  // Number of items to display at once
+                loop: true,
+                margin: 10,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 3000,  // Autoplay interval (3 seconds)
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 2  // 2 items per line on phones
+                    },
+                    600: {
+                        items: 2  // 2 items per line on tablets
+                    },
+                    768: {
+                        items: 3  // 3 items per line on larger screens
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+    // Filter by category
+    $('.filter-category').click(function() {
+        var filter = $(this).data('filter');
+        $('.product-item').hide(); // Hide all products
+        $(filter).show(); // Show products that match the category filter
+    });
+
+    // Filter by Référence
+    $('.filter-reference').click(function() {
+        var reference = $(this).data('filter');
+        $('.product-item').hide(); // Hide all products
+        $('.product-item').each(function() {
+            if ($(this).data('reference') === reference) {
+                $(this).show(); // Show products that match the Référence filter
+            }
+        });
+    });
+});
+
+    </script>
   
 
 
