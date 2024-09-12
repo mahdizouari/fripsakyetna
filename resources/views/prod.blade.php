@@ -23,13 +23,13 @@
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-category" data-filter=".enfant">
                     Enfants
                 </button>
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".sacs">
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".sac">
                     Sacs
                 </button>
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".casquette">
                     Casquettes
                 </button>
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".accessoires">
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".accessoire">
                     Accessoires
                 </button> 
 
@@ -115,7 +115,7 @@
         <!-- Product Listings -->
         <div class="row isotope-grid">
             @foreach ($products as $product)
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ strtolower($product->Catégorie) }}">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ strtolower($product->Référence) }} {{ strtolower($product->Catégorie) }}" >
                     <div class="block2">
                         <div class="block2-pic hov-img0">
                             <a href="{{ route('detail', $product->id) }}">

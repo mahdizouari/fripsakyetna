@@ -322,4 +322,32 @@
     <!-- Blog -->
     <!-- Additional content can be added here -->
 
+            
+    
+    <div class="container">
+    <div class="p-b-32">
+        <h3 class="ltext-105 cl5 txt-left small-title">Accessoires</h3>
+    </div>
+   
+
+
+             
+
+
+
+
+      <!-- Blog -->
+    <!-- Additional content can be added here -->
+
+
+//
+
+
+       <!-- Blog -->
+    <!-- Additional content can be added here -->
+
+
+//
+
+    
 @endsection
