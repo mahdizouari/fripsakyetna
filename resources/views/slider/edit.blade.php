@@ -32,7 +32,7 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="image4">Image 3</label>
+            <label for="image4">Image 4</label>
             <input type="file" name="image4" id="image4" class="form-control">
             @if(isset($slider) && $slider->image4)
                 <img src="{{ asset('/' . $slider->image4) }}" width="100" class="mt-2" alt="Image 4">

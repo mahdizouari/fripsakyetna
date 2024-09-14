@@ -80,7 +80,7 @@ public function store(Request $request)
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
-        'taille' => 'required|in:S,M,L,XL,XXL',
+        'taille' => 'required|in:2XS,XS,S,M,L,XL,2XL,3XL,4XL,5XL',
         'image1' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048', // Required image
         'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
@@ -141,7 +141,7 @@ public function update(Request $request, $id)
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
-        'taille' => 'required|in:S,M,L,XL,XXL',
+        'taille' => 'required|in:2XS,XS,S,M,L,XL,2XL,3XL,4XL,5XL',
         'image1' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
