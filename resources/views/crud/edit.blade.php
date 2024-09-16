@@ -65,6 +65,10 @@
                                 <input type="radio" id="enfant" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="enfant" {{ old('Catégorie', $produit->Catégorie) == 'enfant' ? 'checked' : '' }}>
                                 <label for="enfant" class="form-check-label">Enfant</label>
                             </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="accessoire" name="Catégorie" class="form-check-input" value="accessoire" {{ old('Catégorie') == 'accessoire' ? 'checked' : '' }}>
+                                <label for="accessoire" class="form-check-label">Accessoires</label>
+                            </div>
                             @error('Catégorie') <span class="invalid-feedback d-block">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">

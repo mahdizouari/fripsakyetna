@@ -23,13 +23,8 @@
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-category" data-filter=".enfant">
                     Enfants
                 </button>
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".sac">
-                    Sacs
-                </button>
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".casquette">
-                    Casquettes
-                </button>
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-reference" data-filter=".accessoire">
+                
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 filter-category" data-filter=".accessoire">
                     Accessoires
                 </button> 
 

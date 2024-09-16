@@ -84,7 +84,7 @@ public function store(Request $request)
         'image1' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048', // Required image
         'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
-        'Catégorie' => 'required|string|in:homme,femme,enfant',
+        'Catégorie' => 'required|string|in:homme,femme,enfant,accessoire',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
         'prix' => 'required|numeric',
@@ -145,7 +145,7 @@ public function update(Request $request, $id)
         'image1' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
-        'Catégorie' => 'required|string|in:homme,femme,enfant',
+        'Catégorie' => 'required|string|in:homme,femme,enfant,accessoire',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
         'prix' => 'required|numeric',                                                      
