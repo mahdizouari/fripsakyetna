@@ -375,6 +375,106 @@
     </div> 
 </div> 
 
+<style>
+    .block2 {
+        border: 1px solid #e6e6e6;
+        border-radius: 8px; /* Rounded corners */
+        padding: 10px;
+        background-color: #fff; /* White background for the block */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for elevation */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    }
+
+    .block2:hover {
+        transform: scale(1.03); /* Slight zoom effect on hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    }
+
+    .block2-pic img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px; /* Rounded corners for images */
+    }
+
+    .block2-btn {
+        margin-top: 10px;
+       
+    }
+
+    .block2-btn:hover {
+        background-color: #000; /* Darker shade on hover */
+    }
+
+    .block2-txt {
+        text-align: left;
+        padding-top: 10px;
+    }
+
+    .block2-txt-child1 {
+        margin-bottom: 10px;
+    }
+
+    .block2-txt-child1 a {
+        font-size: 1rem;
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease; /* Smooth color transition */
+    }
+
+    .block2-txt-child1 a:hover {
+        color: #007bff; /* Primary color on hover */
+    }
+
+    .block2-txt-child2 {
+        text-align: right;
+    }
+
+    .icon-heart1,
+    .icon-heart2 {
+        width: 24px;
+        height: 24px;
+    }
+
+    .icon-heart1 {
+        display: block;
+    }
+
+    .icon-heart2 {
+        display: none; /* Hidden by default */
+    }
+
+    .btn-addwish-b2:hover .icon-heart2 {
+        display: block; /* Show the filled heart on hover */
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .block2 {
+            padding: 8px;
+        }
+
+        .block2-btn {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .block2 {
+            padding: 6px;
+        }
+
+        .block2-btn {
+            font-size: 12px;
+        }
+
+        .owl-carousel .item {
+            margin-bottom: 15px;
+        }
+    }
+</style>
+
+
 
 
 

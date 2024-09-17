@@ -29,7 +29,7 @@ class HomeController extends Controller
         
     public function product()
 {
-    $products = produits::where('is_active', true)->paginate(8); // Limit to 30 products per page
+    $products = produits::where('is_active', true)->paginate(16); // Limit to 30 products per page
 
     return view('prod', compact('products'));
 }
@@ -277,18 +277,19 @@ public function recherche(Request $request)
     $query = $request->input('search');
 
     // Search logic for active products only
-    $products = Produits::where('is_active', 1)
+    $products = produits::where('is_active', 1)
                         ->where(function($q) use ($query) {
                             $q->where('name', 'LIKE', "%$query%")
-                              ->orWhere('taille', 'LIKE', "%$query%")
-                              ->orWhere('Référence', 'LIKE', "%$query%")
-                              ->orWhere('Catégorie', 'LIKE', "%$query%");
+                              ->orWhere('Référence', '=', "%$query%")
+                              ->orWhere('Catégorie', '=', "%$query%")
+                              ->orWhere('taille', '=', $query);  // Exact match for 'taille'
 
                         })
                         ->get();
 
     return view('recherche', compact('products', 'query'));
 }
+
 
 
   // app/Http/Controllers/HomeController.php

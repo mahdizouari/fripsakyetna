@@ -110,7 +110,7 @@
         <!-- Product Listings -->
         <div class="row isotope-grid">
             @foreach ($products as $product)
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ strtolower($product->Référence) }} {{ strtolower($product->Catégorie) }}" >
+                <div class="col-4 col-md-3 p-b-30 isotope-item {{ strtolower($product->Référence) }} {{ strtolower($product->Catégorie) }}" >
                     <div class="block2">
                         <div class="block2-pic hov-img0">
                             <a href="{{ route('detail', $product->id) }}">
@@ -154,6 +154,44 @@
             </div>
 
 </div>
+<style>
+    .block2-pic img {
+    width: 100%;
+    height: auto;
+}
+
+.block2 {
+    border: 1px solid #e6e6e6;
+    padding: 10px;
+}
+
+.block2-btn {
+    margin-top: 10px;
+}
+
+.block2-txt {
+    text-align: left;
+}
+
+/* Mobile and Tablet adjustments */
+@media (max-width: 768px) {
+    .block2 {
+        padding: 8px;
+    }
+
+    .block2-pic img {
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-6 {
+        max-width: 50%;
+        flex: 0 0 50%; /* 2 items per row for smaller devices */
+    }
+}
+
+</style>
 
 
 
