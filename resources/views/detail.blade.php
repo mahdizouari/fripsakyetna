@@ -117,8 +117,102 @@
        </div>
    </div>
 </div>
+<!-- Right Column -->
+<div class="right-column">
+    <!-- Product Description -->
+    <div class="product-description">
+        <h1>{{ $product->name }}</h1>
+        <p>{{ $product->description ?? 'No description available.' }}</p>
+        <div class="review-stars">
+            <i class="fas fa-star star filled"></i>
+            <i class="fas fa-star star filled"></i>
+            <i class="fas fa-star star filled"></i>
+            <i class="fas fa-star star filled"></i>
+            <i class="fas fa-star star"></i>
+            <span class="rating-text">4.0</span>
+        </div>
+        <p class="available">Disponible</p>
+    </div>
+
+    <!-- Detailed Product Description Section -->
+    <div class="detailed-description">
+        <h2 class="section-title">DESCRIPTION</h2>
+        <ul>
+            <li>Marque: {{ $product->name ?? 'Non spécifié' }}</li>
+            <li>Catégorie: {{ $product->Catégorie ?? 'Non spécifié' }}</li>
+            <li>Taille: {{ $product->taille ?? 'Non spécifié' }}</li>
+            <li>Référence: {{ $product->Référence ?? 'Non spécifié' }}</li>
+        </ul>
+    </div>
+
+    <!-- Product Configuration -->
+   <!-- Vous pouvez aussi aimer Section -->
+
+  
+<!-- Vous pouvez aussi aimer Section -->
+<!-- Vous pouvez aussi aimer Section -->
+<div class="similar-products-wrapper">
+    <div class="similar-products">
+        <h2 class="section-title">Vous pouvez aussi aimer</h2>
+
+        @php
+            // Fetching similar products in the Blade view
+            $similarProducts = \App\Models\produits::where('Catégorie', $product->Catégorie)
+                                ->where('id', '!=', $product->id)
+                                ->where('is_active', true)
+                                ->limit(4)
+                                ->get();
+        @endphp
+
+        <div class="row isotope-grid">
+            @foreach($similarProducts as $similarProduct)
+                <div class="col-6 col-md-3 p-b-30 isotope-item {{ strtolower($similarProduct->Référence) }} {{ strtolower($similarProduct->Catégorie) }}">
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <a href="{{ route('detail', $similarProduct->id) }}">
+                                <img src="{{ asset('/' . $similarProduct->image1) }}" alt="{{ $similarProduct->name }}">
+                            </a>
+                            <a href="{{ route('detail', $similarProduct->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                Voir le produit
+                            </a>
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="{{ route('detail', $similarProduct->id) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    {{ $similarProduct->name }}
+                                </a>
+                                <span class="stext-105 cl3">
+                                    {{ number_format($similarProduct->prix, 2) }} DT
+                                </span>
+                            </div>
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                <form action="{{ route('wishlist.add', $similarProduct->id) }}" method="POST" class="js-addwish-form">
+                                    @csrf
+                                    <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
+                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
 
+
+
+
+
+
+
+
+
+@endsection
    <!-- Scripts -->
 
    <script>
@@ -297,4 +391,77 @@
        }
    }
 </style>
-@endsection
+<style>
+    .detailed-description {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.section-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #0056b3;
+    position: relative;
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #000;
+    margin: 5px auto 10px;
+}
+
+.detailed-description ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detailed-description ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+</style>
+<style>
+    .block2-pic img {
+    width: 90%;
+    height: auto;
+}
+
+.block2 {
+    border: 1px solid #e6e6e6;
+    padding: 10px;
+}
+
+.block2-btn {
+    margin-top: 10px;
+}
+
+.block2-txt {
+    text-align: left;
+}
+
+/* Mobile and Tablet adjustments */
+@media (max-width: 768px) {
+    .block2 {
+        padding: 8px;
+    }
+
+    .block2-pic img {
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-6 {
+        max-width: 40%;
+        flex: 0 0 50%; /* 2 items per row for smaller devices */
+    }
+}
+
+</style>

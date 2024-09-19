@@ -81,7 +81,7 @@
             <form>
                 <p>FRAIS DE LIVRAISON</p>
                 <select>
-                    <option class="text-muted">Livraison standard- 7.00 DT</option>
+                    <option class="text-muted">Livraison standard- 8.00 DT</option>
                 </select>
                 <p>CODE PROMO</p>
                 <input id="code" placeholder="Entrez votre code">
@@ -89,7 +89,7 @@
             <div class="row border-top border-bottom" style="padding: 2vh 0;">
                 <div class="col">PRIX TOTAL</div>
                 <div class="col text-right">
-                     {{ number_format(collect(Session::get('productItems'))->sum('prix') + 7, 2) }} DT
+                     {{ number_format(collect(Session::get('productItems'))->sum('prix') + 8, 2) }} DT
                 </div>
             </div>
             <a href="{{ route('checkout') }}" class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">VALIDER LA COMMANDE</a>
