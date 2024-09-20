@@ -484,7 +484,7 @@
 </style>
 <!--wishlist desgin-->
 <style>
-.cart-wrap {
+    .cart-wrap {
 	padding: 40px 0;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -536,7 +536,7 @@
 .total {
 	font-size: 24px;
 	font-weight: 600;
-	color: #8660e9;
+	color: #ffdd00; /* Updated to yellow */
 }
 .display-flex {
 	display: flex;
@@ -546,11 +546,11 @@
 }
 .round-black-btn {
 	border-radius: 25px;
-    background: #212529;
+    background: #ffdd00; /* Updated to yellow */
     color: #fff;
     padding: 5px 20px;
     display: inline-block;
-    border: solid 2px #212529; 
+    border: solid 2px #ffdd00; /* Updated to yellow */
     transition: all 0.5s ease-in-out 0s;
     cursor: pointer;
     font-size: 14px;
@@ -558,7 +558,7 @@
 .round-black-btn:hover,
 .round-black-btn:focus {
 	background: transparent;
-	color: #212529;
+	color: #ffdd00; /* Updated to yellow */
 	text-decoration: none;
 }
 .mb-10 {
@@ -579,10 +579,10 @@
 }
 .pretty input:checked~.state.p-primary-o label:before, 
 .pretty.p-toggle .state.p-primary-o label:before {
-    border-color: #8660e9;
+    border-color: #ffdd00; /* Updated to yellow */
 }
 .pretty.p-default:not(.p-fill) input:checked~.state.p-primary-o label:after {
-    background-color: #8660e9 !important;
+    background-color: #ffdd00 !important; /* Updated to yellow */
 }
 .main-heading.border-b {
     border-bottom: solid 1px #ededed;
@@ -612,7 +612,7 @@
     margin-top: 40px !important; 
 }
 .in-stock-box {
-	background: #ff0000;
+	background: #ffdd00; /* Updated to yellow */
 	font-size: 12px;
 	text-align: center;
 	border-radius: 25px;
@@ -622,8 +622,9 @@
 }
 .trash-icon {
     font-size: 20px;
-    color: #212529;
+    color: #ffdd00; /* Updated to yellow */
 }
+
 </style>
 <style>
 /* Ensure the pagination container is centered */

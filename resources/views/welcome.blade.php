@@ -27,9 +27,13 @@
                                         </div>
                                         
                                         <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                                            <a href="prod" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                                Shop Now
+                                        <a href="prod" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" 
+                                            style="background-color: yellow; color: black; text-decoration: none;"
+                                            onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                                            onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
+                                            Shop Now
                                             </a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -49,11 +53,11 @@
             <div class="size-202 m-lr-auto respon4">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w filter-tope-group">
-                    <img src="images/banner-04.jpg" alt="IMG-BANNER">
+                    <img src="2.svg" alt="IMG-BANNER">
                     <a href="prod?filter=women" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".femme">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
-                                Women
+                                
                             </span>
                             <span class="block1-info stext-102 trans-04"></span>
                         </div>
@@ -69,11 +73,11 @@
             <div class="size-202 m-lr-auto respon4">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
-                    <img src="images/banner-05.jpg" alt="IMG-BANNER">
+                    <img src="1.svg" alt="IMG-BANNER">
                     <a href="prod" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
-                                Homme
+                                
                             </span>
                             <span class="block1-info stext-102 trans-04"></span>
                         </div>
@@ -89,13 +93,12 @@
             <div class="size-202 m-lr-auto respon4">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
-                    <img src="images/banner-06.jpg" alt="IMG-BANNER">
+                    <img src="3.svg" alt="IMG-BANNER">
                     <a href="prod" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
-                                Enfants
+                                
                             </span>
-                            <span class="block1-info stext-102 trans-04">New Trend</span>
                         </div>
                         <div class="block1-txt-child2 p-b-4 trans-05">
                             <div class="block1-link stext-101 cl0 trans-09">
@@ -139,15 +142,20 @@
                                                 <a href="{{ route('detail', $product->id) }}">
                                                     <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                                                 </a>
-                                                <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                                    Voir le produit
+                                                <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
+                                                style="background-color: yellow; color: black; text-decoration: none;"
+                                                onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                                                onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
+                                                Voir le produit
                                                 </a>
+
                                             </div>
                                             <div class="block2-txt flex-w flex-t p-t-14">
                                                 <div class="block2-txt-child1 flex-col-l">
-                                                    <a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                        {{ $product->name }}
-                                                    </a>
+                                                <a href="#" class="sstext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                    {{ $product->name }}
+                                                </a>
+
                                                     <span class="stext-105 cl3">
                                                         {{ number_format($product->prix, 2) }} DT
                                                     </span>
@@ -156,9 +164,10 @@
                                                     <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                                         @csrf
                                                         <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+                                                            <img class="icon-heart1 dis-block trans-02" src="images/icons/icon-heart-01.png" alt="ICON">
                                                             <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
                                                         </button>
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -169,6 +178,51 @@
                         </div>
                     </div>
 
+                    <style>
+                        .btn-addwish-b2 {
+                                background-color: transparent; /* Default background */
+                                border: none;
+                                cursor: pointer;
+                            }
+
+                            .btn-addwish-b2:hover {
+                                background-color: yellow; /* Change background color on hover */
+                                transition: background-color 0.3s ease; /* Smooth transition */
+                            }
+
+                            .icon-heart1, .icon-heart2 {
+                                width: 24px;
+                                height: 24px;
+                            }
+
+                            .icon-heart2 {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                display: none;
+                            }
+
+                            .btn-addwish-b2:hover .icon-heart1 {
+                                display: none; /* Hide first heart icon */
+                            }
+
+                            .btn-addwish-b2:hover .icon-heart2 {
+                                display: block; /* Show second heart icon */
+                            }
+                            .sstext-104 {
+                                .sstext-104 {
+                                color: #333; /* Default text color */
+                                text-decoration: none; /* Remove underline */
+                                transition: color 0.3s ease; /* Smooth transition for color change */
+                            }
+
+                            .sstext-104:hover {
+                                color: yellow; /* Change text color on hover */
+                            }
+
+
+
+                    </style>
    
 	 
     <!-- Slider for sacs -->
@@ -195,9 +249,13 @@
                             <a href="{{ route('detail', $product->id) }}">
                                 <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                             </a>
-                            <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                Voir le produit
+                            <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
+                            style="background-color: yellow; color: black; text-decoration: none;"
+                            onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                            onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
+                            Voir le produit
                             </a>
+
                         </div>
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l">
@@ -278,9 +336,13 @@
                         <a href="{{ route('detail', $product->id) }}">
                             <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                         </a>
-                        <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                            Voir le produit
+                        <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
+                        style="background-color: yellow; color: black; text-decoration: none;"
+                        onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                        onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
+                        Voir le produit
                         </a>
+
                     </div>
                     <div class="block2-txt flex-w flex-t p-t-14">
                         <div class="block2-txt-child1 flex-col-l">
@@ -306,9 +368,13 @@
         @endforeach
         </div>
             <!-- "Voir Plus" Button -->
-            <a href="prod" class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn1 p-lr-15 trans-04">
-                Voir Plus
+            <a href="prod" class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn1 p-lr-15 trans-04" 
+            style="background-color: yellow; color: black; text-decoration: none;"
+            onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+            onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
+            Voir Plus
             </a>
+
         </div>
     </div>
 </div>
@@ -347,9 +413,13 @@
                         <a href="{{ route('detail', $product->id) }}">
                             <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                         </a>
-                        <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                            Voir le produit
+                        <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
+                        style="background-color: yellow; color: black; text-decoration: none;"
+                        onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                        onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
+                        Voir le produit
                         </a>
+
                     </div>
                     <div class="block2-txt flex-w flex-t p-t-14">
                         <div class="block2-txt-child1 flex-col-l">
