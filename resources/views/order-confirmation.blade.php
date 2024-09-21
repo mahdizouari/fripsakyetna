@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.order-detail')
 
 @section('title', 'Order Confirmation')
 
@@ -14,47 +14,52 @@
                 <thead>
                     <tr>
                         <th scope="col">Produit</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Prix</th>
                     </tr>
                 </thead>
                 <tbody>
                 @php
                     $subtotal = 0;
-                    $shipping_cost = 7; // Fixed shipping cost
+                    $shipping_cost = 8; // Fixed shipping cost
                 @endphp
 
+                <!-- Loop through all products in the order -->
                 @foreach($commandes as $commande)
                     <tr>
                         <td>{{ $commande->nom_de_produit }}</td>
                         <td>{{ number_format($commande->prix , 3) }} TND</td> <!-- Total per product -->
                     </tr>
                     @php
-                        $subtotal += $commande->prix * $commande->quantite;  // Calculate subtotal
+                        $subtotal += $commande->prix;  // Add product price to subtotal
                     @endphp
                 @endforeach 
-
                 </tbody>
                 <tfoot>
-                @foreach($commandes as $commande)
-
+                    <tr>
+                        <td><strong>Sous-total :</strong></td>
+                        <td>{{ number_format($subtotal, 3) }} TND</td>
+                    </tr>
                     <tr>
                         <td><strong>Expédition :</strong></td>
                         <td>{{ number_format($shipping_cost, 3) }} TND via Livraison dans (48h-72h)</td>
                     </tr>
-                    <tr>
-                        <td><strong>Adresse :</strong></td>
-                        <td>{{ $commande->adresse }}</td>
-                    </tr>
+
+                    <!-- Display address, assuming all products share the same delivery address -->
+                    @if($commandes->isNotEmpty())
+                        <tr>
+                            <td><strong>Adresse :</strong></td>
+                            <td>{{ $commandes->first()->adresse }}</td> <!-- Use the address of the first product in the list -->
+                        </tr>
+                    @endif
+
                     <tr>
                         <td><strong>Total :</strong></td>
-                        <td>{{ number_format($commande->prix + $shipping_cost, 3) }} TND</td>
+                        <td>{{ number_format($subtotal + $shipping_cost, 3) }} TND</td>
                     </tr>
                     <tr>
                         <td><strong>Moyen de paiement :</strong></td>
                         <td>Paiement à la livraison</td>
                     </tr>
-                @endforeach 
-
                 </tfoot>
             </table>
         </div>
@@ -63,6 +68,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Add some basic styling for mobile responsiveness -->
 <style>

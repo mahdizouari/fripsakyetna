@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.order-detail')
 
 @section('title', 'Fripsakyetna')
 

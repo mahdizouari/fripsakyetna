@@ -778,13 +778,13 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .main-menu-m {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #a5a53a;
+  background-color: #ffffff;
 }
 
 .main-menu-m > li > a {
   font-family: Poppins-Medium;
   font-size: 14px;
-  color: white;
+  color: rgb(0, 0, 0);
   line-height: 2.8;
   padding: 8px 20px 8px 20px;
 }
@@ -1783,7 +1783,7 @@ button.mfp-close {
 
 .show-search:hover:after,
 .show-filter:hover:after {
-  background-color: #cecb39;
+  background-color: #ffffff;
   border-color: #b8b663;
 }
 

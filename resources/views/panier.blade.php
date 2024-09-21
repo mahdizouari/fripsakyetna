@@ -73,7 +73,7 @@
             <div><h5><b>Résumé</b></h5></div>
             <hr>
             <div class="row">
-                <div class="col" style="padding-left:0;"> {{ count(Session::get('productItems', [])) }} ARTICLES</div>
+                <div class="col" style="padding-left:0;"> {{ count(Session::get('productItems', [])) }} articles</div>
                 <div class="col text-right">
                     {{ number_format(collect(Session::get('productItems'))->sum('prix'), 2) }} DT
                 </div>
@@ -91,9 +91,21 @@
                 <div class="col text-right">
                      {{ number_format(collect(Session::get('productItems'))->sum('prix') + 8, 2) }} DT
                 </div>
-            </div>
-            <a href="{{ route('checkout') }}" class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">VALIDER LA COMMANDE</a>
-            </div>
+                <div>
+                    <!-- Check if the cart (productItems) is not empty -->
+                    @if(Session::has('productItems') && count(Session::get('productItems')) > 0)
+                        <a href="{{ route('checkout') }}" class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">
+                            Valider la commande
+                        </a>
+                    @else
+                        <!-- Show disabled button if the cart is empty -->
+                        <button class="flex-c-m stext-104 cl0 size-105 bg-secondary bor2 p-lr-19 trans-04" disabled>
+                            Valider la commande
+                        </button>
+                        <p class="text-danger mt-2">Votre panier est vide. Ajoutez des produits pour passer une commande.</p>
+                    @endif
+                </div>
+
     </div>
 </div>
 
