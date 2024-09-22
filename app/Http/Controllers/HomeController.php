@@ -80,7 +80,7 @@ public function store(Request $request)
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
-        'taille' => 'required|in:2XS,XS,S,M,L,XL,2XL,3XL,4XL,5XL',
+        'taille' => 'required|max:255|string',
         'image1' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048', // Required image
         'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
@@ -141,7 +141,7 @@ public function update(Request $request, $id)
     // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
-        'taille' => 'required|in:2XS,XS,S,M,L,XL,2XL,3XL,4XL,5XL',
+        'taille' => 'required|max:255|string',
         'image1' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
         'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
@@ -236,37 +236,6 @@ public function search(Request $request)
  
 // ProductController.php
 
-public function index(Request $request)
-{
-    $query = produits::query();
-
-    // Handle price filtering
-    if ($request->has('price_min') && $request->has('price_max')) {
-        $price_min = $request->input('price_min');
-        $price_max = $request->input('price_max');
-        if ($price_min > 0 || $price_max > 0) {
-            $query->whereBetween('prix', [$price_min, $price_max]);
-        }
-    }
-
-    // Handle sorting
-    if ($request->has('sort')) {
-        $sort = $request->input('sort');
-        if ($sort == 'price_asc') {
-            $query->orderBy('prix', 'asc');
-        } elseif ($sort == 'price_desc') {
-            $query->orderBy('prix', 'desc');
-        }
-    }
-
-    $products = $query->paginate(10); // Adjust pagination as needed
-
-    if ($request->ajax()) {
-        return view('partials.product-list', compact('products'));
-    }
-
-    return view('prod', compact('products'));
-}
 
 
 
@@ -310,6 +279,30 @@ public function termsConditions() {
     return view('pages.terms-conditions');
 }
   
+public function index(Request $request)
+{
+    $products = produits::query();
+
+    // Filter by category if provided
+    if ($request->has('category') && !empty($request->category)) {
+        $products->where('Catégorie', $request->category);
+    }
+
+    // Filter by reference if provided
+    if ($request->has('reference') && !empty($request->reference)) {
+        $products->where('Référence', $request->reference);
+    }
+
+    // Filter by taille if provided
+    if ($request->has('taille') && !empty($request->taille)) {
+        $products->where('taille', $request->taille);
+    }
+
+    $filteredProducts = $products->get();
+
+    return view('products.index', compact('filteredProducts'));
+}
+
     
 
 }

@@ -105,23 +105,15 @@
                             <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" style="height: 50px;">
                             @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mb-2" >
+                        <div class="mb-2">
                             <label for="taille" class="form-label">Taille</label>
-                            <select id="taille" name="taille" class="form-control" style="height: 50px;">
-                            <option value="2XS" {{ old('taille') == '2XS' ? 'selected' : '' }}>2XS</option>
-                            <option value="XS" {{ old('taille') == 'XS' ? 'selected' : '' }}>XS</option>
-                                <option value="S" {{ old('taille') == 'S' ? 'selected' : '' }}>S</option>
-                                <option value="M" {{ old('taille') == 'M' ? 'selected' : '' }}>M</option>
-                                <option value="L" {{ old('taille') == 'L' ? 'selected' : '' }}>L</option>
-                                <option value="XL" {{ old('taille') == 'XL' ? 'selected' : '' }}>XL</option>
-                                <option value="2XL" {{ old('taille') == '2XL' ? 'selected' : '' }}>2XL</option>
-                                <option value="3XL" {{ old('taille') == '3XL' ? 'selected' : '' }}>3XL</option>
-                                <option value="4XL" {{ old('taille') == '4XL' ? 'selected' : '' }}>4XL</option>
-                                <option value="5XL" {{ old('taille') == '5XL' ? 'selected' : '' }}>5XL</option>
-
-                            </select>
-                            @error('taille') <span class="text-danger">{{ $message }}</span> @enderror
+                            <input type="text" id="taille" name="taille" class="form-control" value="{{ old('taille') }}" placeholder="" style="height: 50px; text-transform: uppercase;">
+                            @error('taille') 
+                                <span class="text-danger">{{ $message }}</span> 
+                            @enderror
                         </div>
+
+
                         <div class="mb-3">
                             <label for="prix" class="form-label">Prix (DT)</label>
                             <input type="text" name="prix" id="prix" class="form-control" value="{{ old('prix') }}" style="height: 50px !important;;">

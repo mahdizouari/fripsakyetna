@@ -37,11 +37,7 @@
                     Filter
                 </div>
 
-                <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-                    <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-                    <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Search
-                </div>
+               
             </div>
             
             <!-- Search product -->
@@ -56,54 +52,121 @@
 
             <!-- Filter -->
             <div class="dis-none panel-filter w-full p-t-10">
-                <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-                    <div class="filter-col1 p-r-15 p-b-27">
-                        <div class="mtext-102 cl2 p-b-15">
-                            Sort By
-                        </div>
-                        <ul>
-                            <li class="p-b-6">
-                                <a href="/prod?sort=price_asc" class="filter-link stext-106 trans-04">
-                                    Price: Low to High
-                                </a>
-                            </li>
-                            <li class="p-b-6">
-                                <a href="/prod?sort=price_desc" class="filter-link stext-106 trans-04">
-                                    Price: High to Low
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 
-                    <div class="filter-col2 p-r-15 p-b-27">
-                        <div class="mtext-102 cl2 p-b-15">
-                            Price
-                        </div>
-                        <ul>
-                            <li class="p-b-6">
-                                <a href="/prod" class="filter-link stext-106 trans-04" data-price-min="0" data-price-max="0">
-                                    All
-                                </a>
-                            </li>
-                            <li class="p-b-6">
-                                <a href="/prod?price_min=0&price_max=50" class="filter-link stext-106 trans-04">
-                                    0.00 DT - 50.00 DT
-                                </a>
-                            </li>
-                            <li class="p-b-6">
-                                <a href="/prod?price_min=50&price_max=100" class="filter-link stext-106 trans-04">
-                                    50.00 DT - 100.00 DT
-                                </a>
-                            </li>
-                            <li class="p-b-6">
-                                <a href="/prod?price_min=100&price_max=999999" class="filter-link stext-106 trans-04">
-                                    100.00 DT +
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <!-- Category Section -->
+        <div class="filter-col1 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Category</div>
+            <ul>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="homme">
+                        Homme
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="femme">
+                        Femme
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="enfant">
+                        Enfant
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Reference Section -->
+        <div class="filter-col2 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Reference</div>
+            <ul>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="sac">
+                        Sac
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="chaussure">
+                        Chaussure
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="casquette">
+                        Casquette
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Taille Section -->
+        <div class="filter-col3 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Taille</div>
+            <ul>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="S">
+                        S
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="M">
+                        M
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="L">
+                        L
+                    </a>
+                </li>
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="XL">
+                        XL
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to Handle Filtering -->
+<script>
+    let selectedCategory = '';
+    let selectedReference = '';
+    let selectedTaille = '';
+
+    // Category filter click event
+    document.querySelectorAll('.category-filter').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            selectedCategory = this.dataset.category;
+            applyFilters();
+        });
+    });
+
+    // Reference filter click event
+    document.querySelectorAll('.reference-filter').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            selectedReference = this.dataset.reference;
+            applyFilters();
+        });
+    });
+
+    // Taille filter click event
+    document.querySelectorAll('.taille-filter').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            selectedTaille = this.dataset.taille;
+            applyFilters();
+        });
+    });
+
+    // Function to apply filters and redirect to the filtered URL
+    function applyFilters() {
+        let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
+        window.location.href = '/prod' + queryString;
+    }
+</script>
+
 
         </div>
 
