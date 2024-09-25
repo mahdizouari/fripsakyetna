@@ -52,79 +52,79 @@
 
             <!-- Filter -->
             <div class="dis-none panel-filter w-full p-t-10">
-    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+            <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 
-        <!-- Category Section -->
-        <div class="filter-col1 p-r-15 p-b-27">
-            <div class="mtext-102 cl2 p-b-15">Category</div>
-            <ul>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="homme">
-                        Homme
-                    </a>
-                </li>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="femme">
-                        Femme
-                    </a>
-                </li>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="enfant">
-                        Enfant
-                    </a>
-                </li>
-            </ul>
-        </div>
+                <!-- Category Section -->
+                <div class="filter-col1 p-r-15 p-b-27">
+                    <div class="mtext-102 cl2 p-b-15">Category</div>
+                    <ul>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="homme">
+                                Homme
+                            </a>
+                        </li>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="femme">
+                                Femme
+                            </a>
+                        </li>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="enfant">
+                                Enfant
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Reference Section -->
-        <div class="filter-col2 p-r-15 p-b-27">
-            <div class="mtext-102 cl2 p-b-15">Reference</div>
-            <ul>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="sac">
-                        Sac
-                    </a>
-                </li>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="chaussure">
-                        Chaussure
-                    </a>
-                </li>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="casquette">
-                        Casquette
-                    </a>
-                </li>
-            </ul>
-        </div>
+                <!-- Reference Section -->
+                <div class="filter-col2 p-r-15 p-b-27">
+                    <div class="mtext-102 cl2 p-b-15">Reference</div>
+                    <ul>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="sac">
+                                Sac
+                            </a>
+                        </li>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="chaussure">
+                                Chaussure
+                            </a>
+                        </li>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="casquette">
+                                Casquette
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Taille Section -->
-        <div class="filter-col3 p-r-15 p-b-27">
-            <div class="mtext-102 cl2 p-b-15">Taille</div>
-            <ul>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="S">
-                        S
-                    </a>
-                </li>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="M">
-                        M
-                    </a>
-                </li>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="L">
-                        L
-                    </a>
-                </li>
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="XL">
-                        XL
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+                <!-- Taille Section -->
+                <div class="filter-col3 p-r-15 p-b-27">
+                    <div class="mtext-102 cl2 p-b-15">Taille</div>
+                    <ul>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="S">
+                                S
+                            </a>
+                        </li>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="M">
+                                M
+                            </a>
+                        </li>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="L">
+                                L
+                            </a>
+                        </li>
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="XL">
+                                XL
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 </div>
 
 <!-- JavaScript to Handle Filtering -->

@@ -13,9 +13,14 @@
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ strtolower($product->Catégorie) }}">
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
-                                <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                    Voir le produit
+                                 <a href="{{ route('detail', $product->id) }}">
+                                     <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
+                                </a>                               
+                                 <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
+                                    style="background-color: yellow; color: black; text-decoration: none;"
+                                     onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                                     onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
+                                     Voir le produit
                                 </a>
                             </div>
                             <div class="block2-txt flex-w flex-t p-t-14">

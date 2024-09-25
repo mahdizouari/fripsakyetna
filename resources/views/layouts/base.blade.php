@@ -783,7 +783,6 @@
 					</div>
 				</div>
 				<!-- Notification Container -->
-				<!-- Notification Container -->
 
 
 				<!-- Wishlist Icon -->
@@ -876,6 +875,7 @@
 				<input class="plh3" type="text" name="search" placeholder="Recherche..." required>
 			</form>
 		</div>
+        
 	</div>
 
 
