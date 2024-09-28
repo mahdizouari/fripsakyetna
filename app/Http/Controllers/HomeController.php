@@ -27,20 +27,44 @@ class HomeController extends Controller
     }
 
         
-    public function product()
-{
-    // Retrieve active products and paginate them
-    $products = produits::where('is_active', true)->paginate(16); // 16 products per page
-
-    // Retrieve distinct tailles from active products for the filter
-    $taillesDisponibles = produits::where('is_active', true)
-                                  ->whereNotNull('taille')
-                                  ->distinct('taille')
-                                  ->pluck('taille');
-
-    // Pass both products and tailles to the view
-    return view('prod', compact('products', 'taillesDisponibles'));
-}
+    public function product(Request $request)
+    {
+        // Get filter parameters from the request
+        $category = $request->input('category');
+        $reference = $request->input('reference');
+        $taille = $request->input('taille');
+    
+        // Start the query for active products
+        $query = produits::where('is_active', true);
+    
+        // Apply category filter if selected
+        if ($category) {
+            $query->where('Catégorie', $category);
+        }
+    
+        // Apply reference filter if selected
+        if ($reference) {
+            $query->where('Référence', $reference);
+        }
+    
+        // Apply taille filter if selected
+        if ($taille) {
+            $query->where('taille', $taille);
+        }
+    
+        // Paginate the results (16 per page)
+        $products = $query->paginate(16);
+    
+        // Retrieve distinct tailles for the filter options
+        $taillesDisponibles = produits::where('is_active', true)
+                                      ->whereNotNull('taille')
+                                      ->distinct('taille')
+                                      ->pluck('taille');
+    
+        // Return the view with the filtered products and available tailles
+        return view('prod', compact('products', 'taillesDisponibles'));
+    }
+    
 
 
     public function about ()

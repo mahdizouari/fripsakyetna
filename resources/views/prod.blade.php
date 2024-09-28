@@ -54,142 +54,159 @@
                 <div class="dis-none panel-filter w-full p-t-10">
                     <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 
-                        <!-- Category Section -->
-                        <div class="filter-col1 p-r-15 p-b-27">
-                            <div class="mtext-102 cl2 p-b-15">Category</div>
-                            <ul>
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="homme">
-                                        Homme
-                                    </a>
-                                </li>
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="femme">
-                                        Femme
-                                    </a>
-                                </li>
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="enfant">
-                                        Enfant
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                      <!-- Category Section -->
+<!-- Filter for Desktop -->
+<div class="filter-desktop d-none d-lg-block">
+    <!-- Category Section -->
+    <div class="filter-col1 p-r-15 p-b-27">
+        <div class="mtext-102 cl2 p-b-15">Category</div>
+        <ul>
+            @foreach(['homme', 'femme', 'enfant'] as $category)
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
+                        {{ ucfirst($category) }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
-                        <!-- Reference Section -->
-                        <div class="filter-col2 p-r-15 p-b-27">
-                            <div class="mtext-102 cl2 p-b-15">Reference</div>
-                            <ul>
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="sac">
-                                        Sac
-                                    </a>
-                                </li>
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="chaussure">
-                                        Chaussure
-                                    </a>
-                                </li>
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="casquette">
-                                        Casquette
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+    <!-- Reference Section -->
+    <div class="filter-col2 p-r-15 p-b-27">
+        <div class="mtext-102 cl2 p-b-15">Reference</div>
+        <ul>
+            @foreach(['sac', 'chaussure', 'casquette'] as $reference)
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
+                        {{ ucfirst($reference) }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
-                        <!-- Taille Section -->
-                        <div class="filter-col3 p-r-15 p-b-27">
-                        <div class="mtext-102 cl2 p-b-15">Taille</div>
-                            <ul>
-                                @foreach($taillesDisponibles as $taille)
-                                    <li class="p-b-6">
-                                        <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="{{ $taille }}">
-                                            {{ $taille }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
+    <!-- Taille Section -->
+    <div class="filter-col3 p-r-15 p-b-27">
+        <div class="mtext-102 cl2 p-b-15">Taille</div>
+        <ul>
+            @foreach($taillesDisponibles as $taille)
+                <li class="p-b-6">
+                    <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
+                        {{ $taille }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+
+<!-- Filter for Mobile -->
+<div class="filter-mobile d-lg-none">
+    <!-- Mobile Filter Toggle -->
+    <button class="btn-show-filter">Show Filters</button>
+
+    <div class="filter-mobile-content dis-none panel-filter w-full p-t-10">
+        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+            <!-- Category Section -->
+            <div class="filter-col1 p-r-15 p-b-27">
+                <div class="mtext-102 cl2 p-b-15">Category</div>
+                <ul>
+                    @foreach(['homme', 'femme', 'enfant'] as $category)
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
+                                {{ ucfirst($category) }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Reference Section -->
+            <div class="filter-col2 p-r-15 p-b-27">
+                <div class="mtext-102 cl2 p-b-15">Reference</div>
+                <ul>
+                    @foreach(['sac', 'chaussure', 'casquette'] as $reference)
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
+                                {{ ucfirst($reference) }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Taille Section -->
+            <div class="filter-col3 p-r-15 p-b-27">
+                <div class="mtext-102 cl2 p-b-15">Taille</div>
+                <ul>
+                    @foreach($taillesDisponibles as $taille)
+                        <li class="p-b-6">
+                            <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
+                                {{ $taille }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
                     </div>
              </div>
 
         <!-- JavaScript to Handle Filtering -->
         <script>
-            let selectedCategory = '';
-            let selectedReference = '';
-            let selectedTaille = '';
+          let selectedCategory = '';
+let selectedReference = '';
+let selectedTaille = '';
 
-            // Toggle category filter
-            document.querySelectorAll('.category-filter').forEach(function (el) {
-                el.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (selectedCategory === this.dataset.category) {
-                        // Unselect if already selected
-                        selectedCategory = '';
-                        this.classList.remove('active');
-                    } else {
-                        // Select new category
-                        selectedCategory = this.dataset.category;
-                        document.querySelectorAll('.category-filter').forEach(function (btn) {
-                            btn.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                    applyFilters();
-                });
-            });
+document.querySelectorAll('.category-filter').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+        e.preventDefault();
+        selectedCategory = this.dataset.category;
+        applyFilters();
+    });
+});
 
-            // Toggle reference filter
-            document.querySelectorAll('.reference-filter').forEach(function (el) {
-                el.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (selectedReference === this.dataset.reference) {
-                        // Unselect if already selected
-                        selectedReference = '';
-                        this.classList.remove('active');
-                    } else {
-                        // Select new reference
-                        selectedReference = this.dataset.reference;
-                        document.querySelectorAll('.reference-filter').forEach(function (btn) {
-                            btn.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                    applyFilters();
-                });
-            });
+document.querySelectorAll('.reference-filter').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+        e.preventDefault();
+        selectedReference = this.dataset.reference;
+        applyFilters();
+    });
+});
 
-            // Toggle taille filter
-            document.querySelectorAll('.taille-filter').forEach(function (el) {
-                el.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (selectedTaille === this.dataset.taille) {
-                        // Unselect if already selected
-                        selectedTaille = '';
-                        this.classList.remove('active');
-                    } else {
-                        // Select new taille
-                        selectedTaille = this.dataset.taille;
-                        document.querySelectorAll('.taille-filter').forEach(function (btn) {
-                            btn.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                    applyFilters();
-                });
-            });
+document.querySelectorAll('.taille-filter').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+        e.preventDefault();
+        selectedTaille = this.dataset.taille;
+        applyFilters();
+    });
+});
 
-            // Function to apply filters and redirect to the filtered URL
-            function applyFilters() {
-                // Only redirect when all filters are selected
-                if (selectedCategory && selectedReference && selectedTaille) {
-                    let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
-                    window.location.href = '/prod' + queryString;
-                }
-            }
+function applyFilters() {
+    // Check that all 3 parameters have been selected before filtering
+    if (selectedCategory && selectedReference && selectedTaille) {
+        let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
+        window.location.href = '/prod' + queryString;
+    }
+}
+document.querySelector('.btn-show-filter').addEventListener('click', function() {
+    document.querySelector('.filter-mobile-content').classList.toggle('dis-none');
+});
+
+
         </script>
+        <style>
+            .filter-link.active {
+    color: #ffffff;
+    background-color: #333333;
+}
+
+        </style>
 
 
 
