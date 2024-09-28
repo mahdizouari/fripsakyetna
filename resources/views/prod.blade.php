@@ -51,121 +51,147 @@
             </div>
 
             <!-- Filter -->
-            <div class="dis-none panel-filter w-full p-t-10">
-            <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                <div class="dis-none panel-filter w-full p-t-10">
+                    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 
-                <!-- Category Section -->
-                <div class="filter-col1 p-r-15 p-b-27">
-                    <div class="mtext-102 cl2 p-b-15">Category</div>
-                    <ul>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="homme">
-                                Homme
-                            </a>
-                        </li>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="femme">
-                                Femme
-                            </a>
-                        </li>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="enfant">
-                                Enfant
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                        <!-- Category Section -->
+                        <div class="filter-col1 p-r-15 p-b-27">
+                            <div class="mtext-102 cl2 p-b-15">Category</div>
+                            <ul>
+                                <li class="p-b-6">
+                                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="homme">
+                                        Homme
+                                    </a>
+                                </li>
+                                <li class="p-b-6">
+                                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="femme">
+                                        Femme
+                                    </a>
+                                </li>
+                                <li class="p-b-6">
+                                    <a href="#" class="filter-link stext-106 trans-04 category-filter" data-category="enfant">
+                                        Enfant
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
-                <!-- Reference Section -->
-                <div class="filter-col2 p-r-15 p-b-27">
-                    <div class="mtext-102 cl2 p-b-15">Reference</div>
-                    <ul>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="sac">
-                                Sac
-                            </a>
-                        </li>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="chaussure">
-                                Chaussure
-                            </a>
-                        </li>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="casquette">
-                                Casquette
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                        <!-- Reference Section -->
+                        <div class="filter-col2 p-r-15 p-b-27">
+                            <div class="mtext-102 cl2 p-b-15">Reference</div>
+                            <ul>
+                                <li class="p-b-6">
+                                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="sac">
+                                        Sac
+                                    </a>
+                                </li>
+                                <li class="p-b-6">
+                                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="chaussure">
+                                        Chaussure
+                                    </a>
+                                </li>
+                                <li class="p-b-6">
+                                    <a href="#" class="filter-link stext-106 trans-04 reference-filter" data-reference="casquette">
+                                        Casquette
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
-                <!-- Taille Section -->
-                <div class="filter-col3 p-r-15 p-b-27">
-                    <div class="mtext-102 cl2 p-b-15">Taille</div>
-                    <ul>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="S">
-                                S
-                            </a>
-                        </li>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="M">
-                                M
-                            </a>
-                        </li>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="L">
-                                L
-                            </a>
-                        </li>
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="XL">
-                                XL
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-</div>
+                        <!-- Taille Section -->
+                        <div class="filter-col3 p-r-15 p-b-27">
+                        <div class="mtext-102 cl2 p-b-15">Taille</div>
+                            <ul>
+                                @foreach($taillesDisponibles as $taille)
+                                    <li class="p-b-6">
+                                        <a href="#" class="filter-link stext-106 trans-04 taille-filter" data-taille="{{ $taille }}">
+                                            {{ $taille }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
 
-<!-- JavaScript to Handle Filtering -->
-<script>
-    let selectedCategory = '';
-    let selectedReference = '';
-    let selectedTaille = '';
+                    </div>
+             </div>
 
-    // Category filter click event
-    document.querySelectorAll('.category-filter').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            selectedCategory = this.dataset.category;
-            applyFilters();
-        });
-    });
+        <!-- JavaScript to Handle Filtering -->
+        <script>
+            let selectedCategory = '';
+            let selectedReference = '';
+            let selectedTaille = '';
 
-    // Reference filter click event
-    document.querySelectorAll('.reference-filter').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            selectedReference = this.dataset.reference;
-            applyFilters();
-        });
-    });
+            // Toggle category filter
+            document.querySelectorAll('.category-filter').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (selectedCategory === this.dataset.category) {
+                        // Unselect if already selected
+                        selectedCategory = '';
+                        this.classList.remove('active');
+                    } else {
+                        // Select new category
+                        selectedCategory = this.dataset.category;
+                        document.querySelectorAll('.category-filter').forEach(function (btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                    applyFilters();
+                });
+            });
 
-    // Taille filter click event
-    document.querySelectorAll('.taille-filter').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            selectedTaille = this.dataset.taille;
-            applyFilters();
-        });
-    });
+            // Toggle reference filter
+            document.querySelectorAll('.reference-filter').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (selectedReference === this.dataset.reference) {
+                        // Unselect if already selected
+                        selectedReference = '';
+                        this.classList.remove('active');
+                    } else {
+                        // Select new reference
+                        selectedReference = this.dataset.reference;
+                        document.querySelectorAll('.reference-filter').forEach(function (btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                    applyFilters();
+                });
+            });
 
-    // Function to apply filters and redirect to the filtered URL
-    function applyFilters() {
-        let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
-        window.location.href = '/prod' + queryString;
-    }
-</script>
+            // Toggle taille filter
+            document.querySelectorAll('.taille-filter').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (selectedTaille === this.dataset.taille) {
+                        // Unselect if already selected
+                        selectedTaille = '';
+                        this.classList.remove('active');
+                    } else {
+                        // Select new taille
+                        selectedTaille = this.dataset.taille;
+                        document.querySelectorAll('.taille-filter').forEach(function (btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                    applyFilters();
+                });
+            });
+
+            // Function to apply filters and redirect to the filtered URL
+            function applyFilters() {
+                // Only redirect when all filters are selected
+                if (selectedCategory && selectedReference && selectedTaille) {
+                    let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
+                    window.location.href = '/prod' + queryString;
+                }
+            }
+        </script>
+
+
 
 
         </div>

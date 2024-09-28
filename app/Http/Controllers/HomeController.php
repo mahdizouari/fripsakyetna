@@ -29,10 +29,19 @@ class HomeController extends Controller
         
     public function product()
 {
-    $products = produits::where('is_active', true)->paginate(16); // Limit to 30 products per page
+    // Retrieve active products and paginate them
+    $products = produits::where('is_active', true)->paginate(16); // 16 products per page
 
-    return view('prod', compact('products'));
+    // Retrieve distinct tailles from active products for the filter
+    $taillesDisponibles = produits::where('is_active', true)
+                                  ->whereNotNull('taille')
+                                  ->distinct('taille')
+                                  ->pluck('taille');
+
+    // Pass both products and tailles to the view
+    return view('prod', compact('products', 'taillesDisponibles'));
 }
+
 
     public function about ()
     {

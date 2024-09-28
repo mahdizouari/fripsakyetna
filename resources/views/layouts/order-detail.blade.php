@@ -744,16 +744,15 @@
 						</div>
 							
 						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-							<a href="/panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
+							<a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</a>
 						</div>
 						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-							<a href="/wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
+							<a href="wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</a>
 						</div>
-                        
 
 
 
@@ -787,7 +786,6 @@
 						<i class="zmdi zmdi-search"></i>
 					</div>
 				</div>
-				<!-- Notification Container -->
 				<!-- Notification Container -->
 
 
@@ -825,7 +823,7 @@
 				</li>
 
 				<li>
-					<a href="{{url('/prod')}}" class="label1 rs1" data-label1="hot">Produits</a>
+					<a href="/prod" class="label1 rs1" data-label1="hot">Produits</a>
 				</li>
 				
 			
@@ -833,12 +831,12 @@
 
 			
 				<li>
-					<a href="{{url('/panier')}}">Panier </a>
+					<a href="/panier">Panier </a>
 				</li>
 
 
 				<li>
-					<a href="{{url('/about')}}">about</a>
+					<a href="/about">about</a>
 				</li>
 				
 				
