@@ -360,7 +360,6 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
   display: flex !important;
   flex-wrap: wrap !important;
   justify-content: space-between !important;
-  padding: 20px !important;
 }
 
 /* Filter Columns (Category, Reference, Taille) */

@@ -446,7 +446,6 @@
 .logo-image {
     width: 50px;  /* Adjust the width to fit your design */
     height: auto;  /* Maintain aspect ratio */
-    margin-right: 100px;  /* Space between image and text */
 }
 
 .logo-text {

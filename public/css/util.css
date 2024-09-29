@@ -3436,9 +3436,10 @@ iframe {border: none;}
 }
 
 .flex-r-m {
-	justify-content: flex-end;
-	-ms-align-items: center;
-	align-items: center;
+    display: flex;
+
+    flex-wrap: nowrap;
+    justify-content: flex-end;
 }
 
 .flex-sa-m {

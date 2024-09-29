@@ -424,8 +424,7 @@
 <style>
     .logo-mobile {
     display: flex;
-    align-items: center;
-    padding: 10px 0;
+    justify-content: flex-start;
 }
 
 .logo-mobile a {
@@ -438,7 +437,7 @@
 .logo-image {
     width: 50px;  /* Adjust the width to fit your design */
     height: auto;  /* Maintain aspect ratio */
-    margin-right: 100px;  /* Space between image and text */
+    
 }
 
 .logo-text {
@@ -1318,10 +1317,7 @@ $(document).ready(function() {
 								.p-t-33 {
 									padding-top: 20px;
 								}
-								.flex-w {
-									flex-direction: column;
-									align-items: flex-start;
-								}
+
 								.flex-w .size-203, .flex-w .size-204 {
 									margin-bottom: 10px;
 								}
