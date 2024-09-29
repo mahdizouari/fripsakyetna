@@ -34,7 +34,7 @@
                 <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                     <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                     <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Filter
+                    Filtrer
                 </div>
 
                
@@ -55,102 +55,117 @@
                     <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 
                       <!-- Category Section -->
-<!-- Filter for Desktop -->
-<div class="filter-desktop d-none d-lg-block">
-    <!-- Category Section -->
-    <div class="filter-col1 p-r-15 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">Category</div>
-        <ul>
-            @foreach(['homme', 'femme', 'enfant'] as $category)
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
-                        {{ ucfirst($category) }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
+                    <!-- Filter for Desktop -->
+                    <!-- Filter for Desktop and Larger Screens -->
+                    <div class="filter-desktop d-none d-lg-block p-t-15">
+                        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm justify-content-between">
 
-    <!-- Reference Section -->
-    <div class="filter-col2 p-r-15 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">Reference</div>
-        <ul>
-            @foreach(['sac', 'chaussure', 'casquette'] as $reference)
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
-                        {{ ucfirst($reference) }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
+                            <!-- Category Section -->
+                            <div class="filter-col1 p-r-15 p-b-27 text-center">
+                                <div class="mtext-102 cl2 p-b-15">Catégorie</div>
+                                <ul class="flex-row d-inline-block">
+                                    @foreach(['homme', 'femme', 'enfant'] as $category)
+                                        <li class="p-b-6 d-inline-block p-r-10">
+                                            <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
+                                                {{ ucfirst($category) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
 
-    <!-- Taille Section -->
-    <div class="filter-col3 p-r-15 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">Taille</div>
-        <ul>
-            @foreach($taillesDisponibles as $taille)
-                <li class="p-b-6">
-                    <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
-                        {{ $taille }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-</div>
+                            <!-- Reference Section -->
+                            <div class="filter-col2 p-r-15 p-b-27 text-center">
+                                <div class="mtext-102 cl2 p-b-15">Référence</div>
+                                <ul class="flex-row d-inline-block">
+                                    @foreach(['sac', 'chaussure', 'casquette'] as $reference)
+                                        <li class="p-b-6 d-inline-block p-r-10">
+                                            <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
+                                                {{ ucfirst($reference) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
 
-<!-- Filter for Mobile -->
-<div class="filter-mobile d-lg-none">
-    <!-- Mobile Filter Toggle -->
-    <button class="btn-show-filter">Show Filters</button>
+                            <!-- Taille Section -->
+                            <div class="filter-col3 p-r-15 p-b-27 text-center">
+                                <div class="mtext-102 cl2 p-b-15">Taille</div>
+                                <ul class="flex-row d-inline-block">
+                                    @foreach($taillesDisponibles as $taille)
+                                        <li class="p-b-6 d-inline-block p-r-10">
+                                            <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
+                                                {{ $taille }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
 
-    <div class="filter-mobile-content dis-none panel-filter w-full p-t-10">
-        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-            <!-- Category Section -->
-            <div class="filter-col1 p-r-15 p-b-27">
-                <div class="mtext-102 cl2 p-b-15">Category</div>
-                <ul>
-                    @foreach(['homme', 'femme', 'enfant'] as $category)
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
-                                {{ ucfirst($category) }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                            <!-- Filter Button Section -->
+                            <div class="filter-col4 p-b-27 text-center">
+                                <button id="applyFilterButton" class="filter-button mtext-106 trans-04">Appliquer le filtre</button>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- Reference Section -->
-            <div class="filter-col2 p-r-15 p-b-27">
-                <div class="mtext-102 cl2 p-b-15">Reference</div>
-                <ul>
-                    @foreach(['sac', 'chaussure', 'casquette'] as $reference)
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
-                                {{ ucfirst($reference) }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
 
-            <!-- Taille Section -->
-            <div class="filter-col3 p-r-15 p-b-27">
-                <div class="mtext-102 cl2 p-b-15">Taille</div>
-                <ul>
-                    @foreach($taillesDisponibles as $taille)
-                        <li class="p-b-6">
-                            <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
-                                {{ $taille }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+                 <!-- Filter for Mobile -->
+                <div class="filter-mobile d-lg-none">
+                    <!-- Mobile Filter Toggle -->
+
+                    <div class="filter-mobile-content dis-none panel-filter w-full p-t-10">
+                        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                            <!-- Category Section -->
+                            <div class="filter-col1 p-r-15 p-b-27">
+                                <div class="mtext-102 cl2 p-b-15">Category</div>
+                                <ul class="category-filter-list flex-row">
+                                    @foreach(['homme', 'femme', 'enfant'] as $category)
+                                        <li class="p-b-6">
+                                            <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
+                                                {{ ucfirst($category) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            <!-- Reference Section -->
+                            <div class="filter-col2 p-r-15 p-b-27">
+                                <div class="mtext-102 cl2 p-b-15">Reference</div>
+                                <ul class="reference-filter-list flex-row">
+                                    @foreach(['sac', 'chaussure', 'casquette'] as $reference)
+                                        <li class="p-b-6">
+                                            <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
+                                                {{ ucfirst($reference) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            <!-- Taille Section -->
+                            <div class="filter-col3 p-r-15 p-b-27">
+                                <div class="mtext-102 cl2 p-b-15"> Taille </div>
+                                <ul class="taille-filter-list flex-row">
+                                    @foreach($taillesDisponibles as $taille)
+                                        <li class="p-b-6">
+                                            <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
+                                                {{ $taille }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
+                    <!-- Apply Filters Button -->
+                    <div class="apply-filter-btn-wrapper text-center p-t-20">
+                            <button class="filter-button apply-filters" id="apply-filters-btn">Apply Filters</button>
+                        </div>
+                    </div>
+                </div>
+
 
 
 
@@ -159,55 +174,158 @@
 
         <!-- JavaScript to Handle Filtering -->
         <script>
-          let selectedCategory = '';
+            let selectedCategory = '';
 let selectedReference = '';
 let selectedTaille = '';
 
+// Category filter click event with toggle functionality
 document.querySelectorAll('.category-filter').forEach(function (el) {
     el.addEventListener('click', function (e) {
         e.preventDefault();
-        selectedCategory = this.dataset.category;
-        applyFilters();
+        const isActive = this.classList.contains('active');
+
+        // Toggle active class
+        document.querySelectorAll('.category-filter').forEach(function (el) {
+            el.classList.remove('active');
+        });
+
+        if (!isActive) {
+            selectedCategory = this.dataset.category;
+            this.classList.add('active');
+        } else {
+            selectedCategory = ''; // Reset the selection if unpressed
+        }
     });
 });
 
+// Reference filter click event with toggle functionality
 document.querySelectorAll('.reference-filter').forEach(function (el) {
     el.addEventListener('click', function (e) {
         e.preventDefault();
-        selectedReference = this.dataset.reference;
-        applyFilters();
+        const isActive = this.classList.contains('active');
+
+        // Toggle active class
+        document.querySelectorAll('.reference-filter').forEach(function (el) {
+            el.classList.remove('active');
+        });
+
+        if (!isActive) {
+            selectedReference = this.dataset.reference;
+            this.classList.add('active');
+        } else {
+            selectedReference = ''; // Reset the selection if unpressed
+        }
     });
 });
 
+// Taille filter click event with toggle functionality
 document.querySelectorAll('.taille-filter').forEach(function (el) {
     el.addEventListener('click', function (e) {
         e.preventDefault();
-        selectedTaille = this.dataset.taille;
-        applyFilters();
+        const isActive = this.classList.contains('active');
+
+        // Toggle active class
+        document.querySelectorAll('.taille-filter').forEach(function (el) {
+            el.classList.remove('active');
+        });
+
+        if (!isActive) {
+            selectedTaille = this.dataset.taille;
+            this.classList.add('active');
+        } else {
+            selectedTaille = ''; // Reset the selection if unpressed
+        }
     });
 });
 
-function applyFilters() {
-    // Check that all 3 parameters have been selected before filtering
-    if (selectedCategory && selectedReference && selectedTaille) {
-        let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
-        window.location.href = '/prod' + queryString;
-    }
-}
-document.querySelector('.btn-show-filter').addEventListener('click', function() {
-    document.querySelector('.filter-mobile-content').classList.toggle('dis-none');
+// Apply filter button click event
+document.getElementById('applyFilterButton').addEventListener('click', function () {
+    let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
+    window.location.href = '/prod' + queryString;
+});
+// Apply filter button click event
+document.getElementById('apply-filters-btn').addEventListener('click', function () {
+    let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
+    window.location.href = '/prod' + queryString;
 });
 
 
         </script>
-        <style>
-            .filter-link.active {
-    color: #ffffff;
-    background-color: #333333;
+       <style>
+        /* Styling for active filter links */
+.filter-link.active {
+    color: white;
+    background-color: #ffcc00;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-        </style>
+/* Yellow button for filter application */
+.filter-button {
+    background-color: #ffcc00;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
 
+.filter-button:hover {
+    background-color: #ffb700;
+}
+
+/* Horizontal layout of sections */
+.wrap-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Ensuring filters appear side by side */
+.filter-col1, 
+.filter-col2, 
+.filter-col3, 
+.filter-col4 {
+    flex-basis: 20%; /* Adjust this value to fit your layout */
+    text-align: center;
+}
+
+/* Adjustments for mobile view */
+@media (max-width: 991px) {
+    .wrap-filter {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    /* Stack filter sections vertically on mobile */
+    .filter-col1, 
+    .filter-col2, 
+    .filter-col3, 
+    .filter-col4 {
+        flex-basis: 100%;
+        text-align: left;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f9f9f9; /* Optional background to make sections stand out */
+        border-radius: 10px; /* Optional rounding for a polished look */
+    }
+}
+
+/* Optional: To improve spacing on all screen sizes */
+.wrap-filter ul {
+    list-style-type: none;
+    padding-left: 0; /* Ensures no padding on the left */
+    margin-bottom: 0; /* Removes bottom margin for cleaner look */
+}
+
+.wrap-filter li {
+    margin-bottom: 15px; /* Increased spacing between items */
+    font-size: 16px; /* Slightly larger font for better readability */
+}
+
+       </style>
 
 
 
