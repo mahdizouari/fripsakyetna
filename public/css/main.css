@@ -1794,20 +1794,7 @@ button.mfp-close {
 .filter-col4 {width: 20%;}
 
 /*---------------------------------------------*/
-.filter-link {
-  color: #aaa;
-  border-bottom: 1px solid transparent;
-}
 
-.filter-link:hover {
-  color: #ccd370;
-  border-bottom: 1px solid #88875d;
-}
-
-.filter-link-active {
-  color: #cecc51;
-  border-bottom: 1px solid #a1a059;
-}
 
 @media (max-width: 767px) {
   .filter-col1,

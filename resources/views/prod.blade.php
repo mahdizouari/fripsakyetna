@@ -54,61 +54,7 @@
                 <div class="dis-none panel-filter w-full p-t-10">
                     <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 
-                      <!-- Category Section -->
-                    <!-- Filter for Desktop -->
-                    <!-- Filter for Desktop and Larger Screens -->
-                    <div class="filter-desktop d-none d-lg-block p-t-15">
-                        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm justify-content-between">
-
-                            <!-- Category Section -->
-                            <div class="filter-col1 p-r-15 p-b-27 text-center">
-                                <div class="mtext-102 cl2 p-b-15">Catégorie</div>
-                                <ul class="flex-row d-inline-block">
-                                    @foreach(['homme', 'femme', 'enfant'] as $category)
-                                        <li class="p-b-6 d-inline-block p-r-10">
-                                            <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
-                                                {{ ucfirst($category) }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                            <!-- Reference Section -->
-                            <div class="filter-col2 p-r-15 p-b-27 text-center">
-                                <div class="mtext-102 cl2 p-b-15">Référence</div>
-                                <ul class="flex-row d-inline-block">
-                                    @foreach(['sac', 'chaussure', 'casquette'] as $reference)
-                                        <li class="p-b-6 d-inline-block p-r-10">
-                                            <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
-                                                {{ ucfirst($reference) }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                            <!-- Taille Section -->
-                            <div class="filter-col3 p-r-15 p-b-27 text-center">
-                                <div class="mtext-102 cl2 p-b-15">Taille</div>
-                                <ul class="flex-row d-inline-block">
-                                    @foreach($taillesDisponibles as $taille)
-                                        <li class="p-b-6 d-inline-block p-r-10">
-                                            <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
-                                                {{ $taille }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                            <!-- Filter Button Section -->
-                            <div class="filter-col4 p-b-27 text-center">
-                                <button id="applyFilterButton" class="filter-button mtext-106 trans-04">Appliquer le filtre</button>
-                            </div>
-                        </div>
-                    </div>
-
+                   
 
                  <!-- Filter for Mobile -->
                 <div class="filter-mobile d-lg-none">
@@ -238,11 +184,7 @@ document.querySelectorAll('.taille-filter').forEach(function (el) {
     });
 });
 
-// Apply filter button click event
-document.getElementById('applyFilterButton').addEventListener('click', function () {
-    let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
-    window.location.href = '/prod' + queryString;
-});
+
 // Apply filter button click event
 document.getElementById('apply-filters-btn').addEventListener('click', function () {
     let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
@@ -251,7 +193,7 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
 
 
         </script>
-       <style>
+       <style>  
         /* Styling for active filter links */
 .filter-link.active {
     color: white;
@@ -293,11 +235,7 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
 }
 
 /* Adjustments for mobile view */
-@media (max-width: 991px) {
-    .wrap-filter {
-        flex-direction: column;
-        padding: 15px;
-    }
+
 
     /* Stack filter sections vertically on mobile */
     .filter-col1, 
@@ -311,7 +249,7 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
         background-color: #f9f9f9; /* Optional background to make sections stand out */
         border-radius: 10px; /* Optional rounding for a polished look */
     }
-}
+
 
 /* Optional: To improve spacing on all screen sizes */
 .wrap-filter ul {
@@ -401,22 +339,93 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
 }
 
 /* Mobile and Tablet adjustments */
-@media (max-width: 768px) {
-    .block2 {
-        padding: 8px;
-    }
 
-    .block2-pic img {
-        height: auto;
-    }
+
+
+</style>
+<style>
+    /* General Mobile Filter Section Styling */
+.filter-mobile {
+    flex-direction: none !important;
+    align-items: none !important;
+  width: 100% !important;
+  display: block !important;
 }
 
-@media (max-width: 576px) {
-    .col-6 {
-        max-width: 50%;
-        flex: 0 0 50%; /* 2 items per row for smaller devices */
-    }
+.filter-mobile-content {
+  padding: 10px 15px !important;
 }
+
+.wrap-filter {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  padding: 20px !important;
+}
+
+/* Filter Columns (Category, Reference, Taille) */
+.filter-col1, .filter-col2, .filter-col3 {
+  flex: 1 !important;
+  margin-right: 15px !important;
+  margin-bottom: 20px !important;
+}
+
+.mtext-102 {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  margin-bottom: 10px !important;
+}
+
+.filter-link {
+  font-size: 16px !important;
+  display: inline-block !important;
+  color: #333 !important;
+  padding: 5px 10px !important;
+  transition: color 0.3s ease !important;
+  background-color:0.3s ease !important;
+}
+
+
+/* Filter List Styling */
+.category-filter-list, .reference-filter-list, .taille-filter-list {
+  list-style-type: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.category-filter-list li, .reference-filter-list li, .taille-filter-list li {
+  margin-right: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Flex Settings for Full Window Display */
+.flex-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+/* Button Styling */
+.apply-filter-btn-wrapper {
+  text-align: center !important;
+}
+
+#apply-filters-btn {
+  background-color: #ffcc00 !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  font-size: 16px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+#apply-filters-btn:hover {
+  background-color: #333 !important;
+}
+
+/* Responsive Design */
+
 
 </style>
 
