@@ -38,6 +38,8 @@ Route::get('/qui-somme-nous', [HomeController::class, 'quiSommeNous'])->name('qu
 Route::get('/livraison-echange', [HomeController::class, 'livraisonEchange'])->name('livraison-echange');
 Route::get('/politique-echange', [HomeController::class, 'politiqueEchange'])->name('politique-echange');
 Route::get('/terms-conditions', [HomeController::class, 'termsConditions'])->name('terms-conditions');
+Route::get('/Aide_&_FAQs', [HomeController::class, 'FAQs'])->name('Aide_&_FAQs');
+
 
 
 

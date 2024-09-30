@@ -311,6 +311,9 @@ public function politiqueEchange() {
 public function termsConditions() {
     return view('pages.terms-conditions');
 }
+public function FAQs() {
+    return view('pages.Aide_&_FAQs');
+}
   
 public function index(Request $request)
 {

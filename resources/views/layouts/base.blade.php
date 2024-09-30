@@ -811,54 +811,49 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			<ul class="main-menu-m">
-				<li>
-					<a href="/">Accueil</a>
-					
-				</li>
-
-				<li>
-					<a href="{{url('/prod')}}" class="label1 rs1" data-label1="hot">Produits</a>
-				</li>
-				
-			
-				<li>
-
-			
-				<li>
-					<a href="{{url('/panier')}}">Panier </a>
-				</li>
+    <ul class="main-menu-m">
+        <!-- Main Links -->
+        <li>
+            <a href="/" class="menu-item">Accueil</a>
+            <a href="{{ url('/prod') }}" class="menu-item">Produits</a>
+            <a href="{{ url('/panier') }}" class="menu-item">Panier</a>
+            <a href="{{ url('/about') }}" class="menu-item">A propos</a>
 
 
-				<li>
-					<a href="{{url('/about')}}">about</a>
-				</li>
-				
-				
 
-					
-				<li >
-					
-							@auth
-								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-									<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-								@endif
+        </li>
+       
 
+        <!-- Authentication Links -->
+        <li>
+            @auth
+                @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
+                    <a href="{{ url('/dashboard') }}" class="menu-item">Dashboard</a>
+                @endif
 
-								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-									@csrf
-								</form>
-								@else
-								<a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                <!-- Logout -->
+                <a href="{{ route('logout') }}" 
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                   class="menu-item">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            @else
+                <!-- Login and Register -->
+                <a href="{{ route('login') }}" class="menu-item">Log in</a>
 
-								@if (Route::has('register'))
-									<a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-								@endif
-							@endauth
-				</li>
-			</ul>
-		</div>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="menu-item">Register</a>
+                @endif
+            @endauth
+        </li>
+    </ul>
+    <!-- Footer with attribution -->
+    <span class="mtext-101 cl5 footer-text">
+        Made by <a href="https://www.facebook.com/profile.php?id=100009832151933">@Mehdi Zouari</a>
+    </span>
+</div>
+
 
 		<!-- Modal Search -->
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
@@ -906,13 +901,16 @@
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Help & FAQs
+						<a href="/Aide_&_FAQs" class="stext-102 cl2 hov-cl1 trans-04">
+                         Aide & FAQs
 						</a>
 					</li>
 					<span class="mtext-101 cl5">
-						@ Frip Sakyetna
+                    Made by <a href="https://www.facebook.com/profile.php?id=100009832151933"> @Mehdi Zouari</a>				
+
 					</span>
+                  
+                    
 				</ul>
 
 			</div>
@@ -963,6 +961,11 @@
                             Terms et Conditions 
                         </a>
                     </li>
+                    <li class="p-b-10">
+                        <a href="/Aide_&_FAQs" class="stext-107 cl7 hov-cl1 trans-04">
+                            Aide & FAQs
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -1002,7 +1005,11 @@
             <p class="stext-107 cl6 txt-center">
                 &copy; <script>document.write(new Date().getFullYear());</script> Frip Sakyetna. All rights reserved.
             </p>
+            <p class="stext-107 cl6 txt-center">
+                Made by <a href="https://www.facebook.com/profile.php?id=100009832151933">Mehdi Zouari</a> 
+            </p>
         </div>
+       
     </div>
 	</center>
 </footer>
