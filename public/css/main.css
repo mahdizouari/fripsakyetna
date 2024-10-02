@@ -382,16 +382,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   display: flex; /* Use flex to center content if needed */
   justify-content: center; /* Center the logo horizontally */
   align-items: center; /* Center the logo vertically */
-  padding-right: 25px;
   flex-grow: 1;
 }
 
-.logo-mobile img {
-  max-width: 200%; /* Ensure the logo does not exceed its container width */
-  height: 200%; /* Maintain aspect ratio */
-  max-height: 100px; /* Set a maximum height for the logo */
-  display: block;
-}
+
 
 
 

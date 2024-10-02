@@ -4,111 +4,63 @@
 
 @section('content')
 
-<div class="container mt-5">
-    <div class="card order-details">
-        <div class="">
-            <h3 class="card-title mb-1">Détails de la commande</h3>
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Produit</th>
-                        <th scope="col">Prix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @php
-                    $subtotal = 0;
-                    $shipping_cost = 8; // Fixed shipping cost
-                @endphp
-
-                <!-- Loop through all products in the order -->
-                @foreach($commandes as $commande)
-                    <tr>
-                        <td>{{ $commande->nom_de_produit }}</td>
-                        <td>{{ number_format($commande->prix , 3) }} TND</td> <!-- Total per product -->
-                    </tr>
-                    @php
-                        $subtotal += $commande->prix;  // Add product price to subtotal
-                    @endphp
-                @endforeach 
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td><strong>Sous-total :</strong></td>
-                        <td>{{ number_format($subtotal, 3) }} TND</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Expédition :</strong></td>
-                        <td>{{ number_format($shipping_cost, 3) }} TND via Livraison dans (48h-72h)</td>
-                    </tr>
-
-                    <!-- Display address, assuming all products share the same delivery address -->
-                    @if($commandes->isNotEmpty())
-                        <tr>
-                            <td><strong>Adresse :</strong></td>
-                            <td>{{ $commandes->first()->adresse }}</td> <!-- Use the address of the first product in the list -->
-                        </tr>
-                    @endif
-
-                    <tr>
-                        <td><strong>Total :</strong></td>
-                        <td>{{ number_format($subtotal + $shipping_cost, 3) }} TND</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Moyen de paiement :</strong></td>
-                        <td>Paiement à la livraison</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <div class="card-footer text-center">
-            <a href="#" class="btn btn-primary">Imprimer la facture</a>
+<div class="container mt-5 d-flex justify-content-center">
+    <!-- Card with success message -->
+    <div class="card text-center p-4" style="max-width: 600px;">
+        <div id="confirmation-message">
+            <!-- Green checkmark -->
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.97 11.03a.75.75 0 0 0 1.08-.02L11.03 8.2a.75.75 0 1 0-1.06-1.06l-2.39 2.34-1.1-1.07a.75.75 0 1 0-1.06 1.06l1.55 1.55z"/>
+                </svg>
+            </div>
+            <!-- Success message -->
+            <h2 class="mt-3">Votre commande a été enregistrée avec succès !</h2>
+            <p>Merci pour votre achat.</p>
+            <!-- Button to go back home -->
+            <a href="{{ url('/') }}" class="btn btn-yellow mt-4">Retour à l'accueil</a>
         </div>
     </div>
 </div>
 
-
-<!-- Add some basic styling for mobile responsiveness -->
+<!-- Add some basic styling -->
 <style>
-    .order-details {
+    .card {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
+        border-radius: 10px;
     }
 
-    .order-details .table th, .order-details .table td {
-        padding: 12px;
-        vertical-align: middle;
+    #confirmation-message svg {
+        width: 80px;
+        height: 80px;
+        color: green;
     }
 
-    .order-details .card-header {
-        font-size: 1.5rem;
-        font-weight: bold;
+    #confirmation-message h2 {
+        color: #28a745;
     }
 
-    .order-details .card-footer {
-        background-color: #f8f9fa;
-        padding: 15px;
-    }
-
-    .order-details .btn {
+    .btn-yellow {
         padding: 10px 20px;
+        font-size: 16px;
+        background-color: #e0a800; /* Yellow */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .btn-yellow:hover {
+        background-color: #e0a800; /* Darker yellow on hover */
     }
 
     @media (max-width: 768px) {
-        .order-details .table th, .order-details .table td {
+        .card {
+            padding: 20px;
+        }
+
+        .btn-yellow {
             font-size: 14px;
-            padding: 8px;
-        }
-
-        .order-details .card-header {
-            font-size: 1.25rem;
-        }
-
-        .order-details .btn {
             padding: 8px 16px;
-            font-size: 14px;
         }
     }
 </style>

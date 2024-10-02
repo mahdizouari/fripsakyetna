@@ -432,8 +432,7 @@
 <style>
     .logo-mobile {
     display: flex;
-    align-items: center;
-    padding: 10px 0;
+    justify-content: flex-start;
 }
 
 .logo-mobile a {
@@ -446,6 +445,7 @@
 .logo-image {
     width: 50px;  /* Adjust the width to fit your design */
     height: auto;  /* Maintain aspect ratio */
+    
 }
 
 .logo-text {
@@ -743,7 +743,7 @@
 						</div>
 							
 						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-							<a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
+							<a href="/panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</a>
 						</div>
@@ -797,7 +797,7 @@
 
 
 				<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-							<a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
+							<a href="/panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</a>
 				</div>
@@ -1578,18 +1578,22 @@ $(document).ready(function() {
   
 
 
-<script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('/js/animsition.min.js') }}"></script>
-<script src="{{ asset('/js/popper.js') }}"></script>
-<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('/js/select2.min.js') }}"></script>
-<script src="{{ asset('/js/daterangepicker.js') }}"></script>
-<script src="{{ asset('/js/slick.min.js') }}"></script>
-<script src="{{ asset('/js/parallax100.js') }}"></script>
-<script src="{{ asset('/js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('/js/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('/js/sweetalert.min.js') }}"></script>
-<script src="{{ asset('/js/slick-custom.js') }}"></script>
-<script src="{{ asset('/js/main.js') }}"></script>
+<!-- Correct way to reference the close icon -->
+
+<!-- Correct way to reference vendor JS files -->
+<script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('/order-confirmation/vendor/animsition/js/animsition.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/popper.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+<script src="{{ asset('vendor/daterangepicker/moment.min.js') }}"></script>
+<script src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('vendor/slick/slick.min.js') }}"></script>
+<script src="{{ asset('js/slick-custom.js') }}"></script>
+<script src="{{ asset('vendor/parallax100/parallax100.js') }}"></script>
+<script src="{{ asset('vendor/MagnificPopup/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('vendor/isotope/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
 
