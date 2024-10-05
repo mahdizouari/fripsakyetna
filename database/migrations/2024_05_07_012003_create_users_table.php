@@ -13,7 +13,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
+            $table->tinyInteger(column: 'is_admin')->default(0);
             $table->string('password'); // Adding the password column
             $table->timestamps();
         });

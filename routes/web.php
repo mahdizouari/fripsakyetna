@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SliderController;
+use App\Http\Middleware\IsAdmin;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -42,12 +44,6 @@ Route::get('/Aide_&_FAQs', [HomeController::class, 'FAQs'])->name('Aide_&_FAQs')
 
 
 
-
-
-
-
-
-
 // Show panier contents
 Route::get('/panier', [CartController::class, 'showPanier'])->name('showPanier');
 
@@ -58,13 +54,34 @@ Route::post('/panier/add/{productId}', [CartController::class, 'addToCart'])->na
 Route::get('/panier/remove/{productId}', [CartController::class, 'removeFromCart'])->name('deleteItem');
 
 
+
+
+
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/dashboard', function () {
+        // Check if the user has the allowed email
+        if (in_array(Auth::user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com'])) {
+            return view('dashboard');
+        }
+
+        // If the email is not allowed, redirect to the welcome page
+        return redirect()->route('welcome');
+    })->name('dashboard');
+});
+
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('isAdmin');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -73,9 +90,20 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
 Route::get('/', [HomeController::class, 'welcome']);
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/panier', [HomeController::class, 'panier']);
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
@@ -84,8 +112,6 @@ Route::get('/login', [HomeController::class, 'login'])->name('login');
 // Route for showing client profile, assuming you have a dynamic client ID
 Route::get('/client/{clientId}/profile', [HomeController::class, 'showClientProfile'])->name('client.profile');
 
-// Route for dashboard
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
 
 Route::get('/create',[HomeController::class,'create']);
