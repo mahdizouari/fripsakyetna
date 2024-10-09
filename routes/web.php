@@ -67,19 +67,8 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', function () {
-        // Check if the user has the allowed email
-        if (in_array(Auth::user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com'])) {
-            return view('dashboard');
-        }
 
-        // If the email is not allowed, redirect to the welcome page
-        return redirect()->route('welcome');
-    })->name('dashboard');
-});
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('isAdmin');
 
 
 
@@ -92,6 +81,14 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'welcome']);
 
+
+
+// For other admin-protected resources (if needed)
+Route::middleware(['auth'])->group(function () {
+    Route::resource('products', HomeController::class) ;
+    Route::get('/mspace', [HomeController::class, 'mspace'])->name('mspace');
+
+});
 
 
 
@@ -107,7 +104,7 @@ Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/panier', [HomeController::class, 'panier']);
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
-Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::get('/lg', [HomeController::class, 'lg'])->name('lg');
 
 // Route for showing client profile, assuming you have a dynamic client ID
 Route::get('/client/{clientId}/profile', [HomeController::class, 'showClientProfile'])->name('client.profile');

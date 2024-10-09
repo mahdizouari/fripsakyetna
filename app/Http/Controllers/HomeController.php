@@ -85,9 +85,9 @@ class HomeController extends Controller
     Auth::logout();
     return redirect('/');
 }
-public function login()
+public function lg()
     {
-        return view('auth.login');
+        return view('auth.lg');
     }
 
 public function showClientProfile($clientId)
@@ -96,11 +96,11 @@ public function showClientProfile($clientId)
 
     return view('client.profile', ['client' => $client]);
 }
-public function dashboard()
+public function mspace()
 
 {
     $product=produits::get();
-    return view('dashboard',compact('product')); 
+    return view('mspace',compact('product')); 
 }
 public function create()
 {  

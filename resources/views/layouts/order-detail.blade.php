@@ -702,8 +702,8 @@
 							
 						@auth
 							@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-								<li class="{{ Request::is('dashboard') ? 'active-menu' : '' }}">
-									<a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+								<li class="{{ Request::is('mspace') ? 'active-menu' : '' }}">
+									<a href="{{ url('/mspace') }}" class="nav-link">My space</a>
 								</li>
 							@endif
 
@@ -715,16 +715,8 @@
 									@csrf
 								</form>
 							</li>
-						@else
-							<li class="{{ Request::is('login') ? 'active-menu' : '' }}">
-								<a href="{{ route('login') }}" class="nav-link">Log in</a>
-							</li>
-
-							@if (Route::has('register'))
-								<li class="{{ Request::is('register') ? 'active-menu' : '' }}">
-									<a href="{{ route('register') }}" class="nav-link">Register</a>
-								</li>
-							@endif
+						
+							
 						@endauth				
 
 
@@ -845,7 +837,7 @@
 					
 							@auth
 								@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-									<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+									<a href="{{ url('/mspace') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">My space </a>
 								@endif
 
 
@@ -853,12 +845,7 @@
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
 									@csrf
 								</form>
-								@else
-								<a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-								@if (Route::has('register'))
-									<a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-								@endif
+								
 							@endauth
 				</li>
 			</ul>

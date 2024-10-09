@@ -692,39 +692,30 @@
 							<li class="{{ Request::is('about') ? 'active-menu' : '' }}">
 								<a href="{{ url('/about') }}">A propos</a>
 							</li>
+                            <li>
+                            @auth
+                                @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
+                                    <a href="{{ url('/mspace') }}" class="menu-item">My space </a>
+                                @endif
+                                    <li>
+                                        <!-- Logout -->
+                                        <a href="{{ route('logout') }}" 
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                                        class="menu-item">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    
+                                    </li>
+                            @endauth
+                            </li>
 						</ul>
 
 
-							
-						@auth
-							@if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-								<li class="{{ Request::is('dashboard') ? 'active-menu' : '' }}">
-									<a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-								</li>
-							@endif
+                        <!-- login for  clients is missing and under maintenance -->
+                         
+                        
 
-							<li>
-								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
-									Logout
-								</a>
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-									@csrf
-								</form>
-							</li>
-						@else
-							<li class="{{ Request::is('login') ? 'active-menu' : '' }}">
-								<a href="{{ route('login') }}" class="nav-link">Log in</a>
-							</li>
-
-							@if (Route::has('register'))
-								<li class="{{ Request::is('register') ? 'active-menu' : '' }}">
-									<a href="{{ route('register') }}" class="nav-link">Register</a>
-								</li>
-							@endif
-						@endauth				
-
-
-						</ul>
 						
 
 
@@ -828,7 +819,7 @@
         <li>
             @auth
                 @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-                    <a href="{{ url('/dashboard') }}" class="menu-item">Dashboard</a>
+                    <a href="{{ url('/mspace') }}" class="menu-item">My space</a>
                 @endif
 
                 <!-- Logout -->
@@ -838,19 +829,14 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            @else
-                <!-- Login and Register -->
-                <a href="{{ route('login') }}" class="menu-item">Log in</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="menu-item">Register</a>
-                @endif
+            
+               
             @endauth
         </li>
     </ul>
     <!-- Footer with attribution -->
     <span class="mtext-101 cl5 footer-text">
-        Made by <a href="https://www.facebook.com/profile.php?id=100009832151933">@Mehdi Zouari</a>
+        Develpped by <a href="https://www.facebook.com/profile.php?id=100009832151933">@Mehdi Zouari</a>
     </span>
 </div>
 
@@ -906,7 +892,7 @@
 						</a>
 					</li>
 					<span class="mtext-101 cl5">
-                    Made by <a href="https://www.facebook.com/profile.php?id=100009832151933"> @Mehdi Zouari</a>				
+                    Developed by <a href="https://www.facebook.com/profile.php?id=100009832151933"> @Mehdi Zouari</a>				
 
 					</span>
                   
@@ -1006,7 +992,7 @@
                 &copy; <script>document.write(new Date().getFullYear());</script> Frip Sakyetna. All rights reserved.
             </p>
             <p class="stext-107 cl6 txt-center">
-                Made by <a href="https://www.facebook.com/profile.php?id=100009832151933">Mehdi Zouari</a> 
+            Developed by <a href="https://www.facebook.com/profile.php?id=100009832151933">Mehdi Zouari</a> 
             </p>
         </div>
        

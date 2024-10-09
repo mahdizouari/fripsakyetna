@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'login') }}</title>
+    <title>{{ config('app.name', 'lg') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -82,13 +82,13 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .dashboard-button {
+        .mspace-button {
             display: flex;
             justify-content: flex-end;
             margin-top:1rem;
         }
 
-        .dashboard-button a {
+        .mspace-button a {
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
@@ -109,7 +109,7 @@
         margin-bottom: 1rem; /* Space between buttons */
     }
 
-    .dashboard-button a {
+    .mspace-button a {
         display: block;
         text-align: left; /* Center text in button on small screens */
         margin-top: 1rem; /* Margin above button */

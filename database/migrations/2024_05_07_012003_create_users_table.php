@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->tinyInteger(column: 'is_admin')->default(0);
+            $table->boolean(column: 'is_admin')->default(0);
             $table->string('password'); // Adding the password column
             $table->timestamps();
         });

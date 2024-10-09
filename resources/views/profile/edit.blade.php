@@ -22,8 +22,8 @@
             <div class="w-full max-w-xl mt-8">
                 <div class="bg-white p-6 rounded-lg shadow-md text-black-900">
                     @include('profile.partials.delete-user-form')
-                    <div class="dashboard-button mt-4 text-right">
-                        <a href="{{ url('dashboard') }}" class="btn btn-primary">Return to Dashboard</a>
+                    <div class="mspace-button mt-4 text-right">
+                        <a href="{{ url('mspace') }}" class="btn btn-primary">Return to My space</a>
                     </div>
                 </div>
             </div>

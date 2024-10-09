@@ -23,7 +23,7 @@ class AdminMiddleware
         }
 
         // Redirect to the login page or handle unauthorized access
-        return redirect('/login');
+        return redirect('/lg');
     }
 }
 

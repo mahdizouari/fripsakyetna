@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,17 +16,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated
-        if (auth()->check()) {
-            // Check if the user is an admin
-            if (auth()->user()->is_admin == 1) {
-                return $next($request);
-            } else {
-                return to_route('welcome');
-            }
-        }
-
-        // If not authenticated, redirect to the welcome page
-        return to_route('welcome');
+        if(!auth()->check() || !auth()->user()->is_admin)
+        {
+            abort(code:403);
+        }   // Check if the user is authenticated
     }
 }

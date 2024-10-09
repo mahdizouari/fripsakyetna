@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Modifier un produit
-                        <a href="{{ url('dashboard') }}" class="btn btn-primary float-end">Retour</a>
+                        <a href="{{ url('mspace') }}" class="btn btn-primary float-end">Retour</a>
                     </h4>
                 </div>
                 <div class="card-body">

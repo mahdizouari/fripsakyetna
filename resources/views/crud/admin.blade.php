@@ -123,7 +123,7 @@
         margin-bottom: 0.5rem; /* Space between buttons */
     }
 
-    .dashboard-button a {
+    .mspace-button a {
         display: block;
         text-align: center; /* Center text in button on small screens */
         margin-top: 1rem; /* Margin above button */
@@ -257,7 +257,7 @@
         padding: 0.5rem 1rem; /* Less padding on smaller screens */
     }
 
-    .dashboard-button a {
+    .mspace-button a {
         display: block;
         text-align: center; /* Center text in button */
         margin-top: 1rem; /* Margin above button */
@@ -335,7 +335,7 @@
     <!-- ======== sidebar-nav start =========== -->
     <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-    <a href="/dashboard" class="btn btn-primary btn-sm">Dashboard</a>
+    <a href="/mspace" class="btn btn-primary btn-sm">My space</a>
 </div>
 <div class="navbar-logo">
     <a href="/" class="btn btn-primary btn-sm">Home</a>
