@@ -120,19 +120,7 @@
 <!-- Right Column -->
 <div class="right-column">
     <!-- Product Description -->
-    <div class="product-description">
-        <h1>{{ $product->name }}</h1>
-        <p>{{ $product->description ?? 'No description available.' }}</p>
-        <div class="review-stars">
-            <i class="fas fa-star star filled"></i>
-            <i class="fas fa-star star filled"></i>
-            <i class="fas fa-star star filled"></i>
-            <i class="fas fa-star star filled"></i>
-            <i class="fas fa-star star"></i>
-            <span class="rating-text">4.0</span>
-        </div>
-        <p class="available">Disponible</p>
-    </div>
+   
 
     <!-- Detailed Product Description Section -->
     <div class="detailed-description">
@@ -464,4 +452,4 @@
     }
 }
 
-</style>
+</style>    
