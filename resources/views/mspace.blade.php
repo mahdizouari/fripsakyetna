@@ -11,12 +11,18 @@
     <div class="container mt-4">
       <!-- Search Form -->
        
-    <div class="mb-3">
-        <form action="{{ route('products.search') }}" method="GET" class="d-flex">
-            <input type="text" name="query" class="form-control me-2" placeholder="Search by reference, name, or size" value="{{ request()->get('query') }}">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-    </div>
+      <div class="mb-3">
+        <div class="mb-3">
+            <div class="mb-4">
+                <form action="{{ route('products.search') }}" method="GET" class="d-flex flex-column flex-md-row align-items-center">
+                    <input type="text" name="query" class="form-control me-md-2 mb-2 mb-md-0" placeholder="Search by reference, name, or size" value="{{ request()->get('query') }}">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+
+</div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

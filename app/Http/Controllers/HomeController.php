@@ -249,21 +249,29 @@ public function show($filename)
 }
 
 public function search(Request $request)
-    {
-        $query = $request->input('query');
-    
-        // Sanitize and trim the query
-        $query = trim($query);
-    
-        // Search for products where the size exactly matches the query
-        $products = produits::where(function ($q) use ($query) {
-            $q->where('name', 'like', "%$query%")
-              ->orWhere('Référence', 'like', "%$query%")
-              ->orWhere('taille', $query); // Match exact size
-        })->get();
-    
-        return view('crud.search', compact('products'));
+{
+    $query = $request->input('query');
+
+    // Ensure the query is not empty
+    if (!$query) {
+        return redirect()->back()->with('error', 'Please enter a search term.');
+    }
+
+    // Search by reference, name, or size
+    $products = produits::where('Référence', 'like', '%' . $query . '%')
+        ->orWhere('name', 'like', '%' . $query . '%')
+        ->orWhere('taille', 'like', '%' . $query . '%')
+        ->where('is_active', true) // Ensuring we only fetch active products
+        ->paginate(16);
+
+    // Return the view with search results
+    if ($products->isEmpty()) {
+        return redirect()->back()->with('error', 'No products found.');
+    }
+
+    return view('products.search', compact('products'));
 }
+
     
 
  

@@ -12,18 +12,19 @@
        <div class="left-column">
            <!-- Product Slider -->
            <div class="slider_wrap">
-               <div class="slider">
-                   @if($product->image1)
-                       <div><img src="{{ asset('/' . $product->image1) }}" alt="Image 1"></div>
-                   @endif
-                   @if($product->image2)
-                       <div><img src="{{ asset('/' . $product->image2) }}" alt="Image 2"></div>
-                   @endif
-                   @if($product->image3)
-                       <div><img src="{{ asset('/' . $product->image3) }}" alt="Image 3"></div>
-                   @endif
-               </div>
-           </div>
+    <div class="slider ">
+        @if($product->image1)
+            <div><img src="{{ asset('/' . $product->image1) }}" alt="Image 1"></div>
+        @endif
+        @if($product->image2)
+            <div><img src="{{ asset('/' . $product->image2) }}" alt="Image 2"></div>
+        @endif
+        @if($product->image3)
+            <div><img src="{{ asset('/' . $product->image3) }}" alt="Image 3"></div>
+        @endif
+    </div>
+</div>
+
        </div>
 
        <!-- Right Column -->
@@ -67,19 +68,19 @@
                    <form action="{{ route('addToCart', $product->id) }}" method="POST" class="d-inline">
                        @csrf
                        <button type="submit" class="cart-btn">
-                           <i class="fa fa-shopping-cart"></i> Ajouter au panier
+                           <i class="fa fa-shopping-cart"></i> 
                        </button>
                    </form>
                    <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="d-inline">
                        @csrf
                        <button type="submit" class="wishlist-btn">
-                           <i class="fa fa-heart"></i> Ajouter aux favoris
+                           <i class="fa fa-heart"></i> 
                        </button>
                    </form>
                </div>
                <div>
                    <a href="/" class="return-btn">Retourner à la page principale</a>
-                   <a href="/panier" class="return-btn">Voir le panier</a>
+                   <a href="/panier" class="return-btn" >Voir le panier</a>
                </div>
               
            </div>
@@ -192,3 +193,7 @@
 </div>
 
 @endsection
+
+
+
+
