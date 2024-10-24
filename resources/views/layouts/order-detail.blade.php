@@ -44,12 +44,14 @@
 
 <!-- Owl Carousel JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
 
 
 </head>
+
+<body class="animsition">
+
 <header class="header-v2">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop trans-03">
@@ -140,6 +142,7 @@
 				</nav>
 			</div>	
 		</div>
+        
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
@@ -228,23 +231,22 @@
 </div>
 
 
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-            <div class="container-search-header">
-                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="/images/icons/icon-close2.png" alt="CLOSE">
-                </button>
+			<!-- Modal Search -->
+            <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+		<div class="container-search-header">
+			<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+				<img src="images/icons/icon-close2.png" alt="CLOSE">
+			</button>
 
-                <form class="wrap-search-header flex-w p-l-15" action="{{ route('recherche') }}" method="GET">
-                    <button class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                    <input class="plh3" type="text" name="search" placeholder="Recherche..." required>
-                </form>
-            </div>
+			<form class="wrap-search-header flex-w p-l-15" action="{{ route('recherche') }}" method="GET">
+				<button class="flex-c-m trans-04">
+					<i class="zmdi zmdi-search"></i>
+				</button>
+				<input class="plh3" type="text" name="search" placeholder="Recherche..." required>
+			</form>
+		</div>
         
 	</div>
-
 
 	</header>
 
@@ -404,3 +406,229 @@
 
 
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltipElements = document.querySelectorAll('.tooltip100[data-tooltip]');
+        tooltipElements.forEach(el => {
+            el.addEventListener('mouseover', function () {
+                // Optional: Additional code to handle tooltip display
+            });
+        });
+    });
+</script>
+
+<style> 
+
+    .product-detail {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin: 20px;
+        transition: transform 0.3s;
+    }
+    .product-detail:hover {
+        transform: translateY(-5px);
+    }
+    .product-detail .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .product-detail .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Handle wishlist button clicks
+        $('.js-addwish-b2').on('click', function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productName = $button.parent().parent().find('.js-name-b2').text();
+
+            // AJAX request to add item to wishlist
+            $.ajax({
+                url: $button.closest('form').attr('action'),
+                method: 'POST',
+                data: $button.closest('form').serialize(),
+                success: function(response) {
+                    // Show SweetAlert notification
+                    Swal.fire({
+                        title: productName,
+                        text: "is added to wishlist!",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Add class to indicate item is added
+                    $button.addClass('js-addedwish-b2');
+                    $button.off('click');
+                },
+                error: function(xhr) {
+                    // Handle errors if needed
+                    Swal.fire({
+                        title: 'Error!',
+                        text: "There was an issue adding the item to wishlist.",
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+
+        // Handle wishlist detail button clicks
+        $('.js-addwish-detail').on('click', function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productName = $button.parent().parent().parent().find('.js-name-detail').text();
+
+            // AJAX request to add item to wishlist
+            $.ajax({
+                url: $button.closest('form').attr('action'),
+                method: 'POST',
+                data: $button.closest('form').serialize(),
+                success: function(response) {
+                    // Show SweetAlert notification
+                    Swal.fire({
+                        title: productName,
+                        text: "is added to wishlist!",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Add class to indicate item is added
+                    $button.addClass('js-addedwish-detail');
+                    $button.off('click');
+                },
+                error: function(xhr) {
+                    // Handle errors if needed
+                    Swal.fire({
+                        title: 'Error!',
+                        text: "There was an issue adding the item to wishlist.",
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+
+        // Handle add to cart button clicks
+        $('.js-addcart-detail').on('click', function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productName = $button.parent().parent().parent().parent().find('.js-name-detail').text();
+
+            // Show SweetAlert notification
+            Swal.fire({
+                title: productName,
+                text: "is added to cart!",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    });
+</script>
+
+<script>
+	$(document).ready(function() {
+    // Initialize Isotope
+    var $grid = $('.isotope-grid').isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'fitRows'
+    });
+
+    // Filter items on link click
+    $('.block1-txt').on('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+
+        var filterValue = $(this).attr('data-filter');
+        var filterUrl = $(this).attr('href');
+
+        // Update URL with the filter
+        window.location.href = filterUrl;
+
+        // Filter items
+        $grid.isotope({ filter: filterValue });
+
+        // Change active class on links
+        $('.block1-txt').removeClass('active');
+        $(this).addClass('active');
+    });
+});
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                items: 3,  // Number of items to display at once
+                loop: true,
+                margin: 10,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 3000,  // Autoplay interval (3 seconds)
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 2  // 2 items per line on phones
+                    },
+                    600: {
+                        items: 2  // 2 items per line on tablets
+                    },
+                    768: {
+                        items: 3  // 3 items per line on larger screens
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+    // Filter by category
+    $('.filter-category').click(function() {
+        var filter = $(this).data('filter');
+        $('.product-item').hide(); // Hide all products
+        $(filter).show(); // Show products that match the category filter
+    });
+
+    // Filter by Référence
+    $('.filter-reference').click(function() {
+        var reference = $(this).data('filter');
+        $('.product-item').hide(); // Hide all products
+        $('.product-item').each(function() {
+            if ($(this).data('reference') === reference) {
+                $(this).show(); // Show products that match the Référence filter
+            }
+        });
+    });
+});
+
+    </script>
+  <!--===============================================================================================-->	
+<script src={{asset('vendor/jquery/jquery-3.2.1.min.js')}}></script>
+<!--===============================================================================================-->
+	<script src={{asset('/vendor/animsition/js/animsition.min.js')}}></script>
+<!--===============================================================================================-->
+	<script src={{asset('/vendor/bootstrap/js/popper.js')}}></script>
+	<script src={{asset('/vendor/bootstrap/js/bootstrap.min.js')}}></script>
+    <script src={{ asset('/vendor/animsition/js/animsition.min.js') }}></script>
+
+<script src={{ asset('/js/main.js') }}></script>
+
+
+
+</body>
+
+
+</html>
