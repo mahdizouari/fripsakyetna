@@ -250,12 +250,10 @@ public function show($filename)
 
 public function search(Request $request)
 {
+    
     $query = $request->input('query');
 
-    // Ensure the query is not empty
-    if (!$query) {
-        return redirect()->back()->with('error', 'Please enter a search term.');
-    }
+
 
     // Search by reference, name, or size
     $products = produits::where('Référence', 'like', '%' . $query . '%')
@@ -264,12 +262,10 @@ public function search(Request $request)
         ->where('is_active', true) // Ensuring we only fetch active products
         ->paginate(16);
 
-    // Return the view with search results
-    if ($products->isEmpty()) {
-        return redirect()->back()->with('error', 'No products found.');
-    }
+    $message = "3asba";
+    file_put_contents('php://stdout', $message . PHP_EOL);
 
-    return view('products.search', compact('products'));
+    return view('crud.search', compact('products'));
 }
 
     
@@ -343,6 +339,7 @@ public function index(Request $request)
     }
 
     $filteredProducts = $products->get();
+
 
     return view('products.index', compact('filteredProducts'));
 }

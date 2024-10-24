@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'welcome']);
+Route::get('/products/search', [HomeController::class, 'search'])->name('products.search');
 
 
 
@@ -120,7 +121,6 @@ Route::get('/edit/{id}',[HomeController::class, 'edit'])->name('edit');
 Route::put('/edit/{id}',[HomeController::class, 'update'])->name('update');
 Route::delete('/delete/{id}',[HomeController::class, 'destroy'])->name('product.destroy');
 Route::get('/{filename}', [HomeController::class, 'show'])->name('image.show');
-Route::get('/products/search', [HomeController::class, 'search'])->name('products.search');
 
 Route::get('/panier', function () {
     return view('panier');
