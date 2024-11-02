@@ -21,6 +21,12 @@
 <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
 
 <!-- CSS Links -->
+ <!-- Owl Carousel CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 <link rel="stylesheet" href="{{ asset('/css/util.css') }}">
 <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
 <link rel="icon" type="image/png" href="{{ asset('/images/icons/favicon.png') }}"/>
@@ -60,7 +66,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="/" class="logo">
-						<img src="logo.svg" alt="IMG-LOGO">
+						<img src="/detail/logo.svg" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->

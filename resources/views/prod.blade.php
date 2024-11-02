@@ -279,12 +279,7 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
                                 <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                             </a>
 
-                            <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
-                            style="background-color: yellow; color: black; text-decoration: none;"
-                            onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
-                            onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
-                            Voir le produit
-                            </a>
+
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
@@ -320,25 +315,134 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
 
 </div>
 <style>
-    .block2-pic img {
-    width: 100%;
-    height: auto;
+ /* Product Grid */
+.isotope-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 30px !important;
+    justify-content: center !important;
 }
 
+.isotope-item {
+    flex: 1 1 calc(25% - 30px) !important;
+    max-width: calc(25% - 30px) !important;
+    box-sizing: border-box !important;
+}
+
+/* Product Card */
 .block2 {
-    border: 1px solid #e6e6e6;
-    padding: 10px;
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.3s, box-shadow 0.3s !important;
+}
+
+.block2:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Product Image */
+.block2-pic {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.block2-pic img {
+    width: 100% !important;
+    height: auto !important;
+    transition: transform 0.3s !important;
+}
+
+.block2-pic:hover img {
+    transform: scale(1.05) !important;
 }
 
 .block2-btn {
-    margin-top: 10px;
+    position: absolute !important;
+    bottom: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background-color: yellow !important;
+    color: black !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    transition: background-color 0.3s, color 0.3s !important;
 }
 
+.block2-btn:hover {
+    background-color: black !important;
+    color: white !important;
+}
+
+/* Product Text */
 .block2-txt {
-    text-align: left;
+    padding: 15px !important;
+    text-align: center !important;
 }
 
-/* Mobile and Tablet adjustments */
+.block2-txt-child1 a {
+    font-size: 16px !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    transition: color 0.3s !important;
+}
+
+.block2-txt-child1 a:hover {
+    color: yellow !important;
+}
+
+.block2-txt-child1 .stext-105 {
+    font-size: 14px !important;
+    color: #dc3545 !important;
+    margin-top: 5px !important;
+    display: block !important;
+}
+
+/* Wishlist Button */
+.btn-addwish-b2 {
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    position: relative !important;
+}
+
+.btn-addwish-b2 .icon-heart1 {
+    width: 24px !important;
+    height: 24px !important;
+    transition: opacity 0.3s !important;
+}
+
+.btn-addwish-b2 .icon-heart2 {
+    width: 24px !important;
+    height: 24px !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s !important;
+}
+
+.btn-addwish-b2:hover .icon-heart1 {
+    opacity: 0 !important;
+}
+
+.btn-addwish-b2:hover .icon-heart2 {
+    opacity: 1 !important;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .isotope-item {
+        flex: 1 1 calc(50% - 30px) !important;
+        max-width: calc(50% - 30px) !important;
+    }
+}
+
 
 
 

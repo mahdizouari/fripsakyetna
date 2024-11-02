@@ -110,6 +110,92 @@
             </div>
         </div>
     </div>
+    <style>/* Banner Section */
+.sec-banner {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.size-202 {
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    margin: 15px;
+    vertical-align: top;
+}
+
+.wrap-pic-w {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.wrap-pic-w img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.wrap-pic-w:hover img {
+    transform: scale(1.05);
+}
+
+.block1-txt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.wrap-pic-w:hover .block1-txt {
+    opacity: 1;
+}
+
+.block1-txt-child1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.block1-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.block1-info {
+    font-size: 14px;
+}
+
+.block1-txt-child2 {
+    align-self: flex-end;
+}
+
+.block1-link {
+    font-size: 14px;
+    background-color: #000000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.block1-link:hover {
+    background-color: #FFFF;
+    color: #000000 !important;
+}
+</style>
 
     <!-- Product -->
     <section class="sec-product bg0 p-t-100 p-b-50">
@@ -120,12 +206,7 @@
 
             <!-- Tab01 -->
             <div class="tab01">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Nos Produits</a>
-                    </li>
-                </ul>
+
 
                 <!-- Tab panes -->
                 <div class="tab-content p-t-50">
@@ -142,12 +223,7 @@
                                                 <a href="{{ route('detail', $product->id) }}">
                                                     <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                                                 </a>
-                                                <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
-                                                style="background-color: yellow; color: black; text-decoration: none;"
-                                                onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
-                                                onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
-                                                Voir le produit
-                                                </a>
+
 
                                             </div>
                                             <div class="block2-txt flex-w flex-t p-t-14">
@@ -178,19 +254,196 @@
                     </div>
 
                     <style>
-                       
-                            .sstext-104 {
-                                .sstext-104 {
-                                color: #333; /* Default text color */
-                                text-decoration: none; /* Remove underline */
-                                transition: color 0.3s ease; /* Smooth transition for color change */
-                            }
+                       /* Product Section */
+.sec-product {
+    background-color: #f9f9f9;
+    padding-top: 0px !important;
+    padding-bottom: 50px;
+}
 
-                            .sstext-104:hover {
-                                color: yellow; /* Change text color on hover */
-                            }
+.sec-product .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-                        }
+.sec-product .ltext-105 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+/* Tab Navigation */
+.tab01 .nav-tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+}
+
+.tab01 .nav-tabs .nav-item {
+    margin-bottom: 10px;
+}
+
+.tab01 .nav-tabs .nav-link {
+    color: #333;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    transition: color 0.3s ease;
+}
+
+.tab01 .nav-tabs .nav-link.active {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.tab01 .nav-tabs .nav-link:hover {
+    color: #0056b3;
+}
+
+/* Tab Content */
+.tab-content {
+    padding-top: 50px;
+}
+
+/* Product Slider */
+.wrap-slick2 {
+    position: relative;
+}
+
+.slick2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.item-slick2 {
+    flex: 1 1 calc(25% - 30px);
+    max-width: calc(25% - 30px);
+    box-sizing: border-box;
+}
+
+.block2 {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.block2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.block2-pic {
+    position: relative;
+    overflow: hidden;
+}
+
+.block2-pic img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.block2-pic:hover img {
+    transform: scale(1.05);
+}
+
+.block2-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: yellow;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.block2-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Product Text */
+.block2-txt {
+    padding: 15px;
+    text-align: center;
+}
+
+.block2-txt-child1 a {
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.block2-txt-child1 a:hover {
+    color: yellow;
+}
+
+.block2-txt-child1 .stext-105 {
+    font-size: 14px;
+    color: #dc3545;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Wishlist Button */
+.btn-addwish-b2 {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn-addwish-b2 .icon-heart1 {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.3s;
+}
+
+.btn-addwish-b2 .icon-heart2 {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.btn-addwish-b2:hover .icon-heart1 {
+    opacity: 0;
+}
+
+.btn-addwish-b2:hover .icon-heart2 {
+    opacity: 1;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .item-slick2 {
+        flex: 1 1 calc(50% - 30px);
+        max-width: calc(50% - 30px);
+    }
+}
+
+@media (max-width: 480px) {
+    .item-slick2 {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
 
                     </style>
    
@@ -219,12 +472,7 @@
                             <a href="{{ route('detail', $product->id) }}">
                                 <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                             </a>
-                            <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
-                            style="background-color: yellow; color: black; text-decoration: none;"
-                            onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
-                            onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
-                            Voir le produit
-                            </a>
+
 
                         </div>
                         <div class="block2-txt flex-w flex-t p-t-14">
@@ -306,12 +554,7 @@
                         <a href="{{ route('detail', $product->id) }}">
                             <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                         </a>
-                        <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
-                        style="background-color: yellow; color: black; text-decoration: none;"
-                        onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
-                        onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
-                        Voir le produit
-                        </a>
+
 
                     </div>
                     <div class="block2-txt flex-w flex-t p-t-14">
@@ -375,12 +618,7 @@
                         <a href="{{ route('detail', $product->id) }}">
                             <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
                         </a>
-                        <a href="{{ route('detail', $product->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04" 
-                        style="background-color: yellow; color: black; text-decoration: none;"
-                        onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
-                        onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
-                        Voir le produit
-                        </a>
+
 
                     </div>
                     <div class="block2-txt flex-w flex-t p-t-14">
