@@ -240,8 +240,8 @@
                                                     <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                                         @csrf
                                                         <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                                                            <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                                            
                                                         </button>
                                                     </form>
                                                 </div>
@@ -351,6 +351,7 @@
     transition: transform 0.3s;
 }
 
+
 .block2-pic:hover img {
     transform: scale(1.05);
 }
@@ -404,31 +405,24 @@
     border: none;
     cursor: pointer;
     position: relative;
+
 }
 
 .btn-addwish-b2 .icon-heart1 {
-    width: 24px;
-    height: 24px;
+    opacity: 0.3;
+    padding-top: 2em;
+    width: 25px !important;
+    height: auto;
     transition: opacity 0.3s;
 }
 
-.btn-addwish-b2 .icon-heart2 {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
+
 
 .btn-addwish-b2:hover .icon-heart1 {
-    opacity: 0;
-}
-
-.btn-addwish-b2:hover .icon-heart2 {
     opacity: 1;
 }
+
+
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
@@ -488,8 +482,8 @@
                                 <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                     @csrf
                                     <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                        
                                     </button>
                                 </form>
                             </div>
@@ -566,6 +560,15 @@
                                 {{ number_format($product->prix, 2) }} DT
                             </span>
                         </div>
+                        <div class="block2-txt-child2 flex-r p-t-3">
+                                <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
+                                    @csrf
+                                    <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
+                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                        
+                                    </button>
+                                </form>
+                            </div>
                         
                     </div>
                 </div>
@@ -634,8 +637,8 @@
                             <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                 @csrf
                                 <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                    
                                 </button>
                             </form>
                         </div>

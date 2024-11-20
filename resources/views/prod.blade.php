@@ -295,9 +295,9 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
                                 <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                     @csrf
                                     <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-                                    </button>
+                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                                            
+                                                        </button>
                                 </form>
                             </div>
                         </div>
@@ -412,28 +412,21 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
 }
 
 .btn-addwish-b2 .icon-heart1 {
-    width: 24px !important;
-    height: 24px !important;
-    transition: opacity 0.3s !important;
+    opacity: 0.3;
+    padding-top: 2em;
+    width: 25px !important;
+    height: auto;
+    transition: opacity 0.3s;
 }
 
-.btn-addwish-b2 .icon-heart2 {
-    width: 24px !important;
-    height: 24px !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    opacity: 0 !important;
-    transition: opacity 0.3s !important;
-}
+
 
 .btn-addwish-b2:hover .icon-heart1 {
-    opacity: 0 !important;
+    opacity: 1;
 }
 
-.btn-addwish-b2:hover .icon-heart2 {
-    opacity: 1 !important;
-}
+
+
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {

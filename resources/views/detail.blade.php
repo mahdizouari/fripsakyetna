@@ -516,29 +516,23 @@
     position: relative;
 }
 
+
+
+
 .btn-addwish-b2 .icon-heart1 {
-    width: 24px;
-    height: 24px;
+    opacity: 0.3;
+    padding-top: 2em;
+    width: 25px;
+    height: auto;
     transition: opacity 0.3s;
 }
 
-.btn-addwish-b2 .icon-heart2 {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
+
 
 .btn-addwish-b2:hover .icon-heart1 {
-    opacity: 0;
-}
-
-.btn-addwish-b2:hover .icon-heart2 {
     opacity: 1;
 }
+
 
 /* Media Queries for Responsiveness */
 
@@ -746,9 +740,7 @@
                             <a href="{{ route('detail', $similarProduct->id) }}">
                                 <img src="{{ asset('/' . $similarProduct->image1) }}" alt="{{ $similarProduct->name }}">
                             </a>
-                            <a href="{{ route('detail', $similarProduct->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                Voir le produit
-                            </a>
+
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
@@ -764,8 +756,12 @@
                                 <form action="{{ route('wishlist.add', $similarProduct->id) }}" method="POST" class="js-addwish-form">
                                     @csrf
                                     <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                    <div class="icon-heart1 dis-block trans-04" >
+  <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="red"/>
+  </svg>
+</div>
+                                        
                                     </button>
                                 </form>
                             </div>
