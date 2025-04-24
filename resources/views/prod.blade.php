@@ -121,75 +121,75 @@
         <!-- JavaScript to Handle Filtering -->
         <script>
             let selectedCategory = '';
-let selectedReference = '';
-let selectedTaille = '';
+            let selectedReference = '';
+            let selectedTaille = '';
 
-// Category filter click event with toggle functionality
-document.querySelectorAll('.category-filter').forEach(function (el) {
-    el.addEventListener('click', function (e) {
-        e.preventDefault();
-        const isActive = this.classList.contains('active');
+            // Category filter click event with toggle functionality
+            document.querySelectorAll('.category-filter').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const isActive = this.classList.contains('active');
 
-        // Toggle active class
-        document.querySelectorAll('.category-filter').forEach(function (el) {
-            el.classList.remove('active');
-        });
+                    // Toggle active class
+                    document.querySelectorAll('.category-filter').forEach(function (el) {
+                        el.classList.remove('active');
+                    });
 
-        if (!isActive) {
-            selectedCategory = this.dataset.category;
-            this.classList.add('active');
-        } else {
-            selectedCategory = ''; // Reset the selection if unpressed
-        }
-    });
-});
+                    if (!isActive) {
+                        selectedCategory = this.dataset.category;
+                        this.classList.add('active');
+                    } else {
+                        selectedCategory = ''; // Reset the selection if unpressed
+                    }
+                });
+            });
 
-// Reference filter click event with toggle functionality
-document.querySelectorAll('.reference-filter').forEach(function (el) {
-    el.addEventListener('click', function (e) {
-        e.preventDefault();
-        const isActive = this.classList.contains('active');
+            // Reference filter click event with toggle functionality
+            document.querySelectorAll('.reference-filter').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const isActive = this.classList.contains('active');
 
-        // Toggle active class
-        document.querySelectorAll('.reference-filter').forEach(function (el) {
-            el.classList.remove('active');
-        });
+                    // Toggle active class
+                    document.querySelectorAll('.reference-filter').forEach(function (el) {
+                        el.classList.remove('active');
+                    });
 
-        if (!isActive) {
-            selectedReference = this.dataset.reference;
-            this.classList.add('active');
-        } else {
-            selectedReference = ''; // Reset the selection if unpressed
-        }
-    });
-});
+                    if (!isActive) {
+                        selectedReference = this.dataset.reference;
+                        this.classList.add('active');
+                    } else {
+                        selectedReference = ''; // Reset the selection if unpressed
+                    }
+                });
+            });
 
-// Taille filter click event with toggle functionality
-document.querySelectorAll('.taille-filter').forEach(function (el) {
-    el.addEventListener('click', function (e) {
-        e.preventDefault();
-        const isActive = this.classList.contains('active');
+            // Taille filter click event with toggle functionality
+            document.querySelectorAll('.taille-filter').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const isActive = this.classList.contains('active');
 
-        // Toggle active class
-        document.querySelectorAll('.taille-filter').forEach(function (el) {
-            el.classList.remove('active');
-        });
+                    // Toggle active class
+                    document.querySelectorAll('.taille-filter').forEach(function (el) {
+                        el.classList.remove('active');
+                    });
 
-        if (!isActive) {
-            selectedTaille = this.dataset.taille;
-            this.classList.add('active');
-        } else {
-            selectedTaille = ''; // Reset the selection if unpressed
-        }
-    });
-});
+                    if (!isActive) {
+                        selectedTaille = this.dataset.taille;
+                        this.classList.add('active');
+                    } else {
+                        selectedTaille = ''; // Reset the selection if unpressed
+                    }
+                });
+            });
 
 
-// Apply filter button click event
-document.getElementById('apply-filters-btn').addEventListener('click', function () {
-    let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
-    window.location.href = '/prod' + queryString;
-});
+            // Apply filter button click event
+            document.getElementById('apply-filters-btn').addEventListener('click', function () {
+                let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
+                window.location.href = '/prod' + queryString;
+            });
 
 
         </script>
@@ -276,7 +276,7 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
                     <div class="block2">
                         <div class="block2-pic hov-img0">
                             <a href="{{ route('detail', $product->id) }}">
-                                <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
+                                <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT" loading="lazy">
                             </a>
 
 
@@ -295,7 +295,7 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
                                 <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                     @csrf
                                     <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON" loading="lazy">
                                                             
                                                         </button>
                                 </form>
@@ -327,6 +327,7 @@ document.getElementById('apply-filters-btn').addEventListener('click', function 
     flex: 1 1 calc(25% - 30px) !important;
     max-width: calc(25% - 30px) !important;
     box-sizing: border-box !important;
+
 }
 
 /* Product Card */

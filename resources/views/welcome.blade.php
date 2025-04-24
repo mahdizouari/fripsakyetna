@@ -12,27 +12,29 @@
                     @foreach (['image1', 'image2', 'image3', 'image4'] as $image)
                         @if (!empty($slider->$image))
                             <div class="item-slick1" style="background-image: url('{{ asset('/' . $slider->$image) }}');">
-                                <div class="container h-full">
+                                <div class="container h-full" >
                                     <div class="flex-col-l-m h-full p-t-100 p-b-30">
                                         <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
                                             <span class="ltext-202 cl2 respon2">
-                                                {{ $slider->title ?? 'Default Title' }}
+                                                {{ $slider->title  }}
                                             </span>
                                         </div>
                                         
                                         <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-                                            <h2 class="ltext-104 cl2 p-t-19 p-b-43 respon1">
-                                                {{ $slider->subtitle ?? 'Default Subtitle' }}
+                                            <h2 class="ltext-104 cl2 p-t-19 p-b-43 respon">
+                                                {{ $slider->subtitle }}
                                             </h2>
                                         </div>
                                         
-                                        <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                                        <a href="prod" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" 
-                                            style="background-color: yellow; color: black; text-decoration: none;"
-                                            onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
-                                            onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
-                                            Shop Now
+                                        <div class="layer-slick1 animated visible-false" data-appear="zoomIn">
+                                        <div style="display: flex; justify-content: center; margin-top: 20px;">
+                                            <a href="prod" style="text-decoration: none;">
+                                                <button class="button-fancy">
+                                                    <p>Shop now  </p>
+                                                </button>
                                             </a>
+                                        </div>
+
 
                                         </div>
                                     </div>
@@ -53,27 +55,7 @@
             <div class="size-202 m-lr-auto respon4">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w filter-tope-group">
-                    <img src="2.svg" alt="IMG-BANNER">
-                    <a href="prod?filter=women" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".femme">
-                        <div class="block1-txt-child1 flex-col-l">
-                            <span class="block1-name ltext-102 trans-04 p-b-8">
-                                
-                            </span>
-                            <span class="block1-info stext-102 trans-04"></span>
-                        </div>
-                        <div class="block1-txt-child2 p-b-4 trans-05">
-                            <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="size-202 m-lr-auto respon4">
-                <!-- Block1 -->
-                <div class="block1 wrap-pic-w">
-                    <img src="1.svg" alt="IMG-BANNER">
+                    <img src="cov2.PNG" alt="IMG-BANNER" loading="lazy">
                     <a href="prod" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
@@ -81,11 +63,23 @@
                             </span>
                             <span class="block1-info stext-102 trans-04"></span>
                         </div>
-                        <div class="block1-txt-child2 p-b-4 trans-05">
-                            <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
-                            </div>
-                        </div>
+                        <button class="cta">
+                            <span class="hover-underline-animation"> Shop Now </span>
+                            <svg
+                                id="arrow-horizontal"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="10"
+                                viewBox="0 0 46 16">
+                                <path
+                                id="Path_10"
+                                data-name="Path 10"
+                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                transform="translate(30)"
+                                ></path>
+                            </svg>
+                        </button>
+
                     </a>
                 </div>
             </div>
@@ -93,18 +87,137 @@
             <div class="size-202 m-lr-auto respon4">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
-                    <img src="3.svg" alt="IMG-BANNER">
+                    <img src="cov1.PNG" alt="IMG-BANNER" loading="lazy">
                     <a href="prod" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
                                 
                             </span>
+                            <span class="block1-info stext-102 trans-04"></span>
                         </div>
-                        <div class="block1-txt-child2 p-b-4 trans-05">
-                            <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
-                            </div>
+                        <button class="cta">
+                            <span class="hover-underline-animation"> Shop Now </span>
+                            <svg
+                                id="arrow-horizontal"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="10"
+                                viewBox="0 0 46 16">
+                                <path
+                                id="Path_10"
+                                data-name="Path 10"
+                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                transform="translate(30)"
+                                ></path>
+                            </svg>
+                        </button>
+
+                    </a>
+                </div>
+            </div>
+                <style>
+
+                .cta {
+                border: none;
+                background: none;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                transition: all 0.3s ease;
+                outline: none;
+                }
+
+                    .cta span {
+                    padding-bottom: 5px;
+                    letter-spacing: 3px;
+                    font-size: 16px;
+                    padding-right: 10px;
+                    text-transform: uppercase;
+                    font-family: 'Poppins', sans-serif;
+                    color: #D4AF37;
+                    transition: color 0.3s ease;
+                    }
+
+                    .cta svg {
+                    transform: translateX(-8px);
+                    transition: all 0.3s ease;
+                    }
+
+                    .cta:hover svg {
+                    transform: translateX(0);
+                    }
+
+                    .cta:active svg {
+                    transform: scale(0.9);
+                    }
+
+                    .hover-underline-animation {
+                    position: relative;
+                    padding-bottom: 5px;
+                    }
+
+                    .hover-underline-animation:after {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    transform: scaleX(0);
+                    height: 2px;
+                    bottom: 0;
+                    left: 0;
+                    background-color: #D4AF37;
+                    transform-origin: bottom right;
+                    transition: transform 0.3s ease-out;
+                    }
+
+                    .cta:hover .hover-underline-animation:after {
+                    transform: scaleX(1);
+                    transform-origin: bottom left;
+                    }
+
+                    .cta:hover span {
+                    color: #FFD700;
+                    }
+
+                    .cta svg path {
+                    fill: #D4AF37;
+                    transition: fill 0.3s ease;
+                    }
+
+                    .cta:hover svg path {
+                    fill: #FFD700;
+                    }
+                    
+                </style>
+            
+            <div class="size-202 m-lr-auto respon4">
+                <!-- Block1 -->
+                <div class="block1 wrap-pic-w">
+                    <img src="cov3.PNG" alt="IMG-BANNER" loading="lazy">
+                    <a href="prod" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <div class="block1-txt-child1 flex-col-l">
+                            <span class="block1-name ltext-102 trans-04 p-b-8">
+                                
+                            </span>
+                            <span class="block1-info stext-102 trans-04"></span>
                         </div>
+                        <button class="cta">
+                            <span class="hover-underline-animation"> Shop Now </span>
+                            <svg
+                                id="arrow-horizontal"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="10"
+                                viewBox="0 0 46 16">
+                                <path
+                                id="Path_10"
+                                data-name="Path 10"
+                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                transform="translate(30)"
+                                ></path>
+                            </svg>
+                        </button>
+
                     </a>
                 </div>
             </div>
@@ -199,10 +312,36 @@
 
     <!-- Product -->
     <section class="sec-product bg0 p-t-100 p-b-50">
-        <div class="container">
-            <div class="p-b-32">
-                <h3 class="ltext-105 cl5 txt-center respon1">Store Overview</h3>
-            </div>
+        <div class="container" style="align-items: stretch">
+        <div class="p-b-32">
+            <h3 class="fancy-title">Store Overview</h3>
+        </div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+                    .fancy-title {
+                    font-family: 'Playfair Display', serif;
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: #D4AF37;
+                    text-align: center;
+                    letter-spacing: 1px;
+                    margin-bottom: 25px;
+                    position: relative;
+                    }
+
+                    .fancy-title::after {
+                    content: "";
+                    display: block;
+                    width: 70px;
+                    height: 3px;
+                    background: linear-gradient(90deg, #D4AF37, #FFD700);
+                    margin: 14px auto 0;
+                    border-radius: 2px;
+                    }
+
+
+        </style>
 
             <!-- Tab01 -->
             <div class="tab01">
@@ -218,17 +357,17 @@
                                 @foreach ($products as $product)
                                     <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                                         <!-- Block2 -->
-                                        <div class="block2">
-                                            <div class="block2-pic hov-img0">
+                                        <div class="block2" style="align-items: stretch">
+                                            <div class="block2-pic hov-img0" loading="lazy">
                                                 <a href="{{ route('detail', $product->id) }}">
-                                                    <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
+                                                    <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT" loading="lazy">
                                                 </a>
 
 
                                             </div>
                                             <div class="block2-txt flex-w flex-t p-t-14">
                                                 <div class="block2-txt-child1 flex-col-l">
-                                                <a href="#" class="sstext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                                     {{ $product->name }}
                                                 </a>
 
@@ -240,7 +379,7 @@
                                                     <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                                         @csrf
                                                         <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON" loading="lazy">
                                                             
                                                         </button>
                                                     </form>
@@ -252,278 +391,89 @@
                             </div>
                         </div>
                     </div>
+                    
 
-                    <style>
-                       /* Product Section */
-.sec-product {
-    background-color: #f9f9f9;
-    padding-top: 0px !important;
-    padding-bottom: 50px;
-}
-
-.sec-product .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.sec-product .ltext-105 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    margin-bottom: 32px;
-}
-
-/* Tab Navigation */
-.tab01 .nav-tabs {
-    display: flex;
-    justify-content: center;
-    border-bottom: none;
-}
-
-.tab01 .nav-tabs .nav-item {
-    margin-bottom: 10px;
-}
-
-.tab01 .nav-tabs .nav-link {
-    color: #333;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    background-color: transparent;
-    transition: color 0.3s ease;
-}
-
-.tab01 .nav-tabs .nav-link.active {
-    color: #007bff;
-    font-weight: bold;
-}
-
-.tab01 .nav-tabs .nav-link:hover {
-    color: #0056b3;
-}
-
-/* Tab Content */
-.tab-content {
-    padding-top: 50px;
-}
-
-/* Product Slider */
-.wrap-slick2 {
-    position: relative;
-}
-
-.slick2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-}
-
-.item-slick2 {
-    flex: 1 1 calc(25% - 30px);
-    max-width: calc(25% - 30px);
-    box-sizing: border-box;
-}
-
-.block2 {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.block2:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.block2-pic {
-    position: relative;
-    overflow: hidden;
-}
-
-.block2-pic img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s;
-}
-
-
-.block2-pic:hover img {
-    transform: scale(1.05);
-}
-
-.block2-btn {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: yellow;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.block2-btn:hover {
-    background-color: black;
-    color: white;
-}
-
-/* Product Text */
-.block2-txt {
-    padding: 15px;
-    text-align: center;
-}
-
-.block2-txt-child1 a {
-    font-size: 16px;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.block2-txt-child1 a:hover {
-    color: yellow;
-}
-
-.block2-txt-child1 .stext-105 {
-    font-size: 14px;
-    color: #dc3545;
-    margin-top: 5px;
-    display: block;
-}
-
-/* Wishlist Button */
-.btn-addwish-b2 {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-
-}
-
-.btn-addwish-b2 .icon-heart1 {
-    opacity: 0.3;
-    padding-top: 2em;
-    width: 25px !important;
-    height: auto;
-    transition: opacity 0.3s;
-}
-
-
-
-.btn-addwish-b2:hover .icon-heart1 {
-    opacity: 1;
-}
-
-
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .item-slick2 {
-        flex: 1 1 calc(50% - 30px);
-        max-width: calc(50% - 30px);
-    }
-}
-
-@media (max-width: 480px) {
-    .item-slick2 {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-}
-
-                    </style>
+                   
    
 	 
     <!-- Slider for sacs -->
    
-    <div class="container">
-        <div class="p-b-32">
-            <h3 class="ltext-105 cl5 txt-left small-title">Sacs</h3>
-        </div>
+    <div class="container" style="align-items: stretch">
+    <div class="p-b-32">
+        <h3 class="section-title">Sacs</h3>
+    </div>
 
-        <!-- Slider for sacs -->
-        <div class="owl-carousel owl-theme">
-            @php
-                $filteredProducts = \App\Models\produits::where('is_active', 1)
-                    ->where('Référence', 'like', '%sac%')
-                    ->take(6)
-                    ->get();
-            @endphp
+    <!-- Slider for sacs -->
+    <div class="owl-carousel owl-theme sacs-slider">
+        @php
+            $filteredProducts = \App\Models\produits::where('is_active', 1)
+                ->where('Référence', 'like', '%sac%')
+                ->take(6)
+                ->get();
+        @endphp
 
-            @foreach ($filteredProducts as $product)
-                <div class="item">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <a href="{{ route('detail', $product->id) }}">
-                                <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
+        @foreach ($filteredProducts as $product)
+            <div class="item">
+                <div class="block2">
+                    <div class="block2-pic hov-img0">
+                        <a href="{{ route('detail', $product->id) }}">
+                            <img src="{{ asset($product->image1) }}" alt="IMG-PRODUCT" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="block2-txt flex-w flex-t p-t-14">
+                        <div class="block2-txt-child1 flex-col-l">
+                            <a href="{{ route('detail', $product->id) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                {{ $product->name }}
                             </a>
-
-
+                            <span class="stext-105 cl3">
+                                {{ number_format($product->prix, 2) }} DT
+                            </span>
                         </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="{{ route('detail', $product->id) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    {{ $product->name }}
-                                </a>
-                                <span class="stext-105 cl3">
-                                    {{ number_format($product->prix, 2) }} DT
-                                </span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
-                                    @csrf
-                                    <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
-                                        
-                                    </button>
-                                </form>
-                            </div>
+                        <div class="block2-txt-child2 flex-r p-t-3">
+                            <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
+                                @csrf
+                                <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
+                                    <img class="icon-heart1 dis-block trans-04" src="{{ asset('images/icons/heart.svg') }}" alt="ICON" loading="lazy">
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div> 
+            </div>
+        @endforeach
     </div>
+</div>
+
+<!-- Owl Carousel Initialization -->
+<script>
+    $(document).ready(function(){
+        $('.sacs-slider').owlCarousel({
+            loop:true,
+            margin:15,
+            nav:true,
+            dots:false,
+            autoplay:true,
+            autoplayTimeout:3000,
+            autoplayHoverPause:true,
+            responsive:{
+                0:{ items:1 },
+                480:{ items:2 },
+                768:{ items:3 },
+                992:{ items:4 },
+                1200:{ items:5 }
+            }
+        });
+    });
+</script>
 
 
    
     <div class="container">
     <div class="p-b-32">
-        <h3 class="ltext-105 cl5 txt-left small-title">Casquettes & Chaussures</h3>
+        <h3 class="section-title">Casquettes & Chaussures</h3>
     </div>
 
-    <style>
-        .small-title {
-            font-size: 1.5rem; /* Adjust the size as needed */
-            text-align: left;
-            position: relative;
-            padding-bottom: 20px; /* Space for the line */
-        }
-        .small-title::after {
-            content: "";
-            display: block;
-            width: 100px; /* Adjust the width of the line */
-            height: 2px; /* Adjust the thickness of the line */
-            background: linear-gradient(to right, 
-                #000 20%, /* Thicker part */
-                #000 40%, /* Ends of thicker part */
-                transparent 40%, /* Thinner part starts */
-                transparent 100% /* Continues to the end */
-            );
-            position: absolute;
-            left: 0;
-            bottom: 0;
-        }
-    </style>
+    
 
     <div class="row">
     @php
@@ -546,7 +496,7 @@
                 <div class="block2">
                     <div class="block2-pic hov-img0">
                         <a href="{{ route('detail', $product->id) }}">
-                            <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
+                            <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT" loading="lazy">
                         </a>
 
 
@@ -564,7 +514,7 @@
                                 <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                     @csrf
                                     <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
+                                        <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON" loading="lazy">
                                         
                                     </button>
                                 </form>
@@ -576,12 +526,75 @@
         @endforeach
         </div>
             <!-- "Voir Plus" Button -->
-            <a href="prod" class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn1 p-lr-15 trans-04" 
-            style="background-color: yellow; color: black; text-decoration: none;"
-            onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
-            onmouseout="this.style.backgroundColor='yellow'; this.style.color='black';">
-            Voir Plus
-            </a>
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+                <a href="prod" >
+                    <button class="button-fancy">
+                        <p>Voir Plus</p>
+                    </button>
+                </a>
+            </div>
+
+           <style>
+                     /* Based on Uiverse.io button - using your .button-fancy class */
+
+                     /* From Uiverse.io by cssbuttons-io */ 
+                /* From Uiverse.io by nikk7007 */ 
+                .button-fancy {
+                --color:rgb(0, 0, 0);
+                padding: 0.8em 1.7em;
+                background-color: transparent;
+                border-radius: .3em;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+                transition: .5s;
+                font-weight: 400;
+                font-size: 17px;
+                border: 1px solid;
+                font-family: inherit;
+                text-transform: uppercase;
+                color: var(--color);
+                z-index: 1;
+                }
+
+                .button-fancy::before, .button-fancy::after {
+                content: '';
+                display: block;
+                width: 50px;
+                height: 50px;
+                transform: translate(-50%, -50%);
+                position: absolute;
+                border-radius: 50%;
+                z-index: -1;
+                background-color: var(--color);
+                transition: 1s ease;
+                }
+
+                .button-fancy::before {
+                top: -1em;
+                left: -1em;
+                }
+
+                .button-fancy::after {
+                left: calc(100% + 1em);
+                top: calc(100% + 1em);
+                }
+
+                .button-fancy:hover::before, .button-fancy:hover::after {
+                height: 410px;
+                width: 410px;
+                }
+
+                .button-fancy:hover {
+                color: rgb(255, 255, 255);
+                }
+
+                .button-fancy:active {
+                filter: brightness(.8);
+                }
+
+
+           </style>
 
         </div>
     </div>
@@ -599,30 +612,50 @@
 
             
     
-    <div class="container">
+    <div class="container" style="padding-bottom: 40px; ">
     <div class="p-b-32">
-        <h3 class="ltext-105 cl5 txt-left small-title">Accessoires</h3>
+        <h3 class="section-title">Accessoires</h3>
     </div>
+    <style>
+        .section-title {
+                font-size: 28px;
+            font-weight: 600;
+            color: #333333;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            position: relative;
+            }
 
-    <!-- Slider for accessoires -->
-    <div class="owl-carousel owl-theme">
+            .section-title::after {
+            content: "";
+            display: block;
+            width: auto;
+            height: 3px;
+            background-color:rgb(250, 212, 0);
+            margin-top: 8px;
+            }
+
+    </style>
+
+    <div class="owl-carousel owl-theme sacs-slider">
         @php
-            $filteredProducts = \App\Models\produits::where('is_active', 1)
-                ->where('Référence', 'like', '%accessoire%')
-                ->take(6)
-                ->get();
+        $filteredProducts = \App\Models\produits::where('is_active', 1)
+            ->where('Catégorie', 'accessoire')
+            ->take(4)
+            ->get();
         @endphp
+
+        
 
         @foreach ($filteredProducts as $product)
             <div class="item">
-                <!-- Block2 -->
                 <div class="block2">
                     <div class="block2-pic hov-img0">
                         <a href="{{ route('detail', $product->id) }}">
-                            <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
+                            <img src="{{ asset($product->image1) }}" alt="IMG-PRODUCT" loading="lazy">
                         </a>
-
-
                     </div>
                     <div class="block2-txt flex-w flex-t p-t-14">
                         <div class="block2-txt-child1 flex-col-l">
@@ -637,8 +670,7 @@
                             <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
                                 @csrf
                                 <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
-                                    
+                                    <img class="icon-heart1 dis-block trans-04" src="{{ asset('images/icons/heart.svg') }}" alt="ICON" loading="lazy">
                                 </button>
                             </form>
                         </div>
@@ -646,46 +678,8 @@
                 </div>
             </div>
         @endforeach
-    </div> 
-</div> 
+    </div>
 
-<style>
-    .block2-pic img {
-    width: 100%;
-    height: auto;
-}
-
-.block2 {
-    border: 1px solid #e6e6e6;
-    padding: 10px;
-}
-
-.block2-btn {
-    margin-top: 10px;
-}
-
-.block2-txt {
-    text-align: left;
-}
-
-/* Mobile and Tablet adjustments */
-@media (max-width: 768px) {
-    .block2 {
-        padding: 8px;
-    }
-
-    .block2-pic img {
-        height: auto;
-    }
-}
-
-@media (max-width: 576px) {
-    .col-6 {
-        max-width: 50%;
-        flex: 0 0 50%; /* 2 items per row for smaller devices */
-    }
-}
-</style>
 
 
 
@@ -698,6 +692,222 @@
     <!-- Additional content can be added here -->
 
 
+
+    <style>
+                       /* Product Section */
+                       .sec-product {
+                                background-color: #f9f9f9;
+                                padding-top: 0 !important;
+                                padding-bottom: 50px;
+                            }
+
+                            .sec-product .container {
+                                max-width: 1200px;
+                                margin: 0 auto;
+                                padding: 0 15px; /* Optional side padding for spacing */
+                                box-sizing: border-box;
+                            }
+
+                            .sec-product .ltext-105 {
+                                font-size: 24px;
+                                font-weight: bold;
+                                color: #333;
+                                text-align: center;
+                                margin-bottom: 32px;
+                                word-wrap: break-word;   /* Allows breaking long words */
+                                white-space: normal;     /* Forces line breaks */
+                            }
+
+
+                        /* Tab Navigation */
+                        .tab01 .nav-tabs {
+                            display: flex;
+                            justify-content: center;
+                            border-bottom: none;
+                        }
+
+                        .tab01 .nav-tabs .nav-item {
+                            margin-bottom: 10px;
+                        }
+
+                        .tab01 .nav-tabs .nav-link {
+                            color: #333;
+                            font-size: 16px;
+                            padding: 10px 20px;
+                            border: none;
+                            background-color: transparent;
+                            transition: color 0.3s ease;
+                        }
+
+                        .tab01 .nav-tabs .nav-link.active {
+                            color: #007bff;
+                            font-weight: bold;
+                        }
+
+                        .tab01 .nav-tabs .nav-link:hover {
+                            color: #0056b3;
+                        }
+
+                        /* Tab Content */
+                        .tab-content {
+                            padding-top: 50px;
+                        }
+
+                        /* Product Slider */
+                        .wrap-slick2 {
+                            position: relative;
+                        }
+
+                        .slick2 {
+                            /* REMOVE these two lines */
+                            /* display: flex; */
+                            /* flex-wrap: wrap; */
+                            gap: 30px; /* Keep if you want space between slides */
+                            justify-content: center;
+                        }
+
+
+                        .item-slick2 {
+                            padding: 15px; /* good spacing inside each item */
+                            box-sizing: border-box;
+                        }
+
+
+                        .block2 {
+                            background-color: #fff;
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            overflow: hidden;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            transition: transform 0.3s, box-shadow 0.3s;
+                            height: fit-content;
+
+                        }
+
+                        .block2:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                        }
+
+                        .block2-pic {
+                            position: relative;
+                            overflow: hidden;
+                        }
+
+                        .block2-pic img {
+                            width: 100%;
+                            height: auto;
+                            transition: transform 0.3s;
+                        }
+
+
+                        .block2-pic:hover img {
+                            transform: scale(1.05);
+                        }
+
+                        .block2-btn {
+                            position: absolute;
+                            bottom: 10px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: yellow;
+                            color: black;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            text-transform: uppercase;
+                            text-decoration: none;
+                            transition: background-color 0.3s, color 0.3s;
+                        }
+
+                        .block2-btn:hover {
+                            background-color: black;
+                            color: white;
+                        }
+
+                        /* Product Text */
+                        .block2-txt {
+                            text-align: center;
+                            position: relative;
+                            word-wrap: break-word;
+                            white-space: normal;
+
+                        }
+                        
+
+                        .block2-txt-child1 a {
+                            font-size: 16px;
+                            color: #333;
+                            text-decoration: none;
+                            transition: color 0.3s;
+                            word-wrap: break-word;
+                            text-decoration: none;white-space: normal;
+                            
+                        }
+
+                        .block2-txt-child1 a:hover {
+                            color:rgb(199, 171, 49);
+                        }
+
+                        .block2-txt-child1 .stext-105 {
+                            font-size: 14px;
+                            color: #dc3545;
+                            margin-top: 10px;
+                            display: block;
+                        }
+
+                        /* Wishlist Button */
+                        .btn-addwish-b2 {
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            position: relative;
+
+                        }
+
+                        .btn-addwish-b2 .icon-heart1 {
+                            opacity: 0.3;
+                            padding-top: 2em;
+                            width: 25px !important;
+                            height: auto;
+                            transition: opacity 0.3s;
+                        }
+
+
+
+                        .btn-addwish-b2:hover .icon-heart1 {
+                            opacity: 1;
+                        }
+
+  
+                        .block2-pic img {
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        .block2 {
+                            border: 1px solid #e6e6e6;
+                            padding: 30px;
+                        }
+
+                    
+                        /* Mobile and Tablet adjustments */
+                        @media (max-width: 768px) {
+                            .block2 {
+                                padding: 8px;
+                            }
+
+                            .block2-pic img {
+                                height: auto;
+                            }
+                        }
+
+                        @media (max-width: 576px) {
+                            .col-6 {
+                                max-width: 50%;
+                                flex: 0 0 50%; /* 2 items per row for smaller devices */
+                            }
+                        }
+                    </style>
 
 
     

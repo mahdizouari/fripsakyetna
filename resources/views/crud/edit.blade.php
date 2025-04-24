@@ -44,24 +44,18 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Catégorie</label><br>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" id="homme" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="homme" {{ old('Catégorie', $produit->Catégorie) == 'homme' ? 'checked' : '' }}>
-                                <label for="homme" class="form-check-label">Homme</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" id="femme" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="femme" {{ old('Catégorie', $produit->Catégorie) == 'femme' ? 'checked' : '' }}>
-                                <label for="femme" class="form-check-label">Femme</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" id="enfant" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="enfant" {{ old('Catégorie', $produit->Catégorie) == 'enfant' ? 'checked' : '' }}>
-                                <label for="enfant" class="form-check-label">Enfant</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" id="accessoire" name="Catégorie" class="form-check-input" value="accessoire" {{ old('Catégorie') == 'accessoire' ? 'checked' : '' }}>
-                                <label for="accessoire" class="form-check-label">Accessoires</label>
-                            </div>
+                            @php
+                                $categories = ['homme' => 'Homme', 'femme' => 'Femme', 'enfant' => 'Enfant', 'accessoire' => 'Accessoires'];
+                            @endphp
+                            @foreach($categories as $key => $label)
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="{{ $key }}" name="Catégorie" class="form-check-input @error('Catégorie') is-invalid @enderror" value="{{ $key }}" {{ old('Catégorie', $produit->Catégorie) == $key ? 'checked' : '' }}>
+                                    <label for="{{ $key }}" class="form-check-label">{{ $label }}</label>
+                                </div>
+                            @endforeach
                             @error('Catégorie') <span class="invalid-feedback d-block">{{ $message }}</span> @enderror
                         </div>
+
                         <div class="mb-3">
                             <label for="Référence" class="form-label">Référence</label>
                             <input type="text" id="Référence" name="Référence" class="form-control @error('Référence') is-invalid @enderror" value="{{ old('Référence', $produit->Référence) }}" style="height: 50px;">

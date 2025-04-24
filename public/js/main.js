@@ -3,26 +3,29 @@
     "use strict";
 
     /*[ Load page ]
-    ===========================================================*/
-    $(".animsition").animsition({
-        inClass: 'fade-in',
-        outClass: 'fade-out',
-        inDuration: 1500,
-        outDuration: 800,
-        linkElement: '.animsition-link',
-        loading: true,
-        loadingParentElement: 'html',
-        loadingClass: 'animsition-loading-1',
-        loadingInner: '<div class="loader05"></div>',
-        timeout: false,
-        timeoutCountdown: 5000,
-        onLoadEvent: true,
-        browser: [ 'animation-duration', '-webkit-animation-duration'],
-        overlay : false,
-        overlayClass : 'animsition-overlay-slide',
-        overlayParentElement : 'html',
-        transition: function(url){ window.location.href = url; }
-    });
+    ===========================================================
+    $(document).ready(function () {
+        $(".animsition").animsition({
+            inClass: 'fade-in',
+            outClass: 'fade-out',
+            inDuration: 1500,
+            outDuration: 800,
+            linkElement: '.animsition-link',
+            loading: true,
+            loadingParentElement: 'html',
+            loadingClass: 'animsition-loading-1',
+            loadingInner: '<div class="loader05"></div>',
+            timeout: true,
+            timeoutCountdown: 3000, // Force end after 3s
+            onLoadEvent: false, // Don’t wait for full page load
+            browser: ['animation-duration', '-webkit-animation-duration'],
+            overlay: false,
+            transition: function (url) {
+                window.location.href = url;
+            }
+        });
+    });*/
+    
     
     /*[ Back to top ]
     ===========================================================*/
@@ -39,6 +42,14 @@
     $('#myBtn').on("click", function(){
         $('html, body').animate({scrollTop: 0}, 300);
     });
+
+    $(document).ready(function() {
+        $('.hamburger').click(function() {
+            $(this).toggleClass('is-active');
+            $('.menu').toggleClass('show');
+        });
+    });
+    
 
 
     /*==================================================================

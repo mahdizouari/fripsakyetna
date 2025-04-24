@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src={{asset('vendor/jquery/jquery-3.2.1.min.js')}}></script>
+
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,20 +15,19 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    
+    
+
+
+
+
 <!--===============================================================================================-->	
 	<!-- Favicon -->
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
 
 <!-- CSS Links -->
- <!-- Owl Carousel CSS -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 
 <link rel="stylesheet" href="{{ asset('/css/util.css') }}">
 <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
@@ -44,19 +46,18 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/util.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
-<!-- Owl Carousel CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
 
 <!-- Owl Carousel JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
 
 
 
 </head>
 
-<body class="animsition">
+<body>
 
 <header class="header-v2">
 		<!-- Header desktop -->
@@ -232,7 +233,7 @@
     </ul>
     <!-- Footer with attribution -->
     <span class="mtext-101 cl5 footer-text">
-        Develpped by <a href="https://www.facebook.com/profile.php?id=100009832151933">@Mehdi Zouari</a>
+        Develpped by <a href="https://www.linkedin.com/in/mahdi-zouari-bb01b1279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">@Mehdi Zouari</a>
     </span>
 </div>
 
@@ -447,9 +448,7 @@
         color: #fff;
     }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     $(document).ready(function() {
         // Handle wishlist button clicks
@@ -572,33 +571,35 @@
 });
 
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Owl Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $(".owl-carousel").owlCarousel({
-                items: 3,  // Number of items to display at once
-                loop: true,
-                margin: 10,
-                nav: true,
-                autoplay: true,
-                autoplayTimeout: 3000,  // Autoplay interval (3 seconds)
-                autoplayHoverPause: true,
-                responsive: {
-                    0: {
-                        items: 2  // 2 items per line on phones
-                    },
-                    600: {
-                        items: 2  // 2 items per line on tablets
-                    },
-                    768: {
-                        items: 3  // 3 items per line on larger screens
-                    }
-                }
-            });
-        });
-    </script>
+$(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        loop: false,
+        margin: 10,
+        nav: true,
+        autoplay: false,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    });
+});
+</script>
+
+
+   
+
     <script>
         $(document).ready(function() {
     // Filter by category
@@ -621,8 +622,8 @@
 });
 
     </script>
+    
   <!--===============================================================================================-->	
-<script src={{asset('vendor/jquery/jquery-3.2.1.min.js')}}></script>
 <!--===============================================================================================-->
 	<script src={{asset('/vendor/animsition/js/animsition.min.js')}}></script>
 <!--===============================================================================================-->
@@ -631,6 +632,12 @@
     <script src={{ asset('/vendor/animsition/js/animsition.min.js') }}></script>
 
 <script src={{ asset('/js/main.js') }}></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4
+
 
 
 
