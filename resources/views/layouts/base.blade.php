@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/main.js"></script>
+
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -746,9 +748,10 @@
 				</div>
 
 			</div>
+            
 
 			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze "  >
 				<span class="hamburger-box">
 					<span class="hamburger-inner"></span>
 				</span>
@@ -791,9 +794,7 @@
         </li>
     </ul>
     <!-- Footer with attribution -->
-    <span class="mtext-101 cl5 footer-text">
-        Develpped by <a href="https://www.linkedin.com/in/mahdi-zouari-bb01b1279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">@Mehdi Zouari</a>
-    </span>
+    
 </div>
 
 
@@ -848,10 +849,7 @@
                          Aide & FAQs
 						</a>
 					</li>
-					<span class="mtext-101 cl5">
-                    Developed by <a href="https://www.linkedin.com/in/mahdi-zouari-bb01b1279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"> @Mehdi Zouari</a>				
-
-					</span>
+					
                   
                     
 				</ul>

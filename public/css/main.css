@@ -740,30 +740,76 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*==================================================================
 [ Menu mobile ]*/
+/* Mobile Menu Container */
 .menu-mobile {
   width: 100%;
-  background-color: white;
-  display: none;
+  background-color: #ffffff;  /* White background */
+  display: none;  /* Hidden by default */
+  position: fixed;  /* Fixed position to stay at the top when the menu opens */
+  top: -5;
+  left: 0;
+  z-index: 9999;  /* Ensure it's on top of other elements */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  /* Subtle shadow for depth */
+  transition: transform 0.3s ease;  /* Smooth transition for opening/closing */
+  transform: translateY(-100%);  /* Initially hidden above the screen */
 }
 
+/* Main Menu List */
 .main-menu-m {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #ffffff;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;  /* White background */
+  text-align: center;  /* Center-align the menu items */
 }
 
-.main-menu-m > li > a {
-  font-family: Poppins-Medium;
-  font-size: 14px;
-  color: rgb(0, 0, 0);
-  line-height: 2.8;
-  padding: 8px 20px 8px 20px;
-}
-
+/* List Item Styling */
 .main-menu-m > li {
-  color: white;
   position: relative;
+  margin-bottom: 10px;  /* Add space between menu items */
 }
+
+/* Link Styling */
+.main-menu-m > li > a {
+  font-family: 'Poppins', sans-serif;  /* Poppins font */
+  font-weight: 500;  /* Medium font weight */
+  font-size: 16px;  /* Larger font size for better readability */
+  color: #333333;  /* Dark color for the text */
+  padding: 12px 20px;  /* More padding for better touch targets */
+  display: block;
+  text-decoration: none;  /* Remove underline */
+  border-radius: 5px;  /* Rounded corners for a modern look */
+  transition: background-color 0.3s ease, color 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+/* Hover Effect */
+.main-menu-m > li > a:hover {
+  background-color: #f1f1f1;  /* Light grey background on hover */
+  color: #dacf3c;  /* Blue color for text on hover */
+}
+
+/* Mobile Menu Open Animation */
+.menu-mobile.open {
+  transform: translateY(0);  /* Slide the menu into view */
+}
+
+/* Close Button (Add close button if you want one) */
+.close-menu-mobile {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Close Button Hover Effect */
+.close-menu-mobile:hover {
+  color: #ff4c4c;  /* Red color on hover */
+}
+
 
 .arrow-main-menu-m {
   font-size: 14px;

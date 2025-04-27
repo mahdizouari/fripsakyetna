@@ -43,12 +43,7 @@
         $('html, body').animate({scrollTop: 0}, 300);
     });
 
-    $(document).ready(function() {
-        $('.hamburger').click(function() {
-            $(this).toggleClass('is-active');
-            $('.menu').toggleClass('show');
-        });
-    });
+    
     
 
 
@@ -88,36 +83,66 @@
 
     /*==================================================================
     [ Menu mobile ]*/
-    $('.btn-show-menu-mobile').on('click', function(){
-        $(this).toggleClass('is-active');
-        $('.menu-mobile').slideToggle();
-    });
-
-    var arrowMainMenu = $('.arrow-main-menu-m');
-
-    for(var i=0; i<arrowMainMenu.length; i++){
-        $(arrowMainMenu[i]).on('click', function(){
-            $(this).parent().find('.sub-menu-m').slideToggle();
-            $(this).toggleClass('turn-arrow-main-menu-m');
-        })
+    $(document).ready(function () {
+        // Toggle mobile menu
+      $('.btn-show-menu-mobile').on('click', function() {
+    var menuMobile = $('.menu-mobile');
+    
+    $(this).toggleClass('is-active');
+    
+    // Check if the mobile menu is already visible
+    if (menuMobile.hasClass('open')) {
+        // If it's open, animate the closing (slide up)
+        menuMobile.removeClass('open').stop().animate({
+            height: '0',
+            opacity: '0'
+        }, 400, function() {
+            // Once the animation is done, set display to none
+            menuMobile.css('display', 'none');
+        });
+    } else {
+        // If it's closed, show the menu and animate the opening (slide down)
+        menuMobile.addClass('open').css({
+            'display': 'block',
+            'height': 'auto',  // Ensure it takes the necessary height for sliding
+            'opacity': '1'
+        }).stop().animate({
+            height: menuMobile[0].scrollHeight, // Using scrollHeight to slide down
+            opacity: '1'
+        }, 400);
     }
+});
 
-    $(window).resize(function(){
-        if($(window).width() >= 992){
-            if($('.menu-mobile').css('display') == 'block') {
-                $('.menu-mobile').css('display','none');
-                $('.btn-show-menu-mobile').toggleClass('is-active');
-            }
-
-            $('.sub-menu-m').each(function(){
-                if($(this).css('display') == 'block') { console.log('hello');
-                    $(this).css('display','none');
-                    $(arrowMainMenu).removeClass('turn-arrow-main-menu-m');
+        
+    
+        // Toggle submenus
+        $('.arrow-main-menu-m').on('click', function (e) {
+            e.stopPropagation(); // Prevent bubbling
+            const $thisArrow = $(this);
+            $thisArrow.parent().find('.sub-menu-m').slideToggle();
+            $thisArrow.toggleClass('turn-arrow-main-menu-m');
+        });
+    
+        // On window resize
+        $(window).on('resize', function () {
+            if ($(window).width() >= 992) {
+                // Hide mobile menu if visible
+                if ($('.menu-mobile').is(':visible')) {
+                    $('.menu-mobile').hide();
+                    $('.btn-show-menu-mobile').removeClass('is-active');
                 }
-            });
-                
-        }
+    
+                // Hide all submenus and remove arrow rotation
+                $('.sub-menu-m').each(function () {
+                    if ($(this).is(':visible')) {
+                        $(this).hide();
+                        $(this).siblings('.arrow-main-menu-m').removeClass('turn-arrow-main-menu-m');
+                    }
+                });
+            }
+        });
     });
+    
 
 
     /*==================================================================
@@ -143,13 +168,13 @@
     var $filter = $('.filter-tope-group');
 
     // filter items on button click
-    $filter.each(function () {
+    /*$filter.each(function () {
         $filter.on('click', 'button', function () {
             var filterValue = $(this).attr('data-filter');
             $topeContainer.isotope({filter: filterValue});
         });
         
-    });
+    });*/
 
     // init Isotope
     $(window).on('load', function () {
@@ -180,25 +205,46 @@
 
     /*==================================================================
     [ Filter / Search product ]*/
-    $('.js-show-filter').on('click',function(){
+    /*$('.js-show-filter').on('click',function(){
         $(this).toggleClass('show-filter');
         $('.panel-filter').slideToggle(400);
 
-        if($('.js-show-search').hasClass('show-search')) {
+       if($('.js-show-search').hasClass('show-search')) {
             $('.js-show-search').removeClass('show-search');
             $('.panel-search').slideUp(400);
         }    
-    });
+    });*/
 
-    $('.js-show-search').on('click',function(){
-        $(this).toggleClass('show-search');
-        $('.panel-search').slideToggle(400);
-
-        if($('.js-show-filter').hasClass('show-filter')) {
-            $('.js-show-filter').removeClass('show-filter');
-            $('.panel-filter').slideUp(400);
-        }    
+    $('.js-show-filter').on('click', function() {
+        var filterPanel = $('.panel-filter');
+        
+        $(this).toggleClass('show-filter');
+        
+        // Check if the filter panel is already visible
+        if (filterPanel.hasClass('open')) {
+            // If the filter panel is open, animate the closing (slide up)
+            filterPanel.removeClass('open').stop().animate({
+                height: '0',
+                opacity: '0'
+            }, 400, function() {
+                // Once the animation is done, set display to none
+                filterPanel.css('display', 'none');
+            });
+            
+         
+        } else {
+            // If the filter panel is closed, show and animate both panels (slide down)
+            filterPanel.addClass('open').css('display', 'block').stop().animate({
+                height: filterPanel[0].scrollHeight,
+                opacity: '1'
+            }, 400);
+            
+        
+        }   
     });
+    
+    
+    
 
 
 

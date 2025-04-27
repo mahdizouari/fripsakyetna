@@ -40,89 +40,91 @@
                
             </div>
             
-            <!-- Search product -->
-            <div class="dis-none panel-search w-full p-t-10 p-b-15">
-                <div class="bor8 dis-flex p-l-15">
-                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-                </div>  
-            </div>
+            
 
             <!-- Filter -->
-                <div class="dis-none panel-filter w-full p-t-10">
+                <div class="dis-none panel-filter w-full p-t-10" style="    display: none; height: 0px; opacity: 0;">
                     <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 
                    
 
-                 <!-- Filter for Mobile -->
-                <div class="filter-mobile d-lg-none">
-                    <!-- Mobile Filter Toggle -->
+                        <!-- Filter for Mobile -->
+                        <div class="filter-mobile d-lg-none">
+                            <!-- Mobile Filter Toggle -->
 
-                    <div class="filter-mobile-content dis-none panel-filter w-full p-t-10">
-                        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-                            <!-- Category Section -->
-                            <div class="filter-col1 p-r-15 p-b-27">
-                                <div class="mtext-102 cl2 p-b-15">Category</div>
-                                <ul class="category-filter-list flex-row">
-                                    @foreach(['homme', 'femme', 'enfant'] as $category)
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
-                                                {{ ucfirst($category) }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                            <div class="filter-mobile-content dis-none panel-filter w-full p-t-10">
+                                <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                                    <!-- Category Section -->
+                                    <div class="filter-col1 p-r-15 p-b-27">
+                                        <div class="mtext-102 cl2 p-b-15">Category</div>
+                                        <ul class="category-filter-list flex-row">
+                                            @foreach(['homme', 'femme', 'enfant'] as $category)
+                                                <li class="p-b-6">
+                                                    <a href="#" class="filter-link stext-106 trans-04 category-filter {{ request('category') == $category ? 'active' : '' }}" data-category="{{ $category }}">
+                                                        {{ ucfirst($category) }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
 
-                            <!-- Reference Section -->
-                            <div class="filter-col2 p-r-15 p-b-27">
-                                <div class="mtext-102 cl2 p-b-15">Reference</div>
-                                <ul class="reference-filter-list flex-row">
-                                    @foreach(['sac', 'chaussure', 'casquette'] as $reference)
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
-                                                {{ ucfirst($reference) }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                                    <!-- Reference Section -->
+                                    <div class="filter-col2 p-r-15 p-b-27">
+                                        <div class="mtext-102 cl2 p-b-15">Reference</div>
+                                        <ul class="reference-filter-list flex-row">
+                                            @foreach(['sac', 'chaussure', 'casquette'] as $reference)
+                                                <li class="p-b-6">
+                                                    <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
+                                                        {{ ucfirst($reference) }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
 
-                            <!-- Taille Section -->
-                            <div class="filter-col3 p-r-15 p-b-27">
-                                <div class="mtext-102 cl2 p-b-15"> Taille </div>
-                                <ul class="taille-filter-list flex-row">
-                                    @foreach($taillesDisponibles as $taille)
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
-                                                {{ $taille }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                    <!-- Taille Section -->
+                                    <div class="filter-col3 p-r-15 p-b-27">
+                                        <div class="mtext-102 cl2 p-b-15"> Taille </div>
+                                        <ul class="taille-filter-list flex-row">
+                                            @foreach($taillesDisponibles as $taille)
+                                                <li class="p-b-6">
+                                                    <a href="#" class="filter-link stext-106 trans-04 taille-filter {{ request('taille') == $taille ? 'active' : '' }}" data-taille="{{ $taille }}">
+                                                        {{ $taille }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+        <script src="js/main.js"></script>
+
+                            <!-- Apply Filters Button -->
+                            <div class="apply-filter-btn-wrapper text-center p-t-20">
+                                    <button class="filter-button apply-filters" id="apply-filters-btn">Apply Filters</button>
+                                </div>
                             </div>
                         </div>
 
-                    <!-- Apply Filters Button -->
-                    <div class="apply-filter-btn-wrapper text-center p-t-20">
-                            <button class="filter-button apply-filters" id="apply-filters-btn">Apply Filters</button>
-                        </div>
                     </div>
                 </div>
-
-
-
-
-                    </div>
-             </div>
-
-        <!-- JavaScript to Handle Filtering -->
+        <script src="js/main.js"></script>    
+             <!-- JavaScript to Handle Filtering -->
         <script>
             let selectedCategory = '';
             let selectedReference = '';
             let selectedTaille = '';
+            // Selectors
+            const filterToggleBtn = document.querySelector('.js-show-filter');
+            const filterPanel = document.querySelector('.panel-filter');
+            const iconFilter = document.querySelector('.icon-filter');
+            const iconClose = document.querySelector('.icon-close-filter');
+
+            // Click event
+            
+
+
+
+
 
             // Category filter click event with toggle functionality
             document.querySelectorAll('.category-filter').forEach(function (el) {
@@ -194,74 +196,74 @@
 
         </script>
        <style>  
-        /* Styling for active filter links */
-.filter-link.active {
-    color: white;
-    background-color: #ffcc00;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
+                    /* Styling for active filter links */
+            .filter-link.active {
+                color: white;
+                background-color: #ffcc00;
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
 
-/* Yellow button for filter application */
-.filter-button {
-    background-color: #ffcc00;
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
+            /* Yellow button for filter application */
+            .filter-button {
+                background-color: #ffcc00;
+                color: black;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
 
-.filter-button:hover {
-    background-color: #ffb700;
-}
+            .filter-button:hover {
+                background-color: #ffb700;
+            }
 
-/* Horizontal layout of sections */
-.wrap-filter {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+            /* Horizontal layout of sections */
+            .wrap-filter {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
 
-/* Ensuring filters appear side by side */
-.filter-col1, 
-.filter-col2, 
-.filter-col3, 
-.filter-col4 {
-    flex-basis: 20%; /* Adjust this value to fit your layout */
-    text-align: center;
-}
+            /* Ensuring filters appear side by side */
+            .filter-col1, 
+            .filter-col2, 
+            .filter-col3, 
+            .filter-col4 {
+                flex-basis: 20%; /* Adjust this value to fit your layout */
+                text-align: center;
+            }
 
-/* Adjustments for mobile view */
-
-
-    /* Stack filter sections vertically on mobile */
-    .filter-col1, 
-    .filter-col2, 
-    .filter-col3, 
-    .filter-col4 {
-        flex-basis: 100%;
-        text-align: left;
-        margin-bottom: 20px;
-        padding: 10px;
-        background-color: #f9f9f9; /* Optional background to make sections stand out */
-        border-radius: 10px; /* Optional rounding for a polished look */
-    }
+            /* Adjustments for mobile view */
 
 
-/* Optional: To improve spacing on all screen sizes */
-.wrap-filter ul {
-    list-style-type: none;
-    padding-left: 0; /* Ensures no padding on the left */
-    margin-bottom: 0; /* Removes bottom margin for cleaner look */
-}
+                /* Stack filter sections vertically on mobile */
+                .filter-col1, 
+                .filter-col2, 
+                .filter-col3, 
+                .filter-col4 {
+                    flex-basis: 100%;
+                    text-align: left;
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    background-color: #f9f9f9; /* Optional background to make sections stand out */
+                    border-radius: 10px; /* Optional rounding for a polished look */
+                }
 
-.wrap-filter li {
-    margin-bottom: 15px; /* Increased spacing between items */
-    font-size: 16px; /* Slightly larger font for better readability */
-}
+
+            /* Optional: To improve spacing on all screen sizes */
+            .wrap-filter ul {
+                list-style-type: none;
+                padding-left: 0; /* Ensures no padding on the left */
+                margin-bottom: 0; /* Removes bottom margin for cleaner look */
+            }
+
+            .wrap-filter li {
+                margin-bottom: 15px; /* Increased spacing between items */
+                font-size: 16px; /* Slightly larger font for better readability */
+            }
 
        </style>
 
@@ -522,6 +524,12 @@
 }
 
 /* Responsive Design */
+
+
+
+
+
+
 
 
 </style>

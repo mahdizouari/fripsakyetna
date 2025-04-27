@@ -15,6 +15,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="js/main.js"></script>
+
     
     
 
@@ -187,7 +189,7 @@
 				</div>
 
 			</div>
-
+            
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 				<span class="hamburger-box">
@@ -232,9 +234,7 @@
         </li>
     </ul>
     <!-- Footer with attribution -->
-    <span class="mtext-101 cl5 footer-text">
-        Develpped by <a href="https://www.linkedin.com/in/mahdi-zouari-bb01b1279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">@Mehdi Zouari</a>
-    </span>
+    
 </div>
 
 
