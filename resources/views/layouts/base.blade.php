@@ -1560,6 +1560,10 @@ $(document).ready(function() {
             $(this).addClass('how-active1');
         });
     });
+    $(window).on('load', function () {
+  $('.isotope-grid').isotope('layout');
+});
+
 </script>  
 
   

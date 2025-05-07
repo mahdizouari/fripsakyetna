@@ -5,6 +5,8 @@
 @section('content')
 
 <!-- Product -->
+<script src="js/main.js"></script>
+
 <div class="bg0 m-t-23 p-b-140">
     <div class="container">
         <div class="flex-w flex-sb-m p-b-52">
@@ -96,7 +98,7 @@
                                         </ul>
                                     </div>
                                 </div>
-        <script src="js/main.js"></script>
+                <script src="js/main.js"></script>
 
                             <!-- Apply Filters Button -->
                             <div class="apply-filter-btn-wrapper text-center p-t-20">
@@ -107,7 +109,6 @@
 
                     </div>
                 </div>
-        <script src="js/main.js"></script>    
              <!-- JavaScript to Handle Filtering -->
         <script>
             let selectedCategory = '';
@@ -192,9 +193,10 @@
                 let queryString = '?category=' + selectedCategory + '&reference=' + selectedReference + '&taille=' + selectedTaille;
                 window.location.href = '/prod' + queryString;
             });
-
+                
 
         </script>
+        
        <style>  
                     /* Styling for active filter links */
             .filter-link.active {
@@ -274,7 +276,7 @@
         <!-- Product Listings -->
         <div class="row isotope-grid">
             @foreach ($products as $product)
-                <div class="col-4 col-md-3 p-b-30 isotope-item {{ strtolower($product->Référence) }} {{ strtolower($product->Catégorie) }}" >
+                <div class="col-5 col-md-3 p-b-30 isotope-item {{ strtolower($product->Référence) }} {{ strtolower($product->Catégorie) }}" >
                     <div class="block2">
                         <div class="block2-pic hov-img0">
                             <a href="{{ route('detail', $product->id) }}">
@@ -331,113 +333,124 @@
     box-sizing: border-box !important;
 
 }
+@media (max-width: 600px) {
+    .isotope-item {
+        flex: 1 1 calc(50% - 10px) !important;  /* Two items per row with spacing */
+        max-width: calc(50% - 10px) !important;
+        box-sizing: border-box !important;
+    }
+
+    .isotope-grid {
+        gap: 20px !important;  /* Controls space between items */
+        justify-content: center !important;
+    }
+    
+}
+
+
+
 
 /* Product Card */
 .block2 {
-    background-color: #fff !important;
-    border: 1px solid #ddd !important;
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
-    transition: transform 0.3s, box-shadow 0.3s !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+    max-width: 160px;
+    text-align: center;
 }
 
-.block2:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* Product Image */
-.block2-pic {
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.block2-pic img {
-    width: 100% !important;
-    height: auto !important;
-    transition: transform 0.3s !important;
-}
-
-.block2-pic:hover img {
-    transform: scale(1.05) !important;
-}
-
-.block2-btn {
-    position: absolute !important;
-    bottom: 10px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    background-color: yellow !important;
-    color: black !important;
-    padding: 10px 20px !important;
-    border-radius: 5px !important;
-    text-transform: uppercase !important;
-    text-decoration: none !important;
-    transition: background-color 0.3s, color 0.3s !important;
-}
-
-.block2-btn:hover {
-    background-color: black !important;
-    color: white !important;
-}
-
-/* Product Text */
-.block2-txt {
-    padding: 15px !important;
-    text-align: center !important;
-}
-
-.block2-txt-child1 a {
-    font-size: 16px !important;
-    color: #333 !important;
-    text-decoration: none !important;
-    transition: color 0.3s !important;
-}
-
-.block2-txt-child1 a:hover {
-    color: yellow !important;
-}
-
-.block2-txt-child1 .stext-105 {
-    font-size: 14px !important;
-    color: #dc3545 !important;
-    margin-top: 5px !important;
-    display: block !important;
-}
-
-/* Wishlist Button */
+/* Heart icon positioning */
 .btn-addwish-b2 {
-    background: none !important;
-    border: none !important;
-    cursor: pointer !important;
-    position: relative !important;
+    position: absolute;
+    top: 215px;
+    right: 10px;
 }
 
 .btn-addwish-b2 .icon-heart1 {
     opacity: 0.3;
-    padding-top: 2em;
-    width: 25px !important;
-    height: auto;
-    transition: opacity 0.3s;
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.3s ease;
 }
-
-
 
 .btn-addwish-b2:hover .icon-heart1 {
     opacity: 1;
 }
 
-
-
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .isotope-item {
-        flex: 1 1 calc(50% - 30px) !important;
-        max-width: calc(50% - 30px) !important;
-    }
+.block2 img {
+    max-width: 100%;
+    height: 100px;
+    margin-bottom: 30px;
 }
+
+.block2 h4,
+.block2 span {
+    margin: 5px 0;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+/* Grid responsiveness */
+.isotope-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.isotope-item {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .isotope-item {
+        flex: 1 1 calc(25% - 20px);
+        max-width: calc(25% - 20px);
+    }
+}.block2-txt-child1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 90px; /* Fixed height for uniformity */
+    padding: 2px;
+    overflow: hidden;
+}
+
+.block2-txt-child1 a {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.2;
+    max-height: 3.6em; /* 1.2 (line height) × 3 lines = 3.6em */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+
+.block2-txt-child1 span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e3002b;
+    margin-top: auto;
+}
+
+
+
 
 
 
