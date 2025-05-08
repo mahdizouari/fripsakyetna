@@ -370,15 +370,16 @@
 /* Heart icon positioning */
 .btn-addwish-b2 {
     position: absolute;
-    top: 215px;
+    top: 250px;
     right: 10px;
 }
 
 .btn-addwish-b2 .icon-heart1 {
     opacity: 0.3;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     transition: opacity 0.3s ease;
+
 }
 
 .btn-addwish-b2:hover .icon-heart1 {
@@ -386,8 +387,8 @@
 }
 
 .block2 img {
-    max-width: 100%;
-    height: 100px;
+    max-width: 140px;
+    height: 140px;
     margin-bottom: 30px;
 }
 
@@ -429,21 +430,26 @@
 }
 
 .block2-txt-child1 a {
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 1.2;
-    max-height: 3.6em; /* 1.2 (line height) × 3 lines = 3.6em */
+    font-size: 16px;
+    line-height: 1.1;
+    max-height: 3.3em;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     word-break: break-word;
+    color: black;
+    text-transform: lowercase;
 }
 
 
+
+
+
+
 .block2-txt-child1 span {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #e3002b;
     margin-top: auto;
