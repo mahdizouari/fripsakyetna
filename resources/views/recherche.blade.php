@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
+
 <div class="bg0 m-t-23 p-b-140">
     <div class="container">
         @if ($products->isEmpty())
@@ -47,6 +48,7 @@
     </div>
 </div>
 @endsection
+
 <style>
 .btn-addwish-b2 {
     background: none;
@@ -199,3 +201,4 @@
     position: relative;
 }
 </style>
+

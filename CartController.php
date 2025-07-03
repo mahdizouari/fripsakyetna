@@ -53,10 +53,7 @@ class CartController extends Controller
 
         Session::put('productItems', $panier);
 
-        return response()->json([
-            'success' => true,
-            'cart' => $panier // ✅ Debug: return the cart directly
-        ]);   
+        return back()->with('success', "{$product->name} ajouté au panier !");
     }
 
     // Remove product from the panier

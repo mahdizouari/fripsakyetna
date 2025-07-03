@@ -42,7 +42,21 @@
                
             </div>
             
-            
+            <style>
+                .bg0 {
+                    background-color:rgba(247, 247, 247, 0.83); /* or any color */
+                    }
+
+                    .m-t-23 {
+                    margin-top: 23px;
+                    }
+
+                    .p-b-140 {
+                    padding-bottom: 140px;
+                    }
+
+                
+            </style>
 
             <!-- Filter -->
                 <div class="dis-none panel-filter w-full p-t-10" style="    display: none; height: 0px; opacity: 0;">
@@ -301,7 +315,7 @@
                                     <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
                                                             <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON" loading="lazy">
                                                             
-                                                        </button>
+                                    </button>
                                 </form>
                             </div>
                         </div>

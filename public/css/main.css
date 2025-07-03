@@ -1454,7 +1454,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
   font-size: 39px;
-  color: #ccc;
+  color: #cbb211;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -1463,24 +1463,24 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .arrow-slick2:hover {
-  color: #666;
+  color: #888212;
 }
 
 .next-slick2 {
-  right: -40px;
+  right: -20px;
 }
 
 .prev-slick2 {
-  left: -40px;
+  left: -20px;
 }
 
 @media (max-width: 1300px) {
   .next-slick2 {
-    right: 0px;
+    right: 15px;
   }
 
   .prev-slick2 {
-    left: 0px;
+    left: 15px;
   }
 }
 

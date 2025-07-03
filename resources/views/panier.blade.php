@@ -91,20 +91,76 @@
                 <div class="col text-right">
                      {{ number_format(collect(Session::get('productItems'))->sum('prix') + 8, 2) }} DT
                 </div>
-                <div>
-                    <!-- Check if the cart (productItems) is not empty -->
-                    @if(Session::has('productItems') && count(Session::get('productItems')) > 0)
-                        <a href="{{ route('checkout') }}" class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04">
-                            Valider la commande
-                        </a>
-                    @else
-                        <!-- Show disabled button if the cart is empty -->
-                        <button class="flex-c-m stext-104 cl0 size-105 bg-secondary bor2 p-lr-19 trans-04" disabled>
-                            Valider la commande
-                        </button>
-                        <p class="text-danger mt-2">Votre panier est vide. Ajoutez des produits pour passer une commande.</p>
-                    @endif
-                </div>
+                <div class="row border-top border-bottom py-3">
+    <div class="col">PRIX TOTAL</div>
+    <div class="col text-end">
+        {{ number_format(collect(Session::get('productItems'))->sum('prix') + 8, 2) }} DT
+    </div>
+</div>
+
+{{-- =======================  CHECKOUT / AJAX  ======================= --}}
+@php
+    $items = session('productItems', []);
+    $contentIdsJson = json_encode(array_keys($items));
+    $totalValue = number_format(collect($items)->sum('prix') + 8, 2, '.', '');
+@endphp
+
+<div class="mt-3">
+    @if(count($items) > 0)
+        <button type="button"
+                class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04 js-initiate-checkout"
+                data-content-ids="{{ $contentIdsJson }}"
+                data-value="{{ $totalValue }}"
+                data-currency="TND"
+                data-checkout-url="{{ route('checkout') }}">
+            Valider la commande
+        </button>
+    @else
+        <button type="button"
+                class="flex-c-m stext-104 cl0 size-105 bg-secondary bor2 p-lr-19 trans-04"
+                disabled>
+            Valider la commande
+        </button>
+        <p class="text-danger mt-2">Votre panier est vide. Ajoutez des produits pour passer une commande.</p>
+    @endif
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('.js-initiate-checkout');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+        const ids = JSON.parse(btn.dataset.contentIds);
+        const value = parseFloat(btn.dataset.value);
+        const currency = btn.dataset.currency;
+        const redirectTo = btn.dataset.checkoutUrl;
+
+        // 🔹 1. Fire Facebook Pixel event
+        fbq('track', 'InitiateCheckout', {
+            content_ids: ids,
+            value: value,
+            currency: currency,
+            content_type: 'product'
+        });
+
+        // 🔹 2. Optional AJAX call to server (log or prepare)
+        fetch("{{ route('checkout') }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content_ids: ids, value: value })
+        }).finally(() => {
+            // 🔹 3. Redirect to actual checkout page
+            window.location.href = redirectTo;
+        });
+    });
+});
+</script>
+
+
+
 
     </div>
 </div>

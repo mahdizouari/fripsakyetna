@@ -1,0 +1,23 @@
+[0;1;31m×[0m mariadb.service - MariaDB 10.11 database server
+     Loaded: loaded (]8;;file://mehdis-computer/usr/lib/systemd/system/mariadb.service/usr/lib/systemd/system/mariadb.service]8;;; [0;1;32menabled[0m; preset: [0;1;38:5:185mdisabled[0m)
+    Drop-In: /usr/lib/systemd/system/service.d
+             └─]8;;file://mehdis-computer/usr/lib/systemd/system/service.d/10-timeout-abort.conf10-timeout-abort.conf]8;;, ]8;;file://mehdis-computer/usr/lib/systemd/system/service.d/50-keep-warm.conf50-keep-warm.conf]8;;
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2025-06-19 20:47:56 CET; 2min 3s ago
+ Invocation: 4042764fd44f4a9bb6b8f8cd63649cbb
+       Docs: ]8;;man:mariadbd(8)man:mariadbd(8)]8;;
+             ]8;;https://mariadb.com/kb/en/library/systemd/https://mariadb.com/kb/en/library/systemd/]8;;
+   Main PID: 9259 (code=exited, status=1/FAILURE)
+     Status: "[0;1;36mMariaDB server is down[0m"
+   Mem peak: 123.8M
+        CPU: 224ms
+
+Jun 19 20:47:56 mehdis-computer mariadbd[9259]: 2025-06-19 20:47:56 0 [Note] Plugin 'FEEDBACK' is disabled.
+Jun 19 20:47:56 mehdis-computer mariadbd[9259]: 2025-06-19 20:47:56 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+Jun 19 20:47:56 mehdis-computer mariadbd[9259]: 2025-06-19 20:47:56 0 [Note] Server socket created on IP: '0.0.0.0'.
+Jun 19 20:47:56 mehdis-computer mariadbd[9259]: 2025-06-19 20:47:56 0 [ERROR] Can't start server: Bind on TCP/IP port. Got error: 98: Address already in use
+Jun 19 20:47:56 mehdis-computer mariadbd[9259]: 2025-06-19 20:47:56 0 [ERROR] Do you already have another server running on port: 3306 ?
+Jun 19 20:47:56 mehdis-computer mariadbd[9259]: 2025-06-19 20:47:56 0 [ERROR] Aborting
+Jun 19 20:47:56 mehdis-computer systemd[1]: [0;1;39m[0;1;31m[0;1;39mmariadb.service: Main process exited, code=exited, status=1/FAILURE[0m
+Jun 19 20:47:56 mehdis-computer systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mmariadb.service: Failed with result 'exit-code'.[0m
+Jun 19 20:47:56 mehdis-computer systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start mariadb.service - MariaDB 10.11 database server.[0m
+Jun 19 20:47:56 mehdis-computer systemd[1]: mariadb.service: Consumed 224ms CPU time, 123.8M memory peak.

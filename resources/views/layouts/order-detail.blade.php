@@ -53,6 +53,49 @@
 <!-- Owl Carousel JS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '678863848467066'); // Replace with your pixel ID
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=678863848467066&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+<script>
+  fbq('track', 'ViewContent', {
+    content_name: '{{ $product->name }}',
+    content_ids: ['{{ $product->id }}'],
+    content_type: 'product'
+  });
+</script>
+@section('scripts')
+@if(request('query'))
+<script>
+  // Safely assign PHP query string to a JS variable
+  const searchString = "{{ request('query') }}";
+
+  // Fire Facebook Pixel Search event
+  fbq('track', 'Search', {
+    search_string: searchString
+  });
+</script>
+@endif
+
+
+@endsection
+
+
 
 
 
@@ -259,7 +302,6 @@
 
 
     @yield('content')
-
 
 
 
@@ -623,6 +665,7 @@ $(document).ready(function(){
 
     </script>
     
+    
   <!--===============================================================================================-->	
 <!--===============================================================================================-->
 	<script src={{asset('/vendor/animsition/js/animsition.min.js')}}></script>
@@ -636,7 +679,8 @@ $(document).ready(function(){
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4"></script>
+
 
 
 

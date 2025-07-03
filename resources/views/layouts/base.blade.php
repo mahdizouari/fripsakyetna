@@ -50,6 +50,9 @@
 <link rel="stylesheet" href="{{ asset('css/util.css') }}">
 <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
 
 
 
@@ -161,23 +164,14 @@
             display: flex;
             justify-content: center;
             margin: 10px;
+            margin-bottom: 150px;
+            padding: 10px;
         }
         .item img {
             max-width: 100%;
             height: auto;
         }
-        .owl-nav button {
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: #fff;
-            font-size: 18px;
-        }
-        .owl-nav button.owl-prev {
-            left: 10px;
-        }
-        .owl-nav button.owl-next {
-            right: 10px;
-        }
+        
         .btn-view-all {
             display: block;
             width: 100%;
@@ -349,6 +343,7 @@
 }
 
 </style>
+
 <style>
 	.container {
     padding-top: 20px;
@@ -584,37 +579,85 @@
 
 </style>
 <style>
-/* Ensure the pagination container is centered */
-.pagination-container {
-    display: flex;
-    justify-content: center;
+/* Base pagination (desktop & up) */
+.pagination-container{
+  display:flex;
+  justify-content:center;
 }
 
-/* Style pagination for mobile screens */
-@media only screen and (max-width: 767px) {
-    .pagination-container {
-        display: flex;
-        justify-content: center;
-    }
+/* Mobile ≤ 767 px */
+@media (max-width:767px){
+  .pagination-container{
+    /* makes the list itself wrap onto a second line when needed */
+    flex-wrap:wrap;             
+    /* optional: add some air above/below the block */
+    margin:1rem auto;
+  }
 
-    .pagination-container .pagination {
-        display: flex;
-        gap: 0.5rem; /* Optional: add spacing between pagination items */
-    }
+  /* UL produced by Laravel’s paginator */
+  .pagination{
+    display:flex;
+    flex-wrap:wrap;             /* 🔑 prevents horizontal scroll */
+    gap:.4rem;                  /* slim gap keeps links touch‑friendly */
+  }
 
-    .pagination-container .pagination > li {
-        display: flex;
-    }
+  /* every <li> */
+  .pagination > li{
+    flex:0 0 auto;              /* don’t stretch */
+  }
 
-    .pagination-container .pagination > li > a,
-    .pagination-container .pagination > li > span {
-        padding: 0.5rem 1rem; /* Adjust padding for better touch targets on mobile */
-        margin: 0; /* Remove default margins */
+  /* the <a> / <span> inside */
+  .pagination > li > a,
+  .pagination > li > span{
+    padding:.45rem .7rem;       /* slightly smaller pill */
+    font-size:.9rem;            /* keeps numbers readable but compact */
+    line-height:1;              /* trims vertical height */
+  }
+
+  /* hide long “previous / next” words on very narrow phones */
+  @media (max-width:480px){
+    .pagination .page-item:first-child  a::after, /* Prev */
+    .pagination .page-item:last-child   a::after{ 
+      content:"";               /* wipe text, keeps arrow icon if any */
     }
+  }
 }
+
 
 
 </style>
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '678863848467066'); // Replace with your pixel ID
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=678863848467066&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+
+@if(request('query'))
+<script>
+  // Safely assign PHP query string to a JS variable
+  const searchString = "{{ request('query') }}";
+
+  // Fire Facebook Pixel Search event
+  fbq('track', 'Search', {
+    search_string: searchString
+  });
+</script>
+@endif
+
 
 </head>
 
@@ -810,8 +853,8 @@
 				<button class="flex-c-m trans-04">
 					<i class="zmdi zmdi-search"></i>
 				</button>
-				<input class="plh3" type="text" name="search" placeholder="Recherche..." required>
-			</form>
+                <input class="plh3" type="text" name="query" placeholder="Recherche..." required>
+                </form>
 		</div>
         
 	</div>
@@ -867,7 +910,7 @@
     <!-- Footer -->
      
 <!-- Footer -->
-<footer class="bg3 p-t-75 p-b-32">
+<footer class="bg3 p-t-75">
 	<center>
     <div class="container text-center">
         <div class="row justify-content-center">
@@ -947,7 +990,7 @@
                 &copy; <script>document.write(new Date().getFullYear());</script> Frip Sakyetna. All rights reserved.
             </p>
             <p class="stext-107 cl6 txt-center">
-            Developed by <a href="https://www.linkedin.com/in/mahdi-zouari-bb01b1279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">Mehdi Zouari</a> 
+            Developed by <a href="https://www.linkedin.com/in/mahdi-zouari/">Mehdi Zouari</a> 
             </p>
         </div>
        
@@ -1111,6 +1154,10 @@ $(document).ready(function() {
 
 
 
+@yield('scripts')
+
+
+
 
 		
 </body>
@@ -1234,40 +1281,9 @@ $(document).ready(function() {
 						}
 
 
-						.slick-dots li button:before {
-							font-size: 10px;
-							color: #fff; /* Dot color */
-						}
+						
 
-						.slick-dots li.slick-active button:before {
-							color: #007bff; /* Active dot color */
-						}
-
-						/* Custom styles for slider arrows */
-						.wrap-slick3-arrows {
-							position: absolute;
-							top: 50%;
-							width: 100%;
-							display: flex;
-							justify-content: space-between;
-							transform: translateY(-50%);
-						}
-
-						.slick-prev, .slick-next {
-							width: 30px;
-							height: 30px;
-							border-radius: 50%;
-							background-color: rgba(0,0,0,0.5);
-							color: #fff;
-							font-size: 18px;
-							line-height: 30px;
-							text-align: center;
-							cursor: pointer;
-						}
-
-						.slick-prev:hover, .slick-next:hover {
-							background-color: rgba(0,0,0,0.8);
-						}
+						
 
 </style>
 
@@ -1312,6 +1328,7 @@ $(document).ready(function() {
         });
     });
 </script>
+
 <script>
 	$(document).ready(function(){
     $('.slick3').slick({
