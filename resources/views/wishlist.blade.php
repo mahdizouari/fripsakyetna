@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="cart-wrap bg0 m-t-23 p-b-140">
+<div class="cart-wrap m-t-23 p-b-140">
     <div class="container">
         @if (empty($wishlistItems))
             <p class="text-center stext-101 cl2 p-t-20">

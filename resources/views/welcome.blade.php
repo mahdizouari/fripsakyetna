@@ -412,7 +412,10 @@
                     fill: #FFD700;
                     }
                     
+
+                    
                 </style>
+               
             
             <div class="size-202 wrap-pic-w">
                 <!-- Block1 -->
@@ -875,7 +878,7 @@
 
     <div class="owl-carousel owl-theme top-selling">
         @foreach ($filteredProducts as $product)
-            <div class="item px-2">
+            <div class="col-15 col-md-12 p-b-30 ">
                 <div class="card block2 text-center h-100">
                     <div class="block2-pic hov-img0">
                         <a href="{{ route('detail', $product->id) }}">
@@ -885,25 +888,20 @@
                                  loading="lazy">
                         </a>
                     </div>
-                    <div class="block2-txt flex-w flex-t p-t-14">
-                        <div class="block2-txt-child1 flex-col-l">
+                   <div class=" flex-w flex-t p-t-14">
+                        <div class=" d-flex flex-column justify-content-between" style="min-height: 80px;">
                             <a href="{{ route('detail', $product->id) }}"
-                               class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                            class=" product-name">
                                 {{ $product->name }}
                             </a>
-                            <span class="stext-105 cl3">
+                            <span class="stext-105 cl3 product-price">
                                 {{ number_format($product->prix, 2) }} DT
                             </span>
-                        </div>
-                        <div class="block2-txt-child2 flex-r p-t-3">
-                            <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
-                                @csrf
-                                <button type="submit" class="btn-addwish-b2 dis-block pos-relative" aria-label="Ajouter à la wishlist">
-                                    <img src="{{ asset('images/icons/heart.svg') }}" alt="heart icon" class="icon-heart1 dis-block trans-04" loading="lazy">
-                                </button>
-                            </form>
+                            <span class="price-legdim">{{ number_format($product->prix * 1.2, 2) }} DT</span>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         @endforeach
@@ -911,6 +909,10 @@
 </div>
 
 <style>
+
+
+
+
 /* Hidden state before a card enters the viewport */
 .block2 {
     opacity: 0;
@@ -1365,16 +1367,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
 
+                       
+                    /* Product Card */
                         .block2 {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin: 10px auto;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
                             background-color: #fff;
-                            border: 1px solid #ddd;
-                            border-radius: 10px;
-                            overflow: hidden;
-                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                            transition: transform 0.3s, box-shadow 0.3s;
-                            height: fit-content;
-
-
+                            position: relative;
+                            width: 100%;
+                            max-width: 300px;
+                            text-align: center;
+                            
                         }
 
                         .block2:hover {
@@ -1382,124 +1390,131 @@ document.addEventListener('DOMContentLoaded', () => {
                             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                         }
 
-                        .block2-pic {
-                            position: relative;
-                            overflow: hidden;
-                        }
+/* Heart icon positioning */
+.btn-addwish-b2 {
+    position: absolute;
+    top: 261px;
+    right: 10px;
+}
 
-                        .block2-pic img {
-                            width: 100%;
-                            height: auto;
-                            transition: transform 0.3s;
-                        }
+.btn-addwish-b2 .icon-heart1 {
+    opacity: 0.3;
+    width: 25px;
+    height: 25px;
+    transition: opacity 0.3s ease;
+
+}
+
+.btn-addwish-b2:hover .icon-heart1 {
+    opacity: 1;
+}
+
+.block2 img{
+    max-width:160px;     /* ← keep your size limits */
+    height:140px;        /* (or use height:auto for true aspect ratio) */
+    display:block;       /* turns the <img> into a block */
+    margin:0 auto 40px;
+    position: relative;  /* 0 top + bottom‑space + centered horizontally */
+}
 
 
-                        .block2-pic:hover img {
-                            transform: scale(1.05);
-                        }
+.block2 h4,
+.block2 span {
+    margin: 5px 0;
+    font-size: 14px;
+    word-wrap: break-word;
+}
 
-                        .block2-btn {
-                            position: absolute;
-                            bottom: 10px;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            background-color: yellow;
-                            color: black;
-                            padding: 10px 20px;
-                            border-radius: 5px;
-                            text-transform: uppercase;
-                            text-decoration: none;
-                            transition: background-color 0.3s, color 0.3s;
-                        }
+/* Grid responsiveness */
+.isotope-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
 
-                        .block2-btn:hover {
-                            background-color: black;
-                            color: white;
-                        }
+.isotope-item {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+    box-sizing: border-box;
+}
 
-                        /* Product Text */
-                        .block2-txt {
-                            text-align: center;
-                            position: relative;
-                            word-wrap: break-word;
-                            white-space: normal;
+@media (min-width: 768px) {
+    .isotope-item {
+        flex: 1 1 calc(25% - 20px);
+        max-width: calc(25% - 20px);
+    }
+}
+.block2-txt-child1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 90px; /* Fixed height for uniformity */
+    padding: 2px;
+    overflow: hidden;
+}
 
-                        }
-                        
-
-                        .block2-txt-child1 a {
-                            font-size: 16px;
-                            color: #333;
-                            text-decoration: none;
-                            transition: color 0.3s;
-                            word-wrap: break-word;
-                            text-decoration: none;white-space: normal;
-                            
-                        }
-
-                        .block2-txt-child1 a:hover {
-                            color:rgb(199, 171, 49);
-                        }
-
-                        .block2-txt-child1 .stext-105 {
-                            font-size: 14px;
-                            color: #dc3545;
-                            margin-top: 10px;
-                            display: block;
-                        }
-
-                        /* Wishlist Button */
-                        .btn-addwish-b2 {
-                            background: none;
-                            border: none;
-                            cursor: pointer;
-                            position: relative;
-
-                        }
-
-                        .btn-addwish-b2 .icon-heart1 {
-                            opacity: 0.3;
-                            padding-top: 2em;
-                            width: 25px !important;
-                            height: auto;
-                            transition: opacity 0.3s;
-                        }
+.block2-txt-child1 a {
+    font-size: 16px;
+    line-height: 1.1;
+    max-height: 3.3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    color: black;
+    text-transform: lowercase;
+}
+/* prevent name from wrapping awkwardly */
 
 
 
-                        .btn-addwish-b2:hover .icon-heart1 {
-                            opacity: 1;
-                        }
 
-  
-                        .block2-pic img {
-                            width: 100%;
-                            height: auto;
-                        }
 
-                        .block2 {
-                            border: 1px solid #e6e6e6;
-                            padding: 30px;
-                        }
 
-                    
-                        /* Mobile and Tablet adjustments */
-                        @media (max-width: 768px) {
-                            .block2 {
-                                padding: 20px;
-                            }
+.block2-txt-child1 span {
+    font-size: 15px;
+    font-weight: bold;
+    color: #e3002b;
+    margin-top: auto;
+}
+.product-price{
+  font-size:15px;
+  font-weight:bold;
+  color:#e3002b;
+  white-space:nowrap;              /* always on one line */
+}
 
-                            .block2-pic img {
-                                height: auto;
-                            }
-                        }
+/* ──────────────────────────────────────────────
+   MOBILE TWEAKS (optional)
+   ──────────────────────────────────────────── */
+@media (max-width:575px){
+  .product-name{ font-size:14px; }
+  .product-price{ font-size:14px; }
+}
+.product-name{
+  font-size:16px;
+  line-height:1.2;
+  color:#000;
+  text-transform:lowercase;
+  text-decoration:none;
 
-                        @media (max-width: 576px) {
-                            .col-6 {
-                                max-width: 50%;
-                                flex: 0 0 50%; /* 2 items per row for smaller devices */
-                            }
-                        }
+  /* clamp to 2 lines with ellipsis */
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  word-break:break-word;
+}
+
+
+
+
     </style>
 
 

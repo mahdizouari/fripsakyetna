@@ -158,6 +158,19 @@
         }
     }
 </style>
+ <style>
+                    .bg0 {
+                    background-color:rgba(171, 172, 173, 0.83); /* or any color */
+                    }
+
+                    .m-t-23 {
+                    margin-top: 23px;
+                    }
+
+                    .p-b-140 {
+                    padding-bottom: 140px;
+                    }
+                </style>
 <style>
         /* Custom CSS */
         .owl-carousel .item {
@@ -484,6 +497,11 @@
 .table-wishlist tr td .quanlity {
     position: relative;
 }
+ .price-legdim {
+            font-size: 1.2rem;
+            color: #888;
+            text-decoration: line-through;
+        }
 
 .total {
 	font-size: 24px;
