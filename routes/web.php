@@ -33,7 +33,8 @@ Route::get('/recherche', [HomeController::class, 'recherche'])->name('recherche'
 
 Route::resource('slider', SliderController::class);
 
-Route::get('/order-confirmation/{orderId}', [CartController::class, 'confirmOrder'])->name('order-confirmation');
+// routes/web.php
+Route::get('/order-confirmation/{orderGroupId}', [CartController::class, 'confirmOrder'])->name('order-confirmation');
 // routes/web.php
 
 Route::get('/qui-somme-nous', [HomeController::class, 'quiSommeNous'])->name('qui-somme-nous');

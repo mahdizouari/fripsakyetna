@@ -19,25 +19,29 @@
 
         <!-- Success Message -->
         <h2 class="mb-2">Merci pour votre commande, <strong>{{ $firstOrder->nom_de_client ?? 'cher client' }}</strong>!</h2>
-        <p class="text-muted mb-4">Votre commande <strong>#{{ $firstOrder->id }}</strong> a été enregistrée avec succès.</p>
+        <p class="text-muted mb-4">Votre commande <strong>#{{ $orderGroupId }}</strong> a été enregistrée avec succès.</p>
 
         <!-- Order Summary -->
-        <div class="text-start mb-4">
-            <h5>Détails de la commande :</h5>
-            <ul class="list-group mb-3">
-                @foreach($commandes as $commande)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ $commande->nom_de_produit }}
-                        <span>{{ number_format($commande->prix, 2) }} TND</span>
-                    </li>
-                @endforeach
-            </ul>
+            <div class="text-start mb-4">
+                <h5>Détails de la commande :</h5>
+                <ul class="list-group mb-3">
+                    @foreach($commandes as $commande)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ $commande->nom_de_produit }}
+                            <span>{{ number_format($commande->prix, 2)  }} TND</span>
+                            
+                        </li>
+                    @endforeach
+                </ul>
 
-            <p>
-                <strong>Total à payer: </strong>
-                {{ number_format($commandes->sum('prix'), 2) }} TND
-            </p>
-        </div>
+                <p>
+                    <strong>Total à payer: </strong>
+                    {{ number_format($commandes->sum('prix'), 2) + 8 }} TND
+                    <div>
+                        <small class="text-muted">Frais de livraison standard inclus (8.00 TND)</small>
+                    </div>
+                </p>
+            </div>
 
         <!-- Action Buttons -->
         <div class="d-flex justify-content-center gap-3 flex-wrap ">
@@ -72,7 +76,18 @@
         color: #28a745;
     }
 
-   
+    .btn-yellow {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color:rgb(67, 189, 30); /* Yellow */
+        color:#28a745;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .btn-yellow:hover {
+        background-color:rgb(97, 163, 47); /* Darker yellow on hover */
+    }
 
     @media (max-width: 768px) {
         .card {

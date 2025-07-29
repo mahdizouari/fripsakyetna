@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\commande;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon; // Ensure Carbon is imported for date handling
+use Illuminate\Support\Str;
 
 
 
@@ -83,26 +84,20 @@ public function commande(){
     return view('commande');
 }
 
+// Checkout process
+
 public function checkout(Request $request)
 {
     $panier = Session::get('productItems', []);
     if (empty($panier)) {
-        if ($request->ajax()) {
-            return response()->json(['error' => 'Panier vide'], 400);
-        } else {
-            return redirect()->back()->with('error', 'Le panier est vide.');
-        }
+        // handle empty cart
     }
 
-    $request->validate([
-        'full_name' => 'required|string',
-        'phone_number' => 'required|string',
-        'address' => 'required|string',
-        'city' => 'required|string',
-        'email' => 'nullable|email',
-    ]);
+    // Validate request fields...
 
     $clientAddress = $request->input('address') . ', ' . $request->input('city');
+
+    $orderGroupId = (string) Str::uuid();  // or Str::random(32)
 
     $lastOrder = null;
     foreach ($panier as $item) {
@@ -113,6 +108,7 @@ public function checkout(Request $request)
             'adresse' => $clientAddress,
             'prix' => $item['prix'],
             'date' => now(),
+            'order_group_id' => $orderGroupId,
         ]);
     }
 
@@ -120,30 +116,34 @@ public function checkout(Request $request)
 
     if ($request->ajax()) {
         return response()->json([
-            'redirect_to' => route('order-confirmation', ['orderId' => $lastOrder->id])
+            'redirect_to' => route('order-confirmation', ['orderGroupId' => $orderGroupId])
         ]);
     } else {
-        // Redirect for normal form submission
-        return redirect()->route('order-confirmation', ['orderId' => $lastOrder->id]);
+        return redirect()->route('order-confirmation', ['orderGroupId' => $orderGroupId]);
     }
 }
 
 
 
-public function confirmOrder($orderId)
+
+
+
+//order-confirmation
+
+public function confirmOrder($orderGroupId)
 {
-    // Clear the cart session since order is confirmed
     Session::forget('productItems');
 
-    $lastOrder = Commande::findOrFail($orderId);
+    $commandes = Commande::where('order_group_id', $orderGroupId)->get();
 
-    $orderDate = Carbon::parse($lastOrder->date)->toDateString();
+    if ($commandes->isEmpty()) {
+        abort(404, 'Commande introuvable');
+    }
 
-    $commandes = Commande::where('id', $orderId)->get();
-
-
-    return view('order-confirmation', compact('commandes'));
+    return view('order-confirmation', compact('commandes', 'orderGroupId'));
 }
+
+
 
 
 

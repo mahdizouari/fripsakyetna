@@ -18,6 +18,8 @@ class commande extends Model
         'numero_de_client',
         'adresse',
         'prix',
-        'date'
+        'date',
+        'order_group_id',  
+
     ];
 }
