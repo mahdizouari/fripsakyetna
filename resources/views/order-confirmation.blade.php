@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div class="container mt-5 d-flex justify-content-center">
+<div class=" mt-5 d-flex justify-content-center">
     <!-- Card with success message -->
-    <div class="card text-center p-4" style="max-width: 600px;">
+    <div class=" text-center p-5 mt-5 " style="max-width: 600px;">
         <div id="confirmation-message">
             <!-- Green checkmark -->
             <div>

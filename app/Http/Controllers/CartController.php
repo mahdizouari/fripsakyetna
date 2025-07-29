@@ -8,6 +8,9 @@ use App\Models\produits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\commande;
+use Illuminate\Support\Facades\Log;
+
+
 
 class CartController extends Controller
 {
@@ -79,40 +82,48 @@ public function commande(){
 }
 public function checkout(Request $request)
 {
-    // Retrieve cart items from session
-    $panier = Session::get('productItems', []);
+    // Handle AJAX InitiateCheckout POST (no user info yet)
+    if ($request->ajax()) {
+        Log::info('InitiateCheckout data:', $request->all());
+        return response()->json(['message' => 'Checkout initiated']);
+    }
 
+    // Standard checkout POST (form submission)
+    $panier = Session::get('productItems', []);
     if (empty($panier)) {
         return redirect()->back()->with('error', 'Le panier est vide.');
     }
 
-    // Get the client information from the request
-    $clientName = $request->input('full_name');
-    $clientPhone = $request->input('phone_number');
-    $clientSecondPhone = $request->input('second_phone_number');
+    // Validate required user fields
+    $request->validate([
+        'full_name' => 'required|string',
+        'phone_number' => 'required|string',
+        'address' => 'required|string',
+        'city' => 'required|string',
+        'email' => 'nullable|email',
+    ]);
+
+    // Build full address
     $clientAddress = $request->input('address') . ', ' . $request->input('city');
-    $clientEmail = $request->input('email');
 
-    // Save each product in the cart as a separate order and capture the last order
     $lastOrder = null;
-
     foreach ($panier as $item) {
-        $lastOrder = commande::create([
+        $lastOrder = Commande::create([
             'nom_de_produit' => $item['name'],
-            'nom_de_client' => $clientName,
-            'numero_de_client' => $clientPhone,
+            'nom_de_client' => $request->input('full_name'),
+            'numero_de_client' => $request->input('phone_number'),
             'adresse' => $clientAddress,
             'prix' => $item['prix'],
             'date' => now(),
         ]);
     }
 
-    // Clear the cart after processing the checkout
     Session::forget('productItems');
 
-    // Redirect to the order confirmation page with the last created order ID
-    return redirect()->route('order-confirmation', ['orderId' => $lastOrder->id])->with('message', 'Commande validée avec succès.');
+    return redirect()->route('order-confirmation', ['orderId' => $lastOrder->id])
+        ->with('message', 'Commande validée avec succès.');
 }
+
 
 
 //commandes :

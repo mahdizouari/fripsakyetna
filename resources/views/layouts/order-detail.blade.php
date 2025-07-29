@@ -72,6 +72,7 @@
 </noscript>
 <!-- End Facebook Pixel Code -->
 
+@if(isset($product))
 <script>
   fbq('track', 'ViewContent', {
     content_name: '{{ $product->name }}',
@@ -79,6 +80,8 @@
     content_type: 'product'
   });
 </script>
+@endif
+
 @section('scripts')
 @if(request('query'))
 <script>

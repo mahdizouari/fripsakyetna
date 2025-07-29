@@ -1,6 +1,8 @@
 @extends('layouts.base')
 
 @section('content')
+
+@section('title', 'Checkout')
 <div class="billing-container">
     <h3 class="billing-title">Billing Address</h3>
     <form action="{{ route('checkout') }}" method="POST">
@@ -33,6 +35,7 @@
         </div>
         
         <button type="submit" class="billing-submit-btn">Valider la commande</button>
+        
         
     </form>
 </div>

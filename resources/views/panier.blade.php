@@ -101,63 +101,87 @@
 {{-- =======================  CHECKOUT / AJAX  ======================= --}}
 @php
     $items = session('productItems', []);
-    $contentIdsJson = json_encode(array_keys($items));
+    $contentIds = array_keys($items);
+    $contentIdsJson = json_encode($contentIds);
     $totalValue = number_format(collect($items)->sum('prix') + 8, 2, '.', '');
 @endphp
 
-<div class="mt-3">
-    @if(count($items) > 0)
-        <button type="button"
-                class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04 js-initiate-checkout"
-                data-content-ids="{{ $contentIdsJson }}"
-                data-value="{{ $totalValue }}"
-                data-currency="TND"
-                data-checkout-url="{{ route('checkout') }}">
-            Valider la commande
-        </button>
-    @else
-        <button type="button"
-                class="flex-c-m stext-104 cl0 size-105 bg-secondary bor2 p-lr-19 trans-04"
-                disabled>
-            Valider la commande
-        </button>
-        <p class="text-danger mt-2">Votre panier est vide. Ajoutez des produits pour passer une commande.</p>
-    @endif
-</div>
+@if(count($items) > 0)
+    <button type="button"
+        class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04 js-initiate-checkout"
+        data-content-ids='@json($contentIds)'
+        data-value="{{ $totalValue }}"
+        data-currency="TND"
+        data-checkout-url="{{ route('checkout') }}">
+        <!-- data-checkout-url is used to redirect after successful checkout -->
+        
+        Valider la commande
+    </button>
+@else
+    <button type="button"
+        class="flex-c-m stext-104 cl0 size-105 bg-secondary bor2 p-lr-19 trans-04"
+        disabled>
+        Valider la commande
+    </button>
+    <p class="text-danger mt-2">Votre panier est vide. Ajoutez des produits pour passer une commande.</p>
+@endif
+
+
+@section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.querySelector('.js-initiate-checkout');
-    if (!btn) return;
+    const checkoutBtn = document.querySelector('.js-initiate-checkout');
+    if (!checkoutBtn) return;
 
-    btn.addEventListener('click', () => {
-        const ids = JSON.parse(btn.dataset.contentIds);
-        const value = parseFloat(btn.dataset.value);
-        const currency = btn.dataset.currency;
-        const redirectTo = btn.dataset.checkoutUrl;
+    checkoutBtn.addEventListener('click', () => {
+        try {
+            const contentIds = JSON.parse(checkoutBtn.dataset.contentIds);
+            const value = parseFloat(checkoutBtn.dataset.value);
+            const currency = checkoutBtn.dataset.currency;
+            const redirectTo = checkoutBtn.dataset.checkoutUrl; // read from button
 
-        // 🔹 1. Fire Facebook Pixel event
-        fbq('track', 'InitiateCheckout', {
-            content_ids: ids,
-            value: value,
-            currency: currency,
-            content_type: 'product'
-        });
+            // 🔹 Fire Facebook Pixel Event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    content_ids: contentIds,
+                    value: value,
+                    currency: currency,
+                    content_type: 'product'
+                });
+            } else {
+                console.warn('fbq is not defined');
+            }
 
-        // 🔹 2. Optional AJAX call to server (log or prepare)
-        fetch("{{ route('checkout') }}", {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ content_ids: ids, value: value })
-        }).finally(() => {
-            // 🔹 3. Redirect to actual checkout page
-            window.location.href = redirectTo;
-        });
+            // 🔹 Send AJAX POST to Laravel
+            fetch("{{ route('checkout') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content_ids: contentIds,
+                    value: value
+                })
+            })
+            
+            .then(data => {
+                // ✅ Success — redirect to checkout page
+                window.location.href = redirectTo;
+            })
+            .catch(error => {
+                console.error('Erreur lors de la commande :', error);
+            });
+        } catch (e) {
+            console.error('Checkout error:', e);
+        }
     });
 });
 </script>
+
+
+@endsection
+
 
 
 
