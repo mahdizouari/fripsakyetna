@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\commande;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Carbon; // Ensure Carbon is imported for date handling
+
 
 
 
@@ -80,21 +82,18 @@ class CartController extends Controller
 public function commande(){
     return view('commande');
 }
+
 public function checkout(Request $request)
 {
-    // Handle AJAX InitiateCheckout POST (no user info yet)
-    if ($request->ajax()) {
-        Log::info('InitiateCheckout data:', $request->all());
-        return response()->json(['message' => 'Checkout initiated']);
-    }
-
-    // Standard checkout POST (form submission)
     $panier = Session::get('productItems', []);
     if (empty($panier)) {
-        return redirect()->back()->with('error', 'Le panier est vide.');
+        if ($request->ajax()) {
+            return response()->json(['error' => 'Panier vide'], 400);
+        } else {
+            return redirect()->back()->with('error', 'Le panier est vide.');
+        }
     }
 
-    // Validate required user fields
     $request->validate([
         'full_name' => 'required|string',
         'phone_number' => 'required|string',
@@ -103,7 +102,6 @@ public function checkout(Request $request)
         'email' => 'nullable|email',
     ]);
 
-    // Build full address
     $clientAddress = $request->input('address') . ', ' . $request->input('city');
 
     $lastOrder = null;
@@ -120,9 +118,39 @@ public function checkout(Request $request)
 
     Session::forget('productItems');
 
-    return redirect()->route('order-confirmation', ['orderId' => $lastOrder->id])
-        ->with('message', 'Commande validée avec succès.');
+    if ($request->ajax()) {
+        return response()->json([
+            'redirect_to' => route('order-confirmation', ['orderId' => $lastOrder->id])
+        ]);
+    } else {
+        // Redirect for normal form submission
+        return redirect()->route('order-confirmation', ['orderId' => $lastOrder->id]);
+    }
 }
+
+
+
+public function confirmOrder($orderId)
+{
+    // Clear the cart session since order is confirmed
+    Session::forget('productItems');
+
+    $lastOrder = Commande::findOrFail($orderId);
+
+    $orderDate = Carbon::parse($lastOrder->date)->toDateString();
+
+    $commandes = Commande::where('id', $orderId)->get();
+
+
+    return view('order-confirmation', compact('commandes'));
+}
+
+
+
+    
+
+
+
 
 
 
@@ -177,24 +205,8 @@ public function destroy($id)
         return redirect()->back()->with('message', 'Produit retiré de la liste de souhaits.');
     } 
     
-    
-
-
-    
-
-
-
-
-    public function confirmOrder($id)
-    {
-        // Retrieve the commandes by the given id
-        $commandes = Commande::where('id', $id)->get();
-    
-        // Calculate total price, subtotal, etc. if needed
-        return view('order-confirmation', compact('commandes'));
-    }
-    
-
+  
+   
  
 
 }

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="card">
+<div class="card p-5">
     <div class="row">
         <!-- Panier Items Section -->
         <div class="col-md-8 panier">
@@ -40,7 +40,7 @@
                         <tbody>
                             @foreach(Session::get('productItems') as $item)
                                 <tr>
-                                    <td>{{ $item['name'] }}
+                                    <td class="text-break">{{ $item['name'] }}
                                         <div>
                                         <a href="{{ route('deleteItem', $item['id']) }}" class="btnc">
                                             <i class="fas fa-trash-alt"></i>
@@ -69,33 +69,28 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="col-md-4 summary">
+        <div class="col-md-4 summary border-left p-5 mb-3 mt-4">
             <div><h5><b>Résumé</b></h5></div>
             <hr>
             <div class="row">
-                <div class="col" style="padding-left:0;"> {{ count(Session::get('productItems', [])) }} articles</div>
+                <div class="col p-3 mt-1" style="padding-left:0;"> {{ count(Session::get('productItems', [])) }} Article (s)</div>
                 <div class="col text-right">
                     {{ number_format(collect(Session::get('productItems'))->sum('prix'), 2) }} DT
                 </div>
             </div>
-            <form>
+            <form class="mt-3">
                 <p>FRAIS DE LIVRAISON</p>
                 <select>
                     <option class="text-muted">Livraison standard- 8.00 DT</option>
                 </select>
-                <p>CODE PROMO</p>
-                <input id="code" placeholder="Entrez votre code">
+                
             </form>
-            <div class="row border-top border-bottom" style="padding: 2vh 0;">
-                <div class="col">PRIX TOTAL</div>
-                <div class="col text-right">
+            <div class="row border-top border-bottom " >
+                <div class="col mt-4">PRIX TOTAL</div>
+                <div class="col text-right mt-4 ">
                      {{ number_format(collect(Session::get('productItems'))->sum('prix') + 8, 2) }} DT
-                </div>
-                <div class="row border-top border-bottom py-3">
-    <div class="col">PRIX TOTAL</div>
-    <div class="col text-end">
-        {{ number_format(collect(Session::get('productItems'))->sum('prix') + 8, 2) }} DT
-    </div>
+            </div>
+  
 </div>
 
 {{-- =======================  CHECKOUT / AJAX  ======================= --}}
@@ -108,12 +103,11 @@
 
 @if(count($items) > 0)
     <button type="button"
-        class="flex-c-m stext-104 cl0 size-105 bg3 bor2 hov-btn2 p-lr-19 trans-04 js-initiate-checkout"
+        class="btn btn-black-white px-4 py-2 js-initiate-checkout mt-3"
         data-content-ids='@json($contentIds)'
         data-value="{{ $totalValue }}"
         data-currency="TND"
-        data-checkout-url="{{ route('checkout') }}">
-        <!-- data-checkout-url is used to redirect after successful checkout -->
+       >
         
         Valider la commande
     </button>
@@ -138,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const contentIds = JSON.parse(checkoutBtn.dataset.contentIds);
             const value = parseFloat(checkoutBtn.dataset.value);
             const currency = checkoutBtn.dataset.currency;
-            const redirectTo = checkoutBtn.dataset.checkoutUrl; // read from button
 
             // 🔹 Fire Facebook Pixel Event
             if (typeof fbq !== 'undefined') {
@@ -152,38 +145,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn('fbq is not defined');
             }
 
-            // 🔹 Send AJAX POST to Laravel
-            fetch("{{ route('checkout') }}", {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    content_ids: contentIds,
-                    value: value
-                })
-            })
-            
-            .then(data => {
-                // ✅ Success — redirect to checkout page
-                window.location.href = redirectTo;
-            })
-            .catch(error => {
-                console.error('Erreur lors de la commande :', error);
-            });
+            // 🔹 Directly redirect to the checkout page
+            window.location.href = "{{ url('checkout') }}";
+
         } catch (e) {
             console.error('Checkout error:', e);
         }
     });
 });
 </script>
-
-
 @endsection
 
 
+<style>
+    .btn-black-white {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    transition: all 0.3s;
+}
 
+.btn-black-white:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+</style>
 
 
     </div>
