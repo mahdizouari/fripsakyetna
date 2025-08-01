@@ -12,6 +12,9 @@
     <title>@yield('title', 'fripsakyetna ')</title>
 	<!-- Favicon -->
 <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
 
 <!-- Preload Fonts -->
 

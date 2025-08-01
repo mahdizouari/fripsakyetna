@@ -16,6 +16,9 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="js/main.js"></script>
+    <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
 
     
     
@@ -566,6 +569,7 @@
 
 
 
+
   
 }
 
@@ -582,7 +586,7 @@
 /* ====  CARD  ===================================================== */
 .card{
   position:relative;
-  width:var(--card-w);
+  background-color: #000 important!;
   height:var(--card-h);
   border-radius:18px;
   overflow:hidden;
@@ -596,6 +600,7 @@
       0 16px 40px rgba(190, 185, 185, 0.84);
   transition:transform .45s cubic-bezier(.22,.68,.23,1),
              box-shadow .45s cubic-bezier(.22,.68,.23,1);
+            
 }
 
 .card:hover{
@@ -652,7 +657,7 @@
             font-size: 22px;
             font-weight: bold;
             margin-bottom: 15px;
-            color: rgb(255, 0, 0);
+            color: rgb(10, 4, 4);
             text-decoration:wavy;
         }
 
@@ -702,9 +707,8 @@
             font-size: 22px;
             font-weight: bold;
             margin-bottom: 20px;
-            color: #e3002b;
+            color:rgb(0, 0, 0);
             text-align: center;
-            text-decoration: underline;
         }
 
        
