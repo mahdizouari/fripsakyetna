@@ -147,19 +147,27 @@
 
     /*==================================================================
     [ Show / hide modal search ]*/
-    $('.js-show-modal-search').on('click', function(){
-        $('.modal-search-header').addClass('show-modal-search');
-        $(this).css('opacity','0');
-    });
+  $('.js-show-modal-search').on('click', function () {
+    $('.modal-search-header').addClass('show-modal-search');
 
-    $('.js-hide-modal-search').on('click', function(){
-        $('.modal-search-header').removeClass('show-modal-search');
-        $('.js-show-modal-search').css('opacity','1');
-    });
+    // Toggle icons: hide search, show close
+    $('#search-icon').addClass('hidden');
+    $('#close-icon').removeClass('hidden');
+});
 
-    $('.container-search-header').on('click', function(e){
-        e.stopPropagation();
-    });
+$('.js-hide-modal-search').on('click', function () {
+    $('.modal-search-header').removeClass('show-modal-search');
+
+    // Toggle icons back
+    $('#search-icon').removeClass('hidden');
+    $('#close-icon').addClass('hidden');
+});
+
+$('.container-search-header').on('click', function (e) {
+    e.stopPropagation();
+});
+
+    
 
 
     /*==================================================================

@@ -59,6 +59,7 @@ Route::get('/panier/remove/{productId}', [CartController::class, 'removeFromCart
 
 
 
+Route::post('/delete-items', [CartController::class, 'deleteItems'])->name('deleteItems');
 
 
 

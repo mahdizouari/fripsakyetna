@@ -13,8 +13,11 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <script src="js/main.js"></script>
     <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -109,6 +112,7 @@
     <style>
         body {
     background-color:rgb(255, 255, 255); /* Light grey */
+    
 }
 
         /* Product Configuration */
@@ -116,8 +120,6 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-top: 20px;
-            padding: 20px;
             background-color: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -244,11 +246,18 @@
         }
 
         /* Product Description */
-        .product-description h1 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+      .product-description h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    width: 300px;                /* ✅ limit width to 100px */
+    word-wrap: break-word;       /* breaks long words */
+    white-space: normal;         /* allows wrapping */
+    overflow-wrap: break-word;   /* ensures consistent breaking */
+}
+
+
 
         .product-description p {
             font-size: 16px;
@@ -372,7 +381,7 @@
                     #00ffd5,
                     #002bff,
                     #7a00ff,
-                    #ff00c8,
+                    #ffd342ff,
                     #ff0000);
             position: absolute;
             top: -2px;
@@ -548,7 +557,7 @@
   font-size: 20px;
   font-weight: bold;
   margin: 0 0 10px;
-  color:rgb(255, 84, 84);
+  color:rgb(197 181 7);
   text-align: center;
 }
 
@@ -617,7 +626,7 @@
   inset:0;
   border-radius:inherit;
   padding:1px;                             /* rim thickness */
-  background:linear-gradient(135deg,#ff964f,#e34cff,#1ec5ff);
+background: linear-gradient(135deg, #fff6cc, #fff0a8, #ffee80);
   -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
@@ -641,7 +650,6 @@
         .detailed-description {
             display: flex;
             background-color: #f9f9f9;
-            padding: auto;
             margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             flex-wrap: nowrap;
@@ -655,8 +663,8 @@
 
         .detailed-description .section-title {
             font-size: 22px;
-            font-weight: bold;
             margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
             color: rgb(10, 4, 4);
             text-decoration:wavy;
         }
@@ -676,7 +684,7 @@
 
         .detailed-description ul li:before {
             content: "\2022";
-            color: #007bff;
+            color: #c7b305ff;
             font-weight: bold;
             display: inline-block;
             width: 1em;
@@ -1057,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					
 					<!-- Logo desktop -->		
 					<a href="/" class="logo">
-						<img src="/detail/logo.svg" alt="IMG-LOGO">
+						<img src="logo.svg" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -1111,8 +1119,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<div class="flex-c-m h-full p-r-24">
 							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-								<i class="zmdi zmdi-search"></i>
+								<i class="zmdi zmdi-search "></i>
 							</div>
+                            
+                            
 						</div>
 							
 						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
@@ -1139,109 +1149,117 @@ document.addEventListener('DOMContentLoaded', () => {
 				</nav>
 			</div>	
 		</div>
-        
 
 		<!-- Header Mobile -->
-		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
-			<div class="logo-mobile">
-				<a href="/">
-					<img src="/detail/logo.svg" alt="IMG-LOGO" class="logo-image" style="width: 85px; height: 85px;">
-					<span class="logo-text"> </span>
-				</a>
-			</div>
-
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-				<div class="flex-c-m h-full p-r-10">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-						<i class="zmdi zmdi-search"></i>
-					</div>
-				</div>
-				<!-- Notification Container -->
-
-
-				<!-- Wishlist Icon -->
-				<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-					<a href="/wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
-						<i class="zmdi zmdi-favorite-outline"></i>
-					</a>
-				</div>
-
-
-				<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-							<a href="/panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
-								<i class="zmdi zmdi-shopping-cart"></i>
-							</a>
-				</div>
-
-			</div>
+        <div class="wrap-header-mobile fixed top-0 left-0 w-full bg-white z-50 shadow-md flex items-center justify-between px-4 py-2">
             
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</div>
-		</div>
+            <!-- Logo mobile -->
+            <div class="logo-mobile flex items-center">
+                <a href="/" class="flex items-center">
+                    <img src="{{ asset('logo.svg') }}" alt="IMG-LOGO" class="logo-image w-[70px] h-[70px]">
+                </a>
+            </div>
+
+            <!-- Icons Right -->
+            <div class="wrap-icon-header flex items-center gap-6">
+                <!-- Search -->
+            <!-- Toggle Button with both icons -->
+            <div class="icon-header-item cl2 hov-cl1 trans-04 cursor-pointer text-3xl" id="search-toggle">
+                <i class="zmdi zmdi-search js-show-modal-search" id="search-icon"></i>
+                <img src="{{asset('images/icons/icon-close2.png')}}" id="close-icon" class="hidden js-hide-modal-search" alt="Close" style="width: 24px; height: 24px; cursor: pointer;">
+            </div>
+
+
+        
+
+            <!-- Wishlist -->
+            <a href="{{ route('wishlist') }}" class="icon-header-item cl2 hov-cl1 trans-04 icon-header-noti relative text-3xl" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
+                <i class="zmdi zmdi-favorite-outline"></i>
+            </a>
+
+            <!-- Cart -->
+            <a href="/panier" class="icon-header-item cl2 hov-cl1 trans-04 icon-header-noti relative text-3xl" data-notify="{{ count(Session::get('productItems', [])) }}">
+                <i class="zmdi zmdi-shopping-cart"></i>
+            </a>
+
+            <!-- Hamburger Menu -->
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze ml-2" onclick="toggleMobileMenu()">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+</div>  
 
 
 		<!-- Menu Mobile -->
-		<div class="menu-mobile">
-    <ul class="main-menu-m">
-        <!-- Main Links -->
-        <li>
-            <a href="/" class="menu-item">Accueil</a>
-            <a href="{{ url('/prod') }}" class="menu-item">Produits</a>
-            <a href="{{ url('/panier') }}" class="menu-item">Panier</a>
-            <a href="{{ url('/about') }}" class="menu-item">A propos</a>
+		    <div class="menu-mobile fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 overflow-auto hidden md:hidden">
+                <ul class="main-menu-m flex flex-col space-y-4 p-4">
+                <!-- Main Links -->
+                    <li>
+                        <a href="/" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Accueil</a>
+                        <a href="{{ url('/prod') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Produits</a>
+                        <a href="{{ url('/panier') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Panier</a>
+                        <a href="{{ url('/about') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">A propos</a>
+                    </li>
+
+                    <!-- Authentication Links -->
+                    <li>
+                        @auth
+                            @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
+                                <a href="{{ url('/mspace') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">My space</a>
+                            @endif
+
+                            <!-- Logout -->
+                            <a href="{{ route('logout') }}" 
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                            class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                @csrf
+                            </form>
+                        @endauth
+                    </li>
+                </ul>
+            </div>
+
+<script>
+            // When search icon is clicked → show modal + toggle icons
+        $('#toggle-search').on('click', function () {
+            $('#search-icon').addClass('hidden');
+            $('#close-icon').removeClass('hidden');
+        });
+
+        // When modal is closed (via close button or outside click)
+        $('.js-hide-modal-search').on('click', function () {
+            $('#search-icon').removeClass('hidden');
+            $('#close-icon').addClass('hidden');
+        });
+
+        </script>
 
 
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="container-search-header">
+            <form class="wrap-search-header flex items-center justify-between p-l-15" action="{{ route('recherche') }}" method="GET">
+                <input class="" type="text" name="query" placeholder="Recherche..." required>
 
-        </li>
-       
+                <!-- Search Button -->
+                <button type="submit" class="flex-c-m trans-04">
+                    <i class="zmdi zmdi-search text-3xl"></i>
+                </button>
+                <!-- Older simple close button -->
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search" type="button" style="background: none; border: none; cursor: pointer;">
+                    <img src="{{asset('images/icons/icon-close2.png')}}" alt="CLOSE" style="width: 24px; height: 24px;">
+                </button>
 
-        <!-- Authentication Links -->
-        <li>
-            @auth
-                @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-                    <a href="{{ url('/mspace') }}" class="menu-item">My space</a>
-                @endif
 
-                <!-- Logout -->
-                <a href="{{ route('logout') }}" 
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                   class="menu-item">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
             
-               
-            @endauth
-        </li>
-    </ul>
-    <!-- Footer with attribution -->
-    
-</div>
+            </form>
+        </div>
+    </div>
 
 
-			<!-- Modal Search -->
-            <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-		<div class="container-search-header">
-			<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-				<img src="images/icons/icon-close2.png" alt="CLOSE">
-			</button>
-
-			<form class="wrap-search-header flex-w p-l-15" action="{{ route('recherche') }}" method="GET">
-				<button class="flex-c-m trans-04">
-					<i class="zmdi zmdi-search"></i>
-				</button>
-				<input class="plh3" type="text" name="search" placeholder="Recherche..." required>
-			</form>
-		</div>
-        
-	</div>
 
 	</header>
 
@@ -1265,23 +1283,23 @@ document.addEventListener('DOMContentLoaded', () => {
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
 						<a href="/" class="stext-102 cl2 hov-cl1 trans-04">
-							Home
+							Accueil
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="/wishlist" class="stext-102 cl2 hov-cl1 trans-04">
-							My Wishlist
+							Lise de Souhaits
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="/Aide_&_FAQs" class="stext-102 cl2 hov-cl1 trans-04">
-							Help & FAQs
+							Aide & FAQs
 						</a>
 					</li>
 					<span class="mtext-101 cl5">
-						@ Frip Sakyetna
+						@Frip Sakyetna
 					</span>
 				</ul>
 

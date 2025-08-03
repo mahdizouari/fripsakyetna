@@ -8,8 +8,8 @@
     $firstOrder = $commandes->first();
 @endphp
 
-<div class="container my-5" style="max-width: 600px;">
-    <div class="text-center p-4 border rounded shadow-sm bg-white">
+<div class="container my-5 flex-grow" style="max-width: 600px;">
+    <div class="text-center mt-20 p-4 border rounded shadow-sm bg-white">
         <!-- Checkmark Icon -->
         <div class="mb-4 flex justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="green" class="bi bi-check-circle-fill mb-3" viewBox="0 0 16 16">
@@ -61,7 +61,7 @@
 
         <!-- Support info -->
         <p class="mt-4 text-muted small ">
-            Des questions ? Contactez-nous à <a href="yessin.zouari100@gmail.com">yessin.zouari100@gmail.com</a>.
+            Des questions ? Contactez notre support à <a href="yessin.zouari100@gmail.com">Fripsakyetna@gmail.com</a>.
         </p>
     </div>
 </div>

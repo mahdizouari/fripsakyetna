@@ -1,8 +1,14 @@
 @extends('crud.admin')
 
 @section('content')
-    <h1>Sliders</h1>
-    <a href="{{ route('slider.create') }}" class="btn btn-primary">Add New Slider</a>
+<div class="container mx-auto px-4 mt-4">
+    <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-4xl mx-auto">
+             <div class="text-center mb-4">
+                <h1 class="text-2xl md:text-3xl font-bold">Sliders</h1>
+            </div>
+            <div class="flex justify-center items-center">
+             <a href="{{ route('slider.create') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Add New Slider</a>
+            </div>
     <table class="table mt-4">
         <thead>
             <tr>
@@ -49,15 +55,17 @@
                     <td>{{ $slider->title }}</td>
                     <td>{{ $slider->subtitle }}</td>
                     <td>
-                        <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('slider.edit', $slider->id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Edit</a>
                         <form action="{{ route('slider.destroy', $slider->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition">Delete</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+        </div>
+    </div>
 @endsection

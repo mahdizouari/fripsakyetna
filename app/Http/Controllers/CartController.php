@@ -17,6 +17,8 @@ use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
+    
+
     // Show panier contents
     public function showPanier()
     {
@@ -29,6 +31,11 @@ class CartController extends Controller
         $panier = Session::get('productItems', []);
         return array_sum(array_column($panier, 'quantity'));
     }
+     public function deleteItems()
+        {
+            session()->forget('productItems');
+            return redirect()->back()->with('success', 'Tous les articles ont été supprimés du panier.');
+        }
 
     // Add product to the panier
     public function addToCart(Request $request, $productId)
@@ -207,6 +214,6 @@ public function destroy($id)
     
   
    
- 
+
 
 }

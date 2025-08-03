@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="card p-5">
+<div class="card p-3 flex-grow">
     <div class="row">
         <!-- Panier Items Section -->
         <div class="col-md-8 panier">
@@ -26,14 +26,14 @@
             @endif
 
             @if(Session::has('productItems') && !empty(Session::get('productItems')))
-                <div class="table-responsive mb-3">
-                    <table class="table table-bordered table-striped">
+                <div class="table-responsive  w-full  ">
+                    <table class="table table-bordered table-striped ">
                         <thead>
                             <tr>
                                 <th>Nom </th>
                                 <th>Image</th>
-                                <th>Catg</th>
                                 <th>Taille</th>
+                                <th>Catégorie</th>
                                 <th>Prix</th>
                             </tr>
                         </thead>
@@ -60,29 +60,47 @@
             @else
                 <p>Aucun article dans le panier.</p>
             @endif
+           
 
-            <div class="flex-c-m flex-w w-full p-t-45">
+            <div style="margin-top: 10px;">
+                <form id="delete-all-form" action="{{ route('deleteItems') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="btnc-delete-all" >
+                        <i class="fas fa-trash-alt"></i> Supprimer tout
+                    </button>
+                </form>
+            </div>
+           
+
+
+
+
+
+            <div class="flex-c-m flex-w w-full p-t-45 p-3">
                 <a href="/" class="flex-c-m stext-100 cl5 size-104 bg2 bor1 hov-btn1 p-lr-19 trans-04">
                     Retourner à la page principale
                 </a>
             </div>
+            
         </div>
 
         <!-- Summary Section -->
-        <div class="col-md-4 summary border-left p-5 mb-3 mt-4">
+        <div class="col-md-4 summary border-left p-5 mb-3 mt-2 m-auto">
             <div><h5><b>Résumé</b></h5></div>
             <hr>
             <div class="row">
-                <div class="col p-3 mt-1" style="padding-left:0;"> {{ count(Session::get('productItems', [])) }} Article (s)</div>
-                <div class="col text-right">
+                <div class="col p-3 mt-1" style="padding-left:0;"> {{ count(Session::get('productItems', [])) }} Article (s) : </div>
+                <div class="col text-right ">
                     {{ number_format(collect(Session::get('productItems'))->sum('prix'), 2) }} DT
                 </div>
             </div>
-            <form class="mt-3">
-                <p>FRAIS DE LIVRAISON</p>
-                <select>
-                    <option class="text-muted">Livraison standard- 8.00 DT</option>
-                </select>
+            <form class="mt-2">
+               <p class="flex justify-between">
+                    <span>FRAIS DE LIVRAISON :</span>
+                    <span>8.00 DT</span>
+                </p>
+
+               
                 
             </form>
             <div class="row border-top border-bottom " >
@@ -170,7 +188,30 @@ document.addEventListener('DOMContentLoaded', () => {
     color: #000;
 }
 
-</style>
+ 
+                .btnc-delete-all {
+                    background-color: white;
+                    color: red;
+                    border: 2px solid red;
+                    padding: 10px 18px;
+                    border-radius: 8px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .btnc-delete-all:hover {
+                    background-color: red;
+                    color: white;
+                }
+
+                .btnc-delete-all i {
+                    font-size: 16px;
+                }
+            </style>
 
 
     </div>

@@ -15,9 +15,9 @@
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-
 <!-- Preload Fonts -->
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -53,8 +53,7 @@
 <link rel="stylesheet" href="{{ asset('css/util.css') }}">
 <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 
 
@@ -750,8 +749,10 @@
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<div class="flex-c-m h-full p-r-24">
 							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-								<i class="zmdi zmdi-search"></i>
+								<i class="zmdi zmdi-search "></i>
 							</div>
+                            
+                            
 						</div>
 							
 						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
@@ -780,108 +781,114 @@
 		</div>
 
 		<!-- Header Mobile -->
-		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
-			<div class="logo-mobile">
-				<a href="/">
-					<img src="logo.svg" alt="IMG-LOGO" class="logo-image" style="width: 85px; height: 85px;">
-					<span class="logo-text"> </span>
-				</a>
-			</div>
-
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-				<div class="flex-c-m h-full p-r-10">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-						<i class="zmdi zmdi-search"></i>
-					</div>
-				</div>
-				<!-- Notification Container -->
-
-
-				<!-- Wishlist Icon -->
-				<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-					<a href="{{ route('wishlist') }}" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
-						<i class="zmdi zmdi-favorite-outline"></i>
-					</a>
-				</div>
-
-
-				<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-							<a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
-								<i class="zmdi zmdi-shopping-cart"></i>
-							</a>
-				</div>
-
-			</div>
+        <div class="wrap-header-mobile fixed top-0 left-0 w-full bg-white z-50 shadow-md flex items-center justify-between px-4 py-2">
             
+            <!-- Logo mobile -->
+            <div class="logo-mobile flex items-center">
+                <a href="/" class="flex items-center">
+                    <img src="{{ asset('logo.svg') }}" alt="IMG-LOGO" class="logo-image w-[70px] h-[70px]">
+                </a>
+            </div>
 
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze "  >
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</div>
-		</div>
+            <!-- Icons Right -->
+            <div class="wrap-icon-header flex items-center gap-6">
+                <!-- Search -->
+            <!-- Toggle Button with both icons -->
+        <div class="icon-header-item cl2 hov-cl1 trans-04 cursor-pointer text-3xl" id="search-toggle">
+            <i class="zmdi zmdi-search js-show-modal-search" id="search-icon"></i>
+                <img src="{{asset('images/icons/icon-close2.png')}}" id="close-icon" class="hidden js-hide-modal-search" alt="Close" style="width: 24px; height: 24px; cursor: pointer;">
+        </div>
+
+
+        <script>
+            // When search icon is clicked → show modal + toggle icons
+        $('#toggle-search').on('click', function () {
+            $('#search-icon').addClass('hidden');
+            $('#close-icon').removeClass('hidden');
+        });
+
+        // When modal is closed (via close button or outside click)
+        $('.js-hide-modal-search').on('click', function () {
+            $('#search-icon').removeClass('hidden');
+            $('#close-icon').addClass('hidden');
+        });
+
+        </script>
+
+        <!-- Wishlist -->
+        <a href="{{ route('wishlist') }}" class="icon-header-item cl2 hov-cl1 trans-04 icon-header-noti relative text-3xl" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
+            <i class="zmdi zmdi-favorite-outline"></i>
+        </a>
+
+        <!-- Cart -->
+        <a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 icon-header-noti relative text-3xl" data-notify="{{ count(Session::get('productItems', [])) }}">
+            <i class="zmdi zmdi-shopping-cart"></i>
+        </a>
+
+        <!-- Hamburger Menu -->
+        <div class="btn-show-menu-mobile hamburger hamburger--squeeze ml-2" onclick="toggleMobileMenu()">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </div>
+    </div>
+</div>  
 
 
 		<!-- Menu Mobile -->
-		<div class="menu-mobile">
-    <ul class="main-menu-m">
+		<div class="menu-mobile fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 overflow-auto hidden md:hidden">
+        <ul class="main-menu-m flex flex-col space-y-4 p-4">
         <!-- Main Links -->
         <li>
-            <a href="/" class="menu-item">Accueil</a>
-            <a href="{{ url('/prod') }}" class="menu-item">Produits</a>
-            <a href="{{ url('/panier') }}" class="menu-item">Panier</a>
-            <a href="{{ url('/about') }}" class="menu-item">A propos</a>
-
-
-
+            <a href="/" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Accueil</a>
+            <a href="{{ url('/prod') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Produits</a>
+            <a href="{{ url('/panier') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Panier</a>
+            <a href="{{ url('/about') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">A propos</a>
         </li>
-       
 
         <!-- Authentication Links -->
         <li>
             @auth
                 @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
-                    <a href="{{ url('/mspace') }}" class="menu-item">My space</a>
+                    <a href="{{ url('/mspace') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">My space</a>
                 @endif
 
                 <!-- Logout -->
                 <a href="{{ route('logout') }}" 
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                   class="menu-item">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                   class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                     @csrf
                 </form>
-            
-               
             @endauth
         </li>
     </ul>
-    <!-- Footer with attribution -->
-    
 </div>
+
 
 
 
 		<!-- Modal Search -->
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-		<div class="container-search-header">
-			<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-				<img src="images/icons/icon-close2.png" alt="CLOSE">
-			</button>
+        <div class="container-search-header">
+            <form class="wrap-search-header flex items-center justify-between p-l-15" action="{{ route('recherche') }}" method="GET">
+                <input class="" type="text" name="query" placeholder="Recherche..." required>
 
-			<form class="wrap-search-header flex-w p-l-15" action="{{ route('recherche') }}" method="GET">
-				<button class="flex-c-m trans-04">
-					<i class="zmdi zmdi-search"></i>
-				</button>
-                <input class="plh3" type="text" name="query" placeholder="Recherche..." required>
-                </form>
-		</div>
-        
-	</div>
+                <!-- Search Button -->
+                <button type="submit" class="flex-c-m trans-04">
+                    <i class="zmdi zmdi-search text-3xl"></i>
+                </button>
+                <!-- Older simple close button -->
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search" type="button" style="background: none; border: none; cursor: pointer;">
+                    <img src="{{asset('images/icons/icon-close2.png')}}" alt="CLOSE" style="width: 24px; height: 24px;">
+                </button>
+
+
+            
+            </form>
+        </div>
+    </div>
+
 
 
 	</header>
@@ -901,13 +908,13 @@
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
 						<a href="/" class="stext-102 cl2 hov-cl1 trans-04">
-							Home
+							Accueil
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="wishlist" class="stext-102 cl2 hov-cl1 trans-04">
-							My Wishlist
+							Liste de souhaits
 						</a>
 					</li>
 
@@ -934,21 +941,21 @@
     <!-- Footer -->
      
 <!-- Footer -->
-<footer class="bg3 p-t-75">
+<footer class="bg3 p-t-25 mt-12">
 	<center>
     <div class="container text-center">
         <div class="row justify-content-center">
             
             <!-- Help Section -->
-            <div class="col-sm-6 col-lg-3 p-b-20">
-                <h4 class="stext-301 cl0 p-b-30">
+            <div class="col-sm-6 col-lg-3 p-b-10">
+                <h4 class="stext-301 cl0 p-b-10">
                     Help
                 </h4>
 
                 <ul>
                     <li class="p-b-10">
                         <a href="qui-somme-nous" class="stext-107 cl7 hov-cl1 trans-04">
-                            Qui somme nous 
+                            Qui somme nous ?
                         </a>
                     </li>
 
@@ -966,7 +973,7 @@
 
                     <li class="p-b-10">
                         <a href="terms-conditions" class="stext-107 cl7 hov-cl1 trans-04">
-                            Terms et Conditions 
+                            Termes et Conditions
                         </a>
                     </li>
                     <li class="p-b-10">
@@ -978,9 +985,9 @@
             </div>
 
             <!-- Get in Touch Section -->
-            <div class="col-sm-6 col-lg-3 p-b-20">
-                <h4 class="stext-301 cl0 p-b-30">
-                    GET IN TOUCH
+            <div class="col-sm-6 col-lg-3   ">
+                <h4 class="stext-301 cl0 p-b-10">
+                    Entrer en contact
                 </h4>
                 <center>
                 <p class="stext-107 cl7 size-201">
@@ -996,7 +1003,7 @@
                 </h4>
                 </center>
 
-                <div class="p-t-27">
+                <div class="p-t-20 p-b-10">
                     <a href="https://www.facebook.com/sakiyetna" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fab fa-facebook"></i>
                     </a>
@@ -1009,14 +1016,18 @@
         </div>
 
         <!-- Payment Methods and Footer Text -->
-        <div class="p-t-40">
-            <p class="stext-107 cl6 txt-center">
-                &copy; <script>document.write(new Date().getFullYear());</script> Frip Sakyetna. All rights reserved.
+        <div class="  text-center">
+            <p class="stext-107 cl6 mb-2">
+                &copy; <script>document.write(new Date().getFullYear());</script> Frip Sakyetna. Tous droits réservés.
             </p>
-            <p class="stext-107 cl6 txt-center">
-            Developed by <a href="https://www.linkedin.com/in/mahdi-zouari/">Mehdi Zouari</a> 
+            <p class="stext-107 cl6">
+                Développé par 
+                <a href="https://www.linkedin.com/in/mahdi-zouari/" class="text-blue-500 hover:underline" target="_blank">
+                    Mehdi Zouari
+                </a>
             </p>
         </div>
+
        
     </div>
 	</center>

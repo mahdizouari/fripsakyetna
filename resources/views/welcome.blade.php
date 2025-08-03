@@ -298,7 +298,7 @@
 
 
                 <!-- Tab panes -->
-                <div class="tab-content p-t-20">
+                <div class="tab-content p-t-20 p-b-20 ">
                     <!-- - -->
                     <div class="tab-pane fade show active" id="best-seller" role="tabpanel">
                         <!-- Slide2 -->
@@ -331,7 +331,7 @@
 
                                                     <button class="js-btn-ajouter-panier bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition duration-300" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-price="{{ $product->prix }}">
-                                                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                                                        <i class="fa fa-shopping-cart"></i> Ajouter au panier
                                                     </button>
                                                     
                                             </div>
@@ -414,7 +414,7 @@
                             100% {
                                 background-position: 0% 50%;
                             }
-}
+                        }
                     </style>
 
                     <script>
@@ -556,7 +556,53 @@
         ->take(6)
         ->get();
 @endphp
+<script>
+  const tickerTrack = document.getElementById('tickerTrack');
+  const tickerContainer = document.getElementById('tickerContainer');
+  let timeoutId;
 
+  function pauseAnimation() {
+    tickerTrack.classList.add('paused');
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      tickerTrack.classList.remove('paused');
+    }, 2000); // Resume after 2 seconds of inactivity
+  }
+
+  // Pause animation on scroll or drag interaction
+  tickerContainer.addEventListener('scroll', pauseAnimation);
+
+  // Optional: handle drag cursor styling
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  tickerContainer.addEventListener('mousedown', (e) => {
+    isDown = true;
+    tickerContainer.classList.add('active');
+    startX = e.pageX - tickerContainer.offsetLeft;
+    scrollLeft = tickerContainer.scrollLeft;
+    pauseAnimation();
+  });
+
+  tickerContainer.addEventListener('mouseleave', () => {
+    isDown = false;
+    tickerContainer.classList.remove('active');
+  });
+
+  tickerContainer.addEventListener('mouseup', () => {
+    isDown = false;
+    tickerContainer.classList.remove('active');
+  });
+
+  tickerContainer.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - tickerContainer.offsetLeft;
+    const walk = (x - startX) * 2; // scroll-fast
+    tickerContainer.scrollLeft = scrollLeft - walk;
+  });
+</script>
 <style>
     .ticker-wrapper {
         overflow: hidden;
@@ -566,7 +612,7 @@
     .ticker-track {
         display: flex;
         width: max-content;
-        animation: ticker 40s linear infinite;
+        animation: ticker 15s linear infinite;
     }
 
     .ticker-item {
@@ -598,7 +644,7 @@
 </style>
 
 <div class="ticker-wrapper py-6">
-        <div class="ticker-track">
+        <div class="ticker-track p-b-70 ">
             @foreach ($filteredProducts as $product)
                 
             @endforeach
@@ -623,7 +669,7 @@
             <!-- Content -->
             <div class="block2-txt m-2 mt-1 flex flex-col flex-grow p-3 gap-3">
                 <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-sm truncate">
-                    {{ \Illuminate\Support\Str::limit($product->name, 35) }}
+                    {{ \Illuminate\Support\Str::limit($product->name, 80) }}
                 </a>
 
                 <span class="glow-price font-extrabold text-sm">
@@ -634,7 +680,7 @@
                     data-id="{{ $product->id }}"
                     data-name="{{ $product->name }}"
                     data-price="{{ $product->prix }}">
-                    <i class="fa fa-shopping-cart"></i> Add to Cart
+                    <i class="fa fa-shopping-cart"></i> Ajouter au panier
                 </button>
             </div>
         </div>
@@ -927,7 +973,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	 
     <!-- Slider for sacs -->
    
-    <div class="container animate-on-scroll" style="align-items: stretch">
+    <div class="container animate-on-scroll p-b-40 " style="align-items: stretch">
    <div class="relative flex items-center justify-center mt-12 mb-8 scroll-animate">
   <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0" style="font-family: 'Poppins', sans-serif;">
     Sacs
@@ -977,10 +1023,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 ->take(6)
                 ->get();
         @endphp
-   <div class="wrap-slick3 w-full flex justify-center px-4 sm:px-6 md:px-8">
+   <div class="wrap-slick3 w-full flex justify-center px-4 sm:px-6 md:px-8  ">
                             <div class="slick3 w-full max-w-6xl">
                                 @foreach ($filteredProducts as $product)
-                                    <div class="item-slick3 p-1">
+                                    <div class="item-slick3 p-1 " >
                                         <!-- Block2 -->
                                         <div class="block2 flex flex-col rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="align-items: stretch;">
                                             
@@ -1006,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                                     <button class="js-btn-ajouter-panier bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition duration-300" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-price="{{ $product->prix }}">
-                                                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                                                        <i class="fa fa-shopping-cart"></i> Ajouter au panier
                                                     </button>
 
                                             </div>
@@ -1043,137 +1089,137 @@ document.addEventListener('DOMContentLoaded', () => {
 
    
     <div class="container animate-on-scroll">
-    <div class="relative flex items-center justify-center mt-12 mb-8 scroll-animate">
-  <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0" style="font-family: 'Poppins', sans-serif;">
-    Casquettes & Chaussures
-  </h3>
-  <span class="absolute -bottom-2 w-24 h-1 bg-black rounded-full opacity-0"></span>
-</div>
+        <div class="relative flex items-center justify-center mt-12 mb-8 scroll-animate">
+            <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0" style="font-family: 'Poppins', sans-serif;">
+                Casquettes & Chaussures
+            </h3>
+            <span class="absolute -bottom-2 w-24 h-1 bg-black rounded-full opacity-0"></span>
+            </div>
 
-<!-- Add once (can be in your layout) -->
-<style>
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes scale-in {
-  from { transform: scaleX(0); opacity: .2; }
-  to   { transform: scaleX(1); opacity: 1; }
-}
-.fade-in-up { animation: fade-in-up .6s ease-out forwards; }
-.scale-in { animation: scale-in .5s .5s ease-out both; transform-origin: center; }
-</style>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const h3 = entry.target.querySelector('h3');
-          const span = entry.target.querySelector('span');
-          h3.classList.add('fade-in-up');
-          span.classList.add('scale-in');
-          h3.classList.remove('opacity-0');
-          span.classList.remove('opacity-0');
-          observer.unobserve(entry.target); // animate only once
-        }
-      });
-    }, {
-      threshold: 0.4
-    });
+            <!-- Add once (can be in your layout) -->
+            <style>
+            @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes scale-in {
+            from { transform: scaleX(0); opacity: .2; }
+            to   { transform: scaleX(1); opacity: 1; }
+            }
+            .fade-in-up { animation: fade-in-up .6s ease-out forwards; }
+            .scale-in { animation: scale-in .5s .5s ease-out both; transform-origin: center; }
+            </style>
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                    const h3 = entry.target.querySelector('h3');
+                    const span = entry.target.querySelector('span');
+                    h3.classList.add('fade-in-up');
+                    span.classList.add('scale-in');
+                    h3.classList.remove('opacity-0');
+                    span.classList.remove('opacity-0');
+                    observer.unobserve(entry.target); // animate only once
+                    }
+                });
+                }, {
+                threshold: 0.4
+                });
 
-    document.querySelectorAll('.scroll-animate').forEach(el => {
-      observer.observe(el);
-    });
-  });
-</script>
+                document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+                });
+            });
+            </script>
     
 
-        <div class="row">
-            @php
-                // Limiting the number of products to 4 and ensuring they are active
-                $filteredProducts = produits::where('is_active', 1)
-                    ->where(function($query) {
-                        $query->where('name', 'like', '%casquette%')
-                            ->orWhere('name', 'like', '%chaussure%')
-                            ->orWhere('Référence', 'like', '%casquette%')
-                            ->orWhere('Référence', 'like', '%chaussure%');
-                    })
-                    ->take(4) // Limit to 4 products
-                    ->get();
-            @endphp
+            <div class="row">
+                @php
+                    // Limiting the number of products to 4 and ensuring they are active
+                    $filteredProducts = produits::where('is_active', 1)
+                        ->where(function($query) {
+                            $query->where('name', 'like', '%casquette%')
+                                ->orWhere('name', 'like', '%chaussure%')
+                                ->orWhere('Référence', 'like', '%casquette%')
+                                ->orWhere('Référence', 'like', '%chaussure%');
+                        })
+                        ->take(4) // Limit to 4 products
+                        ->get();
+                @endphp
 
 
-                @foreach ($filteredProducts as $product)
-                        <div class="col-6 col-md-3 p-b-30">
-                            <!-- Block2 -->
-                            <div class="block2 flex flex-col rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="align-items: stretch;">
-                                                
-                                                <div class="block2-pic hov-img0 p-2 pb-0 overflow-hidden rounded-t-2xl">
-                                                    <a href="{{ route('detail', $product->id) }}">
-                                                        <img 
-                                                        src="{{ asset('/' . $product->image1) }}" 
-                                                        alt="IMG-PRODUCT" 
-                                                        loading="lazy" 
-                                                         class="w-full h-52 sm:h-64 md:h-48 object-cover transition-transform duration-500 hover:scale-105"
-                                                        >
-                                                    </a>
+                        @foreach ($filteredProducts as $product)
+                            <div class="col-6 col-md-3 p-b-30">
+                                <!-- Block2 -->
+                                                <div class="block2 flex flex-col rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="align-items: stretch;">
+                                                    
+                                                    <div class="block2-pic hov-img0 p-2 pb-0 overflow-hidden rounded-t-2xl">
+                                                        <a href="{{ route('detail', $product->id) }}">
+                                                            <img 
+                                                            src="{{ asset('/' . $product->image1) }}" 
+                                                            alt="IMG-PRODUCT" 
+                                                            loading="lazy" 
+                                                            class="w-full h-52 sm:h-64 md:h-48 object-cover transition-transform duration-500 hover:scale-105"
+                                                            >
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="block2-txt px-2 py-3 flex flex-col gap-2 text-sm sm:text-base md:text-sm ">
+                                                        <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate ">
+                                                            {{ $product->name }}
+                                                        </a>
+
+                                                        <span class="glow-price  font-extrabold">
+                                                            {{ number_format($product->prix, 2) }} DT
+                                                        </span>
+
+                                                            <button class="js-btn-ajouter-panier bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition duration-300" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                                data-price="{{ $product->prix }}">
+                                                                <i class="fa fa-shopping-cart"></i> Ajouter au panier
+                                                            </button>
+
+                                                    </div>
+
                                                 </div>
+                            </div>
+                        @endforeach
+                </div>
+                <!-- "Voir Plus" Button -->
+                <div class="btn-wrapper" style="display:flex;justify-content:center;margin-top:40px;">
+                    <a href="prod">
+                        <button class="button-fancy">Voir Plus</button>
+                    </a>
+                </div>
 
-                                                <div class="block2-txt px-2 py-3 flex flex-col gap-2 text-sm sm:text-base md:text-sm ">
-                                                    <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate ">
-                                                        {{ $product->name }}
-                                                    </a>
 
-                                                    <span class="glow-price  font-extrabold">
-                                                        {{ number_format($product->prix, 2) }} DT
-                                                    </span>
+            <style>
+                .button-fancy {
+                        padding: 10px 28px;
+                        font-size: 1rem;
+                        letter-spacing: .5px;
+                        border: none;
+                        border-radius: 40px;
+                        background: #222;
+                        color: #fff;
+                        cursor: pointer;
+                        opacity: 0;                 /* hidden */
+                        transform: scale(0);        /* “nothing” */
+                        transition: opacity .45s ease-out, transform .45s ease-out;
+                    }
 
-                                                        <button class="js-btn-ajouter-panier bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition duration-300" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
-                                                            data-price="{{ $product->prix }}">
-                                                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                                                        </button>
+                    .button-fancy.in-view {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
 
-                                                </div>
+            </style>
+        
 
-                                            </div>
-                        </div>
-                    @endforeach
+
             </div>
-            <!-- "Voir Plus" Button -->
-            <div class="btn-wrapper" style="display:flex;justify-content:center;margin-top:40px;">
-                <a href="prod">
-                    <button class="button-fancy">Voir Plus</button>
-                </a>
-            </div>
-
-
-           <style>
-            .button-fancy {
-    padding: 10px 28px;
-    font-size: 1rem;
-    letter-spacing: .5px;
-    border: none;
-    border-radius: 40px;
-    background: #222;
-    color: #fff;
-    cursor: pointer;
-    opacity: 0;                 /* hidden */
-    transform: scale(0);        /* “nothing” */
-    transition: opacity .45s ease-out, transform .45s ease-out;
-}
-
-.button-fancy.in-view {
-    opacity: 1;
-    transform: scale(1);
-}
-
-           </style>
-      
-
-
         </div>
     </div>
-</div>
 
                 </div>
             </div>
@@ -1204,9 +1250,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
                         <div class="wrap-slick2">
-                            <div class="slick2">
+                            <div class="slick2 p-b-40">
                                 @foreach ($filteredProducts as $product)
-                                    <div class="item-slick2 p-3">
+                                    <div class="item-slick2 p-3 ">
                                         <!-- Block2 -->
                                         <div class="block2 flex flex-col rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="align-items: stretch;">
                                             
@@ -1232,7 +1278,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                                     <button class="js-btn-ajouter-panier bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition duration-300" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-price="{{ $product->prix }}">
-                                                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                                                        <i class="fa fa-shopping-cart"></i> Ajouter au panier
                                                     </button>
 
                                             </div>

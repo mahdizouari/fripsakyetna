@@ -52,8 +52,8 @@ class HomeController extends Controller
             $query->where('taille', $taille);
         }
     
-        // Paginate the results (16 per page)
-        $products = $query->paginate(16);
+        // Paginate the results (30 per page)
+        $products = $query->paginate(30);
     
         // Retrieve distinct tailles for the filter options
         $taillesDisponibles = produits::where('is_active', true)

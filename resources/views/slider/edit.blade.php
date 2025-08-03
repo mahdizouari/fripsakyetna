@@ -1,56 +1,64 @@
 @extends('crud.admin')
 
 @section('content')
-    <h1>{{ isset($slider) ? 'Edit Slider' : 'Create Slider' }}</h1>
-    <form action="{{ isset($slider) ? route('slider.update', $slider->id) : route('slider.store') }}" method="POST" enctype="multipart/form-data">
+<div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6 mb-6">
+    {{-- Title --}}
+    <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">
+        {{ isset($slider) ? 'Modifier le Slider' : 'Créer un Slider' }}
+    </h1>
+
+    <form action="{{ isset($slider) ? route('slider.update', $slider->id) : route('slider.store') }}"
+          method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @if(isset($slider))
             @method('PUT')
         @endif
 
-        <div class="form-group">
-            <label for="image1">Image 1</label>
-            <input type="file" name="image1" id="image1" class="form-control">
-            @if(isset($slider) && $slider->image1)
-                <img src="{{ asset('/' . $slider->image1) }}" width="100" class="mt-2" alt="Image 1">
+        {{-- Image Inputs --}}
+        @foreach(['image1', 'image2', 'image3', 'image4'] as $image)
+        <div>
+            <label for="{{ $image }}" class="block text-sm font-medium text-gray-700 capitalize">
+                {{ str_replace('image', 'Image ', $image) }}
+            </label>
+            <input type="file" name="{{ $image }}" id="{{ $image }}"
+                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500">
+
+            @if(isset($slider) && $slider->$image)
+                <div class="mt-2">
+                    <img src="{{ asset('/' . $slider->$image) }}" alt="{{ $image }}"
+                         class="h-24 rounded shadow border">
+                </div>
             @endif
         </div>
+        @endforeach
 
-        <div class="form-group">
-            <label for="image2">Image 2</label>
-            <input type="file" name="image2" id="image2" class="form-control">
-            @if(isset($slider) && $slider->image2)
-                <img src="{{ asset('/' . $slider->image2) }}" width="100" class="mt-2" alt="Image 2">
-            @endif
+        {{-- Title --}}
+        <div>
+            <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
+            <input type="text" name="title" id="title"
+                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
+                   value="{{ $slider->title ?? '' }}">
         </div>
 
-        <div class="form-group">
-            <label for="image3">Image 3</label>
-            <input type="file" name="image3" id="image3" class="form-control">
-            @if(isset($slider) && $slider->image3)
-                <img src="{{ asset('/' . $slider->image3) }}" width="100" class="mt-2" alt="Image 3">
-            @endif
-        </div>
-        <div class="form-group">
-            <label for="image4">Image 4</label>
-            <input type="file" name="image4" id="image4" class="form-control">
-            @if(isset($slider) && $slider->image4)
-                <img src="{{ asset('/' . $slider->image4) }}" width="100" class="mt-2" alt="Image 4">
-            @endif
+        {{-- Subtitle --}}
+        <div>
+            <label for="subtitle" class="block text-sm font-medium text-gray-700">Sous-titre</label>
+            <input type="text" name="subtitle" id="subtitle"
+                   class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
+                   value="{{ $slider->subtitle ?? '' }}">
         </div>
 
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" class="form-control" value="{{ $slider->title ?? '' }}">
+        {{-- Buttons --}}
+        <div class="flex justify-between items-center pt-4">
+            <button type="submit"
+                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded shadow-md transition">
+                {{ isset($slider) ? 'Modifier' : 'Créer' }}
+            </button>
+            <a href="/slider"
+               class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-6 rounded shadow-md transition">
+                Retour
+            </a>
         </div>
-
-        <div class="form-group">
-            <label for="subtitle">Subtitle</label>
-            <input type="text" name="subtitle" id="subtitle" class="form-control" value="{{ $slider->subtitle ?? '' }}">
-        </div>
-
-        
-
-        <button type="submit" class="btn btn-success">{{ isset($slider) ? 'Update' : 'Create' }}</button>
     </form>
+</div>
 @endsection

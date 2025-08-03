@@ -16,7 +16,7 @@
             <div class="mb-4">
                 <form action="{{ route('products.search') }}" method="GET" class="d-flex flex-column flex-md-row align-items-center">
                     <input type="text" name="query" class="form-control me-md-2 mb-2 mb-md-0" placeholder="Search by reference, name, or size" value="{{ request()->get('query') }}">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Search</button>
                 </form>
             </div>
         </div>
@@ -24,14 +24,14 @@
 </div>
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="col-md-9 mx-auto text-center ">
+                <div class="card">          
+                    <div class="card-header flex justify-between items-center">
                         <h4>Produits</h4>
-                        <a href="{{ url('create') }}" class="btn btn-primary">Ajouter un produit</a>
+                        <a href="{{ url('create') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Ajouter un produit</a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped ">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -49,9 +49,10 @@
                                 @foreach ($product as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td class="text-wrap">
-                                            {{ \Str::limit($item->name, 10) }}
+                                        <td class="whitespace-normal break-words max-w-xs">
+                                            {{ $item->name }}
                                         </td>
+
                                         <td>{{ $item->taille }}</td>
                                         <td>
                                             <img src="{{ route('image.show', ['filename' => $item->image1]) }}" style="width: 70px; height: 70px; object-fit: cover;" alt="Product Image">
@@ -68,7 +69,7 @@
                                         </td>
                                         <td>
                                             <!-- Edit Icon -->
-                                            <a href="{{ url('edit/'.$item->id) }}" class="edit btn-warning btn-sm" title="Edit">
+                                            <a href="{{ url('edit/'.$item->id) }}" class="edit btn-warning btn-sm mr-5 ml-3 " title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                             
@@ -76,7 +77,7 @@
                                             <form action="{{ route('product.destroy', $item->id) }}" method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="edit btn-danger btn-sm" style="background: none; border: none;" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                <button type="submit" class="edit btn-danger btn-sm mr-3 " style="background: none; border: none;" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
                                                     <i class="fa fa-trash-alt"></i>
                                                 </button>
                                             </form>

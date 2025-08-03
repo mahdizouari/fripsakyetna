@@ -91,18 +91,21 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">
-                    <h4>Ajouter un produit
-                        <a href="{{ url('mspace') }}" class="btn btn-primary float-end">Retour</a>
-                    </h4>
+                <div class="card-header flex justify-between items-center">
+                    <h4 class="text-lg font-semibold">Ajouter un produit</h4>
+                    <a href="{{ url('mspace') }}"
+                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">
+                        Retour
+                    </a>
                 </div>
+
                 <div class="card-body">
                     <form action="{{ url('create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Nom</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" style="height: 50px;">
+                            <input type="text" id="name" name="name" class="form-control text-capitalize " value="{{ old('name') }}" style="height: 50px;">
                             @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
@@ -177,8 +180,8 @@
                             @endif
                             @error('image3') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        <div class="mb-3 flex justify-center mt-5 ">
+                            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Ajouter</button>
                         </div>
                     </form>
                 </div>
