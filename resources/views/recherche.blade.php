@@ -1,44 +1,970 @@
-@extends('layouts.base')
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/main.js"></script>
 
-@section('content')
 
-<div class="bg0 m-t-23 p-b-140">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>@yield('title', 'fripsakyetna ')</title>
+	<!-- Favicon -->
+<link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Preload Fonts -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<!-- Custom Vendor CSS -->
+<link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/animate/animate.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/animsition/css/animsition.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/daterangepicker/daterangepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/slick/slick.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/MagnificPopup/magnific-popup.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+
+<!-- Icon Fonts -->
+<link rel="stylesheet" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('fonts/iconic/css/material-design-iconic-font.min.css') }}">
+<link rel="stylesheet" href="{{ asset('fonts/linearicons-v1.0.0/icon-font.min.css') }}">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="{{ asset('css/util.css') }}">
+<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+
+
+
+
+
+
+
+<style>
+	.btnc {
+    border: none; /* No border */
+    background: none; /* No background */
+    color: #dc3545; /* Red color for the trash icon */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1.5em; /* Adjust the size of the icon */
+    padding: 2; /* No padding */
+    display: inline-flex; /* Align icon properly */
+    align-items: bottom; /* Center icon vertically */
+}
+
+.btn:hover {
+    color: #c82333; /* Darker red for hover effect */
+}
+
+
+</style>
+<!--checkout desgin-->
+<style>
+   .billing-container {
+    max-width: 800px; /* Increased width */
+    margin: 100px 300px; /* Center the container and reduce the margin */
+    padding: 2.5rem; /* Increased padding for more space inside */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+    .billing-title {
+        font-size: 24px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #333;
+    }
+
+    .billing-inputBox {
+        margin-bottom: 1.5rem;
+    }
+
+    .billing-inputBox label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+
+    .billing-inputBox input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .billing-inputBox input:focus {
+        border-color: #5cb85c;
+        outline: none;
+    }
+
+    .billing-flex {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .billing-submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: #5cb85c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .billing-submit-btn:hover {
+        background: #4cae4c;
+    }
+
+    @media (max-width: 768px) {
+        .billing-container {
+			margin: 120px auto;
+            padding: 1.5rem;
+            max-width: 80%;
+        }
+
+        .billing-flex {
+            flex-direction: column;
+        }
+
+        .billing-submit-btn {
+            font-size: 14px;
+            padding: 0.65rem;
+        }
+    }
+</style>
+ <style>
+                    .bg0 {
+                    background-color:rgba(171, 172, 173, 0.83); /* or any color */
+                    }
+
+                    .m-t-23 {
+                    margin-top: 23px;
+                    }
+
+                    .p-b-140 {
+                    padding-bottom: 140px;
+                    }
+                </style>
+<style>
+        /* Custom CSS */
+        .owl-carousel .item {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            margin-bottom: 150px;
+            padding: 10px;
+        }
+        .item img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn-view-all {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #000; /* Black background */
+            color: white; /* White text */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .btn-view-all:hover {
+            background-color: #333; /* Darker black for hover effect */
+            text-decoration: none;
+        }
+
+    </style>
+
+
+<style>
+	/* panier style  */
+	body {
+    background: #ddd;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    margin: 2rem auto 1rem auto; /* Reduced top margin to 2rem */
+    max-width: 900px;
+    width: 90%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+    background-color: #fff;
+    padding: 2rem; /* Added padding for inner spacing */
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 95%; /* Increase width to fit smaller screens */
+        padding: 1.5rem; /* Adjust padding for smaller screens */
+        margin: 1.5rem auto; /* Reduce top margin for smaller screens */
+    }
+}
+
+/* Media query for devices with a max width of 480px (phones) */
+@media (max-width: 480px) {
+    .card {
+        width: 100%; /* Full width for very small screens */
+        padding: 1rem; /* Adjust padding further for very small screens */
+        margin: 1rem auto; /* Reduce top margin even more */
+    }
+}
+
+.summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 2rem;
+    color: rgb(65, 65, 65);
+}
+
+@media(max-width: 767px) {
+    .summary {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1rem;
+    }
+}
+
+.title {
+    margin-bottom: 2vh;
+}
+
+.title h4 {
+    font-size: 1.5rem;
+}
+
+.cart-item {
+    padding: 1rem; /* Added padding for cart items */
+}
+
+.cart .col-2 img {
+    width: 4rem; /* Increased image size */
+}
+
+.quantity-control {
+    padding: 0 1vh;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+}
+
+.quantity-display {
+    padding: 0 1vh;
+    font-size: 1.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    background-color: rgb(247, 247, 247);
+}
+
+.back-to-shop {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-link {
+    text-decoration: none;
+    color: blue;
+    font-size: 1.2rem;
+}
+
+.summary form select,
+.summary form input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+
+.summary form input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.btn {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    font-size: 0.8rem;
+    padding: -5rem;
+    border-radius: 0.25rem; /* Added border radius */
+}
+
+.btn:focus {
+    box-shadow: none;
+    outline: none;
+    color: black;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #ddd;
+}
+
+.checkout-btn {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    font-size: 0.8rem;
+}
+
+@media(max-width: 767px) {
+    .btn, .summary form select, .summary form input {
+        font-size: 1rem;
+		
+    }
+}
+
+</style>
+
+<style>
+	.container {
+    padding-top: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.img-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.text-right {
+    margin-top: 20px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+</style>
+<style>
+    .logo-mobile {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo-mobile a {
+    text-decoration: red;
+    color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 50px;  /* Adjust the width to fit your design */
+    height: auto;  /* Maintain aspect ratio */
+    
+}
+
+.logo-text {
+    font-size: 4rem;
+    font-weight: bold;
+	text-decoration: red;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .logo-image {
+        width: 40px;  /* Adjust the size for smaller screens */
+    }
+
+    .logo-text {
+        font-size: 1.2rem;  /* Adjust the font size for smaller screens */
+    }
+}
+
+
+
+
+
+</style>
+<style>
+	.nav-link {
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Adjust color to match other links */
+    font-size: 1rem; /* Match font size */
+    padding: 0.5rem 1rem; /* Match padding */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Adjust hover color to match other links */
+}
+
+.active-menu .nav-link {
+    font-weight: bold; /* Match style for active menu item */
+    color: #0056b3; /* Adjust color for active item */
+}
+
+</style>
+<!--wishlist desgin-->
+<style>
+    .cart-wrap {
+	padding: 40px 0;
+	font-family: 'Open Sans', sans-serif;
+}
+.main-heading {
+	font-size: 19px;
+	margin-bottom: 20px;
+}
+.table-wishlist table {
+    width: 100%;
+}
+.table-wishlist thead {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 5px;
+}
+.table-wishlist thead tr th {
+    padding: 8px 0 18px;
+    color: #484848;
+    font-size: 15px;
+    font-weight: 400;
+}
+.table-wishlist tr td {
+    padding: 25px 0;
+    vertical-align: middle;
+}
+.table-wishlist tr td .img-product {
+    width: 72px;
+    float: left;
+    margin-left: 8px;
+    margin-right: 31px;
+    line-height: 63px;
+}
+.table-wishlist tr td .img-product img {
+	width: 100%;
+}
+.table-wishlist tr td .name-product {
+    font-size: 15px;
+    color: #484848;
+    padding-top: 8px;
+    line-height: 24px;
+    width: 50%;
+}
+.table-wishlist tr td.price {
+    font-weight: 600;
+}
+.table-wishlist tr td .quanlity {
+    position: relative;
+}
+ .price-legdim {
+            font-size: 1.2rem;
+            color: #888;
+            text-decoration: line-through;
+        }
+
+.total {
+	font-size: 24px;
+	font-weight: 600;
+	color: #ffdd00; /* Updated to yellow */
+}
+.display-flex {
+	display: flex;
+}
+.align-center {
+	align-items: center;
+}
+.round-black-btn {
+	border-radius: 25px;
+    background: #ffdd00; /* Updated to yellow */
+    color: #fff;
+    padding: 5px 20px;
+    display: inline-block;
+    border: solid 2px #ffdd00; /* Updated to yellow */
+    transition: all 0.5s ease-in-out 0s;
+    cursor: pointer;
+    font-size: 14px;
+}
+.round-black-btn:hover,
+.round-black-btn:focus {
+	background: transparent;
+	color: #ffdd00; /* Updated to yellow */
+	text-decoration: none;
+}
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+.mt-30 {
+    margin-top: 30px !important;
+}
+.d-block {
+    display: block;
+}
+.custom-form label {
+    font-size: 14px;
+    line-height: 14px;
+}
+.pretty.p-default {
+    margin-bottom: 15px;
+}
+.pretty input:checked~.state.p-primary-o label:before, 
+.pretty.p-toggle .state.p-primary-o label:before {
+    border-color: #ffdd00; /* Updated to yellow */
+}
+.pretty.p-default:not(.p-fill) input:checked~.state.p-primary-o label:after {
+    background-color: #ffdd00 !important; /* Updated to yellow */
+}
+.main-heading.border-b {
+    border-bottom: solid 1px #ededed;
+    padding-bottom: 15px;
+    margin-bottom: 20px !important;
+}
+.custom-form .pretty .state label {
+    padding-left: 6px;
+}
+.custom-form .pretty .state label:before {
+    top: 1px;
+}
+.custom-form .pretty .state label:after {
+    top: 1px;
+}
+.custom-form .form-control {
+    font-size: 14px;
+    height: 38px;
+}
+.custom-form .form-control:focus {
+    box-shadow: none;
+}
+.custom-form textarea.form-control {
+    height: auto;
+}
+.mt-40 {
+    margin-top: 40px !important; 
+}
+.in-stock-box {
+	background: #ffdd00; /* Updated to yellow */
+	font-size: 12px;
+	text-align: center;
+	border-radius: 25px;
+	padding: 4px 15px;
+	display: inline-block;  
+    color: #fff;
+}
+.trash-icon {
+    font-size: 20px;
+    color: #ffdd00; /* Updated to yellow */
+}
+
+</style>
+<style>
+/* Base pagination (desktop & up) */
+.pagination-container{
+  display:flex;
+  justify-content:center;
+}
+
+/* Mobile ≤ 767 px */
+@media (max-width:767px){
+  .pagination-container{
+    /* makes the list itself wrap onto a second line when needed */
+    flex-wrap:wrap;             
+    /* optional: add some air above/below the block */
+    margin:1rem auto;
+  }
+
+  /* UL produced by Laravel’s paginator */
+  .pagination{
+    display:flex;
+    flex-wrap:wrap;             /* 🔑 prevents horizontal scroll */
+    gap:.4rem;                  /* slim gap keeps links touch‑friendly */
+  }
+
+  /* every <li> */
+  .pagination > li{
+    flex:0 0 auto;              /* don’t stretch */
+  }
+
+  /* the <a> / <span> inside */
+  .pagination > li > a,
+  .pagination > li > span{
+    padding:.45rem .7rem;       /* slightly smaller pill */
+    font-size:.9rem;            /* keeps numbers readable but compact */
+    line-height:1;              /* trims vertical height */
+  }
+
+  /* hide long “previous / next” words on very narrow phones */
+  @media (max-width:480px){
+    .pagination .page-item:first-child  a::after, /* Prev */
+    .pagination .page-item:last-child   a::after{ 
+      content:"";               /* wipe text, keeps arrow icon if any */
+    }
+  }
+}
+
+
+
+</style>
+<!-- Facebook Pixel Code -->
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '678863848467066'); // Replace with your pixel ID
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=678863848467066&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+
+@if(request('query'))
+<script>
+  // Safely assign PHP query string to a JS variable
+  const searchString = "{{ request('query') }}";
+
+  // Fire Facebook Pixel Search event
+  fbq('track', 'Search', {
+    search_string: searchString
+  });
+</script>
+@endif 
+
+
+
+
+</head>
+<body>
+   <!-- Header -->
+	<header class="header-v2">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop trans-03">
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop p-l-45">
+					
+					<!-- Logo desktop -->		
+					<a href="/" class="logo">
+						<img src="logo.svg" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="{{ Request::is('/') ? 'active-menu' : '' }}">
+								<a href="/">Accueil</a>
+							</li>
+
+							<li class="{{ Request::is('prod') ? 'active-menu' : '' }}">
+								<a href="{{ url('/prod') }}">Boutique</a>
+							</li>
+
+							<li class="{{ Request::is('panier') ? 'active-menu' : '' }}">
+								<a href="{{ url('/panier') }}">Panier</a>
+							</li>
+
+							<li class="{{ Request::is('about') ? 'active-menu' : '' }}">
+								<a href="{{ url('/about') }}">A propos</a>
+							</li>
+                            <li>
+                            @auth
+                                @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
+                                    <a href="{{ url('/mspace') }}" class="menu-item">My space </a>
+                                @endif
+                                    <li>
+                                        <!-- Logout -->
+                                        <a href="{{ route('logout') }}" 
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                                        class="menu-item">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    
+                                    </li>
+                            @endauth
+                            </li>
+						</ul>
+
+
+                        <!-- login for  clients is missing and under maintenance -->
+                         
+                        
+
+						
+
+
+					</div>	
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m h-full">
+						<div class="flex-c-m h-full p-r-24">
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
+								<i class="zmdi zmdi-search "></i>
+							</div>
+                            
+                            
+						</div>
+							
+						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+							<a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('productItems', [])) }}">
+								<i class="zmdi zmdi-shopping-cart"></i>
+							</a>
+						</div>
+						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+							<a href="wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
+								<i class="zmdi zmdi-favorite-outline"></i>
+							</a>
+						</div>
+
+
+
+
+							
+						<div class="flex-c-m h-full p-lr-19">
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
+								<i class="zmdi zmdi-menu"></i>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>	
+		</div>
+
+		<!-- Header Mobile -->
+        <div class="wrap-header-mobile fixed top-0 left-0 w-full bg-white z-50 shadow-md flex items-center justify-between px-4 py-2">
+            
+            <!-- Logo mobile -->
+            <div class="logo-mobile flex items-center">
+                <a href="/" class="flex items-center">
+                    <img src="{{ asset('logo.svg') }}" alt="IMG-LOGO" class="logo-image w-[70px] h-[70px]">
+                </a>
+            </div>
+
+            <!-- Icons Right -->
+            <div class="wrap-icon-header flex items-center gap-6">
+                <!-- Search -->
+            <!-- Toggle Button with both icons -->
+        <div class="icon-header-item cl2 hov-cl1 trans-04 cursor-pointer text-3xl" id="search-toggle">
+            <i class="zmdi zmdi-search js-show-modal-search" id="search-icon"></i>
+                <img src="{{asset('images/icons/icon-close2.png')}}" id="close-icon" class="hidden js-hide-modal-search" alt="Close" style="width: 24px; height: 24px; cursor: pointer;">
+        </div>
+
+
+        <script>
+            // When search icon is clicked → show modal + toggle icons
+        $('#toggle-search').on('click', function () {
+            $('#search-icon').addClass('hidden');
+            $('#close-icon').removeClass('hidden');
+        });
+
+        // When modal is closed (via close button or outside click)
+        $('.js-hide-modal-search').on('click', function () {
+            $('#search-icon').removeClass('hidden');
+            $('#close-icon').addClass('hidden');
+        });
+
+        </script>
+
+        <!-- Wishlist -->
+        <a href="{{ route('wishlist') }}" class="icon-header-item cl2 hov-cl1 trans-04 icon-header-noti relative text-3xl" data-notify="{{ count(Session::get('wishlistItems', [])) }}">
+            <i class="zmdi zmdi-favorite-outline"></i>
+        </a>
+
+        <!-- Cart -->
+        <a href="panier" class="icon-header-item cl2 hov-cl1 trans-04 icon-header-noti relative text-3xl" data-notify="{{ count(Session::get('productItems', [])) }}">
+            <i class="zmdi zmdi-shopping-cart"></i>
+        </a>
+
+        <!-- Hamburger Menu -->
+        <div class="btn-show-menu-mobile hamburger hamburger--squeeze ml-2" onclick="toggleMobileMenu()">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </div>
+    </div>
+</div>  
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 overflow-auto hidden md:hidden">
+        <ul class="main-menu-m flex flex-col space-y-4 p-4">
+        <!-- Main Links -->
+        <li>
+            <a href="/" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Accueil</a>
+            <a href="{{ url('/prod') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Produits</a>
+            <a href="{{ url('/panier') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Panier</a>
+            <a href="{{ url('/about') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">A propos</a>
+        </li>
+
+        <!-- Authentication Links -->
+        <li>
+            @auth
+                @if(auth()->user() && in_array(auth()->user()->email, ['yessin.zouari100@gmail.com', 'akrambahloul2@gmail.com']))
+                    <a href="{{ url('/mspace') }}" class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">My space</a>
+                @endif
+
+                <!-- Logout -->
+                <a href="{{ route('logout') }}" 
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                   class="menu-item block px-2 py-2 hover:bg-gray-100 rounded">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
+            @endauth
+        </li>
+    </ul>
+</div>
+
+
+
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="container-search-header">
+            <form class="wrap-search-header flex items-center justify-between p-l-15" action="{{ route('recherche') }}" method="GET">
+                <input class="" type="text" name="query" placeholder="Recherche..." required>
+
+                <!-- Search Button -->
+                <button type="submit" class="flex-c-m trans-04">
+                    <i class="zmdi zmdi-search text-3xl"></i>
+                </button>
+                <!-- Older simple close button -->
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search" type="button" style="background: none; border: none; cursor: pointer;">
+                    <img src="{{asset('images/icons/icon-close2.png')}}" alt="CLOSE" style="width: 24px; height: 24px;">
+                </button>
+
+
+            
+            </form>
+        </div>
+    </div>
+
+
+
+	</header>   
+    <aside class="wrap-sidebar js-sidebar">
+		<div class="s-full js-hide-sidebar"></div>
+
+		<div class="sidebar flex-col-l p-t-22 p-b-25">
+			<div class="flex-r w-full p-b-30 p-r-27">
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-sidebar">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+
+			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
+				<ul class="sidebar-link w-full">
+					<li class="p-b-13">
+						<a href="/" class="stext-102 cl2 hov-cl1 trans-04">
+							Accueil
+						</a>
+					</li>
+
+					<li class="p-b-13">
+						<a href="wishlist" class="stext-102 cl2 hov-cl1 trans-04">
+							Liste de souhaits
+						</a>
+					</li>
+
+					<li class="p-b-13">
+						<a href="/Aide_&_FAQs" class="stext-102 cl2 hov-cl1 trans-04">
+                         Aide & FAQs
+						</a>
+					</li>
+					
+                  
+                    
+				</ul>
+
+			</div>
+		</div>
+	</aside>
+    
+<div class="bg-gray-100 m-t-23 p-b-140 ">
     <div class="container">
         @if ($products->isEmpty())
             <p class="text-center stext-101 cl2 p-t-20">
                 Aucun produit trouvé.
             </p>
         @else
-            <div class="row isotope-grid">
+            <div class="row isotope-grid justify-content-center">
                 @foreach ($products as $product)
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ strtolower($product->Catégorie) }}">
-                        <div class="block2">
-                        <div class="block2-pic hov-img0">
-                                                <a href="{{ route('detail', $product->id) }}">
-                                                    <img src="{{ asset('/' . $product->image1) }}" alt="IMG-PRODUCT">
+                    <div class="col-6 col-md-3 p-b-30 isotope-item{{ strtolower($product->Catégorie) }}">
+                                    <div class="block2 bg-white m-t-100 flex flex-col rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="align-items: stretch;">
+                                            <div class="block2-pic hov-img0 overflow-hidden rounded-t-lg" loading="lazy">
+                                                    <a href="{{ route('detail', $product->id) }}">
+                                                        <img 
+                                                        src="{{ asset('/' . $product->image1) }}" 
+                                                        alt="IMG-PRODUCT" 
+                                                        loading="lazy" 
+                                                        class="w-full h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 object-cover transition-transform duration-500 hover:scale-105 mt-1"
+                                                        >
+                                                    </a>
+                                                </div>
+                                            <div class="block2-txt m-2 mt-1 flex flex-col p-2 gap-3">
+                                               <a href="{{ route('detail', $product->id) }}"
+                                                class="sstext-104 cl4 tex hover:text-yellow-600 text-center transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
+                                                {{ $product->name }}
                                                 </a>
 
 
-                                            </div>
-                                            <div class="block2-txt flex-w flex-t p-t-14">
-                                                <div class="block2-txt-child1 flex-col-l">
-                                                <a href="#" class="sstext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                    {{ $product->name }}
-                                                </a>
+                                                <span class="glow-price text-center font-extrabold p-1">
+                                                    {{ number_format($product->prix, 2) }} DT
+                                                </span>
 
-                                                    <span class="stext-105 cl3">
-                                                        {{ number_format($product->prix, 2) }} DT
-                                                    </span>
-                                                </div>
-                                                <div class="block2-txt-child2 flex-r p-t-3">
-                                                    <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="js-addwish-form">
-                                                        @csrf
-                                                        <button type="submit" class="btn-addwish-b2 dis-block pos-relative">
-                                                            <img class="icon-heart1 dis-block trans-04" src="images/icons/heart.svg" alt="ICON">
-                                                            
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                    <button class="js-btn-ajouter-panier bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition duration-300" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                        data-price="{{ $product->prix }}">
+                                                        <i class="fa fa-shopping-cart"></i> Ajouter au panier
+                                                    </button>
+
                                             </div>
                         </div>
                     </div>
@@ -47,158 +973,239 @@
         @endif
     </div>
 </div>
-@endsection
 
+
+</body>
+
+
+
+<!-- Footer -->
+<footer class="bg3 p-t-25 mt-12">
+	<center>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            
+            <!-- Help Section -->
+            <div class="col-sm-6 col-lg-3 p-b-10">
+                <h4 class="stext-301 cl0 p-b-10">
+                    Help
+                </h4>
+
+                <ul>
+                    <li class="p-b-10">
+                        <a href="qui-somme-nous" class="stext-107 cl7 hov-cl1 trans-04">
+                            Qui somme nous ?
+                        </a>
+                    </li>
+
+                    <li class="p-b-10">
+                        <a href="livraison-echange" class="stext-107 cl7 hov-cl1 trans-04">
+                            Livraison et Echange
+                        </a>
+                    </li>
+
+                    <li class="p-b-10">
+                        <a href="politique-echange" class="stext-107 cl7 hov-cl1 trans-04">
+                            Politique d'échange 
+                        </a>
+                    </li>
+
+                    <li class="p-b-10">
+                        <a href="terms-conditions" class="stext-107 cl7 hov-cl1 trans-04">
+                            Termes et Conditions
+                        </a>
+                    </li>
+                    <li class="p-b-10">
+                        <a href="/Aide_&_FAQs" class="stext-107 cl7 hov-cl1 trans-04">
+                            Aide & FAQs
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Get in Touch Section -->
+            <div class="col-sm-6 col-lg-3   ">
+                <h4 class="stext-301 cl0 p-b-10">
+                    Entrer en contact
+                </h4>
+                <center>
+                <p class="stext-107 cl7 size-201">
+                    Avez-vous des questions ? Appelez nous :
+                    <div>
+                    <a href="tel:+27715933" class="cl7 hov-cl1 trans-04">
+                        <i class="fa fa-phone"></i> 27715933
+                    </a>
+                    </div>
+                </p>
+                <h4 class="stext-107 cl7 size-201">
+                    Service 24/7
+                </h4>
+                </center>
+
+                <div class="p-t-20 p-b-10">
+                    <a href="https://www.facebook.com/sakiyetna" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/frip_sakiyetna/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Methods and Footer Text -->
+        <div class="  text-center">
+            <p class="stext-107 cl6 mb-2">
+                &copy; <script>document.write(new Date().getFullYear());</script> Frip Sakyetna. Tous droits réservés.
+            </p>
+            <p class="stext-107 cl6">
+                Développé par 
+                <a href="https://www.linkedin.com/in/mahdi-zouari/" class="text-yellow-500 hover:underline" target="_blank">
+                    Mehdi Zouari
+                </a>
+            </p>
+        </div>
+
+       
+    </div>
+	</center>
+</footer>
 <style>
-.btn-addwish-b2 {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-
-}
-
-.btn-addwish-b2 .icon-heart1 {
-    opacity: 0.3;
-    padding-top: 2em;
-    width: 25px !important;
-    height: auto;
-    transition: opacity 0.3s;
-}
+/*
 
 
 
-.btn-addwish-b2:hover .icon-heart1 {
-    opacity: 1;
-}
 .block2 {
-    background-color: #fff !important;
-    border: 1px solid #ddd !important;
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
-    transition: transform 0.3s, box-shadow 0.3s !important;
-}
-
-.block2:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* Product Image */
-.block2-pic {
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.block2-pic img {
-    width: 100% !important;
-    height: auto !important;
-    transition: transform 0.3s !important;
-}
-
-.block2-pic:hover img {
-    transform: scale(1.05) !important;
-}
-
-.block2-btn {
-    position: absolute !important;
-    bottom: 10px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    background-color: yellow !important;
-    color: black !important;
-    padding: 10px 20px !important;
-    border-radius: 5px !important;
-    text-transform: uppercase !important;
-    text-decoration: none !important;
-    transition: background-color 0.3s, color 0.3s !important;
-}
-
-.block2-btn:hover {
-    background-color: black !important;
-    color: white !important;
-}
-
-/* Product Text */
-.block2-txt {
-    padding: 15px !important;
-    text-align: center !important;
-}
-
-.block2-txt-child1 a {
-    font-size: 16px !important;
-    color: #333 !important;
-    text-decoration: none !important;
-    transition: color 0.3s !important;
-}
-
-.block2-txt-child1 a:hover {
-    color: yellow !important;
-}
-
-.block2-txt-child1 .stext-105 {
-    font-size: 14px !important;
-    color: #dc3545 !important;
-    margin-top: 5px !important;
-    display: block !important;
-}
-.sec-product {
-    background-color: #f9f9f9;
-    padding-top: 0px !important;
-    padding-bottom: 50px;
-}
-
-.sec-product .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.sec-product .ltext-105 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    margin-bottom: 32px;
-}
-
-/* Tab Navigation */
-.tab01 .nav-tabs {
     display: flex;
-    justify-content: center;
-    border-bottom: none;
-}
-
-.tab01 .nav-tabs .nav-item {
-    margin-bottom: 10px;
-}
-
-.tab01 .nav-tabs .nav-link {
-    color: #333;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    background-color: transparent;
-    transition: color 0.3s ease;
-}
-
-.tab01 .nav-tabs .nav-link.active {
-    color: #007bff;
-    font-weight: bold;
-}
-
-.tab01 .nav-tabs .nav-link:hover {
-    color: #0056b3;
-}
-
-/* Tab Content */
-.tab-content {
-    padding-top: 50px;
-}
-
-/* Product Slider */
-.wrap-slick2 {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 5px;
+    padding-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
     position: relative;
+    width: 100%;
+    max-width:200px;
+    text-align: center;
 }
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 0 15px; 
+}
+
+
+.block2 img {
+    max-width: 170px;
+    height: 200px;
+}
+
+.block2 h4,
+.block2 span {
+    margin: 5px 0;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.isotope-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+}
+
+.isotope-item {
+    flex: 0 0 calc(25% - 30px) !important;
+    max-width: calc(25% - 30px) !important;
+    box-sizing: border-box !important;
+    display: flex;
+    justify-content: center; 
+}
+
+
+.block2-txt-child1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 90px; 
+    padding: 2px;
+    overflow: hidden;
+}
+*/
+
+
+
+ .glow-price {
+                            background: linear-gradient(270deg, #ff0080, #7928ca,rgb(36, 24, 208),rgb(39, 89, 73), #ffae00,rgb(221, 4, 4));
+                            background-size: 600% 600%;
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            animation: rainbowGlow 15s ease infinite;
+                            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+                            
+                        }
+
+                        @keyframes rainbowGlow {
+                            0% {
+                                background-position: 0% 50%;
+                            }
+                            50% {
+                                background-position: 100% 50%;
+                            }
+                            100% {
+                                background-position: 0% 50%;
+                            }
+                        }
+                        
 </style>
+<script>
+                                                        document.addEventListener('DOMContentLoaded', function () {
+                                                            document.querySelectorAll('.js-btn-ajouter-panier').forEach(button => {
+                                                                button.addEventListener('click', function () {
+                                                                    const productId = this.dataset.id;
+                                                                    const productName = this.dataset.name;
+                                                                    const productPrice = this.dataset.price;
+
+                                                                    // Send AJAX POST request to Laravel
+                                                                    fetch(`/panier/add/${productId}`, {
+                                                                        method: 'POST',
+                                                                        headers: {
+                                                                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                                                            'Content-Type': 'application/json'
+                                                                        },
+                                                                        body: JSON.stringify({})
+                                                                    })
+                                                                        .then(response => {
+                                                                            if (!response.ok) throw new Error('Request failed');
+                                                                            return response.json();
+                                                                        })
+                                                                        .then(data => {
+                                                                            // Facebook Pixel: AddToCart
+                                                                            fbq('track', 'AddToCart', {
+                                                                                content_ids: [productId],
+                                                                                content_name: productName,
+                                                                                value: productPrice,
+                                                                                currency: 'TND',
+                                                                                content_type: 'product'
+                                                                            });
+
+                                                                            // Refresh the page
+                                                                            window.location.reload();
+                                                                        })
+                                                                        .catch(err => {
+                                                                            console.error(err);
+                                                                            // Optional: You can log or handle the error differently if needed
+                                                                        });
+                                                                });
+                                                            });
+                                                        });
+</script>
+	<script src="js/main.js"></script>
+
 

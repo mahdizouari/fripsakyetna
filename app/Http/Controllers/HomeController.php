@@ -280,14 +280,14 @@ public function search(Request $request)
 
 public function recherche(Request $request)
 {
-    $query = $request->input('search');
+    $query = $request->input('query');
 
     // Search logic for active products only
     $products = produits::where('is_active', 1)
                         ->where(function($q) use ($query) {
                             $q->where('name', 'LIKE', "%$query%")
-                              ->orWhere('Référence', '=', "%$query%")
-                              ->orWhere('Catégorie', '=', "%$query%")
+                              ->orWhere('Référence', 'LIKE', "%$query%")
+                              ->orWhere('Catégorie', 'LIKE', "%$query%")
                               ->orWhere('taille', '=', $query);  // Exact match for 'taille'
 
                         })

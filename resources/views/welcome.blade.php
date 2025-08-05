@@ -171,8 +171,8 @@
 
 
     <!-- Product -->
-    <section class="sec-product bg0 p-t-100 p-b-50">
-        <div class="container animate-on-scroll" style="align-items: stretch">
+    <section class="sec-product bg0 p-t-100 ">
+        <div class="container animate-on-scroll  " style="align-items: stretch">
            
        
         
@@ -321,9 +321,12 @@
                                             </div>
 
                                             <div class="block2-txt m-2 mt-1 flex flex-col p-3 gap-3">
-                                                <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate ">
-                                                    {{ $product->name }}
+                                               <a href="{{ route('detail', $product->id) }}"
+                                                class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
+                                                {{ $product->name }}
                                                 </a>
+
 
                                                 <span class="glow-price  font-extrabold">
                                                     {{ number_format($product->prix, 2) }} DT
@@ -668,9 +671,13 @@
 
             <!-- Content -->
             <div class="block2-txt m-2 mt-1 flex flex-col flex-grow p-3 gap-3">
-                <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-sm truncate">
-                    {{ \Illuminate\Support\Str::limit($product->name, 80) }}
+               <a href="{{ route('detail', $product->id) }}"
+                class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
+                {{ $product->name }}
                 </a>
+
+
 
                 <span class="glow-price font-extrabold text-sm">
                     {{ number_format($product->prix, 2) }} DT
@@ -1042,9 +1049,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                             </div>
 
                                             <div class="block2-txt m-2 mt-1 flex flex-col p-3 gap-3">
-                                                <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate ">
-                                                    {{ $product->name }}
+                                               <a href="{{ route('detail', $product->id) }}"
+                                                class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
+                                                {{ $product->name }}
                                                 </a>
+
 
                                                 <span class="glow-price  font-extrabold">
                                                     {{ number_format($product->prix, 2) }} DT
@@ -1166,9 +1176,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                                     </div>
 
                                                     <div class="block2-txt px-2 py-3 flex flex-col gap-2 text-sm sm:text-base md:text-sm ">
-                                                        <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate ">
+                                                          <a href="{{ route('detail', $product->id) }}"
+                                                            class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                                                            style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
                                                             {{ $product->name }}
-                                                        </a>
+                                                            </a>
+
 
                                                         <span class="glow-price  font-extrabold">
                                                             {{ number_format($product->prix, 2) }} DT
@@ -1224,10 +1237,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         </div>
-        
-    </section>
-
-
     <!-- Blog -->
     <!-- Additional content can be added here -->
 
@@ -1268,9 +1277,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                             </div>
 
                                             <div class="block2-txt m-2 mt-1 flex flex-col p-3 gap-3">
-                                                <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate ">
-                                                    {{ $product->name }}
+                                               <a href="{{ route('detail', $product->id) }}"
+                                                class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
+                                                {{ $product->name }}
                                                 </a>
+
+
 
                                                 <span class="glow-price  font-extrabold">
                                                     {{ number_format($product->prix, 2) }} DT
@@ -1345,16 +1358,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
     </style>
-    
-      
-                            
-
-
-
-
-
-
-   
+ 
 
 
        <!-- Blog -->
@@ -1588,6 +1592,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     </style>
 
+     
+    </section>
 
+
+   
     
 @endsection

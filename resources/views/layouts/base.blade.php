@@ -84,7 +84,7 @@
 <style>
    .billing-container {
     max-width: 800px; /* Increased width */
-    margin: 50px 600px; /* Center the container and reduce the margin */
+    margin: 100px 300px; /* Center the container and reduce the margin */
     padding: 2.5rem; /* Increased padding for more space inside */
     background: #fff;
     border-radius: 8px;
@@ -146,8 +146,9 @@
 
     @media (max-width: 768px) {
         .billing-container {
-			margin: 50px auto;
+			margin: 120px auto;
             padding: 1.5rem;
+            max-width: 80%;
         }
 
         .billing-flex {
@@ -892,6 +893,7 @@
 
 
 	</header>
+    
     @yield('content')
 	<!-- Sidebar -->
 	<aside class="wrap-sidebar js-sidebar">
@@ -1022,7 +1024,7 @@
             </p>
             <p class="stext-107 cl6">
                 Développé par 
-                <a href="https://www.linkedin.com/in/mahdi-zouari/" class="text-blue-500 hover:underline" target="_blank">
+                <a href="https://www.linkedin.com/in/mahdi-zouari/" class="text-yellow-500 hover:underline" target="_blank">
                     Mehdi Zouari
                 </a>
             </p>

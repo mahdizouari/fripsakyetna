@@ -20,7 +20,7 @@
 
 
 
-    <main class="container p-t-30 flex-grow">
+    <main class="container w-full max-w-5xl mx-auto p-t-30 flex-grow reveal">
 
         <div class="left-column">
             <!-- Product Slider -->
@@ -46,24 +46,26 @@
             <!-- Product Description -->
             <div class="product-description p-l-20 "> 
                 <div class="np w-full overflow-hidden">
-                    <h1>
-                        {{ \Illuminate\Support\Str::ucfirst($product->name) }}
+                    <h1 class="truncate capitalize ">
+                        {{ $product->name }}
                     </h1>
 
                 </div>
 
 
                 @php
-                    // Generate a consistent random-like float based on product ID
+                    // Generate a consistent pseudo-random float based on product ID
                     $hash = crc32($product->id);
-                    // Map hash to a number between 30 and 50 (=> 3.0 to 5.0)
-                    $normalized = ($hash % 21 + 30) / 10; 
+
+                    // Map hash to a number between 40 and 50 => (4.0 to 5.0)
+                    $normalized = ($hash % 11 + 40) / 10;
                     $rating = round($normalized, 1);
 
                     $fullStars = floor($rating);
                     $halfStar = ($rating - $fullStars) >= 0.5;
                     $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
                 @endphp
+
 
                 <div class="review-stars text-yellow-500">
                     @for ($i = 0; $i < $fullStars; $i++)
@@ -84,7 +86,7 @@
 
 
 
-                <p class="available p-t-20 ">Disponible</p>
+                <p class=" p-t-20 glow-price font-extrabold ">Disponible</p>
             </div>
 
             <!-- Product Configuration -->
@@ -107,9 +109,12 @@
 
             <!-- Product Pricing -->
             <div class="product-price  ">
-                <div class="price-container ">
-                    <span class="price">{{ number_format($product->prix, 2) }} DT</span>
+                <div class="price-container mt-2">
+                    <span class="price text-yellow-500 font-semibold md:text-3xl"> 
+                        {{ number_format($product->prix, 2) }} DT
+                    </span>
                 </div>
+
                 <div class="button-container">
                     <!-- <form action="{{ route('addToCart', $product->id) }}" method="POST" class="add-to-cart-form"
                             data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->prix }}">
@@ -120,10 +125,12 @@
                         </form>
                         -->
                     <script src="js/main.js"></script>
-                    <button class="cart-btn js-add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
-                        data-price="{{ $product->prix }}">
-                        <i class="fa fa-shopping-cart"></i> Ajouter au panier
+                    <button class="cart-btn js-add-to-cart flex items-center gap-2 bg-yellow-400 hover:bg-yellow-600 hover:text-white text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
+                        data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->prix }}">
+                        <i class="fa fa-shopping-cart text-lg"></i>
+                        <span>Ajouter au panier</span>
                     </button>
+
                     <script>
                         document.addEventListener('DOMContentLoaded', function () {
                             document.querySelectorAll('.js-add-to-cart').forEach(button => {
@@ -174,7 +181,7 @@
 
                    {{--  WISHLIST BUTTON  --}}
                     <button type="button"
-                            class="cart-btn js-add-to-wishlist"   {{-- <-- remove the dot before js-add-to-wishlist --}}
+                            class="cart-btn js-add-to-wishlist cart-btn js-add-to-cart flex items-center gap-2 bg-yellow-400 hover:bg-yellow-600 hover:text-white text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out "   {{-- <-- remove the dot before js-add-to-wishlist --}}
                             data-id="{{ $product->id }}"
                             data-name="{{ e($product->name) }}"
                             data-price="{{ $product->prix }}">
@@ -225,9 +232,9 @@
 
 
                 </div>
-                <div class="return-links">
-                    <a href="/" class="return-btn">
-                        <img src="/images/icons/home-icon.svg" alt="Home" class="return-logo">
+                <div class="return-links mr-3  ">
+                    <a href="/" class="return-btn  ">
+                        <img src={{asset('/images/icons/home-icon.svg')}} alt="Home" class="return-logo  ">
                     </a>
                 </div>
             </div>
@@ -283,16 +290,23 @@
                 DESCRIPTION
             </h2>
             <ul class="max-w-md mx-auto text-lg space-y-2 text-left list-disc list-inside">
-                <li>Marque: {{ $product->name ?? 'Non spécifié' }}</li>
-                <li>Catégorie: {{ $product->Catégorie ?? 'Non spécifié' }}</li>
-                <li>Taille: {{ $product->taille ?? 'Non spécifié' }}</li>
-                <li>Référence: {{ $product->Référence ?? 'Non spécifié' }}</li>
+               <li>
+                    Marque:                         
+
+                    <span class=" break-words max-w-2xs whitespace-normal">
+                        {{ \Illuminate\Support\Str::ucfirst($product->name ?? 'Non spécifié') }}
+                    </span>
+                </li>
+
+                <li>Catégorie: {{ \Illuminate\Support\Str::ucfirst($product->Catégorie ?? 'Non spécifié') }}</li>
+                <li>Taille: {{ \Illuminate\Support\Str::ucfirst($product->taille ?? 'Non spécifié') }}</li>
+                <li>Référence: {{ \Illuminate\Support\Str::ucfirst($product->Référence ?? 'Non spécifié') }}</li>
             </ul>
         </div>
 
       
         <!-- Vous pouvez aussi aimer Section -->
-        <div class="similar-products-wrapper">
+        <div class="similar-products-wrapper mx-auto">
             <div class="similar-products">
                     <h2 class="section-title text-3xl md:text-4xl font-extrabold text-center tracking-tight mb-6" style="font-family: 'Poppins', sans-serif;">
                         Vous pouvez aussi aimer
@@ -325,9 +339,14 @@
                                                     </div>
 
                                                     <div class="block2-txt px-2 py-3 flex flex-col gap-2 text-sm sm:text-base md:text-sm ">
-                                                        <a href="{{ route('detail', $similarProduct->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate ">
-                                                            {{ $similarProduct->name }}
-                                                        </a>
+                                                     <a href="{{ route('detail', $similarProduct->id) }}"
+                                                class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
+                                                {{ $similarProduct->name }}
+                                                </a>
+
+                                                        
+
 
                                                         <span class="glow-price  font-extrabold">
                                                             {{ number_format($similarProduct->prix, 2) }} DT
@@ -395,6 +414,7 @@
                                     background: linear-gradient(270deg, #ff0080, #7928ca,rgb(36, 24, 208),rgb(39, 89, 73), #ffae00,rgb(221, 4, 4));
                                     background-size: 600% 600%;
                                     -webkit-background-clip: text;
+                                    background-clip: text;
                                     -webkit-text-fill-color: transparent;
                                     animation: rainbowGlow 15s ease infinite;
                                     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);

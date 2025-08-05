@@ -8,8 +8,8 @@
     $firstOrder = $commandes->first();
 @endphp
 
-<div class="container my-5 flex-grow" style="max-width: 600px;">
-    <div class="text-center mt-20 p-4 border rounded shadow-sm bg-white">
+<div class="container flex-grow " style="max-width: 600px;">
+    <div class="text-center mt-5 p-5 border rounded shadow-sm bg-grey">
         <!-- Checkmark Icon -->
         <div class="mb-4 flex justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="green" class="bi bi-check-circle-fill mb-3" viewBox="0 0 16 16">
@@ -38,7 +38,7 @@
                 <ul class="mb-4 divide-y divide-gray-200">
                     @foreach($commandes as $commande)
                         <li class="flex justify-between py-3">
-                            <span class="text-gray-700">{{ $commande->nom_de_produit }}</span>
+                            <span class="text-gray-700 capitalize ">{{ $commande->nom_de_produit }}</span>
                             <span class="font-medium text-gray-900">{{ number_format($commande->prix, 2) }} TND</span>
                         </li>
                     @endforeach

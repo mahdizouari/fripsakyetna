@@ -29,8 +29,8 @@
                 </button> 
             </div>
            <!-- Mobile Filter (stacked card style) -->
-        <div class="mobile-filter filter-tope-group block md:hidden m-tb-5 card">
-            <div class="p-lr-15 p-tb-10 bg-light bor3">
+        <div class="mobile-filter filter-tope-group block md:hidden  m-tb-5  card">
+            <div class="p-lr-15 p-tb-10 bg-light bor3 text-center  "> 
                 <button class="block w-full  stext-106 cl6 hov1 bor3 trans-04 p-2 m-b-5 text-center how-active1" data-filter="*">
                     Tous les produits
                 </button>
@@ -309,7 +309,7 @@
         <!-- Product Listings -->
         <div class="row isotope-grid justify-center">
             @foreach ($products as $product)
-                <div class="col-5 col-md-3 p-b-30 isotope-item {{ strtolower($product->Référence) }} {{ strtolower($product->Catégorie) }}" >
+                <div class="col-6 col-md-3 p-b-30 isotope-item {{ strtolower($product->Référence) }} {{ strtolower($product->Catégorie) }}" >
                                         <div class="block2 flex flex-col rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="align-items: stretch;">
                                             <div class="block2-pic hov-img0 overflow-hidden rounded-t-lg flex justify-center items-center bg-white">
                                                 <a href="{{ route('detail', $product->id) }}">
@@ -323,9 +323,12 @@
                                             </div>
 
                                             <div class="block2-txt m-2 mt-1 flex flex-col p-2 gap-3">
-                                                <a href="{{ route('detail', $product->id) }}" class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg truncate  ">
-                                                    {{ $product->name }}
+                                               <a href="{{ route('detail', $product->id) }}"
+                                                class="sstext-104 cl4 hover:text-yellow-600 transition-colors duration-300 font-semibold text-lg capitalize block overflow-hidden"
+                                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3rem; line-height: 1.5rem; text-overflow: ellipsis;">
+                                                {{ $product->name }}
                                                 </a>
+
 
                                                 <span class="glow-price  font-extrabold p-1">
                                                     {{ number_format($product->prix, 2) }} DT
@@ -392,7 +395,7 @@
                                                                 });
                                                             });
                                                         });
-                            </script>
+</script>
                          
 <style>
  /* Product Grid */
@@ -410,19 +413,19 @@
     justify-content: center; /* Center item content */
 }
 
-@media (max-width: 600px) {
-    .isotope-item {
-        flex: 1 1 calc(50% - 10px) !important;  /* Two items per row with spacing */
-        max-width: calc(50% - 10px) !important;
-        box-sizing: border-box !important;
-    }
+    @media (max-width: 600px) {
+        .isotope-item {
+            flex: 1 1 calc(50% - 10px) !important;  /* Two items per row with spacing */
+            max-width: calc(50% - 10px) !important;
+            box-sizing: border-box !important;
+        }
 
-    .isotope-grid {
-        gap: 20px !important;  /* Controls space between items */
-        justify-content: center !important;
+        .isotope-grid {
+            gap: 20px !important;  /* Controls space between items */
+            justify-content: center !important;
+        }
+        
     }
-    
-}
 
 
 .btn-ajouter-panier {
