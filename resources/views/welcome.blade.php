@@ -541,24 +541,24 @@
 
 
     @php
-    use Illuminate\Support\Facades\DB;
-    use App\Models\produits;
+        use Illuminate\Support\Facades\DB;
+        use App\Models\produits;
 
-    $topCategory = produits::join('commandes','produits.name','=','commandes.nom_de_produit')
-        ->select('produits.Catégorie', DB::raw('COUNT(commandes.id) as total_sales'))
-        ->groupBy('produits.Catégorie')
-        ->orderByDesc('total_sales')
-        ->value('produits.Catégorie');
+        $topCategory = produits::join('commandes','produits.name','=','commandes.nom_de_produit')
+            ->select('produits.Catégorie', DB::raw('COUNT(commandes.id) as total_sales'))
+            ->groupBy('produits.Catégorie')
+            ->orderByDesc('total_sales')
+            ->value('produits.Catégorie');
 
-    if (!$topCategory) {
-        $topCategory = produits::where('is_active', 1)->value('Catégorie');
-    }
+        if (!$topCategory) {
+            $topCategory = produits::where('is_active', 1)->value('Catégorie');
+        }
 
-    $filteredProducts = produits::where('is_active', 1)
-        ->where('Catégorie', $topCategory)
-        ->take(6)
-        ->get();
-@endphp
+        $filteredProducts = produits::where('is_active', 1)
+            ->where('Catégorie', $topCategory)
+            ->take(20)
+            ->get();
+    @endphp
 <script>
   const tickerTrack = document.getElementById('tickerTrack');
   const tickerContainer = document.getElementById('tickerContainer');
@@ -648,12 +648,7 @@
 
 <div class="ticker-wrapper py-6">
         <div class="ticker-track p-b-70 ">
-            @foreach ($filteredProducts as $product)
-                
-            @endforeach
-
-            {{-- Duplicate for infinite scroll --}}
-            @foreach ($filteredProducts as $product)
+                       @foreach ($filteredProducts as $product)
                 <div class="ticker-item w-[260px] flex-shrink-0 mx-4">
             <div class="block2 flex flex-col justify-between h-full min-h-[350px] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
             

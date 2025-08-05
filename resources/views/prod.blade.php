@@ -91,7 +91,7 @@
                                 <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                                     <!-- Category Section -->
                                     <div class="filter-col1 p-r-15 p-b-27">
-                                        <div class="mtext-102 cl2 p-b-15">Category</div>
+                                        <div class="mtext-102 cl2 p-b-15">Catégorie</div>
                                         <ul class="category-filter-list flex-row">
                                             @foreach(['homme', 'femme', 'enfant'] as $category)
                                                 <li class="p-b-6">
@@ -105,7 +105,7 @@
 
                                     <!-- Reference Section -->
                                     <div class="filter-col2 p-r-15 p-b-27">
-                                        <div class="mtext-102 cl2 p-b-15">Reference</div>
+                                        <div class="mtext-102 cl2 p-b-15">Référence</div>
                                         <ul class="reference-filter-list flex-row">
                                             @foreach(['sac', 'chaussure', 'casquette'] as $reference)
                                                 <li class="p-b-6">
@@ -134,10 +134,15 @@
                 <script src="js/main.js"></script>
 
                             <!-- Apply Filters Button -->
-                            <div class="apply-filter-btn-wrapper text-center p-t-20">
-                                    <button class="filter-button apply-filters" id="apply-filters-btn">Apply Filters</button>
+                                <div class="apply-filter-btn-wrapper text-center p-t-20">
+                                    <button class="filter-button apply-filters" id="apply-filters-btn">Filtrer</button>
+                                    <button class="filter-button apply-filters  " id="clear-filters-btn">Réinitialiser</button>
+
                                 </div>
+
+
                             </div>
+                            
                         </div>
 
                     </div>
@@ -155,6 +160,21 @@
 
             // Click event
             
+// Clear filter button click event
+document.getElementById('clear-filters-btn').addEventListener('click', function () {
+    // Reset variables
+    selectedCategory = '';
+    selectedReference = '';
+    selectedTaille = '';
+
+    // Remove active classes
+    document.querySelectorAll('.category-filter, .reference-filter, .taille-filter').forEach(function (el) {
+        el.classList.remove('active');
+    });
+
+    // Redirect to the page without query params
+    window.location.href = '/prod';
+});
 
 
 

@@ -348,10 +348,10 @@
     <!-- ======== sidebar-nav start =========== -->
     <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-    <a href="/mspace" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">My space</a>
+    <a href="/mspace" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Mon Espace</a>
 </div>
 <div class="navbar-logo">
-    <a href="/" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Home</a>
+    <a href="/" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Accueil</a>
 </div>
 
       <nav class="sidebar-nav bg-gray-100 w-64 h-screen p-4 shadow-md">
@@ -373,12 +373,12 @@
         </li>
         <li>
             <a href="/commande" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-yellow-500 hover:text-white transition">
-                Commande
+                Commandes
             </a>
         </li>
         <li>
             <a href="/about" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-yellow-500 hover:text-white transition">
-                About
+                A propos
             </a>
         </li>
     </ul>

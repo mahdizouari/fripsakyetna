@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use App\Models\Slider;
+  use Illuminate\Support\Facades\DB;
+
 
 
 class HomeController extends Controller
@@ -18,13 +20,22 @@ class HomeController extends Controller
 
         return view('detail', compact('product'));
     }
-    public function welcome()
-    {
-        $slider = Slider::orderBy('id', 'desc')->first(); // Fetch the most recent slider
-        $products = produits::where('is_active', true)->get();
+   public function welcome()
+{
+    $slider = Slider::orderBy('id', 'desc')->first(); // Fetch the most recent slider
+    $products = produits::where('is_active', true)
+    ->orderByRaw("CASE 
+        WHEN Référence LIKE '%#%' THEN 1 
+        ELSE 2 
+    END")
+    ->orderByRaw("CAST(SUBSTRING_INDEX(Référence, '#', -1) AS UNSIGNED) ASC")
+    ->inRandomOrder() // random fallback for others
+    ->get();
 
-        return view('welcome', compact('slider', 'products'));
-    }
+
+    return view('welcome', compact('slider', 'products'));
+}
+
 
         
     public function product(Request $request)
@@ -97,11 +108,27 @@ public function showClientProfile($clientId)
     return view('client.profile', ['client' => $client]);
 }
 public function mspace()
-
 {
-    $product=produits::get();
-    return view('mspace',compact('product')); 
+    $products = produits::get();
+
+    $sorted = $products->filter(function ($product) {
+        return preg_match('/#\d+$/', $product->Référence);
+    })->sortBy(function ($product) {
+        preg_match('/#(\d+)$/', $product->Référence, $m);
+        return (int) $m[1];
+    });
+
+    $others = $products->reject(function ($product) {
+        return preg_match('/#\d+$/', $product->Référence);
+    });
+
+    $final = $sorted->concat($others)->values();
+
+    return view('mspace', ['product' => $final]);
 }
+
+
+
 public function create()
 {  
 
@@ -110,13 +137,12 @@ public function create()
 
 public function store(Request $request)
 {
-    // Validate the request
     $request->validate([
         'name' => 'required|max:255|string',
         'taille' => 'required|max:255|string',
-        'image1' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048', // Required image
-        'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
-        'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
+        'image1' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
+        'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
+        'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
         'Catégorie' => 'required|string|in:homme,femme,enfant,accessoire',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
@@ -148,7 +174,24 @@ public function store(Request $request)
         $images['image3'] = $file->storeAs('images', $filename, 'public');
     }
 
-    // Create the product
+    $newRef = $request->Référence;
+
+    // Check if Référence ends with #number
+    if (preg_match('/#(\d+)$/', $newRef, $matches)) {
+        $number = $matches[1];
+
+        // Check if another product has this #number
+        $existingProduct = produits::where('Référence', 'LIKE', '%#' . $number)->first();
+
+        if ($existingProduct) {
+            // Change existing product's Référence to something else
+            // For example, remove the #number suffix
+            $existingProduct->Référence = preg_replace('/#\d+$/', '', $existingProduct->Référence);
+            $existingProduct->save();
+        }
+    }
+
+    // Create the new product with the given Référence
     produits::create([
         'name' => $request->name,
         'taille' => $request->taille,
@@ -156,13 +199,14 @@ public function store(Request $request)
         'image2' => $images['image2'],
         'image3' => $images['image3'],
         'Catégorie' => $request->Catégorie,
-        'Référence' => $request->Référence,
+        'Référence' => $newRef,
         'is_active' => $request->has('is_active') ? 1 : 0,
         'prix' => $request->prix,
     ]);
 
     return redirect('create')->with('status', 'Product created successfully!');
 }
+
 
 public function edit(int $id)
 {
@@ -175,27 +219,83 @@ public function update(Request $request, $id)
     $request->validate([
         'name' => 'required|max:255|string',
         'taille' => 'required|max:255|string',
-        'image1' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
-        'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
-        'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048', // Optional image
+        'image1' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
+        'image2' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
+        'image3' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
         'Catégorie' => 'required|string|in:homme,femme,enfant,accessoire',
         'Référence' => 'required|max:255|string',
         'is_active' => 'sometimes',
-        'prix' => 'required|numeric',                                                      
+        'prix' => 'required|numeric',
     ]);
 
     // Find the product by ID
     $produit = produits::findOrFail($id);
 
+    $newRef = $request->Référence;
+
+
+// ... inside your update method ...
+
+// It's best practice to wrap this logic in a transaction.
+// If saving one product fails, the other change is rolled back.
+DB::transaction(function () use ($produit, $newRef) {
+
+    // Step 1: Check if the new reference has the 'prefix#number' format.
+    if (preg_match('/^(.*?)#(\d+)$/', $newRef, $newMatches)) {
+        $newNumber = $newMatches[2];
+
+        // Step 2: Check if another product is already using this number.
+        $otherProduct = produits::where('Référence', 'LIKE', '%#' . $newNumber)
+                                            ->where('id', '!=', $produit->id)
+                                            ->first();
+
+        // Step 3: If a conflict exists, perform a swap.
+        if ($otherProduct) {
+            // Get the prefix of the conflicting product.
+            preg_match('/^(.*?)#/', $otherProduct->Référence, $otherMatches);
+            $otherPrefix = $otherMatches[1] ?? $otherProduct->Référence; // Fallback to full ref if regex fails
+
+            // SCENARIO A: The product we are editing ALREADY has a number.
+            if (preg_match('/#(\d+)$/', $produit->Référence, $currentMatches)) {
+                $currentNumber = $currentMatches[1];
+                // The other product gets the current product's old number.
+                $otherProduct->Référence = $otherPrefix . '#' . $currentNumber;
+            } 
+            // SCENARIO B: The product we are editing DOES NOT have a number (Your new request!).
+            else {
+                // The other product loses its number entirely, reverting to its prefix.
+                $otherProduct->Référence = $otherPrefix;
+            }
+
+            $otherProduct->save();
+        }
+
+        // In all cases where the new ref has a format, we assign it to the current product.
+        $produit->Référence = $newRef;
+
+    } else {
+        // The new reference doesn't have a #number, so just assign it directly.
+        // No possibility of a swap here.
+        $produit->Référence = $newRef;
+    }
+
+    // Finally, save the main product that was being updated.
+    $produit->save();
+});
+
+
+$produit->save();
+
+
+
+
     // Handle image uploads
     foreach (['image1', 'image2', 'image3'] as $imageField) {
         if ($request->hasFile($imageField)) {
-            // Delete old image if exists
             if ($produit->{$imageField} && Storage::disk('public')->exists($produit->{$imageField})) {
                 Storage::disk('public')->delete($produit->{$imageField});
             }
 
-            // Upload new image
             $file = $request->file($imageField);
             $filename = time() . '_' . $imageField . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('images', $filename, 'public');
@@ -203,19 +303,19 @@ public function update(Request $request, $id)
         }
     }
 
-    // Update other product details
+    // Update other details
     $produit->name = $request->name;
     $produit->taille = $request->taille;
     $produit->Catégorie = $request->Catégorie;
-    $produit->Référence = $request->Référence;
     $produit->is_active = $request->has('is_active') ? 1 : 0;
     $produit->prix = $request->prix;
 
-    // Save the updated product
+    // Save updated product
     $produit->save();
 
     return redirect()->back()->with('status', 'Product updated successfully!');
 }
+
 public function destroy($id)
 {
     $produit = produits::findOrFail($id);

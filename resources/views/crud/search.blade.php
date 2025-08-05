@@ -6,20 +6,26 @@
     <!-- Search Form -->
     <div class="mb-4">
         <form action="{{ route('products.search') }}" method="GET" class="d-flex flex-column flex-md-row align-items-center">
-            <input type="text" name="query" class="form-control me-md-2 mb-2 mb-md-0" placeholder="Search by reference, name, or size" value="{{ request()->get('query') }}">
-            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Search</button>
+            <input type="text" name="query" class="form-control me-md-2 mb-2 mb-md-0" placeholder="Recherche en référence, nom ou taille" value="{{ request()->get('query') }}">
+            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition">Rechercher</button>
+            
         </form>
+        <div class="mt-3 text-center ">
+            <a href="/mspace" class=" bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-16 rounded transition">Mon Espace</a>
+
+        </div>
+
     </div>
 
     <!-- Display Search Results -->
     @if(isset($products) && $products->isNotEmpty())
-        <div class="flex justify-center items-center w-full py-6">
+        <div class="flex justify-center items-center w-full ">
     <div class="card w-full max-w-5xl shadow-lg">
         <div class="card-body text-center">
             <table class="table table-striped table-bordered w-full">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Nom</th>
+                            <th class="w-[300px] max-w-[300px] truncate">Nom</th>
                             <th>Réf</th>
                             <th>T</th>
                             <th>Catég</th>
@@ -31,9 +37,19 @@
                     <tbody>
                     @foreach($products as $product)
                         <tr>
-                           <td class="" style="max-width: 100px;">
-                                {{ $product->name }}
-                            </td>
+                           <td  class="w-[300px] max-w-[300px] truncate" title="{{ $product->name }}"
+                                        style="
+                                           
+                                            overflow: hidden;
+                                            white-space: normal;
+                                            text-overflow: ellipsis;
+                                            word-break: break-word;
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 2;
+                                            -webkit-box-orient: vertical;">
+                                        
+                                        {{ \Illuminate\Support\Str::limit($product->name, 50, '...') }}
+                                    </td>
 
 
 
