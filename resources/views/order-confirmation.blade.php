@@ -61,7 +61,7 @@
 
         <!-- Support info -->
         <p class="mt-4 text-muted small ">
-            Des questions ? Contactez notre support à <a href="yessin.zouari100@gmail.com">Fripsakyetna@gmail.com</a>.
+            Des questions ? Contactez notre support à <a href="mailto:yessin.zouari100@gmail.com">Fripsakyetna@gmail.com</a>.
         </p>
     </div>
 </div>

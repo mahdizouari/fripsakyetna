@@ -53,6 +53,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
+	<script src="js/main.js"></script>
 
 
 
@@ -1032,7 +1033,7 @@
                 <p class="stext-107 cl7 size-201">
                     Avez-vous des questions ? Appelez nous :
                     <div>
-                    <a href="tel:+27715933" class="cl7 hov-cl1 trans-04">
+                    <a href="tel:+21627715933" class="cl7 hov-cl1 trans-04 underline ">
                         <i class="fa fa-phone"></i> 27715933
                     </a>
                     </div>
@@ -1040,6 +1041,11 @@
                 <h4 class="stext-107 cl7 size-201">
                     Service 24/7
                 </h4>
+                <li class="p-b-10">
+                              
+                                <a href="mailto:yessin.zouari100@gmail.com" class="stext-106  cl7 hov-cl1 trans-04 underline " >Fripsakyetna@gmail.com</a>
+
+                            </li>
                 </center>
 
                 <div class="p-t-20 p-b-10">

@@ -149,9 +149,10 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" id="is_active" name="is_active" class="form-check-input" {{ old('is_active') ? 'checked' : '' }}>
+                                <input type="checkbox" id="is_active" name="is_active" class="form-check-input" {{ old('is_active', true) ? 'checked' : '' }}>
                                 <label for="is_active" class="form-check-label">Is Active</label>
-                            </div>
+                            </div> 
+
                             @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">

@@ -107,7 +107,7 @@
                                     <div class="filter-col2 p-r-15 p-b-27">
                                         <div class="mtext-102 cl2 p-b-15">Référence</div>
                                         <ul class="reference-filter-list flex-row">
-                                            @foreach(['sac', 'chaussure', 'casquette'] as $reference)
+                                            @foreach(['nba', 'foot', 'sport'] as $reference)
                                                 <li class="p-b-6">
                                                     <a href="#" class="filter-link stext-106 trans-04 reference-filter {{ request('reference') == $reference ? 'active' : '' }}" data-reference="{{ $reference }}">
                                                         {{ ucfirst($reference) }}

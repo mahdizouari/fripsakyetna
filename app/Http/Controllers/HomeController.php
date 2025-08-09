@@ -12,6 +12,7 @@ use App\Models\Slider;
 
 
 
+
 class HomeController extends Controller
 {
     public function showProductDetail($id)
@@ -39,42 +40,49 @@ class HomeController extends Controller
 
         
     public function product(Request $request)
-    {
-        // Get filter parameters from the request
-        $category = $request->input('category');
-        $reference = $request->input('reference');
-        $taille = $request->input('taille');
-    
-        // Start the query for active products
-        $query = produits::where('is_active', true);
-    
-        // Apply category filter if selected
-        if ($category) {
-            $query->where('Catégorie', $category);
-        }
-    
-        // Apply reference filter if selected
-        if ($reference) {
-            $query->where('Référence', $reference);
-        }
-    
-        // Apply taille filter if selected
-        if ($taille) {
-            $query->where('taille', $taille);
-        }
-    
-        // Paginate the results (30 per page)
-        $products = $query->paginate(30);
-    
-        // Retrieve distinct tailles for the filter options
-        $taillesDisponibles = produits::where('is_active', true)
-                                      ->whereNotNull('taille')
-                                      ->distinct('taille')
-                                      ->pluck('taille');
-    
-        // Return the view with the filtered products and available tailles
-        return view('prod', compact('products', 'taillesDisponibles'));
+{
+    // Get filter parameters
+    $category = $request->input('category');
+    $reference = $request->input('reference');
+    $taille = $request->input('taille');
+
+    // Start query for active products
+    $query = produits::where('is_active', true);
+
+    // Apply filters
+    if ($category) {
+        $query->where('Catégorie', $category);
     }
+
+    if ($reference) {
+        $query->where('Référence', $reference);
+    }
+
+    if ($taille) {
+        $query->where('taille', $taille);
+    }
+
+    // Apply custom sorting by numeric part after "#"
+    $query->orderByRaw("
+        CASE 
+            WHEN `Référence` LIKE '%#%' 
+            THEN CAST(SUBSTRING_INDEX(`Référence`, '#', -1) AS UNSIGNED) 
+            ELSE 99999 
+        END
+    ");
+
+    // Paginate results
+    $products = $query->paginate(30);
+
+    // Get available tailles (not sorted by Référence here, only distinct)
+    $taillesDisponibles = produits::where('is_active', true)
+                                  ->whereNotNull('taille')
+                                  ->distinct()
+                                  ->pluck('taille');
+
+    return view('prod', compact('products', 'taillesDisponibles'));
+}
+
     
 
 
@@ -116,11 +124,13 @@ public function mspace()
     })->sortBy(function ($product) {
         preg_match('/#(\d+)$/', $product->Référence, $m);
         return (int) $m[1];
-    });
+    })  ;
+    
 
     $others = $products->reject(function ($product) {
         return preg_match('/#\d+$/', $product->Référence);
     });
+    
 
     $final = $sorted->concat($others)->values();
 

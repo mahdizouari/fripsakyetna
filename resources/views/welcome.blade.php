@@ -495,7 +495,7 @@
    
   {{-- TOP-SELLING SECTION -------------------------------------------------- --}}
 <div class="relative flex items-center justify-center mt-12 mb-4 scroll-animate p-1 ">
-  <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0 mt-5 p-3" style="font-family: 'Poppins', sans-serif;">
+  <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0 mt-5 " style="font-family: 'Poppins', sans-serif;">
     Meilleures ventes
   </h3>
   <span class="absolute -bottom-2 w-24 h-1 bg-black rounded-full opacity-0"></span>
@@ -978,9 +978,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container animate-on-scroll p-b-40 " style="align-items: stretch">
    <div class="relative flex items-center justify-center mt-12 mb-8 scroll-animate">
   <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0" style="font-family: 'Poppins', sans-serif;">
-    Sacs
+    NBA
   </h3>
-  <span class="absolute -bottom-2 w-24 h-1 bg-black rounded-full opacity-0"></span>
+  <span class="absolute -bottom-2 w-12 h-1 bg-black rounded-full opacity-0"></span>
 </div>
 
 <!-- Add once (can be in your layout) -->
@@ -1021,8 +1021,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
         @php
             $filteredProducts = produits::where('is_active', 1)
-                ->where('Référence', 'like', '%sac%')
-                ->take(6)
+                ->where('Référence', 'like', '%nba%')
+                ->orWhere('name', 'like', '%nba%')
+                ->take(12)
                 ->get();
         @endphp
    <div class="wrap-slick3 w-full flex justify-center px-4 sm:px-6 md:px-8  ">
@@ -1096,9 +1097,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container animate-on-scroll">
         <div class="relative flex items-center justify-center mt-12 mb-8 scroll-animate">
             <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0" style="font-family: 'Poppins', sans-serif;">
-                Casquettes & Chaussures
+               Football
             </h3>
-            <span class="absolute -bottom-2 w-24 h-1 bg-black rounded-full opacity-0"></span>
+            <span class="absolute -bottom-2 w-16 h-1 bg-black rounded-full opacity-0"></span>
             </div>
 
             <!-- Add once (can be in your layout) -->
@@ -1144,12 +1145,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Limiting the number of products to 4 and ensuring they are active
                     $filteredProducts = produits::where('is_active', 1)
                         ->where(function($query) {
-                            $query->where('name', 'like', '%casquette%')
-                                ->orWhere('name', 'like', '%chaussure%')
-                                ->orWhere('Référence', 'like', '%casquette%')
-                                ->orWhere('Référence', 'like', '%chaussure%');
+                            $query->where('Référence', 'like', '%foot%')
+                                    ->orWhere('name', 'like', '%foot%');
+
+                                    
+                                
                         })
-                        ->take(4) // Limit to 4 products
+                        ->take(12) // Limit to 4 products
                         ->get();
                 @endphp
 
@@ -1240,15 +1242,16 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container animate-on-scroll" >
         <div class="relative flex items-center justify-center mt-12 mb-8 scroll-animate">
         <h3 class="text-3xl md:text-4xl font-extrabold text-black text-center tracking-tight opacity-0" style="font-family: 'Poppins', sans-serif;">
-                    Accessoires
+                    Sport
         </h3>
-        <span class="absolute -bottom-2 w-24 h-1 bg-black rounded-full opacity-0"></span>
+        <span class="absolute -bottom-2 w-12 h-1 bg-black rounded-full opacity-0"></span>
     </div>
 
      @php
         $filteredProducts = produits::where('is_active', 1)
-            ->where('Catégorie', 'accessoire')
-            ->take(6)
+            ->where('Référence', 'sport')
+            ->orWhere('name', 'like', '%sport%')
+            ->take(12)
             ->get();
         @endphp
 
