@@ -1151,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     
                                 
                         })
-                        ->take(12) // Limit to 4 products
+                        ->take(6) // Limit to 4 products
                         ->get();
                 @endphp
 
@@ -1162,13 +1162,40 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 <div class="block2 flex flex-col rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="align-items: stretch;">
                                                     
                                                     <div class="block2-pic hov-img0 p-2 pb-0 overflow-hidden rounded-t-2xl">
-                                                        <a href="{{ route('detail', $product->id) }}">
-                                                            <img 
-                                                            src="{{ asset('/' . $product->image1) }}" 
-                                                            alt="IMG-PRODUCT" 
-                                                            loading="lazy" 
-                                                            class="w-full h-52 sm:h-64 md:h-48 object-cover transition-transform duration-500 hover:scale-105"
-                                                            >
+                                                        <a href="{{ route('detail', $product->id) }}" class="w-full block">
+                                                            <div class="swiper product-swiper relative">
+                                                                <div class="swiper-wrapper">
+                                                                    @if($product->image1)
+                                                                        <div class="swiper-slide flex justify-center items-center">
+                                                                            <img src="{{ asset('/' . $product->image1) }}" 
+                                                                                alt="Image 1" 
+                                                                                class="h-48 object-contain" 
+                                                                                loading="lazy">
+                                                                        </div>
+                                                                    @endif
+                                                                    @if($product->image2)
+                                                                        <div class="swiper-slide flex justify-center items-center">
+                                                                            <img src="{{ asset('/' . $product->image2) }}" 
+                                                                                alt="Image 2" 
+                                                                                class="h-48 object-contain" 
+                                                                                loading="lazy">
+                                                                        </div>
+                                                                    @endif
+                                                                    @if($product->image3)
+                                                                        <div class="swiper-slide flex justify-center items-center">
+                                                                            <img src="{{ asset('/' . $product->image3) }}" 
+                                                                                alt="Image 3" 
+                                                                                class="h-48 object-contain" 
+                                                                                loading="lazy">
+                                                                        </div>
+                                                                    @endif
+                                                                </div>
+                                                                <!-- Navigation arrows -->
+                                                                <div class="swiper-button-next"></div>
+                                                                <div class="swiper-button-prev"></div>
+                                                                <!-- Pagination dots -->
+                                                                <div class="swiper-pagination "></div>
+                                                            </div>
                                                         </a>
                                                     </div>
 
@@ -1202,8 +1229,64 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
                 </div>
 
-
+<script>
+             document.addEventListener("DOMContentLoaded", function () {
+    new Swiper('.product-swiper', {
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+});
+        </script>
             <style>
+                 /* Make arrows smaller and yellow */
+                                .swiper-button-next,
+                                .swiper-button-prev {
+                                    color: #facc15; /* Tailwind yellow-400 */
+                                    width: 24px;
+                                    height: 24px;
+                                }
+
+                                /* Make arrows a bit thinner */
+                                .swiper-button-next::after,
+                                .swiper-button-prev::after {
+                                    font-size: 24px;
+                                    font-weight: bold;
+                                }
+
+                                /* Position arrows a bit closer to the slider */
+                                .swiper-button-next {
+                                    right: 8px;
+                                }
+
+                                .swiper-button-prev {
+                                    left: 8px;
+                                }
+
+                                /* Yellow pagination bullets */
+                                .swiper-pagination-bullet {
+                                    background-color: #facc15; /* yellow-400 */
+                                    opacity: 0.6;
+                                    width: 10px;
+                                    height: 10px;
+                                }
+
+                                /* Active bullet fully opaque and bigger */
+                                .swiper-pagination-bullet-active {
+                                    opacity: 1;
+                                    width: 12px;
+                                    height: 12px;
+                                }   
                 .button-fancy {
                         padding: 10px 28px;
                         font-size: 1rem;

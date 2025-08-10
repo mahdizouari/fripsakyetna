@@ -43,6 +43,7 @@
 <link rel="stylesheet" href="{{ asset('vendor/slick/slick.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/MagnificPopup/magnific-popup.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 <!-- Icon Fonts -->
 <link rel="stylesheet" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -1193,6 +1194,7 @@ $(document).ready(function() {
 <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
 <script src="js/slick-custom.js"></script>
 <script src="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 
 
